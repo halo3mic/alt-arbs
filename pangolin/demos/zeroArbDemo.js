@@ -1,5 +1,5 @@
 const { provider, signer } = require('../avaProvider')
-const zeroArb = require('../zeroArb')
+const zeroArb = require('../pangolin')
 const paths = require('../config/paths.json')
 const pools = require('../config/pools.json')
 const { BigNumber } = require('ethers')
@@ -7,6 +7,8 @@ const ethers = require('ethers')
 const math = require('../math')
 const fs = require('fs')
 const resolve = require('path').resolve
+
+
 
 function findArbForPastBlock(blockNumber) {
     let path = './logs/reservesByBlock.json'
@@ -59,4 +61,31 @@ function findBestAmountIn() {
 
 // } 
 
-findBestAmountIn()
+async function interactWithRouter() {
+    console.log(await provider.getBlockNumber())
+    let abi = require('../config/abis/uniswapRouter.json')
+    let address = "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106"
+    let contract = new ethers.Contract(address, abi, provider)
+    let response = await contract.quote(1, 100, 1000)
+    console.log(response)
+}
+
+async function interactWithPool() {
+    console.log(await provider.getBlockNumber())
+    let abi = require('../config/abis/uniswapPool.json')
+    let address = "0x45c2755EEFA0eb96cE15C2f6FDc48346DA7f3A7e"
+    let contract = new ethers.Contract(address, abi, provider)
+    let response = await contract.name()
+    console.log(response)
+}
+
+async function interactWithToken() {
+    console.log(await provider.getBlockNumber())
+    let abi = require('../config/abis/erc20.json')
+    let address = "0x60781C2586D68229fde47564546784ab3fACA982"
+    let contract = new ethers.Contract(address, abi, provider)
+    let response = await contract.name()
+    console.log(response)
+}
+
+interactWithToken()

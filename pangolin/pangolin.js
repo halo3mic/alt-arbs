@@ -12,7 +12,7 @@ const ethers = require('ethers')
 const fs = require('fs')
 
 const WAVAX_MAX_BAL = "800";
-const ROUTER_ADDRESS = "????????????????????";  // TODO change router address!
+const ROUTER_ADDRESS = "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106";
 const GAS_LIMIT = "400000";
 const BOT_BAL = ethers.utils.parseUnits('3000');
 
@@ -35,7 +35,7 @@ function initialize(provider, signer) {
         signer
     )
     WAVAX_CONTRACT = new ethers.Contract(
-        tokens.filter(t=>t.id=='wAVAX')[0].address,
+        tokens.filter(t=>t.id=='T0000')[0].address,
         wethAbi,
         signer
         )
@@ -57,13 +57,13 @@ function saveReserves(reservesNew, path, blockNumber) {
 }
 
 function findArbs(reservesAll) {
-    let inputAsset = 'wAVAX'
+    let inputAsset = 'T0000'
     let opps = []
     for (path of paths) {
         let { tkns: tknPath, pools: poolsPath } = path
         let pathFull = poolsPath.map(step => {
             return {
-                tkns: pools.filter(p=>p.id==step)[0].tkns,
+                tkns: pools.filter(p=>p.id==step)[0].tkns.map(t=>t.id),
                 reserves: reservesAll[step]
             }
         })
@@ -137,7 +137,8 @@ async function findBestOpp() {
     let opps = findArbs(reservesAll)
     console.log(`debug::findBestOpp::timing 2: ${new Date() - startTime}ms`);
     opps.forEach(o => {
-        if ((!bestOpp && o.netProfit.gt("0")) || (bestOpp && o.netProfit.gt(bestOpp.netProfit))) {
+        // && o.netProfit.gt("0")
+        if ((!bestOpp ) || (bestOpp && o.netProfit.gt(bestOpp.netProfit))) {
             bestOpp = {
                 inputAmount: o.amountIn,
                 grossProfit: o.profit, 
@@ -152,7 +153,6 @@ async function findBestOpp() {
 
 async function submitTradeTx(blockNumber, opp) {
     let startTime = new Date();
-
     let tknAddressPath = opp.path.map(t1=>tokens.filter(t2=>t2.id==t1)[0].address)
     let tx = await ROUTER_CONTRACT.swapExactAVAXForTokens(
         opp.inputAmount,

@@ -1,27 +1,87 @@
 [
     {
-        "id": "ZERO-zETH", 
-        "address": "0x45c2755EEFA0eb96cE15C2f6FDc48346DA7f3A7e",
-        "tkns": ["ZERO", "zETH"]
-    },
-    {
-        "id": "ZERO-zUSDC", 
-        "address": "0x4cEa032b4B3F59f31d6d52071258EE0d42b6cC7e",
-        "tkns": ["ZERO", "zUSDC"]
-    },
-    {
-        "id": "ZERO-wAVAX", 
-        "address": "0x0751f9a49d921aa282257563c2041b9a0e00eb78",
-        "tkns": ["ZERO", "wAVAX"]
-    },
-    {
-        "id": "zUSDC-wAVAX", 
-        "address": "0x17766e5dd91FdC14C24CD9847e5E93fD62a05aFd",
-        "tkns": [ "zUSDC", "wAVAX"]
-    },
-    {
-        "id": "wAVAX-zETH", 
         "address": "0x332719570155dc61bEc2901A06d6B36faF02F184",
-        "tkns": ["wAVAX", "zETH"]
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0001",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxzeth_zeroExchange",
+        "exchange": "zeroExchange",
+        "id": "P0000"
+    },
+    {
+        "address": "0x17766e5dd91FdC14C24CD9847e5E93fD62a05aFd",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0002",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "zusdcwavax_zeroExchange",
+        "exchange": "zeroExchange",
+        "id": "P0001"
+    },
+    {
+        "address": "0x0751f9A49D921aA282257563C2041B9a0E00eB78",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "zerowavax_zeroExchange",
+        "exchange": "zeroExchange",
+        "id": "P0002"
+    },
+    {
+        "address": "0x45c2755EEFA0eb96cE15C2f6FDc48346DA7f3A7e",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0001",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "zerozeth_zeroExchange",
+        "exchange": "zeroExchange",
+        "id": "P0003"
+    },
+    {
+        "address": "0x4cEa032b4B3F59f31d6d52071258EE0d42b6cC7e",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0002",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "zerozusdc_zeroExchange",
+        "exchange": "zeroExchange",
+        "id": "P0004"
     }
 ]

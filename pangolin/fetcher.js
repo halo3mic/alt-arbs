@@ -28,16 +28,14 @@ function covertUnits(num, dec) {
 async function fetchReserves(pool) {
     /* Fetch reserves and format them according to the tokens. */
     const reservesRaw = fetchReservesRaw(pool.address)
-    const tkn0 = tokens.filter(t=>t.id==pool.tkns[0])[0]
-    const tkn1 = tokens.filter(t=>t.id==pool.tkns[1])[0]
+    const tkn0 = tokens.filter(t=>t.id==pool.tkns[0].id)[0]
+    const tkn1 = tokens.filter(t=>t.id==pool.tkns[1].id)[0]
 
     let r1 = reservesRaw.then(
-            // r => parseFloat(ethers.utils.formatUnits(r[0], tkn1.decimals))
-            r => covertUnits(r[0], tkn0.decimals)
+            r => covertUnits(r[0], tkn0.decimal)
         )
     let r2 = reservesRaw.then(
-            // r => parseFloat(ethers.utils.formatUnits(r[1], tkn2.decimals))
-            r => covertUnits(r[1], tkn1.decimals)
+            r => covertUnits(r[1], tkn1.decimal)
         )
     return Promise.all([ r1, r2 ]).then(result => {
         let reserves = {}
