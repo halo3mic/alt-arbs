@@ -1,0 +1,4482 @@
+[
+    {
+        "id": "I0000",
+        "symbol": "weth2uni2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0001",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0001",
+            "P0002"
+        ],
+        "gasAmount": "224940",
+        "gasAmountArcher": "229940"
+    },
+    {
+        "id": "I0001",
+        "symbol": "weth2uni2weth_uniswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0001",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0001",
+            "P0046"
+        ],
+        "gasAmount": "227517",
+        "gasAmountArcher": "232517"
+    },
+    {
+        "id": "I0002",
+        "symbol": "weth2uni2weth_uniswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0001",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0001",
+            "P0118"
+        ],
+        "gasAmount": "240915",
+        "gasAmountArcher": "245915"
+    },
+    {
+        "id": "I0003",
+        "symbol": "weth2uni2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0001",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0002",
+            "P0001"
+        ],
+        "gasAmount": "224947",
+        "gasAmountArcher": "229947"
+    },
+    {
+        "id": "I0004",
+        "symbol": "weth2uni2weth_sushiswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0001",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0002",
+            "P0046"
+        ],
+        "gasAmount": "228469",
+        "gasAmountArcher": "233469"
+    },
+    {
+        "id": "I0005",
+        "symbol": "weth2uni2weth_sushiswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0001",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0002",
+            "P0118"
+        ],
+        "gasAmount": "241867",
+        "gasAmountArcher": "246867"
+    },
+    {
+        "id": "I0006",
+        "symbol": "weth2usdc2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0003",
+            "P0004"
+        ],
+        "gasAmount": "240686",
+        "gasAmountArcher": "245686"
+    },
+    {
+        "id": "I0007",
+        "symbol": "weth2usdc2weth_uniswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0003",
+            "P0042"
+        ],
+        "gasAmount": "243263",
+        "gasAmountArcher": "248263"
+    },
+    {
+        "id": "I0008",
+        "symbol": "weth2usdc2weth_uniswap2linkswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0003",
+            "P0063"
+        ],
+        "gasAmount": "274138",
+        "gasAmountArcher": "279138"
+    },
+    {
+        "id": "I0009",
+        "symbol": "weth2usdc2weth_uniswap2whiteswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0003",
+            "P0071"
+        ],
+        "gasAmount": "250874",
+        "gasAmountArcher": "255874"
+    },
+    {
+        "id": "I0010",
+        "symbol": "weth2usdc2weth_uniswap2polyient",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0003",
+            "P0072"
+        ],
+        "gasAmount": "240794",
+        "gasAmountArcher": "245794"
+    },
+    {
+        "id": "I0011",
+        "symbol": "weth2usdc2weth_uniswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0003",
+            "P0119"
+        ],
+        "gasAmount": "259157",
+        "gasAmountArcher": "264157"
+    },
+    {
+        "id": "I0012",
+        "symbol": "weth2usdc2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0004",
+            "P0003"
+        ],
+        "gasAmount": "240693",
+        "gasAmountArcher": "245693"
+    },
+    {
+        "id": "I0013",
+        "symbol": "weth2usdc2weth_sushiswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0004",
+            "P0042"
+        ],
+        "gasAmount": "244215",
+        "gasAmountArcher": "249215"
+    },
+    {
+        "id": "I0014",
+        "symbol": "weth2usdc2weth_sushiswap2linkswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0004",
+            "P0063"
+        ],
+        "gasAmount": "275090",
+        "gasAmountArcher": "280090"
+    },
+    {
+        "id": "I0015",
+        "symbol": "weth2usdc2weth_sushiswap2whiteswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0004",
+            "P0071"
+        ],
+        "gasAmount": "251826",
+        "gasAmountArcher": "256826"
+    },
+    {
+        "id": "I0016",
+        "symbol": "weth2usdc2weth_sushiswap2polyient",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0004",
+            "P0072"
+        ],
+        "gasAmount": "241746",
+        "gasAmountArcher": "246746"
+    },
+    {
+        "id": "I0017",
+        "symbol": "weth2usdc2weth_sushiswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0004",
+            "P0119"
+        ],
+        "gasAmount": "260109",
+        "gasAmountArcher": "265109"
+    },
+    {
+        "id": "I0018",
+        "symbol": "weth2wbtc2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0004",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0005",
+            "P0006"
+        ],
+        "gasAmount": "226464",
+        "gasAmountArcher": "231464"
+    },
+    {
+        "id": "I0019",
+        "symbol": "weth2wbtc2weth_uniswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0004",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0005",
+            "P0039"
+        ],
+        "gasAmount": "229041",
+        "gasAmountArcher": "234041"
+    },
+    {
+        "id": "I0020",
+        "symbol": "weth2wbtc2weth_uniswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0004",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0005",
+            "P0121"
+        ],
+        "gasAmount": "242437",
+        "gasAmountArcher": "247437"
+    },
+    {
+        "id": "I0021",
+        "symbol": "weth2wbtc2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0004",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0006",
+            "P0005"
+        ],
+        "gasAmount": "226471",
+        "gasAmountArcher": "231471"
+    },
+    {
+        "id": "I0022",
+        "symbol": "weth2wbtc2weth_sushiswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0004",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0006",
+            "P0039"
+        ],
+        "gasAmount": "229993",
+        "gasAmountArcher": "234993"
+    },
+    {
+        "id": "I0023",
+        "symbol": "weth2wbtc2weth_sushiswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0004",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0006",
+            "P0121"
+        ],
+        "gasAmount": "243389",
+        "gasAmountArcher": "248389"
+    },
+    {
+        "id": "I0024",
+        "symbol": "weth2link2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0007",
+            "P0008"
+        ],
+        "gasAmount": "221728",
+        "gasAmountArcher": "226728"
+    },
+    {
+        "id": "I0025",
+        "symbol": "weth2link2weth_uniswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0007",
+            "P0043"
+        ],
+        "gasAmount": "224305",
+        "gasAmountArcher": "229305"
+    },
+    {
+        "id": "I0026",
+        "symbol": "weth2link2weth_uniswap2linkswap",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0007",
+            "P0062"
+        ],
+        "gasAmount": "255180",
+        "gasAmountArcher": "260180"
+    },
+    {
+        "id": "I0027",
+        "symbol": "weth2link2weth_uniswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0007",
+            "P0123"
+        ],
+        "gasAmount": "237561",
+        "gasAmountArcher": "242561"
+    },
+    {
+        "id": "I0028",
+        "symbol": "weth2link2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0008",
+            "P0007"
+        ],
+        "gasAmount": "221735",
+        "gasAmountArcher": "226735"
+    },
+    {
+        "id": "I0029",
+        "symbol": "weth2link2weth_sushiswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0008",
+            "P0043"
+        ],
+        "gasAmount": "225257",
+        "gasAmountArcher": "230257"
+    },
+    {
+        "id": "I0030",
+        "symbol": "weth2link2weth_sushiswap2linkswap",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0008",
+            "P0062"
+        ],
+        "gasAmount": "256132",
+        "gasAmountArcher": "261132"
+    },
+    {
+        "id": "I0031",
+        "symbol": "weth2link2weth_sushiswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0008",
+            "P0123"
+        ],
+        "gasAmount": "238513",
+        "gasAmountArcher": "243513"
+    },
+    {
+        "id": "I0032",
+        "symbol": "weth2dai2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0009",
+            "P0010"
+        ],
+        "gasAmount": "217369",
+        "gasAmountArcher": "222369"
+    },
+    {
+        "id": "I0033",
+        "symbol": "weth2dai2weth_uniswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0009",
+            "P0047"
+        ],
+        "gasAmount": "219946",
+        "gasAmountArcher": "224946"
+    },
+    {
+        "id": "I0034",
+        "symbol": "weth2dai2weth_uniswap2whiteswap",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0009",
+            "P0070"
+        ],
+        "gasAmount": "227557",
+        "gasAmountArcher": "232557"
+    },
+    {
+        "id": "I0035",
+        "symbol": "weth2dai2weth_uniswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0009",
+            "P0122"
+        ],
+        "gasAmount": "233149",
+        "gasAmountArcher": "238149"
+    },
+    {
+        "id": "I0036",
+        "symbol": "weth2dai2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0010",
+            "P0009"
+        ],
+        "gasAmount": "217376",
+        "gasAmountArcher": "222376"
+    },
+    {
+        "id": "I0037",
+        "symbol": "weth2dai2weth_sushiswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0010",
+            "P0047"
+        ],
+        "gasAmount": "220898",
+        "gasAmountArcher": "225898"
+    },
+    {
+        "id": "I0038",
+        "symbol": "weth2dai2weth_sushiswap2whiteswap",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0010",
+            "P0070"
+        ],
+        "gasAmount": "228509",
+        "gasAmountArcher": "233509"
+    },
+    {
+        "id": "I0039",
+        "symbol": "weth2dai2weth_sushiswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0010",
+            "P0122"
+        ],
+        "gasAmount": "234101",
+        "gasAmountArcher": "239101"
+    },
+    {
+        "id": "I0040",
+        "symbol": "weth2sushi2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0007",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0011",
+            "P0012"
+        ],
+        "gasAmount": "222934",
+        "gasAmountArcher": "227934"
+    },
+    {
+        "id": "I0041",
+        "symbol": "weth2sushi2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0007",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0012",
+            "P0011"
+        ],
+        "gasAmount": "222941",
+        "gasAmountArcher": "227941"
+    },
+    {
+        "id": "I0042",
+        "symbol": "weth2yfi2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0008",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0013",
+            "P0014"
+        ],
+        "gasAmount": "223155",
+        "gasAmountArcher": "228155"
+    },
+    {
+        "id": "I0043",
+        "symbol": "weth2yfi2weth_uniswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0008",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0013",
+            "P0045"
+        ],
+        "gasAmount": "225732",
+        "gasAmountArcher": "230732"
+    },
+    {
+        "id": "I0044",
+        "symbol": "weth2yfi2weth_uniswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0008",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0013",
+            "P0126"
+        ],
+        "gasAmount": "238874",
+        "gasAmountArcher": "243874"
+    },
+    {
+        "id": "I0045",
+        "symbol": "weth2yfi2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0008",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0014",
+            "P0013"
+        ],
+        "gasAmount": "223162",
+        "gasAmountArcher": "228162"
+    },
+    {
+        "id": "I0046",
+        "symbol": "weth2yfi2weth_sushiswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0008",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0014",
+            "P0045"
+        ],
+        "gasAmount": "226684",
+        "gasAmountArcher": "231684"
+    },
+    {
+        "id": "I0047",
+        "symbol": "weth2yfi2weth_sushiswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0008",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0014",
+            "P0126"
+        ],
+        "gasAmount": "239826",
+        "gasAmountArcher": "244826"
+    },
+    {
+        "id": "I0048",
+        "symbol": "weth2kp3r2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0009",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0015",
+            "P0016"
+        ],
+        "gasAmount": "215866",
+        "gasAmountArcher": "220866"
+    },
+    {
+        "id": "I0049",
+        "symbol": "weth2kp3r2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0009",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0016",
+            "P0015"
+        ],
+        "gasAmount": "215873",
+        "gasAmountArcher": "220873"
+    },
+    {
+        "id": "I0050",
+        "symbol": "weth2snx2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0010",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0017",
+            "P0018"
+        ],
+        "gasAmount": "328245",
+        "gasAmountArcher": "333245"
+    },
+    {
+        "id": "I0051",
+        "symbol": "weth2snx2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0010",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0018",
+            "P0017"
+        ],
+        "gasAmount": "328252",
+        "gasAmountArcher": "333252"
+    },
+    {
+        "id": "I0052",
+        "symbol": "weth2band2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0011",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0019",
+            "P0020"
+        ],
+        "gasAmount": "350340",
+        "gasAmountArcher": "355340"
+    },
+    {
+        "id": "I0053",
+        "symbol": "weth2band2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0011",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0020",
+            "P0019"
+        ],
+        "gasAmount": "350347",
+        "gasAmountArcher": "355347"
+    },
+    {
+        "id": "I0054",
+        "symbol": "weth2ampl2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0012",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0021",
+            "P0022"
+        ],
+        "gasAmount": "236393",
+        "gasAmountArcher": "241393"
+    },
+    {
+        "id": "I0055",
+        "symbol": "weth2ampl2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0012",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0022",
+            "P0021"
+        ],
+        "gasAmount": "236400",
+        "gasAmountArcher": "241400"
+    },
+    {
+        "id": "I0056",
+        "symbol": "weth2inj2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0013",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0023",
+            "P0024"
+        ],
+        "gasAmount": "223220",
+        "gasAmountArcher": "228220"
+    },
+    {
+        "id": "I0057",
+        "symbol": "weth2inj2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0013",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0024",
+            "P0023"
+        ],
+        "gasAmount": "223227",
+        "gasAmountArcher": "228227"
+    },
+    {
+        "id": "I0058",
+        "symbol": "weth2arch2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0014",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0025",
+            "P0026"
+        ],
+        "gasAmount": "215820",
+        "gasAmountArcher": "220820"
+    },
+    {
+        "id": "I0059",
+        "symbol": "weth2arch2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0014",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0026",
+            "P0025"
+        ],
+        "gasAmount": "215827",
+        "gasAmountArcher": "220827"
+    },
+    {
+        "id": "I0060",
+        "symbol": "weth2crv2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0015",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0027",
+            "P0028"
+        ],
+        "gasAmount": "220656",
+        "gasAmountArcher": "225656"
+    },
+    {
+        "id": "I0061",
+        "symbol": "weth2crv2weth_uniswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0015",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0027",
+            "P0073"
+        ],
+        "gasAmount": "223233",
+        "gasAmountArcher": "228233"
+    },
+    {
+        "id": "I0062",
+        "symbol": "weth2crv2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0015",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0028",
+            "P0027"
+        ],
+        "gasAmount": "220663",
+        "gasAmountArcher": "225663"
+    },
+    {
+        "id": "I0063",
+        "symbol": "weth2crv2weth_sushiswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0015",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0028",
+            "P0073"
+        ],
+        "gasAmount": "224185",
+        "gasAmountArcher": "229185"
+    },
+    {
+        "id": "I0064",
+        "symbol": "weth2susd2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0016",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0029",
+            "P0030"
+        ],
+        "gasAmount": "355871",
+        "gasAmountArcher": "360871"
+    },
+    {
+        "id": "I0065",
+        "symbol": "weth2susd2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0016",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0030",
+            "P0029"
+        ],
+        "gasAmount": "355878",
+        "gasAmountArcher": "360878"
+    },
+    {
+        "id": "I0066",
+        "symbol": "weth2hegic2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0017",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0031",
+            "P0032"
+        ],
+        "gasAmount": "222685",
+        "gasAmountArcher": "227685"
+    },
+    {
+        "id": "I0067",
+        "symbol": "weth2hegic2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0017",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0032",
+            "P0031"
+        ],
+        "gasAmount": "222692",
+        "gasAmountArcher": "227692"
+    },
+    {
+        "id": "I0068",
+        "symbol": "weth2comp2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0018",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0033",
+            "P0034"
+        ],
+        "gasAmount": "225368",
+        "gasAmountArcher": "230368"
+    },
+    {
+        "id": "I0069",
+        "symbol": "weth2comp2weth_uniswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0018",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0033",
+            "P0044"
+        ],
+        "gasAmount": "227945",
+        "gasAmountArcher": "232945"
+    },
+    {
+        "id": "I0070",
+        "symbol": "weth2comp2weth_uniswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0018",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0033",
+            "P0124"
+        ],
+        "gasAmount": "241334",
+        "gasAmountArcher": "246334"
+    },
+    {
+        "id": "I0071",
+        "symbol": "weth2comp2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0018",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0034",
+            "P0033"
+        ],
+        "gasAmount": "225375",
+        "gasAmountArcher": "230375"
+    },
+    {
+        "id": "I0072",
+        "symbol": "weth2comp2weth_sushiswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0018",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0034",
+            "P0044"
+        ],
+        "gasAmount": "228897",
+        "gasAmountArcher": "233897"
+    },
+    {
+        "id": "I0073",
+        "symbol": "weth2comp2weth_sushiswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0018",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0034",
+            "P0124"
+        ],
+        "gasAmount": "242286",
+        "gasAmountArcher": "247286"
+    },
+    {
+        "id": "I0074",
+        "symbol": "weth2wnxm2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0019",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0035",
+            "P0036"
+        ],
+        "gasAmount": "222959",
+        "gasAmountArcher": "227959"
+    },
+    {
+        "id": "I0075",
+        "symbol": "weth2wnxm2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0019",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0036",
+            "P0035"
+        ],
+        "gasAmount": "222966",
+        "gasAmountArcher": "227966"
+    },
+    {
+        "id": "I0076",
+        "symbol": "weth2mkr2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0020",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0037",
+            "P0038"
+        ],
+        "gasAmount": "218344",
+        "gasAmountArcher": "223344"
+    },
+    {
+        "id": "I0077",
+        "symbol": "weth2mkr2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0020",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0038",
+            "P0037"
+        ],
+        "gasAmount": "218351",
+        "gasAmountArcher": "223351"
+    },
+    {
+        "id": "I0078",
+        "symbol": "weth2wbtc2weth_crypto2uniswap",
+        "tkns": [
+            "T0002",
+            "T0004",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0039",
+            "P0005"
+        ],
+        "gasAmount": "229041",
+        "gasAmountArcher": "234041"
+    },
+    {
+        "id": "I0079",
+        "symbol": "weth2wbtc2weth_crypto2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0004",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0039",
+            "P0006"
+        ],
+        "gasAmount": "229986",
+        "gasAmountArcher": "234986"
+    },
+    {
+        "id": "I0080",
+        "symbol": "weth2wbtc2weth_crypto2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0004",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0039",
+            "P0121"
+        ],
+        "gasAmount": "245959",
+        "gasAmountArcher": "250959"
+    },
+    {
+        "id": "I0081",
+        "symbol": "weth2cro2weth_crypto2uniswap",
+        "tkns": [
+            "T0002",
+            "T0021",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0040",
+            "P0041"
+        ],
+        "gasAmount": "229352",
+        "gasAmountArcher": "234352"
+    },
+    {
+        "id": "I0082",
+        "symbol": "weth2cro2weth_uniswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0021",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0041",
+            "P0040"
+        ],
+        "gasAmount": "229352",
+        "gasAmountArcher": "234352"
+    },
+    {
+        "id": "I0083",
+        "symbol": "weth2usdc2weth_crypto2uniswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0042",
+            "P0003"
+        ],
+        "gasAmount": "243263",
+        "gasAmountArcher": "248263"
+    },
+    {
+        "id": "I0084",
+        "symbol": "weth2usdc2weth_crypto2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0042",
+            "P0004"
+        ],
+        "gasAmount": "244208",
+        "gasAmountArcher": "249208"
+    },
+    {
+        "id": "I0085",
+        "symbol": "weth2usdc2weth_crypto2linkswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0042",
+            "P0063"
+        ],
+        "gasAmount": "277660",
+        "gasAmountArcher": "282660"
+    },
+    {
+        "id": "I0086",
+        "symbol": "weth2usdc2weth_crypto2whiteswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0042",
+            "P0071"
+        ],
+        "gasAmount": "254396",
+        "gasAmountArcher": "259396"
+    },
+    {
+        "id": "I0087",
+        "symbol": "weth2usdc2weth_crypto2polyient",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0042",
+            "P0072"
+        ],
+        "gasAmount": "244316",
+        "gasAmountArcher": "249316"
+    },
+    {
+        "id": "I0088",
+        "symbol": "weth2usdc2weth_crypto2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0042",
+            "P0119"
+        ],
+        "gasAmount": "262679",
+        "gasAmountArcher": "267679"
+    },
+    {
+        "id": "I0089",
+        "symbol": "weth2link2weth_crypto2uniswap",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0043",
+            "P0007"
+        ],
+        "gasAmount": "224305",
+        "gasAmountArcher": "229305"
+    },
+    {
+        "id": "I0090",
+        "symbol": "weth2link2weth_crypto2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0043",
+            "P0008"
+        ],
+        "gasAmount": "225250",
+        "gasAmountArcher": "230250"
+    },
+    {
+        "id": "I0091",
+        "symbol": "weth2link2weth_crypto2linkswap",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0043",
+            "P0062"
+        ],
+        "gasAmount": "258702",
+        "gasAmountArcher": "263702"
+    },
+    {
+        "id": "I0092",
+        "symbol": "weth2link2weth_crypto2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0043",
+            "P0123"
+        ],
+        "gasAmount": "241083",
+        "gasAmountArcher": "246083"
+    },
+    {
+        "id": "I0093",
+        "symbol": "weth2comp2weth_crypto2uniswap",
+        "tkns": [
+            "T0002",
+            "T0018",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0044",
+            "P0033"
+        ],
+        "gasAmount": "227945",
+        "gasAmountArcher": "232945"
+    },
+    {
+        "id": "I0094",
+        "symbol": "weth2comp2weth_crypto2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0018",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0044",
+            "P0034"
+        ],
+        "gasAmount": "228890",
+        "gasAmountArcher": "233890"
+    },
+    {
+        "id": "I0095",
+        "symbol": "weth2comp2weth_crypto2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0018",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0044",
+            "P0124"
+        ],
+        "gasAmount": "244856",
+        "gasAmountArcher": "249856"
+    },
+    {
+        "id": "I0096",
+        "symbol": "weth2yfi2weth_crypto2uniswap",
+        "tkns": [
+            "T0002",
+            "T0008",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0045",
+            "P0013"
+        ],
+        "gasAmount": "225732",
+        "gasAmountArcher": "230732"
+    },
+    {
+        "id": "I0097",
+        "symbol": "weth2yfi2weth_crypto2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0008",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0045",
+            "P0014"
+        ],
+        "gasAmount": "226677",
+        "gasAmountArcher": "231677"
+    },
+    {
+        "id": "I0098",
+        "symbol": "weth2yfi2weth_crypto2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0008",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0045",
+            "P0126"
+        ],
+        "gasAmount": "242396",
+        "gasAmountArcher": "247396"
+    },
+    {
+        "id": "I0099",
+        "symbol": "weth2uni2weth_crypto2uniswap",
+        "tkns": [
+            "T0002",
+            "T0001",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0046",
+            "P0001"
+        ],
+        "gasAmount": "227517",
+        "gasAmountArcher": "232517"
+    },
+    {
+        "id": "I0100",
+        "symbol": "weth2uni2weth_crypto2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0001",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0046",
+            "P0002"
+        ],
+        "gasAmount": "228462",
+        "gasAmountArcher": "233462"
+    },
+    {
+        "id": "I0101",
+        "symbol": "weth2uni2weth_crypto2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0001",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0046",
+            "P0118"
+        ],
+        "gasAmount": "244437",
+        "gasAmountArcher": "249437"
+    },
+    {
+        "id": "I0102",
+        "symbol": "weth2dai2weth_crypto2uniswap",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0047",
+            "P0009"
+        ],
+        "gasAmount": "219946",
+        "gasAmountArcher": "224946"
+    },
+    {
+        "id": "I0103",
+        "symbol": "weth2dai2weth_crypto2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0047",
+            "P0010"
+        ],
+        "gasAmount": "220891",
+        "gasAmountArcher": "225891"
+    },
+    {
+        "id": "I0104",
+        "symbol": "weth2dai2weth_crypto2whiteswap",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0047",
+            "P0070"
+        ],
+        "gasAmount": "231079",
+        "gasAmountArcher": "236079"
+    },
+    {
+        "id": "I0105",
+        "symbol": "weth2dai2weth_crypto2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0047",
+            "P0122"
+        ],
+        "gasAmount": "236671",
+        "gasAmountArcher": "241671"
+    },
+    {
+        "id": "I0106",
+        "symbol": "weth2usdt2weth_crypto2uniswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0048",
+            "P0049"
+        ],
+        "gasAmount": "230029",
+        "gasAmountArcher": "235029"
+    },
+    {
+        "id": "I0107",
+        "symbol": "weth2usdt2weth_crypto2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0048",
+            "P0050"
+        ],
+        "gasAmount": "230974",
+        "gasAmountArcher": "235974"
+    },
+    {
+        "id": "I0108",
+        "symbol": "weth2usdt2weth_crypto2linkswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0048",
+            "P0064"
+        ],
+        "gasAmount": "264396",
+        "gasAmountArcher": "269396"
+    },
+    {
+        "id": "I0109",
+        "symbol": "weth2usdt2weth_crypto2whiteswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0048",
+            "P0069"
+        ],
+        "gasAmount": "241162",
+        "gasAmountArcher": "246162"
+    },
+    {
+        "id": "I0110",
+        "symbol": "weth2usdt2weth_crypto2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0048",
+            "P0120"
+        ],
+        "gasAmount": "247883",
+        "gasAmountArcher": "252883"
+    },
+    {
+        "id": "I0111",
+        "symbol": "weth2usdt2weth_uniswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0049",
+            "P0048"
+        ],
+        "gasAmount": "230029",
+        "gasAmountArcher": "235029"
+    },
+    {
+        "id": "I0112",
+        "symbol": "weth2usdt2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0049",
+            "P0050"
+        ],
+        "gasAmount": "227452",
+        "gasAmountArcher": "232452"
+    },
+    {
+        "id": "I0113",
+        "symbol": "weth2usdt2weth_uniswap2linkswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0049",
+            "P0064"
+        ],
+        "gasAmount": "260874",
+        "gasAmountArcher": "265874"
+    },
+    {
+        "id": "I0114",
+        "symbol": "weth2usdt2weth_uniswap2whiteswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0049",
+            "P0069"
+        ],
+        "gasAmount": "237640",
+        "gasAmountArcher": "242640"
+    },
+    {
+        "id": "I0115",
+        "symbol": "weth2usdt2weth_uniswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0049",
+            "P0120"
+        ],
+        "gasAmount": "244361",
+        "gasAmountArcher": "249361"
+    },
+    {
+        "id": "I0116",
+        "symbol": "weth2usdt2weth_sushiswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0050",
+            "P0048"
+        ],
+        "gasAmount": "230981",
+        "gasAmountArcher": "235981"
+    },
+    {
+        "id": "I0117",
+        "symbol": "weth2usdt2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0050",
+            "P0049"
+        ],
+        "gasAmount": "227459",
+        "gasAmountArcher": "232459"
+    },
+    {
+        "id": "I0118",
+        "symbol": "weth2usdt2weth_sushiswap2linkswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0050",
+            "P0064"
+        ],
+        "gasAmount": "261826",
+        "gasAmountArcher": "266826"
+    },
+    {
+        "id": "I0119",
+        "symbol": "weth2usdt2weth_sushiswap2whiteswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0050",
+            "P0069"
+        ],
+        "gasAmount": "238592",
+        "gasAmountArcher": "243592"
+    },
+    {
+        "id": "I0120",
+        "symbol": "weth2usdt2weth_sushiswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0050",
+            "P0120"
+        ],
+        "gasAmount": "245313",
+        "gasAmountArcher": "250313"
+    },
+    {
+        "id": "I0121",
+        "symbol": "weth2aave2weth_crypto2uniswap",
+        "tkns": [
+            "T0002",
+            "T0023",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0051",
+            "P0052"
+        ],
+        "gasAmount": "533073",
+        "gasAmountArcher": "538073"
+    },
+    {
+        "id": "I0122",
+        "symbol": "weth2aave2weth_uniswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0023",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0052",
+            "P0051"
+        ],
+        "gasAmount": "533073",
+        "gasAmountArcher": "538073"
+    },
+    {
+        "id": "I0123",
+        "symbol": "weth2ren2weth_crypto2uniswap",
+        "tkns": [
+            "T0002",
+            "T0024",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0053",
+            "P0054"
+        ],
+        "gasAmount": "228385",
+        "gasAmountArcher": "233385"
+    },
+    {
+        "id": "I0124",
+        "symbol": "weth2ren2weth_crypto2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0024",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0053",
+            "P0055"
+        ],
+        "gasAmount": "229330",
+        "gasAmountArcher": "234330"
+    },
+    {
+        "id": "I0125",
+        "symbol": "weth2ren2weth_uniswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0024",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0054",
+            "P0053"
+        ],
+        "gasAmount": "228385",
+        "gasAmountArcher": "233385"
+    },
+    {
+        "id": "I0126",
+        "symbol": "weth2ren2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0024",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0054",
+            "P0055"
+        ],
+        "gasAmount": "225808",
+        "gasAmountArcher": "230808"
+    },
+    {
+        "id": "I0127",
+        "symbol": "weth2ren2weth_sushiswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0024",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0055",
+            "P0053"
+        ],
+        "gasAmount": "229337",
+        "gasAmountArcher": "234337"
+    },
+    {
+        "id": "I0128",
+        "symbol": "weth2ren2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0024",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0055",
+            "P0054"
+        ],
+        "gasAmount": "225815",
+        "gasAmountArcher": "230815"
+    },
+    {
+        "id": "I0129",
+        "symbol": "weth2yydai+yusdc+yusdt+ytusd2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0025",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0056",
+            "P0057"
+        ],
+        "gasAmount": "223422",
+        "gasAmountArcher": "228422"
+    },
+    {
+        "id": "I0130",
+        "symbol": "weth2yydai+yusdc+yusdt+ytusd2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0025",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0057",
+            "P0056"
+        ],
+        "gasAmount": "223429",
+        "gasAmountArcher": "228429"
+    },
+    {
+        "id": "I0131",
+        "symbol": "weth2pnk2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0026",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0058",
+            "P0059"
+        ],
+        "gasAmount": "395292",
+        "gasAmountArcher": "400292"
+    },
+    {
+        "id": "I0132",
+        "symbol": "weth2pnk2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0026",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0059",
+            "P0058"
+        ],
+        "gasAmount": "395299",
+        "gasAmountArcher": "400299"
+    },
+    {
+        "id": "I0133",
+        "symbol": "weth2cream2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0027",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0060",
+            "P0061"
+        ],
+        "gasAmount": "225344",
+        "gasAmountArcher": "230344"
+    },
+    {
+        "id": "I0134",
+        "symbol": "weth2cream2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0027",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0061",
+            "P0060"
+        ],
+        "gasAmount": "225351",
+        "gasAmountArcher": "230351"
+    },
+    {
+        "id": "I0135",
+        "symbol": "weth2link2weth_linkswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0062",
+            "P0007"
+        ],
+        "gasAmount": "255087",
+        "gasAmountArcher": "260087"
+    },
+    {
+        "id": "I0136",
+        "symbol": "weth2link2weth_linkswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0062",
+            "P0008"
+        ],
+        "gasAmount": "256032",
+        "gasAmountArcher": "261032"
+    },
+    {
+        "id": "I0137",
+        "symbol": "weth2link2weth_linkswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0062",
+            "P0043"
+        ],
+        "gasAmount": "258609",
+        "gasAmountArcher": "263609"
+    },
+    {
+        "id": "I0138",
+        "symbol": "weth2link2weth_linkswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0062",
+            "P0123"
+        ],
+        "gasAmount": "271865",
+        "gasAmountArcher": "276865"
+    },
+    {
+        "id": "I0139",
+        "symbol": "weth2usdc2weth_linkswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0063",
+            "P0003"
+        ],
+        "gasAmount": "274045",
+        "gasAmountArcher": "279045"
+    },
+    {
+        "id": "I0140",
+        "symbol": "weth2usdc2weth_linkswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0063",
+            "P0004"
+        ],
+        "gasAmount": "274990",
+        "gasAmountArcher": "279990"
+    },
+    {
+        "id": "I0141",
+        "symbol": "weth2usdc2weth_linkswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0063",
+            "P0042"
+        ],
+        "gasAmount": "277567",
+        "gasAmountArcher": "282567"
+    },
+    {
+        "id": "I0142",
+        "symbol": "weth2usdc2weth_linkswap2whiteswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0063",
+            "P0071"
+        ],
+        "gasAmount": "285178",
+        "gasAmountArcher": "290178"
+    },
+    {
+        "id": "I0143",
+        "symbol": "weth2usdc2weth_linkswap2polyient",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0063",
+            "P0072"
+        ],
+        "gasAmount": "275098",
+        "gasAmountArcher": "280098"
+    },
+    {
+        "id": "I0144",
+        "symbol": "weth2usdc2weth_linkswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0063",
+            "P0119"
+        ],
+        "gasAmount": "293461",
+        "gasAmountArcher": "298461"
+    },
+    {
+        "id": "I0145",
+        "symbol": "weth2usdt2weth_linkswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0064",
+            "P0048"
+        ],
+        "gasAmount": "264363",
+        "gasAmountArcher": "269363"
+    },
+    {
+        "id": "I0146",
+        "symbol": "weth2usdt2weth_linkswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0064",
+            "P0049"
+        ],
+        "gasAmount": "260841",
+        "gasAmountArcher": "265841"
+    },
+    {
+        "id": "I0147",
+        "symbol": "weth2usdt2weth_linkswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0064",
+            "P0050"
+        ],
+        "gasAmount": "261786",
+        "gasAmountArcher": "266786"
+    },
+    {
+        "id": "I0148",
+        "symbol": "weth2usdt2weth_linkswap2whiteswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0064",
+            "P0069"
+        ],
+        "gasAmount": "271974",
+        "gasAmountArcher": "276974"
+    },
+    {
+        "id": "I0149",
+        "symbol": "weth2usdt2weth_linkswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0064",
+            "P0120"
+        ],
+        "gasAmount": "278695",
+        "gasAmountArcher": "283695"
+    },
+    {
+        "id": "I0150",
+        "symbol": "weth2yfl2weth_linkswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0028",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0065",
+            "P0066"
+        ],
+        "gasAmount": "256033",
+        "gasAmountArcher": "261033"
+    },
+    {
+        "id": "I0151",
+        "symbol": "weth2yfl2weth_uniswap2linkswap",
+        "tkns": [
+            "T0002",
+            "T0028",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0066",
+            "P0065"
+        ],
+        "gasAmount": "256126",
+        "gasAmountArcher": "261126"
+    },
+    {
+        "id": "I0152",
+        "symbol": "weth2masq2weth_linkswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0029",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0067",
+            "P0068"
+        ],
+        "gasAmount": "256199",
+        "gasAmountArcher": "261199"
+    },
+    {
+        "id": "I0153",
+        "symbol": "weth2masq2weth_uniswap2linkswap",
+        "tkns": [
+            "T0002",
+            "T0029",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0068",
+            "P0067"
+        ],
+        "gasAmount": "256292",
+        "gasAmountArcher": "261292"
+    },
+    {
+        "id": "I0154",
+        "symbol": "weth2usdt2weth_whiteswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0069",
+            "P0048"
+        ],
+        "gasAmount": "240300",
+        "gasAmountArcher": "245300"
+    },
+    {
+        "id": "I0155",
+        "symbol": "weth2usdt2weth_whiteswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0069",
+            "P0049"
+        ],
+        "gasAmount": "236778",
+        "gasAmountArcher": "241778"
+    },
+    {
+        "id": "I0156",
+        "symbol": "weth2usdt2weth_whiteswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0069",
+            "P0050"
+        ],
+        "gasAmount": "237723",
+        "gasAmountArcher": "242723"
+    },
+    {
+        "id": "I0157",
+        "symbol": "weth2usdt2weth_whiteswap2linkswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0069",
+            "P0064"
+        ],
+        "gasAmount": "271145",
+        "gasAmountArcher": "276145"
+    },
+    {
+        "id": "I0158",
+        "symbol": "weth2usdt2weth_whiteswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0069",
+            "P0120"
+        ],
+        "gasAmount": "254632",
+        "gasAmountArcher": "259632"
+    },
+    {
+        "id": "I0159",
+        "symbol": "weth2dai2weth_whiteswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0070",
+            "P0009"
+        ],
+        "gasAmount": "226695",
+        "gasAmountArcher": "231695"
+    },
+    {
+        "id": "I0160",
+        "symbol": "weth2dai2weth_whiteswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0070",
+            "P0010"
+        ],
+        "gasAmount": "227640",
+        "gasAmountArcher": "232640"
+    },
+    {
+        "id": "I0161",
+        "symbol": "weth2dai2weth_whiteswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0070",
+            "P0047"
+        ],
+        "gasAmount": "230217",
+        "gasAmountArcher": "235217"
+    },
+    {
+        "id": "I0162",
+        "symbol": "weth2dai2weth_whiteswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0070",
+            "P0122"
+        ],
+        "gasAmount": "243420",
+        "gasAmountArcher": "248420"
+    },
+    {
+        "id": "I0163",
+        "symbol": "weth2usdc2weth_whiteswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0071",
+            "P0003"
+        ],
+        "gasAmount": "250012",
+        "gasAmountArcher": "255012"
+    },
+    {
+        "id": "I0164",
+        "symbol": "weth2usdc2weth_whiteswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0071",
+            "P0004"
+        ],
+        "gasAmount": "250957",
+        "gasAmountArcher": "255957"
+    },
+    {
+        "id": "I0165",
+        "symbol": "weth2usdc2weth_whiteswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0071",
+            "P0042"
+        ],
+        "gasAmount": "253534",
+        "gasAmountArcher": "258534"
+    },
+    {
+        "id": "I0166",
+        "symbol": "weth2usdc2weth_whiteswap2linkswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0071",
+            "P0063"
+        ],
+        "gasAmount": "284397",
+        "gasAmountArcher": "289397"
+    },
+    {
+        "id": "I0167",
+        "symbol": "weth2usdc2weth_whiteswap2polyient",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0071",
+            "P0072"
+        ],
+        "gasAmount": "251065",
+        "gasAmountArcher": "256065"
+    },
+    {
+        "id": "I0168",
+        "symbol": "weth2usdc2weth_whiteswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0071",
+            "P0119"
+        ],
+        "gasAmount": "269428",
+        "gasAmountArcher": "274428"
+    },
+    {
+        "id": "I0169",
+        "symbol": "weth2usdc2weth_polyient2uniswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0072",
+            "P0003"
+        ],
+        "gasAmount": "240819",
+        "gasAmountArcher": "245819"
+    },
+    {
+        "id": "I0170",
+        "symbol": "weth2usdc2weth_polyient2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0072",
+            "P0004"
+        ],
+        "gasAmount": "241764",
+        "gasAmountArcher": "246764"
+    },
+    {
+        "id": "I0171",
+        "symbol": "weth2usdc2weth_polyient2crypto",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0072",
+            "P0042"
+        ],
+        "gasAmount": "244341",
+        "gasAmountArcher": "249341"
+    },
+    {
+        "id": "I0172",
+        "symbol": "weth2usdc2weth_polyient2linkswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0072",
+            "P0063"
+        ],
+        "gasAmount": "275216",
+        "gasAmountArcher": "280216"
+    },
+    {
+        "id": "I0173",
+        "symbol": "weth2usdc2weth_polyient2whiteswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0072",
+            "P0071"
+        ],
+        "gasAmount": "251952",
+        "gasAmountArcher": "256952"
+    },
+    {
+        "id": "I0174",
+        "symbol": "weth2usdc2weth_polyient2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0072",
+            "P0119"
+        ],
+        "gasAmount": "260235",
+        "gasAmountArcher": "265235"
+    },
+    {
+        "id": "I0175",
+        "symbol": "weth2crv2weth_crypto2uniswap",
+        "tkns": [
+            "T0002",
+            "T0015",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0073",
+            "P0027"
+        ],
+        "gasAmount": "223233",
+        "gasAmountArcher": "228233"
+    },
+    {
+        "id": "I0176",
+        "symbol": "weth2crv2weth_crypto2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0015",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0073",
+            "P0028"
+        ],
+        "gasAmount": "224178",
+        "gasAmountArcher": "229178"
+    },
+    {
+        "id": "I0177",
+        "symbol": "weth2farm2weth_crypto2uniswap",
+        "tkns": [
+            "T0002",
+            "T0030",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0074",
+            "P0075"
+        ],
+        "gasAmount": "225205",
+        "gasAmountArcher": "230205"
+    },
+    {
+        "id": "I0178",
+        "symbol": "weth2farm2weth_uniswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0030",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0075",
+            "P0074"
+        ],
+        "gasAmount": "225205",
+        "gasAmountArcher": "230205"
+    },
+    {
+        "id": "I0179",
+        "symbol": "weth2tru2weth_crypto2uniswap",
+        "tkns": [
+            "T0002",
+            "T0031",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0076",
+            "P0077"
+        ],
+        "gasAmount": "243892",
+        "gasAmountArcher": "248892"
+    },
+    {
+        "id": "I0180",
+        "symbol": "weth2tru2weth_crypto2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0031",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0076",
+            "P0078"
+        ],
+        "gasAmount": "244837",
+        "gasAmountArcher": "249837"
+    },
+    {
+        "id": "I0181",
+        "symbol": "weth2tru2weth_uniswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0031",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0077",
+            "P0076"
+        ],
+        "gasAmount": "243892",
+        "gasAmountArcher": "248892"
+    },
+    {
+        "id": "I0182",
+        "symbol": "weth2tru2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0031",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0077",
+            "P0078"
+        ],
+        "gasAmount": "241315",
+        "gasAmountArcher": "246315"
+    },
+    {
+        "id": "I0183",
+        "symbol": "weth2tru2weth_sushiswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0031",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0078",
+            "P0076"
+        ],
+        "gasAmount": "244844",
+        "gasAmountArcher": "249844"
+    },
+    {
+        "id": "I0184",
+        "symbol": "weth2tru2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0031",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0078",
+            "P0077"
+        ],
+        "gasAmount": "241322",
+        "gasAmountArcher": "246322"
+    },
+    {
+        "id": "I0185",
+        "symbol": "weth2uma2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0032",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0079",
+            "P0080"
+        ],
+        "gasAmount": "244643",
+        "gasAmountArcher": "249643"
+    },
+    {
+        "id": "I0186",
+        "symbol": "weth2uma2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0032",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0080",
+            "P0079"
+        ],
+        "gasAmount": "244650",
+        "gasAmountArcher": "249650"
+    },
+    {
+        "id": "I0187",
+        "symbol": "weth2omg2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0033",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0081",
+            "P0082"
+        ],
+        "gasAmount": "223041",
+        "gasAmountArcher": "228041"
+    },
+    {
+        "id": "I0188",
+        "symbol": "weth2omg2weth_uniswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0033",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0081",
+            "P0125"
+        ],
+        "gasAmount": "238921",
+        "gasAmountArcher": "243921"
+    },
+    {
+        "id": "I0189",
+        "symbol": "weth2omg2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0033",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0082",
+            "P0081"
+        ],
+        "gasAmount": "223048",
+        "gasAmountArcher": "228048"
+    },
+    {
+        "id": "I0190",
+        "symbol": "weth2omg2weth_sushiswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0033",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0082",
+            "P0125"
+        ],
+        "gasAmount": "239873",
+        "gasAmountArcher": "244873"
+    },
+    {
+        "id": "I0191",
+        "symbol": "weth2srm2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0034",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0083",
+            "P0084"
+        ],
+        "gasAmount": "224451",
+        "gasAmountArcher": "229451"
+    },
+    {
+        "id": "I0192",
+        "symbol": "weth2srm2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0034",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0084",
+            "P0083"
+        ],
+        "gasAmount": "224456",
+        "gasAmountArcher": "229456"
+    },
+    {
+        "id": "I0193",
+        "symbol": "weth2nftx2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0035",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0085",
+            "P0086"
+        ],
+        "gasAmount": "427471",
+        "gasAmountArcher": "432471"
+    },
+    {
+        "id": "I0194",
+        "symbol": "weth2nftx2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0035",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0086",
+            "P0085"
+        ],
+        "gasAmount": "427464",
+        "gasAmountArcher": "432464"
+    },
+    {
+        "id": "I0195",
+        "symbol": "weth2rune2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0036",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0087",
+            "P0088"
+        ],
+        "gasAmount": "222761",
+        "gasAmountArcher": "227761"
+    },
+    {
+        "id": "I0196",
+        "symbol": "weth2rune2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0036",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0088",
+            "P0087"
+        ],
+        "gasAmount": "222754",
+        "gasAmountArcher": "227754"
+    },
+    {
+        "id": "I0197",
+        "symbol": "weth2sfi2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0037",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0089",
+            "P0090"
+        ],
+        "gasAmount": "222479",
+        "gasAmountArcher": "227479"
+    },
+    {
+        "id": "I0198",
+        "symbol": "weth2sfi2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0037",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0090",
+            "P0089"
+        ],
+        "gasAmount": "222472",
+        "gasAmountArcher": "227472"
+    },
+    {
+        "id": "I0199",
+        "symbol": "weth2alpha2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0038",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0091",
+            "P0092"
+        ],
+        "gasAmount": "222881",
+        "gasAmountArcher": "227881"
+    },
+    {
+        "id": "I0200",
+        "symbol": "weth2alpha2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0038",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0092",
+            "P0091"
+        ],
+        "gasAmount": "222874",
+        "gasAmountArcher": "227874"
+    },
+    {
+        "id": "I0201",
+        "symbol": "weth2cover2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0039",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0093",
+            "P0094"
+        ],
+        "gasAmount": "223124",
+        "gasAmountArcher": "228124"
+    },
+    {
+        "id": "I0202",
+        "symbol": "weth2cover2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0039",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0094",
+            "P0093"
+        ],
+        "gasAmount": "223117",
+        "gasAmountArcher": "228117"
+    },
+    {
+        "id": "I0203",
+        "symbol": "weth2crd2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0040",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0095",
+            "P0096"
+        ],
+        "gasAmount": "223948",
+        "gasAmountArcher": "228948"
+    },
+    {
+        "id": "I0204",
+        "symbol": "weth2crd2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0040",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0096",
+            "P0095"
+        ],
+        "gasAmount": "223941",
+        "gasAmountArcher": "228941"
+    },
+    {
+        "id": "I0205",
+        "symbol": "weth2ant2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0041",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0097",
+            "P0098"
+        ],
+        "gasAmount": "214997",
+        "gasAmountArcher": "219997"
+    },
+    {
+        "id": "I0206",
+        "symbol": "weth2ant2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0041",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0098",
+            "P0097"
+        ],
+        "gasAmount": "214990",
+        "gasAmountArcher": "219990"
+    },
+    {
+        "id": "I0207",
+        "symbol": "weth2dpi2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0042",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0099",
+            "P0100"
+        ],
+        "gasAmount": "223591",
+        "gasAmountArcher": "228591"
+    },
+    {
+        "id": "I0208",
+        "symbol": "weth2dpi2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0042",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0100",
+            "P0099"
+        ],
+        "gasAmount": "223584",
+        "gasAmountArcher": "228584"
+    },
+    {
+        "id": "I0209",
+        "symbol": "weth2index2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0043",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0101",
+            "P0102"
+        ],
+        "gasAmount": "224113",
+        "gasAmountArcher": "229113"
+    },
+    {
+        "id": "I0210",
+        "symbol": "weth2index2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0043",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0102",
+            "P0101"
+        ],
+        "gasAmount": "224106",
+        "gasAmountArcher": "229106"
+    },
+    {
+        "id": "I0211",
+        "symbol": "weth2dusd2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0044",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0103",
+            "P0104"
+        ],
+        "gasAmount": "223041",
+        "gasAmountArcher": "228041"
+    },
+    {
+        "id": "I0212",
+        "symbol": "weth2dusd2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0044",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0104",
+            "P0103"
+        ],
+        "gasAmount": "223046",
+        "gasAmountArcher": "228046"
+    },
+    {
+        "id": "I0213",
+        "symbol": "weth2perp2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0045",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0105",
+            "P0106"
+        ],
+        "gasAmount": "222725",
+        "gasAmountArcher": "227725"
+    },
+    {
+        "id": "I0214",
+        "symbol": "weth2perp2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0045",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0106",
+            "P0105"
+        ],
+        "gasAmount": "222718",
+        "gasAmountArcher": "227718"
+    },
+    {
+        "id": "I0215",
+        "symbol": "weth2pickle2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0046",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0107",
+            "P0108"
+        ],
+        "gasAmount": "222630",
+        "gasAmountArcher": "227630"
+    },
+    {
+        "id": "I0216",
+        "symbol": "weth2pickle2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0046",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0108",
+            "P0107"
+        ],
+        "gasAmount": "222623",
+        "gasAmountArcher": "227623"
+    },
+    {
+        "id": "I0217",
+        "symbol": "weth2jrt2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0047",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0109",
+            "P0110"
+        ],
+        "gasAmount": "237108",
+        "gasAmountArcher": "242108"
+    },
+    {
+        "id": "I0218",
+        "symbol": "weth2jrt2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0047",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0110",
+            "P0109"
+        ],
+        "gasAmount": "237101",
+        "gasAmountArcher": "242101"
+    },
+    {
+        "id": "I0219",
+        "symbol": "weth2cvp2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0048",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0111",
+            "P0112"
+        ],
+        "gasAmount": "225387",
+        "gasAmountArcher": "230387"
+    },
+    {
+        "id": "I0220",
+        "symbol": "weth2cvp2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0048",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0112",
+            "P0111"
+        ],
+        "gasAmount": "225380",
+        "gasAmountArcher": "230380"
+    },
+    {
+        "id": "I0221",
+        "symbol": "weth2uni2weth_sashimiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0001",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0118",
+            "P0001"
+        ],
+        "gasAmount": "234713",
+        "gasAmountArcher": "239713"
+    },
+    {
+        "id": "I0222",
+        "symbol": "weth2uni2weth_sashimiswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0001",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0118",
+            "P0002"
+        ],
+        "gasAmount": "235658",
+        "gasAmountArcher": "240658"
+    },
+    {
+        "id": "I0223",
+        "symbol": "weth2uni2weth_sashimiswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0001",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0118",
+            "P0046"
+        ],
+        "gasAmount": "238235",
+        "gasAmountArcher": "243235"
+    },
+    {
+        "id": "I0224",
+        "symbol": "weth2usdc2weth_sashimiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0119",
+            "P0003"
+        ],
+        "gasAmount": "250459",
+        "gasAmountArcher": "255459"
+    },
+    {
+        "id": "I0225",
+        "symbol": "weth2usdc2weth_sashimiswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0119",
+            "P0004"
+        ],
+        "gasAmount": "251404",
+        "gasAmountArcher": "256404"
+    },
+    {
+        "id": "I0226",
+        "symbol": "weth2usdc2weth_sashimiswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0119",
+            "P0042"
+        ],
+        "gasAmount": "253981",
+        "gasAmountArcher": "258981"
+    },
+    {
+        "id": "I0227",
+        "symbol": "weth2usdc2weth_sashimiswap2linkswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0119",
+            "P0063"
+        ],
+        "gasAmount": "284856",
+        "gasAmountArcher": "289856"
+    },
+    {
+        "id": "I0228",
+        "symbol": "weth2usdc2weth_sashimiswap2whiteswap",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0119",
+            "P0071"
+        ],
+        "gasAmount": "261592",
+        "gasAmountArcher": "266592"
+    },
+    {
+        "id": "I0229",
+        "symbol": "weth2usdc2weth_sashimiswap2polyient",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0119",
+            "P0072"
+        ],
+        "gasAmount": "251512",
+        "gasAmountArcher": "256512"
+    },
+    {
+        "id": "I0230",
+        "symbol": "weth2usdt2weth_sashimiswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0120",
+            "P0048"
+        ],
+        "gasAmount": "240747",
+        "gasAmountArcher": "245747"
+    },
+    {
+        "id": "I0231",
+        "symbol": "weth2usdt2weth_sashimiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0120",
+            "P0049"
+        ],
+        "gasAmount": "237225",
+        "gasAmountArcher": "242225"
+    },
+    {
+        "id": "I0232",
+        "symbol": "weth2usdt2weth_sashimiswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0120",
+            "P0050"
+        ],
+        "gasAmount": "238170",
+        "gasAmountArcher": "243170"
+    },
+    {
+        "id": "I0233",
+        "symbol": "weth2usdt2weth_sashimiswap2linkswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0120",
+            "P0064"
+        ],
+        "gasAmount": "271592",
+        "gasAmountArcher": "276592"
+    },
+    {
+        "id": "I0234",
+        "symbol": "weth2usdt2weth_sashimiswap2whiteswap",
+        "tkns": [
+            "T0002",
+            "T0022",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0120",
+            "P0069"
+        ],
+        "gasAmount": "248358",
+        "gasAmountArcher": "253358"
+    },
+    {
+        "id": "I0235",
+        "symbol": "weth2wbtc2weth_sashimiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0004",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0121",
+            "P0005"
+        ],
+        "gasAmount": "236237",
+        "gasAmountArcher": "241237"
+    },
+    {
+        "id": "I0236",
+        "symbol": "weth2wbtc2weth_sashimiswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0004",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0121",
+            "P0006"
+        ],
+        "gasAmount": "237182",
+        "gasAmountArcher": "242182"
+    },
+    {
+        "id": "I0237",
+        "symbol": "weth2wbtc2weth_sashimiswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0004",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0121",
+            "P0039"
+        ],
+        "gasAmount": "239759",
+        "gasAmountArcher": "244759"
+    },
+    {
+        "id": "I0238",
+        "symbol": "weth2dai2weth_sashimiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0122",
+            "P0009"
+        ],
+        "gasAmount": "227142",
+        "gasAmountArcher": "232142"
+    },
+    {
+        "id": "I0239",
+        "symbol": "weth2dai2weth_sashimiswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0122",
+            "P0010"
+        ],
+        "gasAmount": "228075",
+        "gasAmountArcher": "233075"
+    },
+    {
+        "id": "I0240",
+        "symbol": "weth2dai2weth_sashimiswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0122",
+            "P0047"
+        ],
+        "gasAmount": "230664",
+        "gasAmountArcher": "235664"
+    },
+    {
+        "id": "I0241",
+        "symbol": "weth2dai2weth_sashimiswap2whiteswap",
+        "tkns": [
+            "T0002",
+            "T0006",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0122",
+            "P0070"
+        ],
+        "gasAmount": "238275",
+        "gasAmountArcher": "243275"
+    },
+    {
+        "id": "I0242",
+        "symbol": "weth2link2weth_sashimiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0123",
+            "P0007"
+        ],
+        "gasAmount": "231501",
+        "gasAmountArcher": "236501"
+    },
+    {
+        "id": "I0243",
+        "symbol": "weth2link2weth_sashimiswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0123",
+            "P0008"
+        ],
+        "gasAmount": "232446",
+        "gasAmountArcher": "237446"
+    },
+    {
+        "id": "I0244",
+        "symbol": "weth2link2weth_sashimiswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0123",
+            "P0043"
+        ],
+        "gasAmount": "235023",
+        "gasAmountArcher": "240023"
+    },
+    {
+        "id": "I0245",
+        "symbol": "weth2link2weth_sashimiswap2linkswap",
+        "tkns": [
+            "T0002",
+            "T0005",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0123",
+            "P0062"
+        ],
+        "gasAmount": "265898",
+        "gasAmountArcher": "270898"
+    },
+    {
+        "id": "I0246",
+        "symbol": "weth2comp2weth_sashimiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0018",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0124",
+            "P0033"
+        ],
+        "gasAmount": "235141",
+        "gasAmountArcher": "240141"
+    },
+    {
+        "id": "I0247",
+        "symbol": "weth2comp2weth_sashimiswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0018",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0124",
+            "P0034"
+        ],
+        "gasAmount": "236086",
+        "gasAmountArcher": "241086"
+    },
+    {
+        "id": "I0248",
+        "symbol": "weth2comp2weth_sashimiswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0018",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0124",
+            "P0044"
+        ],
+        "gasAmount": "238663",
+        "gasAmountArcher": "243663"
+    },
+    {
+        "id": "I0249",
+        "symbol": "weth2omg2weth_sashimiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0033",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0125",
+            "P0081"
+        ],
+        "gasAmount": "232814",
+        "gasAmountArcher": "237814"
+    },
+    {
+        "id": "I0250",
+        "symbol": "weth2omg2weth_sashimiswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0033",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0125",
+            "P0082"
+        ],
+        "gasAmount": "233759",
+        "gasAmountArcher": "238759"
+    },
+    {
+        "id": "I0251",
+        "symbol": "weth2yfi2weth_sashimiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0008",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0126",
+            "P0013"
+        ],
+        "gasAmount": "232928",
+        "gasAmountArcher": "237928"
+    },
+    {
+        "id": "I0252",
+        "symbol": "weth2yfi2weth_sashimiswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0008",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0126",
+            "P0014"
+        ],
+        "gasAmount": "233873",
+        "gasAmountArcher": "238873"
+    },
+    {
+        "id": "I0253",
+        "symbol": "weth2yfi2weth_sashimiswap2crypto",
+        "tkns": [
+            "T0002",
+            "T0008",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0126",
+            "P0045"
+        ],
+        "gasAmount": "236450",
+        "gasAmountArcher": "241450"
+    },
+    {
+        "id": "I0254",
+        "symbol": "weth2fxs2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0050",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0127",
+            "P0128"
+        ],
+        "gasAmount": "366825",
+        "gasAmountArcher": "371825"
+    },
+    {
+        "id": "I0255",
+        "symbol": "weth2fxs2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0050",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0128",
+            "P0127"
+        ],
+        "gasAmount": "366818",
+        "gasAmountArcher": "371818"
+    },
+    {
+        "id": "I0256",
+        "symbol": "weth2sashimi2weth_uniswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0053",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0132",
+            "P0135"
+        ],
+        "gasAmount": "238702",
+        "gasAmountArcher": "243702"
+    },
+    {
+        "id": "I0257",
+        "symbol": "weth2sashimi2weth_sashimiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0053",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0135",
+            "P0132"
+        ],
+        "gasAmount": "232719",
+        "gasAmountArcher": "237719"
+    },
+    {
+        "id": "I0258",
+        "symbol": "weth2elf2weth_sashimiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0055",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0136",
+            "P0137"
+        ],
+        "gasAmount": "236182",
+        "gasAmountArcher": "241182"
+    },
+    {
+        "id": "I0259",
+        "symbol": "weth2elf2weth_uniswap2sashimiswap",
+        "tkns": [
+            "T0002",
+            "T0055",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0137",
+            "P0136"
+        ],
+        "gasAmount": "242412",
+        "gasAmountArcher": "247412"
+    },
+    {
+        "id": "I0260",
+        "symbol": "weth2bao2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0056",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0139",
+            "P0142"
+        ],
+        "gasAmount": "227504",
+        "gasAmountArcher": "232504"
+    },
+    {
+        "id": "I0261",
+        "symbol": "weth2arnxm2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0057",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0140",
+            "P0153"
+        ],
+        "gasAmount": "237415",
+        "gasAmountArcher": "242415"
+    },
+    {
+        "id": "I0262",
+        "symbol": "weth2rgt2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0058",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0141",
+            "P0146"
+        ],
+        "gasAmount": "235660",
+        "gasAmountArcher": "240660"
+    },
+    {
+        "id": "I0263",
+        "symbol": "weth2bao2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0056",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0142",
+            "P0139"
+        ],
+        "gasAmount": "227511",
+        "gasAmountArcher": "232511"
+    },
+    {
+        "id": "I0264",
+        "symbol": "weth2ldo2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0059",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0143",
+            "P0144"
+        ],
+        "gasAmount": "429977",
+        "gasAmountArcher": "434977"
+    },
+    {
+        "id": "I0265",
+        "symbol": "weth2ldo2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0059",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0144",
+            "P0143"
+        ],
+        "gasAmount": "429970",
+        "gasAmountArcher": "434970"
+    },
+    {
+        "id": "I0266",
+        "symbol": "weth2armor2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0060",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0145",
+            "P0148"
+        ],
+        "gasAmount": "222709",
+        "gasAmountArcher": "227709"
+    },
+    {
+        "id": "I0267",
+        "symbol": "weth2rgt2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0058",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0146",
+            "P0141"
+        ],
+        "gasAmount": "235653",
+        "gasAmountArcher": "240653"
+    },
+    {
+        "id": "I0268",
+        "symbol": "weth2api32weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0061",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0147",
+            "P0150"
+        ],
+        "gasAmount": "222779",
+        "gasAmountArcher": "227779"
+    },
+    {
+        "id": "I0269",
+        "symbol": "weth2armor2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0060",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0148",
+            "P0145"
+        ],
+        "gasAmount": "222716",
+        "gasAmountArcher": "227716"
+    },
+    {
+        "id": "I0270",
+        "symbol": "weth2ftm2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0062",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0149",
+            "P0151"
+        ],
+        "gasAmount": "228722",
+        "gasAmountArcher": "233722"
+    },
+    {
+        "id": "I0271",
+        "symbol": "weth2api32weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0061",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0150",
+            "P0147"
+        ],
+        "gasAmount": "222786",
+        "gasAmountArcher": "227786"
+    },
+    {
+        "id": "I0272",
+        "symbol": "weth2ftm2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0062",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0151",
+            "P0149"
+        ],
+        "gasAmount": "228729",
+        "gasAmountArcher": "233729"
+    },
+    {
+        "id": "I0273",
+        "symbol": "weth2tusd2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0063",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0152",
+            "P0157"
+        ],
+        "gasAmount": "237150",
+        "gasAmountArcher": "242150"
+    },
+    {
+        "id": "I0274",
+        "symbol": "weth2arnxm2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0057",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0153",
+            "P0140"
+        ],
+        "gasAmount": "237422",
+        "gasAmountArcher": "242422"
+    },
+    {
+        "id": "I0275",
+        "symbol": "weth2aleph2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0064",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0154",
+            "P0158"
+        ],
+        "gasAmount": "216610",
+        "gasAmountArcher": "221610"
+    },
+    {
+        "id": "I0276",
+        "symbol": "weth2tusd2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0063",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0157",
+            "P0152"
+        ],
+        "gasAmount": "237143",
+        "gasAmountArcher": "242143"
+    },
+    {
+        "id": "I0277",
+        "symbol": "weth2aleph2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0064",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0158",
+            "P0154"
+        ],
+        "gasAmount": "216615",
+        "gasAmountArcher": "221615"
+    },
+    {
+        "id": "I0278",
+        "symbol": "weth2dnt2weth_uniswap2sushiswap",
+        "tkns": [
+            "T0002",
+            "T0066",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0159",
+            "P0160"
+        ],
+        "gasAmount": "396907",
+        "gasAmountArcher": "401907"
+    },
+    {
+        "id": "I0279",
+        "symbol": "weth2dnt2weth_sushiswap2uniswap",
+        "tkns": [
+            "T0002",
+            "T0066",
+            "T0002"
+        ],
+        "enabled": "1",
+        "pools": [
+            "P0160",
+            "P0159"
+        ],
+        "gasAmount": "396914",
+        "gasAmountArcher": "401914"
+    }
+]
