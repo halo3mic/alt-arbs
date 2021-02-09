@@ -5,8 +5,8 @@ const math = require('./math')
 const ethers = require('ethers')
 const config = require('./config')
 
-// var RUNWAY_CLEAR = true;
-// var FAILED_TX_IN_A_ROW = 0;
+var RUNWAY_CLEAR = true;
+var FAILED_TX_IN_A_ROW = 0;
 // const MAX_CONSECUTIVE_FAILS = 5;
 
 // var LAST_BLOCK = 0
@@ -39,12 +39,13 @@ function estimateGasCost(nSteps) {
 function findArbs(reservesAll) {
     let inputAsset = config.BASE_ASSET
     let opps = []
-    for (path of paths) {
+    for (let path of paths) {
         let { tkns: tknPath, pools: poolsPath } = path
-        if (tknPath[0]!=inputAsset || tknPath[tknPath.length-1]!=inputAsset) {
+        if (tknPath[0]!=inputAsset || tknPath[tknPath.length-1]!=inputAsset || path.enabled!='1') {
             continue
         }
         let pathFull = poolsPath.map(step => {
+            console.log(step)
             return {
                 tkns: pools.filter(p=>p.id==step)[0].tkns.map(t=>t.id),
                 reserves: reservesAll[step]
@@ -118,7 +119,16 @@ async function handleNewBlock(blockNumber) {
             RUNWAY_CLEAR = false // disable tx (try to avoid fails)
             console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... ${ethers.utils.formatUnits(bestOpp.inputAmount)} for ${ethers.utils.formatUnits(bestOpp.netProfit)}`);
             try {
-                await submitTradeTx(blockNumber, bestOpp)
+                let ok = await executeOpportunity(blockNumber, bestOpp)
+                if (ok) {
+                    FAILED_TX_IN_A_ROW = 0;
+                } else {
+                    FAILED_TX_IN_A_ROW += 1;
+                    if (FAILED_TX_IN_A_ROW > MAX_CONSECUTIVE_FAILS) {
+                        console.log("Shutting down... too many failed tx");
+                        process.exit(0);
+                }
+        }
             }
             catch (error) {
                 console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
@@ -133,7 +143,15 @@ async function handleNewBlock(blockNumber) {
             RUNWAY_CLEAR = false // disable tx (try to avoid fails)
             console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... Unwrapping ${ethers.utils.formatUnits(wavaxBalance)} WAVAX`);
             try {
-                await unwrapAvax(wavaxBalance, blockNumber);
+                let ok = await unwrapAvax(wavaxBalance, blockNumber);
+                if (ok) {
+                    FAILED_TX_IN_A_ROW = 0;
+                } else {
+                    FAILED_TX_IN_A_ROW += 1;
+                    if (FAILED_TX_IN_A_ROW > MAX_CONSECUTIVE_FAILS) {
+                        console.log("Shutting down... too many failed tx");
+                        process.exit(0);
+                }
             }
             catch (error) {
                 console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)

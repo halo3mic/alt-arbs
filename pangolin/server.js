@@ -8,6 +8,7 @@ const pangolin = require('./pangolin')
 // })
 
 async function run() {
+    pangolin.initialize(provider, signer)
     let lastBlockNum = 0
     while(1) {
         let currBlockNum = await provider.getBlockNumber()

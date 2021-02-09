@@ -80,19 +80,19 @@ class Uniswap {
     //     return { queryTx, inputLocations }
     // }
 
-    async formSwapTokensForExactTokens(tokenPath, outputAmount, amountInMax, timeShift=300) {
-        const tradeTimeout = Math.round((Date.now()/1000) + timeShift)
-        var tradeTx = await this.routerContract.populateTransaction.swapTokensForExactTokens(
-            outputAmount, 
-            amountInMax,
-            tokenPath, 
-            config.SIGNER_ADDRESS, 
-            tradeTimeout
-        )
-        return tradeTx
-    }
+    // async formSwapTokensForExactTokens(tokenPath, outputAmount, amountInMax, timeShift=300) {
+    //     const tradeTimeout = Math.round((Date.now()/1000) + timeShift)
+    //     var tradeTx = await this.routerContract.populateTransaction.swapTokensForExactTokens(
+    //         outputAmount, 
+    //         amountInMax,
+    //         tokenPath, 
+    //         config.SIGNER_ADDRESS, 
+    //         tradeTimeout
+    //     )
+    //     return tradeTx
+    // }
 
-    async formTradeTx(tokenPath, inputAmount, outputAmount=0, timeShift=300) {
+    async formTradeTx(tokenPath, inputAmount, to, outputAmount=0, timeShift=300) {
         // outputAmount being 0 can be very dangerous if tx sent by itself
         // timeShift is in seconds
         const tradeTimeout = Math.round((Date.now()/1000) + timeShift)
@@ -102,7 +102,7 @@ class Uniswap {
             var tradeTx = await this.routerContract.populateTransaction[method](
                 outputAmount, 
                 tokenPath, 
-                config.SIGNER_ADDRESS, 
+                to, 
                 tradeTimeout
             )
         } else if (tokenPath[tokenPath.length-1]==baseAddress) {
@@ -182,7 +182,7 @@ class Pangolin extends Uniswap {
         )
     }
 
-    async formTradeTx(tokenPath, inputAmount, outputAmount=0, timeShift=300) {
+    async formTradeTx(tokenPath, inputAmount, to, outputAmount=0, timeShift=300) {
         // outputAmount being 0 can be very dangerous if tx sent by itself
         // timeShift is in seconds
         const tradeTimeout = Math.round((Date.now()/1000) + timeShift)
@@ -192,7 +192,7 @@ class Pangolin extends Uniswap {
             var tradeTx = await this.routerContract.populateTransaction[method](
                 outputAmount, 
                 tokenPath, 
-                config.SIGNER_ADDRESS, 
+                to, 
                 tradeTimeout
             )
         } else if (tokenPath[tokenPath.length-1]==baseAddress) {

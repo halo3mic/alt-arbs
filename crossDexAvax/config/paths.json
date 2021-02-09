@@ -1,2 +1,130 @@
 [
+    {
+        "id": "I0000",
+        "symbol": "zero=>zeth=>zero_zeroexchange=>unnamed1",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "pools": [
+            "P0000",
+            "P0002"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
+    },
+    {
+        "id": "I0001",
+        "symbol": "zero=>zeth=>zero_unnamed1=>zeroexchange",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0002"
+        ],
+        "pools": [
+            "P0002",
+            "P0000"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
+    },
+    {
+        "id": "I0002",
+        "symbol": "wavax=>zero=>zeth=>wavax_zeroexchange=>unnamed1=>zeroexchange",
+        "tkns": [
+            "T0000",
+            "T0002",
+            "T0003",
+            "T0000"
+        ],
+        "pools": [
+            "P0005",
+            "P0002",
+            "P0007"
+        ],
+        "enabled": "0",
+        "gasAmount": 300000
+    },
+    {
+        "id": "I0003",
+        "symbol": "wavax=>zeth=>zero=>wavax_zeroexchange=>unnamed1=>zeroexchange",
+        "tkns": [
+            "T0000",
+            "T0003",
+            "T0002",
+            "T0000"
+        ],
+        "pools": [
+            "P0007",
+            "P0002",
+            "P0005"
+        ],
+        "enabled": "0",
+        "gasAmount": 300000
+    },
+    {
+        "id": "I0004",
+        "symbol": "zero=>zeth=>wavax=>zero_unnamed1=>zeroexchange=>zeroexchange",
+        "tkns": [
+            "T0002",
+            "T0003",
+            "T0000",
+            "T0002"
+        ],
+        "pools": [
+            "P0002",
+            "P0007",
+            "P0005"
+        ],
+        "enabled": "0",
+        "gasAmount": 300000
+    },
+    {
+        "id": "I0005",
+        "symbol": "zero=>wavax=>zeth=>zero_zeroexchange=>zeroexchange=>unnamed1",
+        "tkns": [
+            "T0002",
+            "T0000",
+            "T0003",
+            "T0002"
+        ],
+        "pools": [
+            "P0005",
+            "P0007",
+            "P0002"
+        ],
+        "enabled": "0",
+        "gasAmount": 300000
+    },
+    {
+        "id": "I0006",
+        "symbol": "wavax=>wbtc=>wavax_baoswap=>pangolin",
+        "tkns": [
+            "T0000",
+            "T0006",
+            "T0000"
+        ],
+        "pools": [
+            "P0003",
+            "P0010"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
+    },
+    {
+        "id": "I0007",
+        "symbol": "wavax=>wbtc=>wavax_pangolin=>baoswap",
+        "tkns": [
+            "T0000",
+            "T0006",
+            "T0000"
+        ],
+        "pools": [
+            "P0010",
+            "P0003"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
+    }
 ]

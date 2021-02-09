@@ -7,7 +7,7 @@ async function main() {
     // await importPoolsFromCsv()
     await importPoolsFromFactory(factoryAddress)
     // await approveTkns()
-    await addInstructions()
+    // await addInstructions()
 }
 
 

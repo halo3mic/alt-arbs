@@ -43,7 +43,7 @@
             "P0002",
             "P0007"
         ],
-        "enabled": "1",
+        "enabled": "0",
         "gasAmount": 300000
     },
     {
@@ -60,7 +60,7 @@
             "P0002",
             "P0005"
         ],
-        "enabled": "1",
+        "enabled": "0",
         "gasAmount": 300000
     },
     {
@@ -77,7 +77,7 @@
             "P0007",
             "P0005"
         ],
-        "enabled": "1",
+        "enabled": "0",
         "gasAmount": 300000
     },
     {
@@ -94,7 +94,7 @@
             "P0007",
             "P0002"
         ],
-        "enabled": "1",
+        "enabled": "0",
         "gasAmount": 300000
     },
     {

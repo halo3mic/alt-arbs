@@ -1,7 +1,7 @@
 const fetcher = require('../fetcher')
 const { provider, signer } = require('../avaProvider.js')
-const tokens = require('../tokens.json')
-const pools = require('../pools.json')
+const tokens = require('../config/tokens.json')
+const pools = require('../config/pools.json')
 
 fetcher.initialize(provider)
 

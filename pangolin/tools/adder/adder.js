@@ -334,9 +334,10 @@ class InstructionManager {
     }
 
     findInstructions() {
-        let exchanges = ['zeroExchange']
+        let exchanges = ['pangolin']
         for (let exchange of exchanges) {
             let pools = this.pools.filter(p=>exchange==p.exchange)
+            
             let paths = this.findPaths(pools)
             paths.forEach(p=>this.addInstruction(p, exchange))
         }
