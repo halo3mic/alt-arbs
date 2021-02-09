@@ -51,7 +51,7 @@ async function importPoolsFromFactory(...addresses) {
 async function approveTkns() {
     let approvalMng = new adder.ApprovalsManager()
     await approvalMng.updateAllApprovals()
-    await approvalMng.approveAll()
+    // await approvalMng.approveAll()
     return true
 }
 

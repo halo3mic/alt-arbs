@@ -448,21 +448,23 @@ class ApprovalsManager {
 
     async getTknAllowance(tknAddress, spender) {
         let tknContract = new ethers.Contract(tknAddress, config.ABIS['erc20'], provider)
-        return tknContract.allowance(DISPATCHER, spender)
+        return tknContract.allowance(config.DISPATCHER, spender)
     }
 
     async updateAllApprovals() {
         let approvalsNeeded = this.getApprovalsNeeded()
-        Object.entries(approvalsNeeded).forEach(async a => {
+        for (let a of Object.entries(approvalsNeeded)){
             let [ tkn, spenders ] = a
             let allowances = {}
             for (let s of spenders) {
+                console.log(s)
                 let a = await this.getTknAllowance(tkn, s)
+                console.log(a)
                 allowances[s] = a
-                // console.log(`${tkn} allowance for spender ${s} is ${allowances[s]}`)
+                console.log(`${tkn} allowance for spender ${s} is ${allowances[s]}`)
             }
             this.updateTknApprovals(tkn, allowances)
-        })
+        }
         return true
     }
 

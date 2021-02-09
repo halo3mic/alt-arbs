@@ -82,10 +82,12 @@ async function interactWithPool() {
 async function interactWithToken() {
     console.log(await provider.getBlockNumber())
     let abi = require('../config/abis/erc20.json')
-    let address = "0x60781C2586D68229fde47564546784ab3fACA982"
+    let address = "0xf20d962a6c8f70c731bd838a3a388D7d48fA6e15"
+    let owner = "0xd11828308Fc7C84Ea31CCD398E609468d6D20713"
+    let spender = "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106"
     let contract = new ethers.Contract(address, abi, provider)
-    let response = await contract.name()
+    let response = await contract.allowance(owner, spender)
     console.log(response)
 }
 
-interactWithPool()
+interactWithToken()

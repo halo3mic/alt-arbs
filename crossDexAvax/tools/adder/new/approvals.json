@@ -297,6 +297,18 @@
         "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D": 1.157920892373162e+77,
         "0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F": 1.157920892373162e+77
     },
+    "0xf20d962a6c8f70c731bd838a3a388D7d48fA6e15": {
+        "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106": {
+            "type": "BigNumber",
+            "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        }
+    },
+    "0x97b99B4009041e948337ebCA7e6ae52f9f6e633c": {
+        "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106": {
+            "type": "BigNumber",
+            "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        }
+    },
     "0xde3A24028580884448a5397872046a019649b084": {
         "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106": {
             "type": "BigNumber",
@@ -309,7 +321,23 @@
             "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         }
     },
+    "0x8cE2Dee54bB9921a2AE0A63dBb2DF8eD88B91dD9": {
+        "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106": {
+            "type": "BigNumber",
+            "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        }
+    },
     "0xbA7dEebBFC5fA1100Fb055a87773e1E99Cd3507a": {
+        "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106": {
+            "type": "BigNumber",
+            "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        },
+        "0x292A6375d6587883bBcabD96860b1834BA14601E": {
+            "type": "BigNumber",
+            "hex": "0x00"
+        }
+    },
+    "0xa47a05ED74f80fA31621612887d26DF40bcF0cA9": {
         "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106": {
             "type": "BigNumber",
             "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
@@ -321,8 +349,18 @@
             "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         }
     },
-    "0x39cf1BD5f15fb22eC3D9Ff86b0727aFc203427cc": {
-        "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106": {
+    "0x008E26068B3EB40B443d3Ea88c1fF99B789c10F7": {
+        "0x85995d5f8ee9645cA855e92de16FA62D26398060": {
+            "type": "BigNumber",
+            "hex": "0xffffffffffffffffffffffffffffffffffffffffffffff74b176484160714574"
+        },
+        "0xCE679504674F279ac389432c7fe330a48E117148": {
+            "type": "BigNumber",
+            "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        }
+    },
+    "0x12f108E6138d4A9c58511e042399cF8f90D5673f": {
+        "0x85995d5f8ee9645cA855e92de16FA62D26398060": {
             "type": "BigNumber",
             "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         }
@@ -333,38 +371,14 @@
             "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         }
     },
-    "0x8cE2Dee54bB9921a2AE0A63dBb2DF8eD88B91dD9": {
-        "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106": {
-            "type": "BigNumber",
-            "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-        }
-    },
-    "0x97b99B4009041e948337ebCA7e6ae52f9f6e633c": {
-        "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106": {
-            "type": "BigNumber",
-            "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-        }
-    },
-    "0xf20d962a6c8f70c731bd838a3a388D7d48fA6e15": {
-        "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106": {
-            "type": "BigNumber",
-            "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-        }
-    },
     "0x99519AcB025a0e0d44c3875A4BbF03af65933627": {
         "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106": {
             "type": "BigNumber",
             "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         }
     },
-    "0xa47a05ED74f80fA31621612887d26DF40bcF0cA9": {
+    "0x39cf1BD5f15fb22eC3D9Ff86b0727aFc203427cc": {
         "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106": {
-            "type": "BigNumber",
-            "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-        }
-    },
-    "0x12f108E6138d4A9c58511e042399cF8f90D5673f": {
-        "0x85995d5f8ee9645cA855e92de16FA62D26398060": {
             "type": "BigNumber",
             "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         }
@@ -376,15 +390,15 @@
         },
         "0xCE679504674F279ac389432c7fe330a48E117148": {
             "type": "BigNumber",
-            "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+            "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffff4399ffe2494ba2"
         }
     },
-    "0x008E26068B3EB40B443d3Ea88c1fF99B789c10F7": {
-        "0x85995d5f8ee9645cA855e92de16FA62D26398060": {
+    "0x408D4cD0ADb7ceBd1F1A1C33A0Ba2098E1295bAB": {
+        "0x292A6375d6587883bBcabD96860b1834BA14601E": {
             "type": "BigNumber",
             "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         },
-        "0xCE679504674F279ac389432c7fe330a48E117148": {
+        "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106": {
             "type": "BigNumber",
             "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         }
@@ -403,14 +417,10 @@
             "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         }
     },
-    "0x408D4cD0ADb7ceBd1F1A1C33A0Ba2098E1295bAB": {
-        "0x292A6375d6587883bBcabD96860b1834BA14601E": {
-            "type": "BigNumber",
-            "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-        },
+    "0x60781C2586D68229fde47564546784ab3fACA982": {
         "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106": {
             "type": "BigNumber",
-            "hex": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+            "hex": "0xffffffffffffffffffffffff"
         }
     }
 }

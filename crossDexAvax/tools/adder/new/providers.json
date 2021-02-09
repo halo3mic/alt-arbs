@@ -1,0 +1,34 @@
+{
+    "infura": {
+        "httpPath": "https://mainnet.infura.io/v3/<<TOKEN>>",
+        "wsPath": "wss://mainnet.infura.io/ws/v3/<<TOKEN>>"
+    },
+    "alchemy": {
+         "httpPath": "https://eth-mainnet.alchemyapi.io/v2/<<TOKEN>>",
+         "wsPath": "wss://eth-mainnet.ws.alchemyapi.io/v2/<<TOKEN>>"
+    },
+    "quickNode": {
+         "httpPath": "https://crimson-holy-water.quiknode.pro/<<TOKEN>>/",
+         "wsPath": "wss://crimson-holy-water.quiknode.pro/<<TOKEN>>/"
+    }, 
+    "localNode": {
+         "httpPath": "http://localhost:7777", 
+         "wsPath": "ws://localhost:7778"
+    },
+    "chainstackAsia": {
+         "httpPath": "https://stoic-leakey:<<TOKEN>>@nd-436-022-385.p2pify.com", 
+         "wsPath": "wss://stoic-leakey:<<TOKEN>>@ws-nd-436-022-385.p2pify.com"
+    },
+    "chainstackUsa": {
+         "httpPath": "https://boring-raman:<<TOKEN>>@nd-444-381-020.p2pify.com", 
+         "wsPath": "wss://boring-raman:<<TOKEN>>@ws-nd-444-381-020.p2pify.com"
+    },
+    "chainstackBlocklytics": {
+         "httpPath": "https://reverent-hypatia:<<TOKEN>>@nd-708-772-246.p2pify.com", 
+         "wsPath": "wss://reverent-hypatia:<<TOKEN>>@ws-nd-708-772-246.p2pify.com"
+    },
+    "kaleido": {
+         "httpPath": "https://k0sniwshxq:<<TOKEN>>@k0ikgiwmqr-k0xj07csjf-rpc.kr0-aws.kaleido.io/", 
+         "wsPath": "wss://k0sniwshxq:<<TOKEN>>@k0ikgiwmqr-k0xj07csjf-wss.kr0-aws.kaleido.io/"
+    }
+}

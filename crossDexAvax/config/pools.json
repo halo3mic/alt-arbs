@@ -474,5 +474,22 @@
         "symbol": "pngyfi_pangolin",
         "exchange": "pangolin",
         "id": "P0027"
+    },
+    {
+        "address": "0x458Fad973694E4b74297501e714E6d64A37aD396",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0006",
+                "weight": 0.5
+            },
+            {
+                "id": "T0011",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wbtcdai_baoSwap",
+        "exchange": "baoSwap",
+        "id": "P0028"
     }
 ]
