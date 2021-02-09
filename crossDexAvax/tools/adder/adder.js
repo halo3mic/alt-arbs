@@ -459,8 +459,7 @@ class ApprovalsManager {
             for (let s of spenders) {
                 console.log(s)
                 let a = await this.getTknAllowance(tkn, s)
-                console.log(a)
-                allowances[s] = a
+                allowances[s] = a.toString()
                 console.log(`${tkn} allowance for spender ${s} is ${allowances[s]}`)
             }
             this.updateTknApprovals(tkn, allowances)
@@ -492,7 +491,9 @@ class ApprovalsManager {
             let [ tkn, allowances ] = a
             Object.entries(allowances).forEach(s => {
                 let [ spender, amount ] = s
-                if (amount>7*10**28) {
+                amount = ethers.BigNumber.from(amount)
+                let limit = ethers.utils.parseUnits('7', 28)
+                if (amount.gt(limit)) {
                     return
                 }
                 if (!Object.keys(unapprovedTknsForSpender).includes(spender)) {

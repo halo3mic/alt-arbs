@@ -11,7 +11,7 @@ async function main() {
         '0x2Ef422F30cdb7c5F1f7267AB5CF567A88974b308'
     ]
     // await importPoolsFromCsv()
-    await importPoolsFromFactory(...factories).then(async ()=> await addInstructions())
+    // await importPoolsFromFactory(...factories)
     // await approveTkns()
     // await addInstructions()
 }
@@ -50,8 +50,8 @@ async function importPoolsFromFactory(...addresses) {
 
 async function approveTkns() {
     let approvalMng = new adder.ApprovalsManager()
-    await approvalMng.updateAllApprovals()
-    // await approvalMng.approveAll()
+    // await approvalMng.updateAllApprovals()
+    await approvalMng.approveAll()
     return true
 }
 
@@ -60,6 +60,6 @@ async function addInstructions() {
     return await im.findInstructions()
 }
 
-// main()
+main()
 // addInstructions()
-approveTkns()
+// approveTkns()

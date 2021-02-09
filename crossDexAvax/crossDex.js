@@ -47,12 +47,21 @@ function findArbs(reservesAll) {
         if (tknPath[0]!=inputAsset || tknPath[tknPath.length-1]!=inputAsset || path.enabled!='1' || config.MAX_HOPS<poolsPath.length) {
             continue
         }
+        let hasEmptyReserve = false
         let pathFull = poolsPath.map(step => {
+            // Check if reserves are empty
+            let [bal1, bal2] = Object.values(reservesAll[step])
+            if (bal1.eq('0') || bal2.eq('0')) {
+                hasEmptyReserve = true
+            }
             return {
                 tkns: pools.filter(p=>p.id==step)[0].tkns.map(t=>t.id),
                 reserves: reservesAll[step]
             }
         })
+        if (hasEmptyReserve) {
+            continue
+        }
         let optimalIn = math.getOptimalAmountForPath(inputAsset, pathFull);
         if (optimalIn.gt("0")) {
             let amountIn = BOT_BAL.gt(optimalIn) ? optimalIn : BOT_BAL
@@ -118,7 +127,6 @@ async function handleNewBlock(blockNumber) {
 
     LAST_BLOCK = blockNumber
     let bestOpp = await findBestOpp()
-    console.log(bestOpp)
     if (bestOpp) {
         let gasCost = bestOpp.grossProfit.sub(bestOpp.netProfit)
         console.log(`${blockNumber} | ${Date.now()} | 🕵️‍♂️ ARB AVAILABLE | AVAX ${ethers.utils.formatUnits(bestOpp.pathAmounts[0])} -> WAVAX ${ethers.utils.formatUnits(bestOpp.pathAmounts[0].add(bestOpp.netProfit))}`)
