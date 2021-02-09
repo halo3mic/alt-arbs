@@ -14,7 +14,7 @@ const fs = require('fs')
 const WAVAX_MAX_BAL = "800";
 const ROUTER_ADDRESS = "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106";
 const GAS_LIMIT = "400000";
-const BOT_BAL = ethers.utils.parseUnits('3000');
+const BOT_BAL = ethers.utils.parseUnits('1000');
 
 var RUNWAY_CLEAR = true;
 var FAILED_TX_IN_A_ROW = 0;

@@ -1,6 +1,6 @@
 const { instructions, pools, tokens } = require('./arb/instrManager')
 const { MAX_INPUT_ETH, OPP_LOGS_PATH, BOT_ID } = require('./config')
-const { broadcastToArcherWithOpts, logToCsv } = require('./utils')
+const { logToCsv } = require('./utils')
 const { evaluate, calcProfit } = require('./arb/evaluator')
 const { getExchanges } = require('./arb/exchanges')
 const { BigNumber, Contract, utils } = require('ethers')

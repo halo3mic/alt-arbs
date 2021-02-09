@@ -30,13 +30,12 @@ async function fetchReserves(pool) {
     const reservesRaw = fetchReservesRaw(pool.address)
     const tkn0 = tokens.filter(t=>t.id==pool.tkns[0].id)[0]
     const tkn1 = tokens.filter(t=>t.id==pool.tkns[1].id)[0]
-
     let r1 = reservesRaw.then(
             r => covertUnits(r[0], tkn0.decimal)
-        )
+    )
     let r2 = reservesRaw.then(
             r => covertUnits(r[1], tkn1.decimal)
-        )
+    )
     return Promise.all([ r1, r2 ]).then(result => {
         let reserves = {}
         reserves[tkn0.id] = result[0]

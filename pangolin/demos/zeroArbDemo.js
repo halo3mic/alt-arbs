@@ -73,7 +73,7 @@ async function interactWithRouter() {
 async function interactWithPool() {
     console.log(await provider.getBlockNumber())
     let abi = require('../config/abis/uniswapPool.json')
-    let address = "0x45c2755EEFA0eb96cE15C2f6FDc48346DA7f3A7e"
+    let address = "0xd2faF67643967815b8Ea89b7341383838204816d"
     let contract = new ethers.Contract(address, abi, provider)
     let response = await contract.name()
     console.log(response)
@@ -88,4 +88,4 @@ async function interactWithToken() {
     console.log(response)
 }
 
-interactWithToken()
+interactWithPool()

@@ -45,7 +45,8 @@ async function fetchReserves(pool) {
     })
 }
 
-async function fetchReservesAll() {
+async function fetchReservesAll(instructions) {
+    // TODO: Only fetch for pools that are in ENABLED instructions
     let reserves = pools.map(p=>fetchReserves(p))
     return Promise.all(reserves).then(r => Object.fromEntries(r))
 }

@@ -1,5 +1,5 @@
-const { provider } = require('../../avaProvider')
-// const { ABIS } = require('../../config')
+const { provider } = require('../../provider')
+const config = require('../../config')
 const resolve = require('path').resolve
 const ethers = require('ethers')
 const fs = require('fs')
@@ -7,7 +7,7 @@ const fs = require('fs')
 // const { getExchanges } = require('../../src/arb/exchanges')
 // const ganache = require('../../src/ganache')
 const prompt = require('prompt-sync')()
-const pangolin = require('../../pangolin')
+// const pangolin = require('../../pangolin')
 
 const ABIS = {
     'erc20': require('../../config/abis/erc20.json'),
@@ -129,7 +129,8 @@ class PoolManager extends Manager {
     exchangeSymbols = {
         "Pangolin": "pangolin", 
         "ZERO": "zeroExchange", 
-        "Uniswap": "uniswap"
+        "BaoSwap": "baoSwap", 
+        "0xeb4E120069d7AaaeC91508eF7EAec8452893a80a": "unnamed1"
     }
 
     async queryData(address) {
@@ -140,18 +141,20 @@ class PoolManager extends Manager {
         }
         const poolContract = new ethers.Contract(
             addressCS,
-            ABIS['erc20'],
+            ABIS['uniswapPool'],
             provider
         )
 
-        const lpTknSymbol = await poolContract.name().then(s => s.split('-')[0].split(' ')[0])
-        console.log(lpTknSymbol)
+        let lpTknSymbol = await poolContract.name().then(s => s.split('-')[0].split(' ')[0])
         if (!Object.keys(this.exchangeSymbols).includes(lpTknSymbol)) {
-            // let msg = 'Could not recognise exchange with LP token: '
-            // msg += lpTknSymbol + ' for pool with address ' + addressCS
-            // throw new Error(msg)
-            const lpTknSymbol = 'png'
-        } 
+            if (lpTknSymbol=='Uniswap') {
+                lpTknSymbol = await poolContract.factory()
+            } else {
+                let msg = 'Could not recognise exchange with LP token: '
+                msg += lpTknSymbol + ' for pool with address ' + addressCS
+                throw new Error(msg)
+            }
+        }
         const exchange = this.exchangeSymbols[lpTknSymbol]
         if (exchange=='balancer') {
             return this.queryBalancer(addressCS)
@@ -302,10 +305,6 @@ class InstructionManager {
     // }
 
     findPaths(pairs, tokenIn, tokenOut, maxHops, currentPairs, path, circles) {
-        pairs = pairs
-        tokenIn = tokenIn || 'T0000' 
-        tokenOut = 'T0000' 
-        maxHops = maxHops || 6
         circles = circles || []
         currentPairs = currentPairs || []
         path = path || []
@@ -322,7 +321,7 @@ class InstructionManager {
                 tempOut = pairTkns[0]
             }
             newPath.push(tempOut)
-            if (tokenOut==tempOut && path.length>2) {
+            if (tokenOut==tempOut && path.length>=2) {
                 let c = { 'pools': [...currentPairs, pair.id], 'tkns': newPath }
                 circles.push(c)
             } else if (maxHops > 1 && pairs.length > 1) {
@@ -334,16 +333,16 @@ class InstructionManager {
     }
 
     findInstructions() {
-        let exchanges = ['zeroExchange']
-        for (let exchange of exchanges) {
-            let pools = this.pools.filter(p=>exchange==p.exchange)
-            let paths = this.findPaths(pools)
-            paths.forEach(p=>this.addInstruction(p, exchange))
-        }
+        let tokenIn = config.BASE_ASSET
+        let tokenOut = config.BASE_ASSET
+        let maxHops = 3
+        let pairs = [...this.pools]
+        let paths = this.findPaths(pairs, tokenIn, tokenOut, maxHops)
+        paths.forEach(p=>this.addInstruction(p))
     }
 
 
-    async addInstruction(path, exchange) {
+    async addInstruction(path) {
         for (let i of this.oldData) {
             let check1 = i.pools.join() == path.pools.join()
             let check2 = i.tkns.join() == path.tkns.join()
@@ -354,7 +353,13 @@ class InstructionManager {
         }
         // Add instructions for pools both ways
         let tknRouteSymbol = path.tkns.map(tId=>this.tokens.filter(tObj=>tObj.id==tId)[0].symbol).join('=>').toLowerCase()
-        let pathSymbol = tknRouteSymbol + '_' + exchange
+        let exchangePath = path.pools.map(pId=>this.pools.filter(pObj=>pObj.id==pId)[0].exchange)
+        if ((new Set(exchangePath)).size==1) {
+            console.log('Internal Arb!')
+            return
+        }
+        let exchangesChain = exchangePath.join('=>').toLowerCase()
+        let pathSymbol = tknRouteSymbol + '_' + exchangesChain
         console.log(`Adding path ` + pathSymbol)
         // Pool1 --> Pool2
         // let gasEstimate = await this.estimateGas([pool1, pool2], [baseTknObj.address, midTknObj.address, baseTknObj.address]).catch(e => {
@@ -368,7 +373,7 @@ class InstructionManager {
         // let archerGasAdd = 0
         let instrObj1 = {
             id: this.getNewId(), 
-            symbol: tknRouteSymbol,
+            symbol: pathSymbol,
             tkns: path.tkns, 
             pools: path.pools, 
             enabled: "1", 

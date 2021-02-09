@@ -1,6 +1,7 @@
 const { ethers } = require('ethers')
 const { ARCHER_API_KEY } = require('./secrets')
 const { ARCHER_URL, ARCHER_FAILS_PATH, ARCHER_PASSES_PATH } = require('./config')
+const resolve = require('path').resolve
 const fs = require('fs');
 const csvWriter = require('csv-write-stream')
 const fetch = require('node-fetch')
@@ -39,80 +40,6 @@ function convertTxDataToByteCode(tx) {
     ]).split('0x')[1]
 }
 
-async function handleArcherResponse(response) {
-    console.log("handleArcherResponse::status", response.status);
-    let json = await response.json();
-    if (response.status == 200) {
-        console.log("handleArcherResponse::ok", json);
-        logToCsv(json, ARCHER_PASSES_PATH)
-    }
-    else if (response.status == 406) {
-        console.log("handleArcherResponse::err", json);
-        logToCsv(json, ARCHER_FAILS_PATH)
-        if (json.reason == "opportunity too late") {
-            return;
-        }
-        else if (json.reason == "opportunity too early") {
-            // TODO - wait and resubmit
-        }
-    }
-    else {
-        console.log("handleArcherResponse::err", json);
-    }
-}
-
-
-async function broadcastToArcherWithOpts(
-    botId, query, trade, targetBlock, gasLimit, 
-    estimatedProfitBeforeGas, 
-    queryBreakEven = ethers.BigNumber.from("0"),
-    inputAmount = ethers.BigNumber.from("0"),
-    inputAsset = "ETH",
-    queryInsertLocations = [],
-    tradeInsertLocations = [],
-    blockDeadline = null, 
-    deadline = null
-) {
-    console.log(
-        "broadcastToArcher::targetBlock", targetBlock, 
-        gasLimit.toString(), 
-        ethers.utils.formatUnits(estimatedProfitBeforeGas)
-    );
-
-    const bodyObject = {
-      bot_id: botId, // ID of bot
-      target_block: targetBlock.toString(), // Target block where you'd like the trade to take place
-      trade, // bytecode for trade
-      estimated_profit_before_gas: estimatedProfitBeforeGas.toString(), // expected profit in wei before accounting for gas
-      gas_estimate: gasLimit.toString(), // Expected gas usage of trade
-    //   query, // OPTIONAL: query bytecode to run before trade
-      query_breakeven: queryBreakEven.toString(), // OPTIONAL: query return value minimum to continue with trade
-      input_amount: inputAmount.toString(), // OPTIONAL: value to withdraw from dispatcher liquidity
-      input_asset: inputAsset, // OPTIONAL: asset to withdraw from dispatcher liquidity
-    //   query_insert_locations: queryInsertLocations, // OPTIONAL: locations in query to insert values
-    //   trade_insert_locations: tradeInsertLocations, // OPTIONAL: location in trade to insert values
-      deadline_block_number: blockDeadline.toString()
-    };
-
-    if (deadline) {
-        bodyObject['min_timestamp'] = deadline.toString(),
-        bodyObject['max_timestamp'] = deadline.add("180").toString()
-    }
-
-    const body = JSON.stringify(bodyObject);
-    let options = {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json',
-          'x-api-key': ARCHER_API_KEY
-        },
-        body,
-    }
-    fetch(ARCHER_URL, options)
-        .then(response => handleArcherResponse(response))
-        .catch(error => console.log("broadcastToArcher::error", error));
-}
 
 function logToCsv(data, path) {
     if (!Array.isArray(data)) {
@@ -126,6 +53,20 @@ function logToCsv(data, path) {
     writer.pipe(fs.createWriteStream(path, {flags: 'a'}));
     data.forEach(e => writer.write(e))
     writer.end()
+}
+
+function saveReserves(reservesNew, path, blockNumber) {
+    try {
+        let absScrtsPath = resolve(`${__dirname}/${path}`)
+        let currentSaves = JSON.parse(fs.readFileSync(absScrtsPath, 'utf8'))
+        currentSaves[blockNumber] = reservesNew
+        fs.writeFileSync(absScrtsPath, JSON.stringify(currentSaves, null, 4))
+        return true
+    } catch(e) {
+        console.log('Couldnt save!')
+        console.log(e)
+        return 
+    }
 }
 
 module.exports = { broadcastToArcherWithOpts, convertTxDataToByteCode, logToCsv }

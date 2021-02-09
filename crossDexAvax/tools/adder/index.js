@@ -1,13 +1,13 @@
 const adder = require('./adder')
 const csv = require('csvtojson')
 const ethers = require('ethers')
-const { provider } = require('../../avaProvider')
+const { provider } = require('../../provider')
 
 async function main() {
     // await importPoolsFromCsv()
     await importPoolsFromFactory(factoryAddress)
     // await approveTkns()
-    await addInstructions()
+    // await addInstructions()
 }
 
 
@@ -20,22 +20,24 @@ async function importPoolsFromCsv() {
     return addRequests.map(r => poolMng.add(r.poolAddress))
 }
 
-async function importPoolsFromFactory(address) {
+async function importPoolsFromFactory(...addresses) {
     let poolMng = new adder.PoolManager()
     let factoryAbi = require('../../config/abis/uniswapFactory.json')
-    let factoryContract = new ethers.Contract(address, factoryAbi, provider)
-    let max = await factoryContract.allPairsLength().then(l=>l.toNumber())
-    let i = 0
-    while (i<max) {
-        try {
-            let a = await factoryContract.allPairs(i)
-            poolMng.add(a)
-            i ++
-        } catch (e) {
-            console.log(e)
-            break
+    addresses.forEach(async address => {
+        let factoryContract = new ethers.Contract(address, factoryAbi, provider)
+        let max = await factoryContract.allPairsLength().then(l=>l.toNumber())
+        let i = 0
+        while (i<max) {
+            try {
+                let a = await factoryContract.allPairs(i)
+                poolMng.add(a)
+                i ++
+            } catch (e) {
+                console.log(e)
+                break
+            }
         }
-    }
+    })
 
 
 }
@@ -53,4 +55,11 @@ async function addInstructions() {
 }
 
 let factoryAddress = '0xefa94DE7a4656D787667C749f7E1223D71E9FD88'
-main()
+let factories = [
+    '0xefa94DE7a4656D787667C749f7E1223D71E9FD88', 
+    '0xeb4E120069d7AaaeC91508eF7EAec8452893a80a',
+    '0x29D1Adbb65d93a5710cafe2EF0E8131f64E6AB22', 
+    '0x2Ef422F30cdb7c5F1f7267AB5CF567A88974b308'
+]
+importPoolsFromFactory(...factories)
+// addInstructions()

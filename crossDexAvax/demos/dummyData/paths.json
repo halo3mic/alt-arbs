@@ -1,0 +1,108 @@
+[
+    {
+        "id": "I0000",
+        "symbol": "wavax=>zeth=>zero=>wavax",
+        "tkns": [
+            "T0000",
+            "T0001",
+            "T0003",
+            "T0000"
+        ],
+        "pools": [
+            "P0000",
+            "P0003",
+            "P0002"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
+    },
+    {
+        "id": "I0001",
+        "symbol": "wavax=>zeth=>zero=>zusdc=>wavax",
+        "tkns": [
+            "T0000",
+            "T0001",
+            "T0003",
+            "T0002",
+            "T0000"
+        ],
+        "pools": [
+            "P0000",
+            "P0003",
+            "P0004",
+            "P0001"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
+    },
+    {
+        "id": "I0002",
+        "symbol": "wavax=>zusdc=>zero=>wavax",
+        "tkns": [
+            "T0000",
+            "T0002",
+            "T0003",
+            "T0000"
+        ],
+        "pools": [
+            "P0001",
+            "P0004",
+            "P0002"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
+    },
+    {
+        "id": "I0003",
+        "symbol": "wavax=>zusdc=>zero=>zeth=>wavax",
+        "tkns": [
+            "T0000",
+            "T0002",
+            "T0003",
+            "T0001",
+            "T0000"
+        ],
+        "pools": [
+            "P0001",
+            "P0004",
+            "P0003",
+            "P0000"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
+    },
+    {
+        "id": "I0004",
+        "symbol": "wavax=>zero=>zeth=>wavax",
+        "tkns": [
+            "T0000",
+            "T0003",
+            "T0001",
+            "T0000"
+        ],
+        "pools": [
+            "P0002",
+            "P0003",
+            "P0000"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
+    },
+    {
+        "id": "I0005",
+        "symbol": "wavax=>zero=>zusdc=>wavax",
+        "tkns": [
+            "T0000",
+            "T0003",
+            "T0002",
+            "T0000"
+        ],
+        "pools": [
+            "P0002",
+            "P0004",
+            "P0001"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
+    }
+]
