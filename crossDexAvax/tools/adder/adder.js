@@ -1,10 +1,10 @@
-const { provider } = require('../../provider')
+const { provider, signer } = require('../../provider')
 const config = require('../../config')
 const resolve = require('path').resolve
 const ethers = require('ethers')
 const fs = require('fs')
 // const { pool, tokens } = require('../../src/arb/instrManager')
-// const { getExchanges } = require('../../src/arb/exchanges')
+const { getExchanges } = require('../../exchanges')
 // const ganache = require('../../src/ganache')
 const prompt = require('prompt-sync')()
 // const pangolin = require('../../pangolin')
@@ -90,7 +90,7 @@ class Manager {
 
 class TokenManager extends Manager {
 
-    dstFilePath = resolve(`${__dirname}/./new/tokens.json`)
+    dstFilePath = resolve(`${__dirname}/../../config/tokens.json`)
     // srcFilePath = resolve(`${__dirname}/../../config/tokens.json`)
     srcFilePath = this.dstFilePath
     prefix = 'T'
@@ -122,7 +122,7 @@ class TokenManager extends Manager {
 
 class PoolManager extends Manager {
 
-    dstFilePath = resolve(`${__dirname}/./new/pools.json`)
+    dstFilePath = resolve(`${__dirname}/../../config/pools.json`)
     srcFilePath = this.dstFilePath
     // srcFilePath = resolve(`${__dirname}/../../config/pools.json`)
     prefix = 'P'
@@ -256,9 +256,9 @@ class PoolManager extends Manager {
 
 class InstructionManager {
 
-    srcPoolsPath = resolve(`${__dirname}/./new/pools.json`)
-    srcTokensPath = resolve(`${__dirname}/./new/tokens.json`)
-    dstInstrPath = resolve(`${__dirname}/./new/paths.json`) 
+    srcPoolsPath = resolve(`${__dirname}/../../config/pools.json`)
+    srcTokensPath = resolve(`${__dirname}/../../config/tokens.json`)
+    dstInstrPath = resolve(`${__dirname}/../../config/paths.json`) 
     // srcApprovalsPath = resolve(`${__dirname}/./new/approvals.json`)
     srcInstrPath = this.dstInstrPath
     // srcInstrPath = resolve(`${__dirname}/../../config/instructions.json`) 
@@ -335,7 +335,7 @@ class InstructionManager {
     findInstructions() {
         let tokenIn = config.BASE_ASSET
         let tokenOut = config.BASE_ASSET
-        let maxHops = 3
+        let maxHops = config.MAX_HOPS
         let pairs = [...this.pools]
         let paths = this.findPaths(pairs, tokenIn, tokenOut, maxHops)
         paths.forEach(p=>this.addInstruction(p))
@@ -440,14 +440,15 @@ class InstructionManager {
 
 class ApprovalsManager {
 
-    srcApprovalsPath = resolve(`${__dirname}/./new/approvals.json`)
+    srcApprovalsPath = resolve(`${__dirname}/../../config/approvals.json`)
     tknMng = new TokenManager()
     poolMng = new PoolManager()
     currentApprovals = this.getCurrentData(this.srcApprovalsPath)
     exchanges = getExchanges(provider)
 
     async getTknAllowance(tknAddress, spender) {
-        return ganache.allowanceErc20(provider, tknAddress, DISPATCHER, spender)
+        let tknContract = new ethers.Contract(tknAddress, config.ABIS['erc20'], provider)
+        return tknContract.allowance(DISPATCHER, spender)
     }
 
     async updateAllApprovals() {
@@ -502,13 +503,10 @@ class ApprovalsManager {
     }
 
     async approve(spender, tokens) {
-        let defaultPrice = 100e9
-        let signer = keeperWallet(provider)
-        let dispatcherContract = new ethers.Contract(DISPATCHER, ABIS['dispatcher'], signer)
+        let dispatcherContract = new ethers.Contract(config.DISPATCHER, config.ABIS['dispatcher'], signer)
         let tx = await dispatcherContract.populateTransaction.tokenAllowAll(tokens, spender)
         let gasAmount = await provider.estimateGas(tx)
         let gasPrice = await provider.getGasPrice()
-        gasPrice = gasPrice > defaultPrice ? defaultPrice : gasPrice
         let cost = ethers.utils.formatEther(gasAmount.mul(gasPrice))
         console.log(`Gas cost of tx is ${cost} ETH,\nwith gas price of ${ethers.utils.formatUnits(gasPrice, 9)} gwei and gas amount of ${gasAmount}.`)
         let decision = await prompt('Proceed with transactions?')

@@ -5,7 +5,7 @@ const { provider } = require('../../avaProvider')
 
 async function main() {
     // await importPoolsFromCsv()
-    await importPoolsFromFactory(factoryAddress)
+    await importPoolsFromFactory(factoryAddress).then(async ()=> await addInstructions())
     // await approveTkns()
     // await addInstructions()
 }

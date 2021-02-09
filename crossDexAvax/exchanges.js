@@ -111,7 +111,7 @@ class Uniswap {
                 inputAmount,
                 outputAmount, 
                 tokenPath, 
-                config.SIGNER_ADDRESS, 
+                to, 
                 tradeTimeout
             )
         } else {
@@ -120,7 +120,7 @@ class Uniswap {
                 inputAmount,
                 outputAmount, 
                 tokenPath, 
-                config.SIGNER_ADDRESS, 
+                to, 
                 tradeTimeout
             )
         }
@@ -201,7 +201,7 @@ class Pangolin extends Uniswap {
                 inputAmount,
                 outputAmount, 
                 tokenPath, 
-                config.SIGNER_ADDRESS, 
+                to, 
                 tradeTimeout
             )
         } else {
@@ -210,7 +210,7 @@ class Pangolin extends Uniswap {
                 inputAmount,
                 outputAmount, 
                 tokenPath, 
-                config.SIGNER_ADDRESS, 
+                to, 
                 tradeTimeout
             )
         }

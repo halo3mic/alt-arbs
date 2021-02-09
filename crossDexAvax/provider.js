@@ -26,7 +26,7 @@ httpAvalancheProvider = new ethers.providers.JsonRpcProvider(
   NETWORK
 )
 const provider = httpAvalancheProvider
-const signer = new ethers.Wallet(PRIVATE_KEY_AVALANCHE, wsAvalancheProvider)
+const signer = new ethers.Wallet(PRIVATE_KEY_AVALANCHE, provider)
 
 module.exports = { provider, signer }
 // module.exports = { provider: wsAvalancheProvider, setProvider, signer, NETWORK, providerHttp: httpAvalancheProvider }

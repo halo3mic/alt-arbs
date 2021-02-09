@@ -1,13 +1,15 @@
 const pools = require('./config/pools.json')
+const tokens = require('./config/tokens.json')
 const paths = require('./config/paths.json')
 const fetcher = require('./fetcher')
 const math = require('./math')
 const ethers = require('ethers')
 const config = require('./config')
+const txMng = require('./txManager')
 
 var RUNWAY_CLEAR = true;
 var FAILED_TX_IN_A_ROW = 0;
-// const MAX_CONSECUTIVE_FAILS = 5;
+const MAX_CONSECUTIVE_FAILS = 5;
 
 // var LAST_BLOCK = 0
 
@@ -16,6 +18,7 @@ var ROUTER_CONTRACT, WAVAX_CONTRACT, SIGNER, PROVIDER;
 
 function initialize(provider, signer) {
     fetcher.initialize(provider)
+    txMng.initialize(provider, signer)
 }
 
 /**
@@ -41,11 +44,10 @@ function findArbs(reservesAll) {
     let opps = []
     for (let path of paths) {
         let { tkns: tknPath, pools: poolsPath } = path
-        if (tknPath[0]!=inputAsset || tknPath[tknPath.length-1]!=inputAsset || path.enabled!='1') {
+        if (tknPath[0]!=inputAsset || tknPath[tknPath.length-1]!=inputAsset || path.enabled!='1' || config.MAX_HOPS<poolsPath.length) {
             continue
         }
         let pathFull = poolsPath.map(step => {
-            console.log(step)
             return {
                 tkns: pools.filter(p=>p.id==step)[0].tkns.map(t=>t.id),
                 reserves: reservesAll[step]
@@ -56,12 +58,19 @@ function findArbs(reservesAll) {
             let amountIn = BOT_BAL.gt(optimalIn) ? optimalIn : BOT_BAL
             let amountOut = math.getAmountOutByPath(inputAsset, amountIn, pathFull)
             let pathAmounts = math.getAllAmountsForPath(inputAsset, amountIn, pathFull)
-            console.log(pathAmounts)
             let profit = amountOut.sub(amountIn)
             let gasCost = estimateGasCost(pathFull.length - 1);
             let netProfit = profit.sub(gasCost);
             if (netProfit.gt("0")) {
-                opps.push({ profit, amountIn, tknPath, gasCost, netProfit, pathAmounts });
+                opps.push({ 
+                    profit, 
+                    amountIn, 
+                    tknPath, 
+                    gasCost, 
+                    netProfit, 
+                    pathAmounts,
+                    pathId: path.id
+                });
                 console.log('_'.repeat(50));
                 console.log(path.symbol);
                 console.log('Optimal in:   ', ethers.utils.formatUnits(optimalIn));
@@ -77,7 +86,7 @@ function findArbs(reservesAll) {
     return opps
 }
 
-async function findBestOpp() {
+async function findBestOpp(blockNumber) {
     let startTime = new Date();
     let bestOpp
     let reservesAll = await fetcher.fetchReservesAll()
@@ -88,11 +97,10 @@ async function findBestOpp() {
     opps.forEach(o => {
         if ((!bestOpp && o.netProfit.gt("0")) || (bestOpp && o.netProfit.gt(bestOpp.netProfit))) {
             bestOpp = {
-                inputAmount: o.amountIn,
+                instrId: o.pathId,
                 grossProfit: o.profit, 
                 netProfit: o.netProfit, 
-                path: o.tknPath, 
-                pathAmounts: o.pathAmounts
+                pathAmounts: o.pathAmounts, 
             }
         }
     })
@@ -110,16 +118,17 @@ async function handleNewBlock(blockNumber) {
 
     LAST_BLOCK = blockNumber
     let bestOpp = await findBestOpp()
+    console.log(bestOpp)
     if (bestOpp) {
         let gasCost = bestOpp.grossProfit.sub(bestOpp.netProfit)
-        console.log(`${blockNumber} | ${Date.now()} | 🕵️‍♂️ ARB AVAILABLE | AVAX ${ethers.utils.formatUnits(bestOpp.inputAmount)} -> WAVAX ${ethers.utils.formatUnits(bestOpp.inputAmount.add(bestOpp.netProfit))}`)
+        console.log(`${blockNumber} | ${Date.now()} | 🕵️‍♂️ ARB AVAILABLE | AVAX ${ethers.utils.formatUnits(bestOpp.pathAmounts[0])} -> WAVAX ${ethers.utils.formatUnits(bestOpp.pathAmounts[0].add(bestOpp.netProfit))}`)
         console.log(`Gas cost: ${ethers.utils.formatUnits(gasCost)} | Gross profit: ${ethers.utils.formatUnits(bestOpp.grossProfit)}`)
         // send tx
         if (RUNWAY_CLEAR) {
             RUNWAY_CLEAR = false // disable tx (try to avoid fails)
-            console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... ${ethers.utils.formatUnits(bestOpp.inputAmount)} for ${ethers.utils.formatUnits(bestOpp.netProfit)}`);
+            console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... ${ethers.utils.formatUnits(bestOpp.pathAmounts[0])} for ${ethers.utils.formatUnits(bestOpp.netProfit)}`);
             try {
-                let ok = await executeOpportunity(blockNumber, bestOpp)
+                let ok = await txMng.executeOpportunity(bestOpp)
                 if (ok) {
                     FAILED_TX_IN_A_ROW = 0;
                 } else {
@@ -136,39 +145,41 @@ async function handleNewBlock(blockNumber) {
             RUNWAY_CLEAR = true;
         }
     }
-    else {
-        // There is no arb, do you want to unwrap avax?
-        let wavaxBalance = await getWAVAXBalance();
-        if (wavaxBalance.gt(ethers.utils.parseUnits(WAVAX_MAX_BAL))) {
-            RUNWAY_CLEAR = false // disable tx (try to avoid fails)
-            console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... Unwrapping ${ethers.utils.formatUnits(wavaxBalance)} WAVAX`);
-            try {
-                let ok = await unwrapAvax(wavaxBalance, blockNumber);
-                if (ok) {
-                    FAILED_TX_IN_A_ROW = 0;
-                } else {
-                    FAILED_TX_IN_A_ROW += 1;
-                    if (FAILED_TX_IN_A_ROW > MAX_CONSECUTIVE_FAILS) {
-                        console.log("Shutting down... too many failed tx");
-                        process.exit(0);
-                }
-            }
-            catch (error) {
-                console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
-            }
-            RUNWAY_CLEAR = true;
-        }
-    }
+    // else {
+    //     // There is no arb, do you want to unwrap avax?
+    //     let wavaxBalance = await getWAVAXBalance();
+    //     if (wavaxBalance.gt(ethers.utils.parseUnits(WAVAX_MAX_BAL))) {
+    //         RUNWAY_CLEAR = false // disable tx (try to avoid fails)
+    //         console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... Unwrapping ${ethers.utils.formatUnits(wavaxBalance)} WAVAX`);
+    //         try {
+    //             let ok = await unwrapAvax(wavaxBalance, blockNumber);
+    //             if (ok) {
+    //                 FAILED_TX_IN_A_ROW = 0;
+    //             } else {
+    //                 FAILED_TX_IN_A_ROW += 1;
+    //                 if (FAILED_TX_IN_A_ROW > MAX_CONSECUTIVE_FAILS) {
+    //                     console.log("Shutting down... too many failed tx");
+    //                     process.exit(0);
+    //                 }
+    //             }
+    //         }
+    //         catch (error) {
+    //             console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
+    //         }
+    //         RUNWAY_CLEAR = true;
+    //     }
+    // }
 
     let endTime = new Date();
     let processingTime = endTime - startTime;
     console.log(`${blockNumber} | Processing time: ${processingTime}ms`)
+    
 
     // Update balance (not time sensitive)
-    let balance = await PROVIDER.getBalance(SIGNER.address);
-    let wavaxBalance = await getWAVAXBalance();
-    console.log(`${blockNumber} | AVAX: ${ethers.utils.formatUnits(balance)} | WAVAX: ${ethers.utils.formatUnits(wavaxBalance)}`);
+    // let balance = await PROVIDER.getBalance(SIGNER.address);
+    // let wavaxBalance = await getWAVAXBalance();
+    // console.log(`${blockNumber} | AVAX: ${ethers.utils.formatUnits(balance)} | WAVAX: ${ethers.utils.formatUnits(wavaxBalance)}`);
 }
 
 
-module.exports = { findBestOpp, initialize }
+module.exports = { findBestOpp, initialize, handleNewBlock }

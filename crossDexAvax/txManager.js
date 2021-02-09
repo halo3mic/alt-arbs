@@ -1,5 +1,5 @@
 const { getExchanges } = require('./exchanges')
-const { ABIS } = require('./config')
+const { ABIS, DISPATCHER, STATIC_GAS_PRICE, GAS_LIMIT } = require('./config')
 const paths = require('./config/paths.json')
 const pools = require('./config/pools.json')
 const tokens = require('./config/tokens.json')
@@ -39,29 +39,30 @@ async function formTradeTx(opp) {
     for (let i=0; i<instr.pools.length; i++) {
         pool = pools.filter(p=>p.id==instr.pools[i])[0]
         tkns = instr.tkns.slice(i, i+2).map(tId=>tokens.filter(tObj=>tObj.id==tId)[0].address)
-        amountIn = opp.pathAmounts[0]
-        calldata += await EXCHANGES[pool.exchange].formTradeTx(tkns, amountIn, config.DISPATCHER).then(r=>convertTxDataToByteCode(r.tradeTx))
+        amountIn = opp.pathAmounts[i]
+        calldata += await EXCHANGES[pool.exchange].formTradeTx(tkns, amountIn, DISPATCHER).then(r=>convertTxDataToByteCode(r.tradeTx))
     }
     return calldata
 }
 
-async function formDispatcherTx() {
-    let params = [
-        tradeTxFull, 
-        inputAmount,
-    ]
+async function formDispatcherTx(calldata, inputAmount) {
     let dispatcherContract = new ethers.Contract(
-        config.DISPATCHER, 
+        DISPATCHER, 
         ABIS['dispatcher']
     )
-    return dispatcherContract.populateTransaction.makeTrade(params)
+    return dispatcherContract.populateTransaction['makeTrade(bytes,uint256)'](
+        '0x' + calldata, 
+        inputAmount,
+        {
+            gasLimit: GAS_LIMIT,
+            // gasPrice: STATIC_GAS_PRICE
+        })
 }
 
 async function submitTradeTx(blockNumber, txBody) {
     let startTime = new Date();
     let tx = await SIGNER.sendTransaction(txBody)
     console.log(`${blockNumber} | Tx sent ${tx.nonce}, ${tx.hash} | Processing time (debug): ${new Date() - startTime}ms`)
-    process.exit()
     let txReceipt = await PROVIDER.waitForTransaction(tx.hash);
     if (txReceipt.status == 0) {
         console.log(`${blockNumber} | ${Date.now()} | ❌ Fail: ${txReceipt.transactionHash} | Processing time (debug): ${new Date() - startTime}ms`);
@@ -70,14 +71,16 @@ async function submitTradeTx(blockNumber, txBody) {
     else if (txReceipt.status == 1) {
         console.log(`${blockNumber} | ${Date.now()} | ✅ Success: ${txReceipt.transactionHash} | Processing time (debug): ${new Date() - startTime}ms`);
         return true
-        
     }
 } 
 
-async function executeOpportunity(opportunity) {
+async function executeOpportunity(opportunity, blockNumber) {
     let calldata = await formTradeTx(opportunity)
-    let tx = await formDispatcherTx(calldata, opportunity.inputAmount)
-    submitTradeTx(opportunity.blockNumber, tx)
+    let tx = await formDispatcherTx(calldata, opportunity.pathAmounts[0])
+    // let gasAmount = await SIGNER.estimateGas(tx)
+    // console.log(gasAmount)
+    // process.exit(0)
+    submitTradeTx(blockNumber, tx)
 }
 
-module.exports = { initialize, executeOpportunity }
+module.exports = { initialize, executeOpportunity, formTradeTx, executeOpportunity }

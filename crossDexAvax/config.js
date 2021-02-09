@@ -5,9 +5,11 @@ const dotenv = require('dotenv')
 const ethers = require('ethers')
 
 BOT_ID = 2
-BASE_ASSET = 'T0002'
-WAVAX_MAX_BAL = "800";
-GAS_LIMIT = "400000";
+MAX_HOPS = 3
+STATIC_GAS_PRICE = ethers.BigNumber.from('470')
+GAS_LIMIT = '500000'
+BASE_ASSET = 'T0000'
+WAVAX_MAX_BAL = ethers.BigNumber.from('800')
 BOT_BAL = ethers.utils.parseUnits('10000');
 NETWORK = 43114
 RPC_PROVIDER_URL = 'https://api.avax.network/ext/bc/C/rpc'
@@ -50,5 +52,7 @@ module.exports = {
     BOT_BAL,
     BASE_ASSET, 
     DISPATCHER, 
-    BOT_ID
+    BOT_ID,
+    MAX_HOPS,
+    STATIC_GAS_PRICE
 }

@@ -59,7 +59,6 @@ function saveReserves(reservesNew, path, blockNumber) {
 function findArbs(reservesAll) {
     let inputAsset = 'T0000'
     let opps = []
-    console.log(paths)
     for (path of paths) {
         let { tkns: tknPath, pools: poolsPath } = path
         let pathFull = poolsPath.map(step => {

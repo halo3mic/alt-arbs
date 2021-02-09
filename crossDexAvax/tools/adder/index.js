@@ -4,10 +4,16 @@ const ethers = require('ethers')
 const { provider } = require('../../provider')
 
 async function main() {
+    let factories = [
+        '0xefa94DE7a4656D787667C749f7E1223D71E9FD88', 
+        '0xeb4E120069d7AaaeC91508eF7EAec8452893a80a',
+        '0x29D1Adbb65d93a5710cafe2EF0E8131f64E6AB22', 
+        '0x2Ef422F30cdb7c5F1f7267AB5CF567A88974b308'
+    ]
     // await importPoolsFromCsv()
-    // await importPoolsFromFactory(factoryAddress)
+    await importPoolsFromFactory(...factories).then(async ()=> await addInstructions())
     // await approveTkns()
-    await addInstructions()
+    // await addInstructions()
 }
 
 
@@ -42,24 +48,18 @@ async function importPoolsFromFactory(...addresses) {
 
 }
 
-// async function approveTkns() {
-//     let approvalMng = new adder.ApprovalsManager()
-//     await approvalMng.updateAllApprovals()
-//     await approvalMng.approveAll()
-//     return true
-// }
+async function approveTkns() {
+    let approvalMng = new adder.ApprovalsManager()
+    await approvalMng.updateAllApprovals()
+    await approvalMng.approveAll()
+    return true
+}
 
 async function addInstructions() {
     let im = new adder.InstructionManager()
     return await im.findInstructions()
 }
 
-let factoryAddress = '0xefa94DE7a4656D787667C749f7E1223D71E9FD88'
-let factories = [
-    '0xefa94DE7a4656D787667C749f7E1223D71E9FD88', 
-    '0xeb4E120069d7AaaeC91508eF7EAec8452893a80a',
-    '0x29D1Adbb65d93a5710cafe2EF0E8131f64E6AB22', 
-    '0x2Ef422F30cdb7c5F1f7267AB5CF567A88974b308'
-]
-// importPoolsFromFactory(...factories)
-addInstructions()
+// main()
+// addInstructions()
+approveTkns()

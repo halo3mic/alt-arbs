@@ -168,5 +168,158 @@
         "symbol": "aavewavax_pangolin",
         "exchange": "pangolin",
         "id": "P0009"
+    },
+    {
+        "address": "0xd7538cABBf8605BdE1f4901B47B8D42c61DE0367",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pngwavax_pangolin",
+        "exchange": "pangolin",
+        "id": "P0010"
+    },
+    {
+        "address": "0xE8AcF438B10A2C09f80aEf3Ef2858F8E758C98F9",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0004",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pngusdt_pangolin",
+        "exchange": "pangolin",
+        "id": "P0011"
+    },
+    {
+        "address": "0x53B37b9A6631C462d74D65d61e1c056ea9dAa637",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0001",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pngeth_pangolin",
+        "exchange": "pangolin",
+        "id": "P0012"
+    },
+    {
+        "address": "0xf372ceAE6B2F4A2C4A6c0550044A7eab914405ea",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0005",
+                "weight": 0.5
+            },
+            {
+                "id": "T0012",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wbtcpng_pangolin",
+        "exchange": "pangolin",
+        "id": "P0013"
+    },
+    {
+        "address": "0x7313835802C6e8CA2A6327E6478747B71440F7a4",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0007",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pnglink_pangolin",
+        "exchange": "pangolin",
+        "id": "P0014"
+    },
+    {
+        "address": "0xD765B31399985f411A9667330764f62153b42C76",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0006",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pngdai_pangolin",
+        "exchange": "pangolin",
+        "id": "P0015"
+    },
+    {
+        "address": "0x874685bc6794c8b4bEFBD037147C2eEF990761A9",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0008",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pnguni_pangolin",
+        "exchange": "pangolin",
+        "id": "P0016"
+    },
+    {
+        "address": "0xF105fb50fC6DdD8a857bbEcd296c8a630E8ca857",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0009",
+                "weight": 0.5
+            },
+            {
+                "id": "T0012",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sushipng_pangolin",
+        "exchange": "pangolin",
+        "id": "P0017"
+    },
+    {
+        "address": "0x0025CEBD8289BBE0a51a5c85464Da68cBc2ec0c4",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0011",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pngaave_pangolin",
+        "exchange": "pangolin",
+        "id": "P0018"
     }
 ]

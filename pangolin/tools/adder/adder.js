@@ -90,7 +90,7 @@ class Manager {
 
 class TokenManager extends Manager {
 
-    dstFilePath = resolve(`${__dirname}/./new/tokens.json`)
+    dstFilePath = resolve(`${__dirname}/../../config/tokens.json`)
     // srcFilePath = resolve(`${__dirname}/../../config/tokens.json`)
     srcFilePath = this.dstFilePath
     prefix = 'T'
@@ -122,7 +122,7 @@ class TokenManager extends Manager {
 
 class PoolManager extends Manager {
 
-    dstFilePath = resolve(`${__dirname}/./new/pools.json`)
+    dstFilePath = resolve(`${__dirname}/../../config/pools.json`)
     srcFilePath = this.dstFilePath
     // srcFilePath = resolve(`${__dirname}/../../config/pools.json`)
     prefix = 'P'
@@ -253,9 +253,9 @@ class PoolManager extends Manager {
 
 class InstructionManager {
 
-    srcPoolsPath = resolve(`${__dirname}/./new/pools.json`)
-    srcTokensPath = resolve(`${__dirname}/./new/tokens.json`)
-    dstInstrPath = resolve(`${__dirname}/./new/paths.json`) 
+    srcPoolsPath = resolve(`${__dirname}/../../config/pools.json`)
+    srcTokensPath = resolve(`${__dirname}/../../config/tokens.json`)
+    dstInstrPath = resolve(`${__dirname}/../../config/paths.json`) 
     // srcApprovalsPath = resolve(`${__dirname}/./new/approvals.json`)
     srcInstrPath = this.dstInstrPath
     // srcInstrPath = resolve(`${__dirname}/../../config/instructions.json`) 
@@ -337,7 +337,7 @@ class InstructionManager {
         let exchanges = ['pangolin']
         for (let exchange of exchanges) {
             let pools = this.pools.filter(p=>exchange==p.exchange)
-            
+
             let paths = this.findPaths(pools)
             paths.forEach(p=>this.addInstruction(p, exchange))
         }
