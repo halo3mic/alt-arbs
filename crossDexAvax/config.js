@@ -5,7 +5,7 @@ const dotenv = require('dotenv')
 const ethers = require('ethers')
 
 
-BASE_ASSET = 'T0002'
+BASE_ASSET = 'T0000'
 WAVAX_MAX_BAL = "800";
 GAS_LIMIT = "400000";
 BOT_BAL = ethers.utils.parseUnits('10000');

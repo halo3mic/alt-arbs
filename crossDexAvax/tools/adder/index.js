@@ -5,9 +5,9 @@ const { provider } = require('../../provider')
 
 async function main() {
     // await importPoolsFromCsv()
-    await importPoolsFromFactory(factoryAddress)
+    // await importPoolsFromFactory(factoryAddress)
     // await approveTkns()
-    // await addInstructions()
+    await addInstructions()
 }
 
 
@@ -61,5 +61,5 @@ let factories = [
     '0x29D1Adbb65d93a5710cafe2EF0E8131f64E6AB22', 
     '0x2Ef422F30cdb7c5F1f7267AB5CF567A88974b308'
 ]
-importPoolsFromFactory(...factories)
-// addInstructions()
+// importPoolsFromFactory(...factories)
+addInstructions()

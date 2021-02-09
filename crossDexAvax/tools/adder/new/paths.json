@@ -96,5 +96,35 @@
         ],
         "enabled": "1",
         "gasAmount": 300000
+    },
+    {
+        "id": "I0006",
+        "symbol": "wavax=>wbtc=>wavax_baoswap=>pangolin",
+        "tkns": [
+            "T0000",
+            "T0006",
+            "T0000"
+        ],
+        "pools": [
+            "P0003",
+            "P0010"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
+    },
+    {
+        "id": "I0007",
+        "symbol": "wavax=>wbtc=>wavax_pangolin=>baoswap",
+        "tkns": [
+            "T0000",
+            "T0006",
+            "T0000"
+        ],
+        "pools": [
+            "P0010",
+            "P0003"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
     }
 ]
