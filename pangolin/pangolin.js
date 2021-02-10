@@ -1,7 +1,7 @@
 const fetcher = require('./fetcher')
 const math = require('./math')
 
-const uniswapRouterAbi = require('./config/abis/uniswapRouter.json')
+const uniswapRouterAbi = require('./config/abis/pangolinRouter.json')
 const wethAbi = require('./config/abis/weth.json')
 const tokens = require('./config/tokens.json')
 const pools = require('./config/pools.json')
