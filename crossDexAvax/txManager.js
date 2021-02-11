@@ -66,21 +66,20 @@ async function submitTradeTx(blockNumber, txBody) {
     let txReceipt = await PROVIDER.waitForTransaction(tx.hash);
     if (txReceipt.status == 0) {
         console.log(`${blockNumber} | ${Date.now()} | ❌ Fail: ${txReceipt.transactionHash} | Processing time (debug): ${new Date() - startTime}ms`);
-        return false
-    }
-    else if (txReceipt.status == 1) {
+        return {status: false, hash: txReceipt.transactionHash}
+    } else if (txReceipt.status == 1) {
         console.log(`${blockNumber} | ${Date.now()} | ✅ Success: ${txReceipt.transactionHash} | Processing time (debug): ${new Date() - startTime}ms`);
-        return true
+        return {status: true, hash: txReceipt.transactionHash}
     }
 } 
 
 async function executeOpportunity(opportunity, blockNumber) {
     let calldata = await formTradeTx(opportunity)
     let tx = await formDispatcherTx(calldata, opportunity.pathAmounts[0])
-    // let gasAmount = await SIGNER.estimateGas(tx)
+    await SIGNER.estimateGas(tx)  // Get more detailed info about tx before sending it
     // console.log(gasAmount)
     // process.exit(0)
-    submitTradeTx(blockNumber, tx)
+    return submitTradeTx(blockNumber, tx)
 }
 
 module.exports = { initialize, executeOpportunity, formTradeTx, executeOpportunity }

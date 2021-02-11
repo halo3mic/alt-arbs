@@ -6,20 +6,39 @@ const math = require('./math')
 const ethers = require('ethers')
 const config = require('./config')
 const txMng = require('./txManager')
+const fs = require('fs')
+const os = require('os')
 
 var RUNWAY_CLEAR = true;
 var FAILED_TX_IN_A_ROW = 0;
 const MAX_CONSECUTIVE_FAILS = 5;
+const SAVE_PATH = './logs/opportunities.csv'
 
 // var LAST_BLOCK = 0
 
-var ROUTER_CONTRACT, WAVAX_CONTRACT, SIGNER, PROVIDER;
+var ROUTER_CONTRACT, WAVAX_CONTRACT, SIGNER, PROVIDER, HOST_NAME
 
 
 function initialize(provider, signer) {
+    HOST_NAME = os.hostname()
     fetcher.initialize(provider)
     txMng.initialize(provider, signer)
 }
+
+function logToCsv(data, path) {
+    if (!Array.isArray(data)) {
+        data = [data]
+    }
+    let writer = csvWriter()
+    let headers = {sendHeaders: false}
+    if (!fs.existsSync(path))
+        headers = {headers: Object.keys(data[0])}
+    writer = csvWriter(headers);
+    writer.pipe(fs.createWriteStream(path, {flags: 'a'}));
+    data.forEach(e => writer.write(e))
+    writer.end()
+}
+
 
 /**
  * Estimate gas cost for an internal Uniswap trade with nSteps.
@@ -136,7 +155,21 @@ async function handleNewBlock(blockNumber) {
             RUNWAY_CLEAR = false // disable tx (try to avoid fails)
             console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... ${ethers.utils.formatUnits(bestOpp.pathAmounts[0])} for ${ethers.utils.formatUnits(bestOpp.netProfit)}`);
             try {
-                let ok = await txMng.executeOpportunity(bestOpp)
+                let {ok, txHash} = await txMng.executeOpportunity(bestOpp)
+                opportunity = {
+                    hostname: HOST_NAME,
+                    wallet: SIGNER.address,
+                    botBalance: config.BOT_BAL, 
+                    blockNumber: blockNumber, 
+                    timestamp: Date.now(), 
+                    instrId: bestOpp.instrId, 
+                    pathAmounts: bestOpp.pathAmounts.join('\n'),
+                    grossProfit: bestOpp.grossProfit, 
+                    netProfit: bestOpp.netProfit,
+                    txHash: txHash
+
+                }
+                logToCsv()
                 if (ok) {
                     FAILED_TX_IN_A_ROW = 0;
                 } else {
