@@ -1,14 +1,14 @@
 const dotenv = require('dotenv')
-dotenv.config();
-
 const ethers = require('ethers')
+dotenv.config();
 
 const NETWORK = 43114
 const PRIVATE_KEY_AVALANCHE = process.env.PRIVATE_KEY_AVALANCHE;
 const WS_AVALANCHE = process.env.WS_AVALANCHE;
-
+const RPC_AVALANCHE = process.env.RPC_AVALANCHE;
 var wsAvalancheProvider;
-// setProvider();
+
+setProvider();
 
 function setProvider() {
   wsAvalancheProvider = new ethers.providers.WebSocketProvider(
@@ -19,14 +19,11 @@ function setProvider() {
     console.log("provider::wsAvalancheProvider::error", error);
   })
 }
-
-
 httpAvalancheProvider = new ethers.providers.JsonRpcProvider(
-  WS_AVALANCHE,
+  RPC_AVALANCHE,
   NETWORK
 )
-const provider = httpAvalancheProvider
-const signer = new ethers.Wallet(PRIVATE_KEY_AVALANCHE, provider)
 
-module.exports = { provider, signer }
-// module.exports = { provider: wsAvalancheProvider, setProvider, signer, NETWORK, providerHttp: httpAvalancheProvider }
+let provider = wsAvalancheProvider
+const signer = new ethers.Wallet(PRIVATE_KEY_AVALANCHE, provider)
+module.exports = { provider: provider, setProvider, signer, NETWORK }

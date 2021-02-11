@@ -1,0 +1,20 @@
+{
+  "name": "crossdexavax",
+  "version": "1.0.0",
+  "description": "Bot executing arbitrage trades across different DEXs on Avalanche network.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/blocklytics/avax-arb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/blocklytics/avax-arb/issues"
+  },
+  "homepage": "https://gitlab.com/blocklytics/avax-arb#readme"
+}

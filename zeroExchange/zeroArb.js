@@ -11,7 +11,7 @@ const resolve = require('path').resolve
 const ethers = require('ethers')
 const fs = require('fs')
 
-const WAVAX_MAX_BAL = "800";
+const WAVAX_MAX_BAL = "100";
 const ROUTER_ADDRESS = "0x85995d5f8ee9645cA855e92de16FA62D26398060";
 const GAS_LIMIT = "400000";
 const BOT_BAL = ethers.utils.parseUnits('3000');

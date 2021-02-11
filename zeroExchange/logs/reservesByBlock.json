@@ -2858,5 +2858,57 @@
                 "hex": "0xa6e6dbd97fcdb2d37000"
             }
         }
+    },
+    "102907": {
+        "P0000": {
+            "T0000": {
+                "type": "BigNumber",
+                "hex": "0x02dce7fdd2c7ae859bbe"
+            },
+            "T0001": {
+                "type": "BigNumber",
+                "hex": "0x13a962170ded98b7a0"
+            }
+        },
+        "P0001": {
+            "T0002": {
+                "type": "BigNumber",
+                "hex": "0x78abc345ebf2a91fd000"
+            },
+            "T0000": {
+                "type": "BigNumber",
+                "hex": "0x0286316022d308ee3c45"
+            }
+        },
+        "P0002": {
+            "T0003": {
+                "type": "BigNumber",
+                "hex": "0x141f632ed808e1e2684c92"
+            },
+            "T0000": {
+                "type": "BigNumber",
+                "hex": "0x073368807b8f6a13546d"
+            }
+        },
+        "P0003": {
+            "T0003": {
+                "type": "BigNumber",
+                "hex": "0x0b30343b4ddff2632454fa"
+            },
+            "T0001": {
+                "type": "BigNumber",
+                "hex": "0x1c009b74451e678a0f"
+            }
+        },
+        "P0004": {
+            "T0003": {
+                "type": "BigNumber",
+                "hex": "0x08469e1b9d3f89d6778da7"
+            },
+            "T0002": {
+                "type": "BigNumber",
+                "hex": "0x89fe9c395407df72d000"
+            }
+        }
     }
 }
