@@ -190,7 +190,7 @@ async function handleNewBlock(blockNumber) {
                 opportunity.error = error
                 if (ok) {
                     FAILED_TX_IN_A_ROW = 0;
-                } else {
+                } else if (txHash) {
                     FAILED_TX_IN_A_ROW += 1;
                     if (FAILED_TX_IN_A_ROW > MAX_CONSECUTIVE_FAILS) {
                         console.log("Shutting down... too many failed tx");
