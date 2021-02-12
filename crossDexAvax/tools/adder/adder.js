@@ -1,4 +1,4 @@
-const { provider, signer } = require('../../provider')
+const { provider, signer } = require('../../avaProvider')
 const config = require('../../config')
 const resolve = require('path').resolve
 const ethers = require('ethers')

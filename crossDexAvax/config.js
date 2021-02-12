@@ -5,7 +5,7 @@ const dotenv = require('dotenv')
 const ethers = require('ethers')
 
 BOT_ID = 2
-MAX_HOPS = 3
+MAX_HOPS = 6
 STATIC_GAS_PRICE = ethers.BigNumber.from('470')
 GAS_LIMIT = '500000'
 BASE_ASSET = 'T0000'

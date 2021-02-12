@@ -63,6 +63,7 @@ function findArbs(reservesAll) {
     for (let path of paths) {
         let { tkns: tknPath, pools: poolsPath } = path
         if (tknPath[0]!=inputAsset || tknPath[tknPath.length-1]!=inputAsset || path.enabled!='1' || config.MAX_HOPS<poolsPath.length) {
+            console.log('Skipping(pre-conditions not met)' + path.symbol)
             continue
         }
         let hasEmptyReserve = false
@@ -78,8 +79,10 @@ function findArbs(reservesAll) {
             }
         })
         if (hasEmptyReserve) {
+            console.log('Skipping(empty reserve):' + path.symbol)
             continue
         }
+        console.log('Calculating optimal amount:' + path.symbol)
         let optimalIn = math.getOptimalAmountForPath(inputAsset, pathFull);
         if (optimalIn.gt("0")) {
             let amountIn = BOT_BAL.gt(optimalIn) ? optimalIn : BOT_BAL
@@ -166,7 +169,6 @@ async function handleNewBlock(blockNumber) {
                     grossProfit: bestOpp.grossProfit, 
                     netProfit: bestOpp.netProfit,
                     txHash: txHash
-
                 }
                 logToCsv(opportunity, SAVE_PATH)
                 if (ok) {

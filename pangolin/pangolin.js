@@ -79,6 +79,7 @@ function findArbs(reservesAll) {
             // if (netProfit.gt(ethers.utils.parseUnits('0.25'))) {
             //     continue
             // }
+            // console.log('Gross profit: ', ethers.utils.formatUnits(profit));
             if (netProfit.gt("0")) {
                 opps.push({ profit, amountIn, tknPath, gasCost, netProfit });
     
