@@ -221,21 +221,21 @@ async function handleNewBlock(blockNumber) {
             RUNWAY_CLEAR = true;
         }
     }
-    else {
-        // There is no arb, do you want to unwrap avax?
-        let wavaxBalance = await getWAVAXBalance();
-        if (RUNWAY_CLEAR && wavaxBalance.gt(ethers.utils.parseUnits(WAVAX_MAX_BAL))) {
-            RUNWAY_CLEAR = false // disable tx (try to avoid fails)
-            console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... Unwrapping ${ethers.utils.formatUnits(wavaxBalance)} WAVAX`);
-            try {
-                await unwrapAvax(wavaxBalance, blockNumber);
-            }
-            catch (error) {
-                console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
-            }
-            RUNWAY_CLEAR = true;
-        }
-    }
+    // else {
+    //     // There is no arb, do you want to unwrap avax?
+    //     let wavaxBalance = await getWAVAXBalance();
+    //     if (RUNWAY_CLEAR && wavaxBalance.gt(ethers.utils.parseUnits(WAVAX_MAX_BAL))) {
+    //         RUNWAY_CLEAR = false // disable tx (try to avoid fails)
+    //         console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... Unwrapping ${ethers.utils.formatUnits(wavaxBalance)} WAVAX`);
+    //         try {
+    //             await unwrapAvax(wavaxBalance, blockNumber);
+    //         }
+    //         catch (error) {
+    //             console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
+    //         }
+    //         RUNWAY_CLEAR = true;
+    //     }
+    // }
 
     let endTime = new Date();
     let processingTime = endTime - startTime;

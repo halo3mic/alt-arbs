@@ -69,16 +69,19 @@ async function submitTradeTx(blockNumber, txBody) {
         return {status: false, hash: txReceipt.transactionHash}
     } else if (txReceipt.status == 1) {
         console.log(`${blockNumber} | ${Date.now()} | ✅ Success: ${txReceipt.transactionHash} | Processing time (debug): ${new Date() - startTime}ms`);
-        return {status: true, hash: txReceipt.transactionHash}
+        return {status: true, hash: txReceipt.transactionHash, txData: txReceipt.data}
     }
 } 
 
 async function executeOpportunity(opportunity, blockNumber) {
     let calldata = await formTradeTx(opportunity)
     let tx = await formDispatcherTx(calldata, opportunity.pathAmounts[0])
-    await SIGNER.estimateGas(tx)  // Get more detailed info about tx before sending it
-    // console.log(gasAmount)
-    // process.exit(0)
+    try {
+        await SIGNER.estimateGas(tx)  // Get more detailed info about tx before sending it
+    } catch(e) {
+        console.log('❌ Transaction would fail! Aborting ... ')
+        return {ok: false, txHash: null, txData: calldata, error: e}
+    }
     return submitTradeTx(blockNumber, tx)
 }
 

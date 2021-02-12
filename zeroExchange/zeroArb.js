@@ -12,7 +12,7 @@ const ethers = require('ethers')
 const fs = require('fs')
 
 const MIN_PROFIT = ethers.utils.parseUnits("0.1")
-const WAVAX_MAX_BAL = "10";
+const WAVAX_MAX_BAL = "100";
 const ROUTER_ADDRESS = "0x85995d5f8ee9645cA855e92de16FA62D26398060";
 const GAS_LIMIT = "400000";
 let BOT_BAL

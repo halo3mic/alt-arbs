@@ -8,6 +8,7 @@ const config = require('./config')
 const txMng = require('./txManager')
 const fs = require('fs')
 const os = require('os')
+const csvWriter = require('csv-write-stream')
 
 var RUNWAY_CLEAR = true;
 var FAILED_TX_IN_A_ROW = 0;
@@ -20,6 +21,7 @@ var ROUTER_CONTRACT, WAVAX_CONTRACT, SIGNER, PROVIDER, HOST_NAME
 
 
 function initialize(provider, signer) {
+    SIGNER = signer
     HOST_NAME = os.hostname()
     fetcher.initialize(provider)
     txMng.initialize(provider, signer)
@@ -39,6 +41,20 @@ function logToCsv(data, path) {
     writer.end()
 }
 
+function saveReserves(reservesNew, path, blockNumber) {
+    try {
+        let absScrtsPath = resolve(`${__dirname}/${path}`)
+        let currentSaves = JSON.parse(fs.readFileSync(absScrtsPath, 'utf8'))
+        currentSaves[blockNumber] = reservesNew
+        fs.writeFileSync(absScrtsPath, JSON.stringify(currentSaves, null, 4))
+        return true
+    } catch(e) {
+        console.log('Couldnt save!')
+        console.log(e)
+        return 
+    }
+}
+
 /**
  * Estimate gas cost for an internal Uniswap trade with nSteps.
  * @dev Gas estimate for wrapping 32k
@@ -50,7 +66,7 @@ function logToCsv(data, path) {
 function estimateGasCost(nSteps) {
     let gasPrice = ethers.BigNumber.from("470")
     let gasToUnwrap = ethers.BigNumber.from("32000")
-    let gasPerStep = ethers.BigNumber.from("62000")
+    let gasPerStep = ethers.BigNumber.from("100000")
     let totalGas = gasToUnwrap.add(gasPerStep.mul(nSteps))
     let total = ethers.utils.parseUnits((gasPrice.mul(totalGas)).toString(), "gwei")
     return total
@@ -63,7 +79,7 @@ function findArbs(reservesAll) {
     for (let path of paths) {
         let { tkns: tknPath, pools: poolsPath } = path
         if (tknPath[0]!=inputAsset || tknPath[tknPath.length-1]!=inputAsset || path.enabled!='1' || config.MAX_HOPS<poolsPath.length) {
-            console.log('Skipping(pre-conditions not met)' + path.symbol)
+            // console.log('Skipping(pre-conditions not met)' + path.symbol)
             continue
         }
         let hasEmptyReserve = false
@@ -79,10 +95,10 @@ function findArbs(reservesAll) {
             }
         })
         if (hasEmptyReserve) {
-            console.log('Skipping(empty reserve):' + path.symbol)
+            // console.log('Skipping(empty reserve):' + path.symbol)
             continue
         }
-        console.log('Calculating optimal amount:' + path.symbol)
+        // console.log('Calculating optimal amount:' + path.symbol)
         let optimalIn = math.getOptimalAmountForPath(inputAsset, pathFull);
         if (optimalIn.gt("0")) {
             let amountIn = BOT_BAL.gt(optimalIn) ? optimalIn : BOT_BAL
@@ -156,21 +172,22 @@ async function handleNewBlock(blockNumber) {
         if (RUNWAY_CLEAR) {
             RUNWAY_CLEAR = false // disable tx (try to avoid fails)
             console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... ${ethers.utils.formatUnits(bestOpp.pathAmounts[0])} for ${ethers.utils.formatUnits(bestOpp.netProfit)}`);
+            opportunity = {
+                hostname: HOST_NAME,
+                wallet: SIGNER.address,
+                botBalance: config.BOT_BAL, 
+                blockNumber: blockNumber, 
+                timestamp: Date.now(), 
+                instrId: bestOpp.instrId, 
+                pathAmounts: bestOpp.pathAmounts.join('\n'),
+                grossProfit: bestOpp.grossProfit, 
+                netProfit: bestOpp.netProfit
+            }
             try {
-                let {ok, txHash} = await txMng.executeOpportunity(bestOpp)
-                opportunity = {
-                    hostname: HOST_NAME,
-                    wallet: SIGNER.address,
-                    botBalance: config.BOT_BAL, 
-                    blockNumber: blockNumber, 
-                    timestamp: Date.now(), 
-                    instrId: bestOpp.instrId, 
-                    pathAmounts: bestOpp.pathAmounts.join('\n'),
-                    grossProfit: bestOpp.grossProfit, 
-                    netProfit: bestOpp.netProfit,
-                    txHash: txHash
-                }
-                logToCsv(opportunity, SAVE_PATH)
+                let {ok, txHash, txData, error} = await txMng.executeOpportunity(bestOpp)
+                opportunity.txData = txData
+                opportunity.txHash = txHash
+                opportunity.error = error
                 if (ok) {
                     FAILED_TX_IN_A_ROW = 0;
                 } else {
@@ -183,6 +200,8 @@ async function handleNewBlock(blockNumber) {
             }
             catch (error) {
                 console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
+            } finally {
+                logToCsv(opportunity, SAVE_PATH)
             }
             RUNWAY_CLEAR = true;
         }
