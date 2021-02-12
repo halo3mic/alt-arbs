@@ -11,10 +11,11 @@ const resolve = require('path').resolve
 const ethers = require('ethers')
 const fs = require('fs')
 
-const WAVAX_MAX_BAL = "800";
+const MIN_PROFIT = ethers.utils.parseUnits("0.1")
+const WAVAX_MAX_BAL = "100";
 const ROUTER_ADDRESS = "0x85995d5f8ee9645cA855e92de16FA62D26398060";
 const GAS_LIMIT = "400000";
-const BOT_BAL = ethers.utils.parseUnits('3000');
+let BOT_BAL
 
 var RUNWAY_CLEAR = true;
 var FAILED_TX_IN_A_ROW = 0;
@@ -26,9 +27,10 @@ var LAST_BLOCK = 0
 
 var ROUTER_CONTRACT, WAVAX_CONTRACT, SIGNER, PROVIDER;
 
-function initialize(provider, signer) {
+async function initialize(provider, signer) {
     SIGNER = signer
     PROVIDER = provider
+    BOT_BAL = await PROVIDER.getBalance(SIGNER.address);
     ROUTER_CONTRACT = new ethers.Contract(
         ROUTER_ADDRESS,
         uniswapRouterAbi,
@@ -137,8 +139,7 @@ async function findBestOpp() {
     let opps = findArbs(reservesAll)
     console.log(`debug::findBestOpp::timing 2: ${new Date() - startTime}ms`);
     opps.forEach(o => {
-        // && o.netProfit.gt("0")
-        if ((!bestOpp ) || (bestOpp && o.netProfit.gt(bestOpp.netProfit))) {
+        if ((!bestOpp && o.netProfit.gt(MIN_PROFIT)) || (bestOpp && o.netProfit.gt(bestOpp.netProfit))) {
             bestOpp = {
                 inputAmount: o.amountIn,
                 grossProfit: o.profit, 
@@ -229,6 +230,7 @@ async function handleNewBlock(blockNumber) {
 
     // Update balance (not time sensitive)
     let balance = await PROVIDER.getBalance(SIGNER.address);
+    BOT_BAL = balance
     let wavaxBalance = await getWAVAXBalance();
     console.log(`${blockNumber} | AVAX: ${ethers.utils.formatUnits(balance)} | WAVAX: ${ethers.utils.formatUnits(wavaxBalance)}`);
 }

@@ -1,5 +1,11 @@
-const { provider, signer } = require('./provider')
+const { provider, signer } = require('./avaProvider')
 const crossDex = require('./crossDex')
+
+// crossDex.initialize(provider, signer)
+// provider.on("block", async (blockNumber) => {
+//     console.log("AVAX", blockNumber, new Date());
+//     crossDex.handleNewBlock(blockNumber);
+// })
 
 async function run() {
     crossDex.initialize(provider, signer)

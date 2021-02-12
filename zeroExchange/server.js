@@ -8,6 +8,7 @@ provider.on("block", async (blockNumber) => {
 })
 
 // async function run() {
+//     await zeroArb.initialize(provider, signer)
 //     let lastBlockNum = 0
 //     while(1) {
 //         let currBlockNum = await provider.getBlockNumber()

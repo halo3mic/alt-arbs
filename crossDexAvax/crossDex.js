@@ -6,19 +6,53 @@ const math = require('./math')
 const ethers = require('ethers')
 const config = require('./config')
 const txMng = require('./txManager')
+const fs = require('fs')
+const os = require('os')
+const csvWriter = require('csv-write-stream')
 
 var RUNWAY_CLEAR = true;
 var FAILED_TX_IN_A_ROW = 0;
 const MAX_CONSECUTIVE_FAILS = 5;
+const SAVE_PATH = './logs/opportunities.csv'
 
 // var LAST_BLOCK = 0
 
-var ROUTER_CONTRACT, WAVAX_CONTRACT, SIGNER, PROVIDER;
+var ROUTER_CONTRACT, WAVAX_CONTRACT, SIGNER, PROVIDER, HOST_NAME
 
 
 function initialize(provider, signer) {
+    SIGNER = signer
+    HOST_NAME = os.hostname()
     fetcher.initialize(provider)
     txMng.initialize(provider, signer)
+}
+
+function logToCsv(data, path) {
+    if (!Array.isArray(data)) {
+        data = [data]
+    }
+    let writer = csvWriter()
+    let headers = {sendHeaders: false}
+    if (!fs.existsSync(path))
+        headers = {headers: Object.keys(data[0])}
+    writer = csvWriter(headers);
+    writer.pipe(fs.createWriteStream(path, {flags: 'a'}));
+    data.forEach(e => writer.write(e))
+    writer.end()
+}
+
+function saveReserves(reservesNew, path, blockNumber) {
+    try {
+        let absScrtsPath = resolve(`${__dirname}/${path}`)
+        let currentSaves = JSON.parse(fs.readFileSync(absScrtsPath, 'utf8'))
+        currentSaves[blockNumber] = reservesNew
+        fs.writeFileSync(absScrtsPath, JSON.stringify(currentSaves, null, 4))
+        return true
+    } catch(e) {
+        console.log('Couldnt save!')
+        console.log(e)
+        return 
+    }
 }
 
 /**
@@ -32,7 +66,7 @@ function initialize(provider, signer) {
 function estimateGasCost(nSteps) {
     let gasPrice = ethers.BigNumber.from("470")
     let gasToUnwrap = ethers.BigNumber.from("32000")
-    let gasPerStep = ethers.BigNumber.from("62000")
+    let gasPerStep = ethers.BigNumber.from("100000")
     let totalGas = gasToUnwrap.add(gasPerStep.mul(nSteps))
     let total = ethers.utils.parseUnits((gasPrice.mul(totalGas)).toString(), "gwei")
     return total
@@ -45,6 +79,7 @@ function findArbs(reservesAll) {
     for (let path of paths) {
         let { tkns: tknPath, pools: poolsPath } = path
         if (tknPath[0]!=inputAsset || tknPath[tknPath.length-1]!=inputAsset || path.enabled!='1' || config.MAX_HOPS<poolsPath.length) {
+            // console.log('Skipping(pre-conditions not met)' + path.symbol)
             continue
         }
         let hasEmptyReserve = false
@@ -60,8 +95,10 @@ function findArbs(reservesAll) {
             }
         })
         if (hasEmptyReserve) {
+            // console.log('Skipping(empty reserve):' + path.symbol)
             continue
         }
+        // console.log('Calculating optimal amount:' + path.symbol)
         let optimalIn = math.getOptimalAmountForPath(inputAsset, pathFull);
         if (optimalIn.gt("0")) {
             let amountIn = BOT_BAL.gt(optimalIn) ? optimalIn : BOT_BAL
@@ -135,11 +172,25 @@ async function handleNewBlock(blockNumber) {
         if (RUNWAY_CLEAR) {
             RUNWAY_CLEAR = false // disable tx (try to avoid fails)
             console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... ${ethers.utils.formatUnits(bestOpp.pathAmounts[0])} for ${ethers.utils.formatUnits(bestOpp.netProfit)}`);
+            opportunity = {
+                hostname: HOST_NAME,
+                wallet: SIGNER.address,
+                botBalance: config.BOT_BAL, 
+                blockNumber: blockNumber, 
+                timestamp: Date.now(), 
+                instrId: bestOpp.instrId, 
+                pathAmounts: bestOpp.pathAmounts.join('\n'),
+                grossProfit: bestOpp.grossProfit, 
+                netProfit: bestOpp.netProfit
+            }
             try {
-                let ok = await txMng.executeOpportunity(bestOpp)
+                let {ok, txHash, txData, error} = await txMng.executeOpportunity(bestOpp)
+                opportunity.txData = txData
+                opportunity.txHash = txHash
+                opportunity.error = error
                 if (ok) {
                     FAILED_TX_IN_A_ROW = 0;
-                } else {
+                } else if (txHash) {
                     FAILED_TX_IN_A_ROW += 1;
                     if (FAILED_TX_IN_A_ROW > MAX_CONSECUTIVE_FAILS) {
                         console.log("Shutting down... too many failed tx");
@@ -149,6 +200,8 @@ async function handleNewBlock(blockNumber) {
             }
             catch (error) {
                 console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
+            } finally {
+                logToCsv(opportunity, SAVE_PATH)
             }
             RUNWAY_CLEAR = true;
         }

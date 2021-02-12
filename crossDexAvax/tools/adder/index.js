@@ -1,7 +1,7 @@
 const adder = require('./adder')
 const csv = require('csvtojson')
 const ethers = require('ethers')
-const { provider } = require('../../provider')
+const { provider } = require('../../avaProvider')
 
 async function main() {
     let factories = [
@@ -11,7 +11,7 @@ async function main() {
         '0x2Ef422F30cdb7c5F1f7267AB5CF567A88974b308'
     ]
     // await importPoolsFromCsv()
-    // await importPoolsFromFactory(...factories)
+    await importPoolsFromFactory(...factories)
     // await approveTkns()
     // await addInstructions()
 }
@@ -60,6 +60,6 @@ async function addInstructions() {
     return await im.findInstructions()
 }
 
-main()
-// addInstructions()
+// main()
+addInstructions()
 // approveTkns()
