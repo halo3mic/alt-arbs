@@ -135,7 +135,7 @@ async function findBestOpp() {
     let bestOpp
     let reservesAll = await fetcher.fetchReservesAll()
     console.log(`debug::findBestOpp::timing 1: ${new Date() - startTime}ms`);
-    saveReserves(reservesAll, './logs/reservesByBlock.json', LAST_BLOCK)
+    // saveReserves(reservesAll, './logs/reservesByBlock.json', LAST_BLOCK)
     let opps = findArbs(reservesAll)
     console.log(`debug::findBestOpp::timing 2: ${new Date() - startTime}ms`);
     opps.forEach(o => {
