@@ -1,14 +1,16 @@
 const { provider, signer } = require('./avaProvider')
 const crossDex = require('./crossDex')
 
-// crossDex.initialize(provider, signer)
-// provider.on("block", async (blockNumber) => {
-//     console.log("AVAX", blockNumber, new Date());
-//     crossDex.handleNewBlock(blockNumber);
-// })
+async function runWs() {
+    await crossDex.initialize(provider, signer)
+    provider.on("block", async (blockNumber) => {
+        console.log("AVAX", blockNumber, new Date());
+        crossDex.handleNewBlock(blockNumber);
+    })
+}
 
-async function run() {
-    crossDex.initialize(provider, signer)
+async function runHttp() {
+    await crossDex.initialize(provider, signer)
     let lastBlockNum = 0
     while(1) {
         let currBlockNum = await provider.getBlockNumber()
@@ -21,4 +23,5 @@ async function run() {
 }
 
 
-run()
+// runWs()
+runHttp()
