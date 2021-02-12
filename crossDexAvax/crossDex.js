@@ -39,7 +39,6 @@ function logToCsv(data, path) {
     writer.end()
 }
 
-
 /**
  * Estimate gas cost for an internal Uniswap trade with nSteps.
  * @dev Gas estimate for wrapping 32k
@@ -169,7 +168,7 @@ async function handleNewBlock(blockNumber) {
                     txHash: txHash
 
                 }
-                logToCsv()
+                logToCsv(opportunity, SAVE_PATH)
                 if (ok) {
                     FAILED_TX_IN_A_ROW = 0;
                 } else {

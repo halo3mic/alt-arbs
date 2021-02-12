@@ -212,7 +212,7 @@ async function handleNewBlock(blockNumber) {
             console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... ${ethers.utils.formatUnits(bestOpp.inputAmount)} for ${ethers.utils.formatUnits(bestOpp.netProfit)}`);
             try {
                 await submitTradeTx(blockNumber, bestOpp)
-                BLOCK_WAIT = 3
+                BLOCK_WAIT = 0
             }
             catch (error) {
                 console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
