@@ -491,5 +491,90 @@
         "symbol": "wbtcdai_baoSwap",
         "exchange": "baoSwap",
         "id": "P0028"
+    },
+    {
+        "address": "0x359059Bdbf2B9DCc534D20912D3e82Df2111B620",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0008",
+                "weight": 0.5
+            },
+            {
+                "id": "T0003",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "ethzeth_pangolin",
+        "exchange": "pangolin",
+        "id": "P0029"
+    },
+    {
+        "address": "0xe6C5e55c12de2e59eBB5f9b0A19bC3FD71500Db3",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0017",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavax1inch_pangolin",
+        "exchange": "pangolin",
+        "id": "P0030"
+    },
+    {
+        "address": "0x1c2390Aa7465F5c85Fa7Eba33C08f53921E7D4f1",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0006",
+                "weight": 0.5
+            },
+            {
+                "id": "T0008",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wbtceth_pangolin",
+        "exchange": "pangolin",
+        "id": "P0031"
+    },
+    {
+        "address": "0x485E264903e584E1A41B80Eb842470DA9d47E764",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0011",
+                "weight": 0.5
+            },
+            {
+                "id": "T0009",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "daiusdt_pangolin",
+        "exchange": "pangolin",
+        "id": "P0032"
+    },
+    {
+        "address": "0x27Eef94E479CB4774B050530cFc45E4A6ccc7E5F",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0018",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "joywavax_pangolin",
+        "exchange": "pangolin",
+        "id": "P0033"
     }
 ]

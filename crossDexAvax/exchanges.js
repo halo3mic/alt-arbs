@@ -177,7 +177,7 @@ class Pangolin extends Uniswap {
         this.routerAddress = ROUTERS.PANGOLIN
         this.routerContract = new ethers.Contract(
             this.routerAddress, 
-            ABIS['uniswapRouter'], 
+            ABIS['pangolinRouter'], 
             provider
         )
     }

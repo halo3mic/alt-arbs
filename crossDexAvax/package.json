@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "csv-write-stream": "^2.0.0",
+    "csvtojson": "^2.0.10",
+    "dotenv": "^8.2.0",
+    "ethers": "^5.0.30",
+    "prompt-sync": "^4.2.0"
+  }
+}
