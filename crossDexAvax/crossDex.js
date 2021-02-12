@@ -157,89 +157,55 @@ async function findBestOpp(blockNumber) {
 
 async function handleNewBlock(blockNumber) {
     let startTime = new Date();
+    // If there is a block still being processed already skip it
     if (!RUNWAY_CLEAR) {
-        console.log(`${blockNumber} | Tx in flight, ignoring block`)
+        console.log(`${blockNumber} | Still checking opportunity, ignoring block`)
         return;
     }
-
+    RUNWAY_CLEAR = false // Close the doors
     LAST_BLOCK = blockNumber
     let bestOpp = await findBestOpp()
     if (bestOpp) {
         let gasCost = bestOpp.grossProfit.sub(bestOpp.netProfit)
         console.log(`${blockNumber} | ${Date.now()} | 🕵️‍♂️ ARB AVAILABLE | AVAX ${ethers.utils.formatUnits(bestOpp.pathAmounts[0])} -> WAVAX ${ethers.utils.formatUnits(bestOpp.pathAmounts[0].add(bestOpp.netProfit))}`)
         console.log(`Gas cost: ${ethers.utils.formatUnits(gasCost)} | Gross profit: ${ethers.utils.formatUnits(bestOpp.grossProfit)}`)
-        // send tx
-        if (RUNWAY_CLEAR) {
-            RUNWAY_CLEAR = false // disable tx (try to avoid fails)
-            console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... ${ethers.utils.formatUnits(bestOpp.pathAmounts[0])} for ${ethers.utils.formatUnits(bestOpp.netProfit)}`);
-            opportunity = {
-                hostname: HOST_NAME,
-                wallet: SIGNER.address,
-                botBalance: config.BOT_BAL, 
-                blockNumber: blockNumber, 
-                timestamp: Date.now(), 
-                instrId: bestOpp.instrId, 
-                pathAmounts: bestOpp.pathAmounts.join('\n'),
-                grossProfit: bestOpp.grossProfit, 
-                netProfit: bestOpp.netProfit
-            }
-            try {
-                let {ok, txHash, txData, error} = await txMng.executeOpportunity(bestOpp)
-                opportunity.txData = txData
-                opportunity.txHash = txHash
-                opportunity.error = error
-                if (ok) {
-                    FAILED_TX_IN_A_ROW = 0;
-                } else if (txHash) {
-                    FAILED_TX_IN_A_ROW += 1;
-                    if (FAILED_TX_IN_A_ROW > MAX_CONSECUTIVE_FAILS) {
-                        console.log("Shutting down... too many failed tx");
-                        process.exit(0);
+        console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... ${ethers.utils.formatUnits(bestOpp.pathAmounts[0])} for ${ethers.utils.formatUnits(bestOpp.netProfit)}`);
+        opportunity = {
+            hostname: HOST_NAME,
+            wallet: SIGNER.address,
+            botBalance: config.BOT_BAL, 
+            blockNumber: blockNumber, 
+            timestamp: Date.now(), 
+            instrId: bestOpp.instrId, 
+            pathAmounts: bestOpp.pathAmounts.join('\n'),
+            grossProfit: bestOpp.grossProfit, 
+            netProfit: bestOpp.netProfit
+        }
+        try {
+            let {ok, txHash, txData, error} = await txMng.executeOpportunity(bestOpp)
+            opportunity.txData = txData
+            opportunity.txHash = txHash
+            opportunity.error = error
+            if (ok) {
+                FAILED_TX_IN_A_ROW = 0;
+            } else if (txHash) {
+                FAILED_TX_IN_A_ROW += 1;
+                if (FAILED_TX_IN_A_ROW > MAX_CONSECUTIVE_FAILS) {
+                    console.log("Shutting down... too many failed tx");
+                    process.exit(0);
                 }
+            }   
+        } catch (error) {
+            console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
+        } finally {
+            logToCsv(opportunity, SAVE_PATH)
         }
-            }
-            catch (error) {
-                console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
-            } finally {
-                logToCsv(opportunity, SAVE_PATH)
-            }
-            RUNWAY_CLEAR = true;
-        }
-    }
-    // else {
-    //     // There is no arb, do you want to unwrap avax?
-    //     let wavaxBalance = await getWAVAXBalance();
-    //     if (wavaxBalance.gt(ethers.utils.parseUnits(WAVAX_MAX_BAL))) {
-    //         RUNWAY_CLEAR = false // disable tx (try to avoid fails)
-    //         console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... Unwrapping ${ethers.utils.formatUnits(wavaxBalance)} WAVAX`);
-    //         try {
-    //             let ok = await unwrapAvax(wavaxBalance, blockNumber);
-    //             if (ok) {
-    //                 FAILED_TX_IN_A_ROW = 0;
-    //             } else {
-    //                 FAILED_TX_IN_A_ROW += 1;
-    //                 if (FAILED_TX_IN_A_ROW > MAX_CONSECUTIVE_FAILS) {
-    //                     console.log("Shutting down... too many failed tx");
-    //                     process.exit(0);
-    //                 }
-    //             }
-    //         }
-    //         catch (error) {
-    //             console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
-    //         }
-    //         RUNWAY_CLEAR = true;
-    //     }
-    // }
+    } 
+    RUNWAY_CLEAR = true  // Open the doors
 
     let endTime = new Date();
     let processingTime = endTime - startTime;
     console.log(`${blockNumber} | Processing time: ${processingTime}ms`)
-    
-
-    // Update balance (not time sensitive)
-    // let balance = await PROVIDER.getBalance(SIGNER.address);
-    // let wavaxBalance = await getWAVAXBalance();
-    // console.log(`${blockNumber} | AVAX: ${ethers.utils.formatUnits(balance)} | WAVAX: ${ethers.utils.formatUnits(wavaxBalance)}`);
 }
 
 
