@@ -1,6 +1,6 @@
-# Zero Exchange Bot
+# Avalanche Arb Bots
 
-Internal arbitrage bot for Zero Exchange (Avalanche).
+Arbitrage bots for Avalanche AMM exchanges.
 
 # Get started
 
@@ -22,4 +22,5 @@ npm run crossDex
 
 # Requirements
 
-WebSocket provider for Avalanche available from `ws://127.0.0.1:9650/ext/bc/C/ws`
+*  WebSocket provider for Avalanche available from `ws://127.0.0.1:9650/ext/bc/C/ws`
+*  AVAX C-Chain account with AVAX balance
