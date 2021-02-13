@@ -1,6 +1,6 @@
-# Avalanche Arb Bots
+# L2 Arb Bots
 
-Arbitrage bots for Avalanche AMM exchanges.
+Arbitrage bots for L2 AMM exchanges.
 
 # Get started
 
@@ -17,10 +17,19 @@ Run:
 ```
 npm run pangolin
 npm run zero
-npm run crossDex
+npm run cross
+npm run quick
 ```
 
 # Requirements
 
-*  WebSocket provider for Avalanche available from `ws://127.0.0.1:9650/ext/bc/C/ws`
-*  AVAX C-Chain account with AVAX balance
+*  WebSocket provider for L2 available
+*  L2 account with L2 balance
+
+# Public APIs
+
+Avalanche
+
+* https://ava.spacejelly.network/api/ext/bc/C/rpc
+* https://learn.figment.io/network-documentation/avalanche/tutorials/deploy-a-smart-contract-on-avalanche-using-remix-and-metamask
+* https://api.avax.network/ext/bc/C/rpc
