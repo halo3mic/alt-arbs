@@ -228,5 +228,107 @@
         ],
         "enabled": "1",
         "gasAmount": 300000
+    },
+    {
+        "id": "I0014",
+        "symbol": "wavax=>wbtc=>eth=>wavax_baoswap=>pangolin=>pangolin",
+        "tkns": [
+            "T0000",
+            "T0006",
+            "T0008",
+            "T0000"
+        ],
+        "pools": [
+            "P0003",
+            "P0031",
+            "P0009"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
+    },
+    {
+        "id": "I0015",
+        "symbol": "wavax=>zeth=>eth=>wavax_zeroexchange=>pangolin=>pangolin",
+        "tkns": [
+            "T0000",
+            "T0003",
+            "T0008",
+            "T0000"
+        ],
+        "pools": [
+            "P0007",
+            "P0029",
+            "P0009"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
+    },
+    {
+        "id": "I0016",
+        "symbol": "wavax=>eth=>zeth=>wavax_pangolin=>pangolin=>zeroexchange",
+        "tkns": [
+            "T0000",
+            "T0008",
+            "T0003",
+            "T0000"
+        ],
+        "pools": [
+            "P0009",
+            "P0029",
+            "P0007"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
+    },
+    {
+        "id": "I0017",
+        "symbol": "wavax=>eth=>wbtc=>wavax_pangolin=>pangolin=>baoswap",
+        "tkns": [
+            "T0000",
+            "T0008",
+            "T0006",
+            "T0000"
+        ],
+        "pools": [
+            "P0009",
+            "P0031",
+            "P0003"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
+    },
+    {
+        "id": "I0018",
+        "symbol": "wavax=>zusdc=>dai=>wavax_zeroexchange=>pangolin=>pangolin",
+        "tkns": [
+            "T0000",
+            "T0005",
+            "T0011",
+            "T0000"
+        ],
+        "pools": [
+            "P0006",
+            "P0035",
+            "P0013"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
+    },
+    {
+        "id": "I0019",
+        "symbol": "wavax=>dai=>zusdc=>wavax_pangolin=>pangolin=>zeroexchange",
+        "tkns": [
+            "T0000",
+            "T0011",
+            "T0005",
+            "T0000"
+        ],
+        "pools": [
+            "P0013",
+            "P0035",
+            "P0006"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
     }
 ]

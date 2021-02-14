@@ -1,4 +1,4 @@
-const { provider, signer } = require('../../provider')
+const { provider, signer } = require('../../avaProvider')
 const config = require('../../config')
 const resolve = require('path').resolve
 const ethers = require('ethers')
@@ -512,7 +512,7 @@ class ApprovalsManager {
         let gasPrice = await provider.getGasPrice()
         let cost = ethers.utils.formatEther(gasAmount.mul(gasPrice))
         console.log(`Gas cost of tx is ${cost} ETH,\nwith gas price of ${ethers.utils.formatUnits(gasPrice, 9)} gwei and gas amount of ${gasAmount}.`)
-        let decision = await prompt('Proceed with transactions?')
+        let decision = await prompt('Proceed with transactions? y/n')
         if (decision=='y') {
             let response = await signer.sendTransaction(tx)
             console.log('Pending tx at ', `https://etherscan.io/tx/${response.hash}`)

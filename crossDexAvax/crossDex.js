@@ -1,6 +1,7 @@
 const pools = require('./config/pools.json')
 const tokens = require('./config/tokens.json')
 const paths = require('./config/paths.json')
+const wethAbi = require('./config/abis/weth.json')
 const fetcher = require('./fetcher')
 const math = require('./math')
 const ethers = require('ethers')
@@ -8,21 +9,28 @@ const config = require('./config')
 const txMng = require('./txManager')
 const fs = require('fs')
 const os = require('os')
+const csvWriter = require('csv-write-stream')
 
 var RUNWAY_CLEAR = true;
 var FAILED_TX_IN_A_ROW = 0;
 const MAX_CONSECUTIVE_FAILS = 5;
 const SAVE_PATH = './logs/opportunities.csv'
-
 // var LAST_BLOCK = 0
-
+const MAX_GAS_COST = ethers.utils.parseUnits("0.5")
 var ROUTER_CONTRACT, WAVAX_CONTRACT, SIGNER, PROVIDER, HOST_NAME
 
 
 function initialize(provider, signer) {
+    PROVIDER = provider
+    SIGNER = signer
     HOST_NAME = os.hostname()
     fetcher.initialize(provider)
     txMng.initialize(provider, signer)
+    WAVAX_CONTRACT = new ethers.Contract(
+        tokens.filter(t=>t.id=='T0000')[0].address,
+        wethAbi,
+        signer
+        )
 }
 
 function logToCsv(data, path) {
@@ -39,6 +47,27 @@ function logToCsv(data, path) {
     writer.end()
 }
 
+function saveReserves(reservesNew, path, blockNumber) {
+    try {
+        let absScrtsPath = resolve(`${__dirname}/${path}`)
+        let currentSaves = JSON.parse(fs.readFileSync(absScrtsPath, 'utf8'))
+        currentSaves[blockNumber] = reservesNew
+        fs.writeFileSync(absScrtsPath, JSON.stringify(currentSaves, null, 4))
+        return true
+    } catch(e) {
+        console.log('Couldnt save!')
+        console.log(e)
+        return 
+    }
+}
+
+/**
+ * Returns WAVAX balance for signer, in wei
+ */
+async function getWAVAXBalance() {
+    return await WAVAX_CONTRACT.balanceOf(SIGNER.address)
+}
+
 /**
  * Estimate gas cost for an internal Uniswap trade with nSteps.
  * @dev Gas estimate for wrapping 32k
@@ -50,7 +79,7 @@ function logToCsv(data, path) {
 function estimateGasCost(nSteps) {
     let gasPrice = ethers.BigNumber.from("470")
     let gasToUnwrap = ethers.BigNumber.from("32000")
-    let gasPerStep = ethers.BigNumber.from("62000")
+    let gasPerStep = ethers.BigNumber.from("100000")
     let totalGas = gasToUnwrap.add(gasPerStep.mul(nSteps))
     let total = ethers.utils.parseUnits((gasPrice.mul(totalGas)).toString(), "gwei")
     return total
@@ -63,6 +92,7 @@ function findArbs(reservesAll) {
     for (let path of paths) {
         let { tkns: tknPath, pools: poolsPath } = path
         if (tknPath[0]!=inputAsset || tknPath[tknPath.length-1]!=inputAsset || path.enabled!='1' || config.MAX_HOPS<poolsPath.length) {
+            // console.log('Skipping(pre-conditions not met)' + path.symbol)
             continue
         }
         let hasEmptyReserve = false
@@ -78,11 +108,14 @@ function findArbs(reservesAll) {
             }
         })
         if (hasEmptyReserve) {
+            // console.log('Skipping(empty reserve):' + path.symbol)
             continue
         }
+        // console.log('Calculating optimal amount:' + path.symbol)
         let optimalIn = math.getOptimalAmountForPath(inputAsset, pathFull);
         if (optimalIn.gt("0")) {
-            let amountIn = BOT_BAL.gt(optimalIn) ? optimalIn : BOT_BAL
+            let avlAmount = BOT_BAL.sub(MAX_GAS_COST)
+            let amountIn = avlAmount.gt(optimalIn) ? optimalIn : avlAmount
             let amountOut = math.getAmountOutByPath(inputAsset, amountIn, pathFull)
             let pathAmounts = math.getAllAmountsForPath(inputAsset, amountIn, pathFull)
             let profit = amountOut.sub(amountIn)
@@ -154,7 +187,7 @@ async function handleNewBlock(blockNumber) {
             RUNWAY_CLEAR = false // disable tx (try to avoid fails)
             console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... ${ethers.utils.formatUnits(bestOpp.pathAmounts[0])} for ${ethers.utils.formatUnits(bestOpp.netProfit)}`);
             try {
-                let {ok, txHash} = await txMng.executeOpportunity(bestOpp)
+                var {ok, txHash, txData, error} = await txMng.executeOpportunity(bestOpp)
                 opportunity = {
                     hostname: HOST_NAME,
                     wallet: SIGNER.address,
@@ -167,8 +200,7 @@ async function handleNewBlock(blockNumber) {
                     netProfit: bestOpp.netProfit,
                     txHash: txHash
 
-                }
-                logToCsv(opportunity, SAVE_PATH)
+                }    
                 if (ok) {
                     FAILED_TX_IN_A_ROW = 0;
                 } else {
@@ -182,43 +214,22 @@ async function handleNewBlock(blockNumber) {
             catch (error) {
                 console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
             }
+            opportunity.status = ok
+            opportunity.txData = txData
+            opportunity.error = error
+            logToCsv(opportunity, SAVE_PATH)
             RUNWAY_CLEAR = true;
         }
     }
-    // else {
-    //     // There is no arb, do you want to unwrap avax?
-    //     let wavaxBalance = await getWAVAXBalance();
-    //     if (wavaxBalance.gt(ethers.utils.parseUnits(WAVAX_MAX_BAL))) {
-    //         RUNWAY_CLEAR = false // disable tx (try to avoid fails)
-    //         console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... Unwrapping ${ethers.utils.formatUnits(wavaxBalance)} WAVAX`);
-    //         try {
-    //             let ok = await unwrapAvax(wavaxBalance, blockNumber);
-    //             if (ok) {
-    //                 FAILED_TX_IN_A_ROW = 0;
-    //             } else {
-    //                 FAILED_TX_IN_A_ROW += 1;
-    //                 if (FAILED_TX_IN_A_ROW > MAX_CONSECUTIVE_FAILS) {
-    //                     console.log("Shutting down... too many failed tx");
-    //                     process.exit(0);
-    //                 }
-    //             }
-    //         }
-    //         catch (error) {
-    //             console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
-    //         }
-    //         RUNWAY_CLEAR = true;
-    //     }
-    // }
-
     let endTime = new Date();
     let processingTime = endTime - startTime;
     console.log(`${blockNumber} | Processing time: ${processingTime}ms`)
     
 
     // Update balance (not time sensitive)
-    // let balance = await PROVIDER.getBalance(SIGNER.address);
-    // let wavaxBalance = await getWAVAXBalance();
-    // console.log(`${blockNumber} | AVAX: ${ethers.utils.formatUnits(balance)} | WAVAX: ${ethers.utils.formatUnits(wavaxBalance)}`);
+    let balance = await PROVIDER.getBalance(SIGNER.address);
+    let wavaxBalance = await getWAVAXBalance();
+    console.log(`${blockNumber} | AVAX: ${ethers.utils.formatUnits(balance)} | WAVAX: ${ethers.utils.formatUnits(wavaxBalance)}`);
 }
 
 

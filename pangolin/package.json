@@ -15,9 +15,11 @@
   "license": "ISC",
   "dependencies": {
     "@pangolindex/exchange-contracts": "^1.0.1",
+    "csvtojson": "^2.0.10",
     "dotenv": "^8.2.0",
     "ethers": "^5.0.29",
     "fs": "^0.0.1-security",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "prompt-sync": "^4.2.0"
   }
 }

@@ -6,6 +6,7 @@ const tokens = require('./config/tokens.json')
 const ethers = require('ethers')
 
 var SIGNER, PROVIDER, EXCHANGES
+var BLOCK_WAIT = 2
 
 function initialize(provider, signer) {
     EXCHANGES = getExchanges(provider)
@@ -30,6 +31,14 @@ function convertTxDataToByteCode(tx) {
     ]).split('0x')[1]
 }
 
+// TODO What is decimals bigger than 18???
+function covertUnitsFrom18(num, dec) {
+    // Convert everything to 18 units
+    let decDiff = 18 - dec
+    let multiplier = ethers.utils.parseUnits('1', decDiff)
+    return num.div(multiplier)
+}
+
 async function formTradeTx(opp) {
     // Get opportunity as an input
     // Populate tx for specific exchange
@@ -38,9 +47,11 @@ async function formTradeTx(opp) {
     let calldata = ''
     for (let i=0; i<instr.pools.length; i++) {
         pool = pools.filter(p=>p.id==instr.pools[i])[0]
-        tkns = instr.tkns.slice(i, i+2).map(tId=>tokens.filter(tObj=>tObj.id==tId)[0].address)
+        tkns = instr.tkns.slice(i, i+2).map(tId=>tokens.filter(tObj=>tObj.id==tId)[0])
+        tknAddresses = tkns.map(t=>t.address)
         amountIn = opp.pathAmounts[i]
-        calldata += await EXCHANGES[pool.exchange].formTradeTx(tkns, amountIn, DISPATCHER).then(r=>convertTxDataToByteCode(r.tradeTx))
+        amountIn = covertUnitsFrom18(amountIn, tkns[0].decimal)
+        calldata += await EXCHANGES[pool.exchange].formTradeTx(tknAddresses, amountIn, DISPATCHER).then(r=>convertTxDataToByteCode(r.tradeTx))
     }
     return calldata
 }
@@ -63,22 +74,25 @@ async function submitTradeTx(blockNumber, txBody) {
     let startTime = new Date();
     let tx = await SIGNER.sendTransaction(txBody)
     console.log(`${blockNumber} | Tx sent ${tx.nonce}, ${tx.hash} | Processing time (debug): ${new Date() - startTime}ms`)
-    let txReceipt = await PROVIDER.waitForTransaction(tx.hash);
+    let txReceipt = await PROVIDER.waitForTransaction(tx.hash, BLOCK_WAIT);
     if (txReceipt.status == 0) {
         console.log(`${blockNumber} | ${Date.now()} | ❌ Fail: ${txReceipt.transactionHash} | Processing time (debug): ${new Date() - startTime}ms`);
         return {status: false, hash: txReceipt.transactionHash}
     } else if (txReceipt.status == 1) {
         console.log(`${blockNumber} | ${Date.now()} | ✅ Success: ${txReceipt.transactionHash} | Processing time (debug): ${new Date() - startTime}ms`);
-        return {status: true, hash: txReceipt.transactionHash}
+        return {status: true, hash: txReceipt.transactionHash, txData: txReceipt.data}
     }
 } 
 
 async function executeOpportunity(opportunity, blockNumber) {
     let calldata = await formTradeTx(opportunity)
     let tx = await formDispatcherTx(calldata, opportunity.pathAmounts[0])
-    await SIGNER.estimateGas(tx)  // Get more detailed info about tx before sending it
-    // console.log(gasAmount)
-    // process.exit(0)
+    try {
+        await SIGNER.estimateGas(tx)  // Get more detailed info about tx before sending it
+    } catch(e) {
+        console.log('❌ Transaction would fail! Aborting ... ')
+        return {ok: false, txHash: null, txData: calldata, error: e}
+    }
     return submitTradeTx(blockNumber, tx)
 }
 

@@ -322,7 +322,7 @@ class InstructionManager {
                 tempOut = pairTkns[0]
             }
             newPath.push(tempOut)
-            if (tokenOut==tempOut && path.length>2) {
+            if (tokenOut==tempOut && path.length>=2) {
                 let c = { 'pools': [...currentPairs, pair.id], 'tkns': newPath }
                 circles.push(c)
             } else if (maxHops > 1 && pairs.length > 1) {
