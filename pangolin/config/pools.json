@@ -374,6 +374,7 @@
         "id": "P0021"
     },
     {
+<<<<<<< HEAD
         "address": "0x485E264903e584E1A41B80Eb842470DA9d47E764",
         "fee": 0.003,
         "tkns": [
@@ -391,6 +392,8 @@
         "id": "P0022"
     },
     {
+=======
+>>>>>>> 4886397f74e14575ac7a97afda79a77aafebb9e3
         "address": "0x359059Bdbf2B9DCc534D20912D3e82Df2111B620",
         "fee": 0.003,
         "tkns": [
@@ -405,6 +408,7 @@
         ],
         "symbol": "ethzeth_pangolin",
         "exchange": "pangolin",
+<<<<<<< HEAD
         "id": "P0023"
     },
     {
@@ -423,6 +427,26 @@
         "symbol": "usdteth_pangolin",
         "exchange": "pangolin",
         "id": "P0024"
+=======
+        "id": "P0022"
+    },
+    {
+        "address": "0x485E264903e584E1A41B80Eb842470DA9d47E764",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0006",
+                "weight": 0.5
+            },
+            {
+                "id": "T0004",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "daiusdt_pangolin",
+        "exchange": "pangolin",
+        "id": "P0023"
+>>>>>>> 4886397f74e14575ac7a97afda79a77aafebb9e3
     },
     {
         "address": "0x27Eef94E479CB4774B050530cFc45E4A6ccc7E5F",
@@ -439,6 +463,7 @@
         ],
         "symbol": "joywavax_pangolin",
         "exchange": "pangolin",
+<<<<<<< HEAD
         "id": "P0025"
     },
     {
@@ -474,5 +499,8 @@
         "symbol": "zusdcdai_pangolin",
         "exchange": "pangolin",
         "id": "P0027"
+=======
+        "id": "P0024"
+>>>>>>> 4886397f74e14575ac7a97afda79a77aafebb9e3
     }
 ]

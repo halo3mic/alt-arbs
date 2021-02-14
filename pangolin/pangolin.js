@@ -15,21 +15,24 @@ const MIN_PROFIT = ethers.utils.parseUnits("0")
 const WAVAX_MAX_BAL = "100";
 const ROUTER_ADDRESS = "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106";
 const GAS_LIMIT = "400000";
+<<<<<<< HEAD
 var BOT_BAL = ethers.utils.parseUnits('900');
 const MAX_GAS_COST = ethers.utils.parseUnits("0.5")
 
 var BLOCK_WAIT = 2
-var RUNWAY_CLEAR = true;
-var FAILED_TX_IN_A_ROW = 0;
+=======
+const UNWRAP_ENABLED = false
 const MAX_CONSECUTIVE_FAILS = 5;
 
-// BEST_PROFIT = ethers.constants.Zero
-// OPPS_FOUND = 0
+>>>>>>> 4886397f74e14575ac7a97afda79a77aafebb9e3
+var RUNWAY_CLEAR = true;
+var FAILED_TX_IN_A_ROW = 0;
 var LAST_BLOCK = 0
-
+var AVAX_BALANCE
+var WAVAX_BALANCE
 var ROUTER_CONTRACT, WAVAX_CONTRACT, SIGNER, PROVIDER;
 
-function initialize(provider, signer) {
+async function initialize(provider, signer) {
     SIGNER = signer
     PROVIDER = provider
     ROUTER_CONTRACT = new ethers.Contract(
@@ -42,6 +45,8 @@ function initialize(provider, signer) {
         wethAbi,
         signer
         )
+    AVAX_BALANCE = await PROVIDER.getBalance(SIGNER.address);
+    WAVAX_BALANCE = await getWAVAXBalance();
     fetcher.initialize(provider)
 }
 
@@ -72,8 +77,12 @@ function findArbs(reservesAll) {
         })
         let optimalIn = math.getOptimalAmountForPath(inputAsset, pathFull);
         if (optimalIn.gt("0")) {
+<<<<<<< HEAD
             let avlAmount = BOT_BAL.sub(MAX_GAS_COST)
             let amountIn = avlAmount.gt(optimalIn) ? optimalIn : avlAmount
+=======
+            let amountIn = AVAX_BALANCE.gt(optimalIn) ? optimalIn : BOT_BAL
+>>>>>>> 4886397f74e14575ac7a97afda79a77aafebb9e3
             let amountOut = math.getAmountOutByPath(inputAsset, amountIn, pathFull)
             let profit = amountOut.sub(amountIn)
             let gasCost = estimateGasCost(pathFull.length - 1);
@@ -186,14 +195,19 @@ async function submitTradeTx(blockNumber, opp) {
 
 async function handleNewBlock(blockNumber) {
     let startTime = new Date();
+    // If there is a block still being processed already skip it
     if (!RUNWAY_CLEAR) {
-        console.log(`${blockNumber} | Tx in flight, ignoring block`);
+        console.log(`${blockNumber} | Still checking opportunity, ignoring block`)
         return;
     }
     else if (LAST_BLOCK >= blockNumber) {
         console.log(`${blockNumber} | Stale, ignoring block`);
         return;
     }
+<<<<<<< HEAD
+=======
+    RUNWAY_CLEAR = false // Close the doors
+>>>>>>> 4886397f74e14575ac7a97afda79a77aafebb9e3
 
     LAST_BLOCK = blockNumber
     let bestOpp = await findBestOpp()
@@ -202,18 +216,34 @@ async function handleNewBlock(blockNumber) {
         console.log(`${blockNumber} | ${Date.now()} | 🕵️‍♂️ ARB AVAILABLE | AVAX ${ethers.utils.formatUnits(bestOpp.inputAmount)} -> WAVAX ${ethers.utils.formatUnits(bestOpp.inputAmount.add(bestOpp.netProfit))}`)
         console.log(`Gas cost: ${ethers.utils.formatUnits(gasCost)} | Gross profit: ${ethers.utils.formatUnits(bestOpp.grossProfit)}`)
         // send tx
+<<<<<<< HEAD
         if (RUNWAY_CLEAR) {
             RUNWAY_CLEAR = false // disable tx (try to avoid fails)
             console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... ${ethers.utils.formatUnits(bestOpp.inputAmount)} for ${ethers.utils.formatUnits(bestOpp.netProfit)}`);
             try {
                 await submitTradeTx(blockNumber, bestOpp)
+=======
+        console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... ${ethers.utils.formatUnits(bestOpp.inputAmount)} for ${ethers.utils.formatUnits(bestOpp.netProfit)}`);
+        try {
+            await submitTradeTx(blockNumber, bestOpp)
+        }
+        catch (error) {
+            console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
+        }  
+    } else if (UNWRAP_ENABLED) {
+        // There is no arb, do you want to unwrap avax?
+        if (WAVAX_BALANCE.gt(ethers.utils.parseUnits(WAVAX_MAX_BAL))) {
+            console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... Unwrapping ${ethers.utils.formatUnits(wavaxBalance)} WAVAX`);
+            try {
+                await unwrapAvax(wavaxBalance, blockNumber);
+>>>>>>> 4886397f74e14575ac7a97afda79a77aafebb9e3
             }
             catch (error) {
                 console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
             }
-            RUNWAY_CLEAR = true;
         }
     }
+    RUNWAY_CLEAR = true;
 
     // // There is no arb, do you want to unwrap avax?
     // let wavaxBalance = await getWAVAXBalance();
@@ -232,11 +262,11 @@ async function handleNewBlock(blockNumber) {
     let endTime = new Date();
     let processingTime = endTime - startTime;
     console.log(`${blockNumber} | Processing time: ${processingTime}ms`)
+
     // Update balance (not time sensitive)
-    let balance = await PROVIDER.getBalance(SIGNER.address);
-    BOT_BAL = balance;
-    let wavaxBalance = await getWAVAXBalance();
-    console.log(`${blockNumber} | AVAX: ${ethers.utils.formatUnits(balance)} | WAVAX: ${ethers.utils.formatUnits(wavaxBalance)}`);
+    AVAX_BALANCE = await PROVIDER.getBalance(SIGNER.address);
+    WAVAX_BALANCE = await getWAVAXBalance();
+    console.log(`${blockNumber} | AVAX: ${ethers.utils.formatUnits(AVAX_BALANCE)} | WAVAX: ${ethers.utils.formatUnits(WAVAX_BALANCE)}`);
 }
 
 module.exports = { initialize, handleNewBlock, findArbs, unwrapAvax, getWAVAXBalance }

@@ -561,6 +561,7 @@
         "id": "P0032"
     },
     {
+<<<<<<< HEAD
         "address": "0xdDfCef1081b8eEaBe3935817b9625c9B89848a56",
         "fee": 0.003,
         "tkns": [
@@ -578,6 +579,8 @@
         "id": "P0033"
     },
     {
+=======
+>>>>>>> 4886397f74e14575ac7a97afda79a77aafebb9e3
         "address": "0x27Eef94E479CB4774B050530cFc45E4A6ccc7E5F",
         "fee": 0.003,
         "tkns": [
@@ -592,6 +595,7 @@
         ],
         "symbol": "joywavax_pangolin",
         "exchange": "pangolin",
+<<<<<<< HEAD
         "id": "P0034"
     },
     {
@@ -627,5 +631,8 @@
         "symbol": "sfiwavax_pangolin",
         "exchange": "pangolin",
         "id": "P0036"
+=======
+        "id": "P0033"
+>>>>>>> 4886397f74e14575ac7a97afda79a77aafebb9e3
     }
 ]
