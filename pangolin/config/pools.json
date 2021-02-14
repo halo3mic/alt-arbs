@@ -51,23 +51,6 @@
         "id": "P0002"
     },
     {
-        "address": "0xbbC7fFF833D27264AaC8806389E02F717A5506c9",
-        "fee": 0.003,
-        "tkns": [
-            {
-                "id": "T0000",
-                "weight": 0.5
-            },
-            {
-                "id": "T0007",
-                "weight": 0.5
-            }
-        ],
-        "symbol": "wavaxlink_pangolin",
-        "exchange": "pangolin",
-        "id": "P0003"
-    },
-    {
         "address": "0x7a6131110B82dAcBb5872C7D352BfE071eA6A17C",
         "fee": 0.003,
         "tkns": [
@@ -81,6 +64,23 @@
             }
         ],
         "symbol": "wbtcwavax_pangolin",
+        "exchange": "pangolin",
+        "id": "P0003"
+    },
+    {
+        "address": "0xbbC7fFF833D27264AaC8806389E02F717A5506c9",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0007",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxlink_pangolin",
         "exchange": "pangolin",
         "id": "P0004"
     },
@@ -136,23 +136,6 @@
         "id": "P0007"
     },
     {
-        "address": "0x7A886B5b2F24eD0Ec0B3C4a17b930E16d160BD17",
-        "fee": 0.003,
-        "tkns": [
-            {
-                "id": "T0010",
-                "weight": 0.5
-            },
-            {
-                "id": "T0000",
-                "weight": 0.5
-            }
-        ],
-        "symbol": "yfiwavax_pangolin",
-        "exchange": "pangolin",
-        "id": "P0008"
-    },
-    {
         "address": "0x5F233A14e1315955f48C5750083D9A44b0DF8B50",
         "fee": 0.003,
         "tkns": [
@@ -166,6 +149,23 @@
             }
         ],
         "symbol": "aavewavax_pangolin",
+        "exchange": "pangolin",
+        "id": "P0008"
+    },
+    {
+        "address": "0x7A886B5b2F24eD0Ec0B3C4a17b930E16d160BD17",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0010",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "yfiwavax_pangolin",
         "exchange": "pangolin",
         "id": "P0009"
     },
@@ -187,23 +187,6 @@
         "id": "P0010"
     },
     {
-        "address": "0xE8AcF438B10A2C09f80aEf3Ef2858F8E758C98F9",
-        "fee": 0.003,
-        "tkns": [
-            {
-                "id": "T0012",
-                "weight": 0.5
-            },
-            {
-                "id": "T0004",
-                "weight": 0.5
-            }
-        ],
-        "symbol": "pngusdt_pangolin",
-        "exchange": "pangolin",
-        "id": "P0011"
-    },
-    {
         "address": "0x53B37b9A6631C462d74D65d61e1c056ea9dAa637",
         "fee": 0.003,
         "tkns": [
@@ -217,6 +200,23 @@
             }
         ],
         "symbol": "pngeth_pangolin",
+        "exchange": "pangolin",
+        "id": "P0011"
+    },
+    {
+        "address": "0xE8AcF438B10A2C09f80aEf3Ef2858F8E758C98F9",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0004",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pngusdt_pangolin",
         "exchange": "pangolin",
         "id": "P0012"
     },
@@ -255,23 +255,6 @@
         "id": "P0014"
     },
     {
-        "address": "0x874685bc6794c8b4bEFBD037147C2eEF990761A9",
-        "fee": 0.003,
-        "tkns": [
-            {
-                "id": "T0012",
-                "weight": 0.5
-            },
-            {
-                "id": "T0008",
-                "weight": 0.5
-            }
-        ],
-        "symbol": "pnguni_pangolin",
-        "exchange": "pangolin",
-        "id": "P0015"
-    },
-    {
         "address": "0xD765B31399985f411A9667330764f62153b42C76",
         "fee": 0.003,
         "tkns": [
@@ -285,6 +268,23 @@
             }
         ],
         "symbol": "pngdai_pangolin",
+        "exchange": "pangolin",
+        "id": "P0015"
+    },
+    {
+        "address": "0x874685bc6794c8b4bEFBD037147C2eEF990761A9",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0008",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pnguni_pangolin",
         "exchange": "pangolin",
         "id": "P0016"
     },
@@ -357,43 +357,6 @@
         "id": "P0020"
     },
     {
-        "address": "0x1c2390Aa7465F5c85Fa7Eba33C08f53921E7D4f1",
-        "fee": 0.003,
-        "tkns": [
-            {
-                "id": "T0005",
-                "weight": 0.5
-            },
-            {
-                "id": "T0001",
-                "weight": 0.5
-            }
-        ],
-        "symbol": "wbtceth_pangolin",
-        "exchange": "pangolin",
-        "id": "P0021"
-    },
-    {
-<<<<<<< HEAD
-        "address": "0x485E264903e584E1A41B80Eb842470DA9d47E764",
-        "fee": 0.003,
-        "tkns": [
-            {
-                "id": "T0006",
-                "weight": 0.5
-            },
-            {
-                "id": "T0004",
-                "weight": 0.5
-            }
-        ],
-        "symbol": "daiusdt_pangolin",
-        "exchange": "pangolin",
-        "id": "P0022"
-    },
-    {
-=======
->>>>>>> 4886397f74e14575ac7a97afda79a77aafebb9e3
         "address": "0x359059Bdbf2B9DCc534D20912D3e82Df2111B620",
         "fee": 0.003,
         "tkns": [
@@ -408,15 +371,14 @@
         ],
         "symbol": "ethzeth_pangolin",
         "exchange": "pangolin",
-<<<<<<< HEAD
-        "id": "P0023"
+        "id": "P0021"
     },
     {
-        "address": "0xdDfCef1081b8eEaBe3935817b9625c9B89848a56",
+        "address": "0x1c2390Aa7465F5c85Fa7Eba33C08f53921E7D4f1",
         "fee": 0.003,
         "tkns": [
             {
-                "id": "T0004",
+                "id": "T0005",
                 "weight": 0.5
             },
             {
@@ -424,10 +386,8 @@
                 "weight": 0.5
             }
         ],
-        "symbol": "usdteth_pangolin",
+        "symbol": "wbtceth_pangolin",
         "exchange": "pangolin",
-        "id": "P0024"
-=======
         "id": "P0022"
     },
     {
@@ -446,7 +406,6 @@
         "symbol": "daiusdt_pangolin",
         "exchange": "pangolin",
         "id": "P0023"
->>>>>>> 4886397f74e14575ac7a97afda79a77aafebb9e3
     },
     {
         "address": "0x27Eef94E479CB4774B050530cFc45E4A6ccc7E5F",
@@ -463,7 +422,23 @@
         ],
         "symbol": "joywavax_pangolin",
         "exchange": "pangolin",
-<<<<<<< HEAD
+        "id": "P0024"
+    },
+    {
+        "address": "0xdDfCef1081b8eEaBe3935817b9625c9B89848a56",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0004",
+                "weight": 0.5
+            },
+            {
+                "id": "T0001",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdteth_pangolin",
+        "exchange": "pangolin",
         "id": "P0025"
     },
     {
@@ -499,8 +474,22 @@
         "symbol": "zusdcdai_pangolin",
         "exchange": "pangolin",
         "id": "P0027"
-=======
-        "id": "P0024"
->>>>>>> 4886397f74e14575ac7a97afda79a77aafebb9e3
+    },
+    {
+        "address": "0x862C96397fe2C80F4011e90029e1eDeBc8206605",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0018",
+                "weight": 0.5
+            },
+            {
+                "id": "T0012",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "zeropng_pangolin",
+        "exchange": "pangolin",
+        "id": "P0028"
     }
 ]

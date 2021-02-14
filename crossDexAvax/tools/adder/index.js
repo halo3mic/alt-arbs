@@ -61,10 +61,5 @@ async function addInstructions() {
 }
 
 // main()
-<<<<<<< HEAD
-// addInstructions()
-approveTkns()
-=======
 addInstructions()
 // approveTkns()
->>>>>>> 4886397f74e14575ac7a97afda79a77aafebb9e3

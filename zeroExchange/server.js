@@ -1,8 +1,8 @@
-const { http, ws } = require('./avaProvider')
+const { provider, signer} = require('./avaProvider')
 const zeroArb = require('./zeroArb')
 
 async function runWs() {
-    let { provider, signer } = ws
+    // let { provider, signer } = ws
     await zeroArb.initialize(provider, signer)
     provider.on("block", async (blockNumber) => {
         console.log("AVAX", blockNumber, new Date());
@@ -11,7 +11,7 @@ async function runWs() {
 }
 
 async function runHttp() {
-    let { provider, signer } = http
+    // let { provider, signer } = http
     await zeroArb.initialize(provider, signer)
     let lastBlockNum = 0
     while(1) {
@@ -25,5 +25,5 @@ async function runHttp() {
 }
 
 
-// runWs()
-runHttp()
+runWs()
+// runHttp()

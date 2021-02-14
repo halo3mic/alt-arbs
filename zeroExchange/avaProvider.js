@@ -14,6 +14,7 @@ function setWsProvider() {
     wsAvalancheProvider.on("error", async (error) => {
       console.log("provider::wsAvalancheProvider::error", error);
     })
+    return wsAvalancheProvider
 }
 function setHttpProvider() {
     return new ethers.providers.JsonRpcProvider(
@@ -21,25 +22,8 @@ function setHttpProvider() {
       NETWORK
   )
 }
-<<<<<<< HEAD
-httpAvalancheProvider = new ethers.providers.JsonRpcProvider(
-  RPC_AVALANCHE,
-  NETWORK
-)
+httpAvalancheProvider = setHttpProvider()
+wsAvalancheProvider = setWsProvider()
 let provider = wsAvalancheProvider
-const signer = new ethers.Wallet(PRIVATE_KEY_AVALANCHE, provider)
-module.exports = { provider: provider, setProvider, signer, NETWORK }
-=======
-let httpAvalancheProvider = setHttpProvider()
-let wsAvalancheProvider = setWsProvider()
-let http = {
-    provider: httpAvalancheProvider,
-    signer: new ethers.Wallet(PRIVATE_KEY_AVALANCHE, httpAvalancheProvider)
-}
-let ws = {
-    provider: wsAvalancheProvider,
-    signer: new ethers.Wallet(PRIVATE_KEY_AVALANCHE, wsAvalancheProvider)
-}
-
-module.exports = { ws, http, NETWORK }
->>>>>>> 4886397f74e14575ac7a97afda79a77aafebb9e3
+const signer = new ethers.Wallet(PRIVATE_KEY_AVALANCHE, wsAvalancheProvider)
+module.exports = { provider, signer, NETWORK }
