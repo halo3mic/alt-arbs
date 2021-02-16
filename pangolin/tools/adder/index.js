@@ -5,6 +5,7 @@ const { provider } = require('../../avaProvider')
 
 async function main() {
     // await importPoolsFromCsv()
+    let factoryAddress = '0xefa94DE7a4656D787667C749f7E1223D71E9FD88'
     await importPoolsFromFactory(factoryAddress)
     // await approveTkns()
     // await addInstructions()
@@ -52,6 +53,5 @@ async function addInstructions() {
     return await im.findInstructions()
 }
 
-// let factoryAddress = '0xefa94DE7a4656D787667C749f7E1223D71E9FD88'
 // main()
 addInstructions()
