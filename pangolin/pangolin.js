@@ -14,7 +14,7 @@ const fs = require('fs')
 const MIN_PROFIT = ethers.utils.parseUnits("0")
 const WAVAX_MAX_BAL = "100";
 const ROUTER_ADDRESS = "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106";
-const GAS_LIMIT = "400000";
+const GAS_LIMIT = "500000";
 var BOT_BAL = ethers.utils.parseUnits('900');
 const MAX_GAS_COST = ethers.utils.parseUnits("0.5")
 
@@ -25,6 +25,7 @@ const MAX_CONSECUTIVE_FAILS = 5;
 
 // BEST_PROFIT = ethers.constants.Zero
 // OPPS_FOUND = 0
+var MAX_HOPS = 5
 var LAST_BLOCK = 0
 
 var ROUTER_CONTRACT, WAVAX_CONTRACT, SIGNER, PROVIDER;
@@ -64,12 +65,23 @@ function findArbs(reservesAll) {
     let opps = []
     for (path of paths) {
         let { tkns: tknPath, pools: poolsPath } = path
+        if (tknPath[0]!=inputAsset || tknPath[tknPath.length-1]!=inputAsset || path.enabled!='1' || MAX_HOPS<poolsPath.length) {
+            continue
+        }
+        let hasEmptyReserve = false
         let pathFull = poolsPath.map(step => {
+            let [bal1, bal2] = Object.values(reservesAll[step])
+            if (bal1.eq('0') || bal2.eq('0')) {
+                hasEmptyReserve = true
+            }
             return {
                 tkns: pools.filter(p=>p.id==step)[0].tkns.map(t=>t.id),
                 reserves: reservesAll[step]
             }
         })
+        if (hasEmptyReserve) {
+            continue
+        }
         let optimalIn = math.getOptimalAmountForPath(inputAsset, pathFull);
         if (optimalIn.gt("0")) {
             let avlAmount = BOT_BAL.sub(MAX_GAS_COST)
