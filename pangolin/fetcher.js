@@ -51,4 +51,21 @@ async function fetchReservesAll(instructions) {
     return Promise.all(reserves).then(r => Object.fromEntries(r))
 }
 
-module.exports = { fetchReserves, fetchReservesRaw, fetchReservesAll, initialize }
+async function fetchReservesForPaths(paths) {
+    var reservesPlan = []
+    // First prepare data so that no reserve will overlap or be left out
+    paths.forEach(instr => {
+        if (instr.enabled!='1') {
+            return
+        }
+        instr.pools.forEach(p => {
+            let poolObj = pools.filter(p1=>p1.id==p)[0]
+            if (!reservesPlan.includes(poolObj)) {
+                reservesPlan.push(poolObj)
+            }
+        })
+    })
+    return Promise.all(reservesPlan.map(fetchReserves)).then(Object.fromEntries)
+}
+
+module.exports = { fetchReserves, fetchReservesRaw, fetchReservesAll, initialize, fetchReservesForPaths }

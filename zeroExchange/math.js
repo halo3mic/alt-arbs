@@ -62,8 +62,8 @@ function getOptimalAmount(Ea, Eb) {
 }
 
 function getAmountOut(amountIn, reserveIn, reserveOut) {
-    if (amountIn*(reserveIn+reserveOut)==0) {
-        return 0 
+    if ((amountIn.mul(reserveIn).mul(reserveOut)).eq(ZERO)) {
+        return ZERO
     }
     let taxedIn = d997.mul(amountIn)
     let numerator = taxedIn.mul(reserveOut)

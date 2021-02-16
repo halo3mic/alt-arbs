@@ -5,11 +5,11 @@ const uniswapRouterAbi = require('./config/abis/pangolinRouter.json')
 const wethAbi = require('./config/abis/weth.json')
 const tokens = require('./config/tokens.json')
 const pools = require('./config/pools.json')
-const paths = require('./config/paths.json')
+var paths = require('./config/paths.json')
+const fs = require('fs')
 
 const resolve = require('path').resolve
 const ethers = require('ethers')
-const fs = require('fs')
 
 const MIN_PROFIT = ethers.utils.parseUnits("0")
 const WAVAX_MAX_BAL = "100";
@@ -17,7 +17,7 @@ const ROUTER_ADDRESS = "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106";
 const GAS_LIMIT = "500000";
 var BOT_BAL = ethers.utils.parseUnits('900');
 const MAX_GAS_COST = ethers.utils.parseUnits("0.5")
-
+const INPUT_ASSET = 'T0000'
 var BLOCK_WAIT = 2
 var RUNWAY_CLEAR = true;
 var FAILED_TX_IN_A_ROW = 0;
@@ -25,7 +25,7 @@ const MAX_CONSECUTIVE_FAILS = 5;
 
 // BEST_PROFIT = ethers.constants.Zero
 // OPPS_FOUND = 0
-var MAX_HOPS = 5
+var MAX_HOPS = 4
 var LAST_BLOCK = 0
 
 var ROUTER_CONTRACT, WAVAX_CONTRACT, SIGNER, PROVIDER;
@@ -44,6 +44,15 @@ function initialize(provider, signer) {
         signer
         )
     fetcher.initialize(provider)
+    filterPaths()
+}
+
+
+function filterPaths() {
+    paths = paths.filter(path => {
+        let { tkns: tknPath, pools: poolsPath } = path
+        return !(tknPath[0]!=INPUT_ASSET || tknPath[tknPath.length-1]!=INPUT_ASSET || path.enabled!='1' || MAX_HOPS<poolsPath.length)
+    })
 }
 
 function saveReserves(reservesNew, path, blockNumber) {
@@ -61,37 +70,35 @@ function saveReserves(reservesNew, path, blockNumber) {
 }
 
 function findArbs(reservesAll) {
-    let inputAsset = 'T0000'
     let opps = []
     for (path of paths) {
         let { tkns: tknPath, pools: poolsPath } = path
-        if (tknPath[0]!=inputAsset || tknPath[tknPath.length-1]!=inputAsset || path.enabled!='1' || MAX_HOPS<poolsPath.length) {
-            continue
-        }
-        let hasEmptyReserve = false
+        
+        // let hasEmptyReserve = false
         let pathFull = poolsPath.map(step => {
-            let [bal1, bal2] = Object.values(reservesAll[step])
-            if (bal1.eq('0') || bal2.eq('0')) {
-                hasEmptyReserve = true
-            }
+            // let [bal1, bal2] = Object.values(reservesAll[step])
+            // if (bal1.eq('0') || bal2.eq('0')) {
+            //     hasEmptyReserve = true
+            // }
             return {
                 tkns: pools.filter(p=>p.id==step)[0].tkns.map(t=>t.id),
                 reserves: reservesAll[step]
             }
         })
-        if (hasEmptyReserve) {
-            continue
-        }
-        let optimalIn = math.getOptimalAmountForPath(inputAsset, pathFull);
+        // if (hasEmptyReserve) {
+        //     console.log('Skipping(empty reserve):' + path.symbol)
+        //     continue
+        // }
+        let optimalIn = math.getOptimalAmountForPath(INPUT_ASSET, pathFull);
         if (optimalIn.gt("0")) {
             let avlAmount = BOT_BAL.sub(MAX_GAS_COST)
             let amountIn = avlAmount.gt(optimalIn) ? optimalIn : avlAmount
-            let amountOut = math.getAmountOutByPath(inputAsset, amountIn, pathFull)
+            let amountOut = math.getAmountOutByPath(INPUT_ASSET, amountIn, pathFull)
             let profit = amountOut.sub(amountIn)
             let gasCost = estimateGasCost(pathFull.length - 1);
             let netProfit = profit.sub(gasCost);
             if (netProfit.gt("0")) {
-                opps.push({ profit, amountIn, tknPath, gasCost, netProfit });
+                opps.push({ profit, amountIn, tknPath, gasCost, netProfit, gasAmount, pathId: path.id });
     
                 console.log('_'.repeat(50));
                 console.log(path.symbol);
@@ -147,7 +154,7 @@ function estimateGasCost(nSteps) {
 async function findBestOpp() {
     let startTime = new Date();
     let bestOpp
-    let reservesAll = await fetcher.fetchReservesAll()
+    let reservesAll = await fetcher.fetchReservesForPaths(paths)
     console.log(`debug::findBestOpp::timing 1: ${new Date() - startTime}ms`);
     // saveReserves(reservesAll, './logs/reservesByBlock.json', LAST_BLOCK)
     let opps = findArbs(reservesAll)
@@ -155,10 +162,12 @@ async function findBestOpp() {
     opps.forEach(o => {
         if ((!bestOpp && o.netProfit.gt(MIN_PROFIT)) || (bestOpp && o.netProfit.gt(bestOpp.netProfit))) {
             bestOpp = {
+                instrId: o.pathId,
                 inputAmount: o.amountIn,
                 grossProfit: o.profit, 
                 netProfit: o.netProfit, 
-                path: o.tknPath
+                path: o.tknPath, 
+                estimatedGas: gasAmount
             }
         }
     })
@@ -194,7 +203,25 @@ async function submitTradeTx(blockNumber, opp) {
         console.log(`${blockNumber} | ${Date.now()} | ✅ Success: ${txReceipt.transactionHash} | Processing time (debug): ${new Date() - startTime}ms`);
         FAILED_TX_IN_A_ROW = 0;
     }
+    return txReceipt
 } 
+
+
+function updateGasEstimate(pathId, newEstimate) {
+    let pathToFile = './config/paths.json'
+    paths = paths.map(p => {
+        path.gasAmount = path.id==pathId ? newEstimate : path.gasAmount
+        return path
+    })
+    try {
+        fs.writeFileSync(pathToFile, JSON.stringify(paths, null, 4))
+        return true
+    } catch(e) {
+        console.log('Couldnt save!')
+        console.log(e)
+        return 
+    }
+}
 
 async function handleNewBlock(blockNumber) {
     let startTime = new Date();
@@ -217,12 +244,16 @@ async function handleNewBlock(blockNumber) {
         if (RUNWAY_CLEAR) {
             RUNWAY_CLEAR = false // disable tx (try to avoid fails)
             console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... ${ethers.utils.formatUnits(bestOpp.inputAmount)} for ${ethers.utils.formatUnits(bestOpp.netProfit)}`);
+            let txReceipt
             try {
-                await submitTradeTx(blockNumber, bestOpp)
+                txReceipt = await submitTradeTx(blockNumber, bestOpp)
             }
             catch (error) {
                 console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
             }
+            if (txReceipt && txReceipt.status== 1 && bestOpp.estimatedGas==300000) {
+                updateGasEstimate(bestOpp.instrId, txReceipt.gasUsed.toNumber())
+            } 
             RUNWAY_CLEAR = true;
         }
     }
