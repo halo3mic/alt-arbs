@@ -16,7 +16,6 @@ const WAVAX_MAX_BAL = "100";
 const ROUTER_ADDRESS = "0x85995d5f8ee9645cA855e92de16FA62D26398060";
 const GAS_LIMIT = "400000";
 const MAX_GAS_COST = ethers.utils.parseUnits("0.5")
-let BOT_BAL
 
 var RUNWAY_CLEAR = true;
 var FAILED_TX_IN_A_ROW = 0;
@@ -75,7 +74,7 @@ function findArbs(reservesAll) {
         })
         let optimalIn = math.getOptimalAmountForPath(inputAsset, pathFull);
         if (optimalIn.gt("0")) {
-            let avlAmount = BOT_BAL.sub(MAX_GAS_COST)
+            let avlAmount = AVAX_BALANCE.sub(MAX_GAS_COST)
             let amountIn = avlAmount.gt(optimalIn) ? optimalIn : avlAmount
             let amountOut = math.getAmountOutByPath(inputAsset, amountIn, pathFull)
             let profit = amountOut.sub(amountIn)
@@ -129,7 +128,7 @@ async function getWAVAXBalance() {
 function estimateGasCost(nSteps) {
     let gasPrice = ethers.BigNumber.from("470")
     let gasToUnwrap = ethers.BigNumber.from("32000")
-    let gasPerStep = ethers.BigNumber.from("72000")
+    let gasPerStep = ethers.BigNumber.from("120000")
     let totalGas = gasToUnwrap.add(gasPerStep.mul(nSteps))
     let total = ethers.utils.parseUnits((gasPrice.mul(totalGas)).toString(), "gwei")
     return total
@@ -235,7 +234,7 @@ async function handleNewBlock(blockNumber) {
 
     // Update balance (not time sensitive)
     let balance = await PROVIDER.getBalance(SIGNER.address);
-    BOT_BAL = balance
+    AVAX_BALANCE = balance
     console.log(`${blockNumber} | AVAX: ${ethers.utils.formatUnits(balance)} | WAVAX: ${ethers.utils.formatUnits(wavaxBalance)}`);
 }
 
