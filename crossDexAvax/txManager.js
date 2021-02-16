@@ -80,7 +80,7 @@ async function submitTradeTx(blockNumber, txBody) {
         return {status: false, hash: txReceipt.transactionHash}
     } else if (txReceipt.status == 1) {
         console.log(`${blockNumber} | ${Date.now()} | ✅ Success: ${txReceipt.transactionHash} | Processing time (debug): ${new Date() - startTime}ms`);
-        return {status: true, hash: txReceipt.transactionHash, txData: txReceipt.data}
+        return {status: true, txHash: txReceipt.transactionHash, txData: txReceipt.data}
     }
 } 
 

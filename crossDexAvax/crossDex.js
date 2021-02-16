@@ -79,7 +79,7 @@ async function getWAVAXBalance() {
 function estimateGasCost(nSteps) {
     let gasPrice = ethers.BigNumber.from("470")
     let gasToUnwrap = ethers.BigNumber.from("32000")
-    let gasPerStep = ethers.BigNumber.from("100000")
+    let gasPerStep = ethers.BigNumber.from("120000")
     let totalGas = gasToUnwrap.add(gasPerStep.mul(nSteps))
     let total = ethers.utils.parseUnits((gasPrice.mul(totalGas)).toString(), "gwei")
     return total
@@ -203,7 +203,7 @@ async function handleNewBlock(blockNumber) {
                 }    
                 if (ok) {
                     FAILED_TX_IN_A_ROW = 0;
-                } else {
+                } else if (txHash && error) {
                     FAILED_TX_IN_A_ROW += 1;
                     if (FAILED_TX_IN_A_ROW > MAX_CONSECUTIVE_FAILS) {
                         console.log("Shutting down... too many failed tx");

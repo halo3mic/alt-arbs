@@ -48,17 +48,6 @@ async function fetchReserves(pool) {
 
 async function fetchReservesAll() {
     var reservesPlan = []
-
-    // function addPoolInstr(pool) {
-    //     let poolTknIds = pool.tkns.map(t=>t.id)
-    //     if (!Object.keys(uniResInstr).includes(pool)) {
-    //         uniResInstr[pool.id] = {}
-    //         uniResInstr[pool.id][poolTknIds[0]] = true
-    //         uniResInstr[pool.id][poolTknIds[1]]  = true
-    //     }
-    //     uniResInstr[pool.id][poolTknIds[0]] = true
-    //     uniResInstr[pool.id][poolTknIds[1]] = true
-    // }
     // First prepare data so that no reserve will overlap or be left out
     paths.forEach(instr => {
         if (instr.enabled!='1') {
