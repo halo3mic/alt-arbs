@@ -491,5 +491,22 @@
         "symbol": "zeropng_pangolin",
         "exchange": "pangolin",
         "id": "P0028"
+    },
+    {
+        "address": "0x333649E4F88B4A5dC0Ea610bB7446f5174037544",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0016",
+                "weight": 0.5
+            },
+            {
+                "id": "T0012",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sfipng_pangolin",
+        "exchange": "pangolin",
+        "id": "P0029"
     }
 ]
