@@ -19,6 +19,7 @@
     "dotenv": "^8.2.0",
     "ethers": "^5.0.29",
     "fs": "^0.0.1-security",
+    "ganache-cli": "^6.12.2",
     "path": "^0.12.7",
     "prompt-sync": "^4.2.0"
   }

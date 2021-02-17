@@ -81,7 +81,7 @@ function main() {
         'P0021', 
         'P0028', 
         'P0000', 
-        'P0002'
+        'P0025'
     ]
     poolIds.forEach(disablePathsForPool)
 }

@@ -229,7 +229,7 @@ async function handleNewBlock(blockNumber) {
     // Update balance (not time sensitive)
     let balance = await PROVIDER.getBalance(SIGNER.address);
     let wavaxBalance = await getWAVAXBalance();
-    console.log(`${blockNumber} | AVAX: ${ethers.utils.formatUnits(balance)} | WAVAX: ${ethers.utils.formatUnits(wavaxBalance)}`);
+    console.log(`CROSS-DEX | ${blockNumber} | AVAX: ${ethers.utils.formatUnits(balance)} | WAVAX: ${ethers.utils.formatUnits(wavaxBalance)}`);
 }
 
 

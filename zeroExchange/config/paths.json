@@ -14,7 +14,7 @@
             "P0004"
         ],
         "enabled": "1",
-        "gasAmount": 300000
+        "gasAmount": "184140"
     },
     {
         "id": "I0001",
@@ -31,7 +31,7 @@
             "P0003"
         ],
         "enabled": "1",
-        "gasAmount": 300000
+        "gasAmount": "184064"
     },
     {
         "id": "I0002",
@@ -50,7 +50,7 @@
             "P0004"
         ],
         "enabled": "1",
-        "gasAmount": 300000
+        "gasAmount": "231148"
     },
     {
         "id": "I0003",
@@ -67,7 +67,7 @@
             "P0002"
         ],
         "enabled": "1",
-        "gasAmount": 300000
+        "gasAmount": "184134"
     },
     {
         "id": "I0004",
@@ -86,7 +86,7 @@
             "P0003"
         ],
         "enabled": "1",
-        "gasAmount": 300000
+        "gasAmount": "231008"
     },
     {
         "id": "I0005",
@@ -103,6 +103,6 @@
             "P0002"
         ],
         "enabled": "1",
-        "gasAmount": 300000
+        "gasAmount": "184070"
     }
 ]
