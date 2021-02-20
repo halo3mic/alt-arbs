@@ -1,0 +1,28 @@
+{
+  "name": "zeroexchange",
+  "version": "1.0.0",
+  "description": "Internal-dex-AMM-arbitrage bot",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/halo3mic/msqt-js/tree/dev/src/zeroExchange"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@pangolindex/exchange-contracts": "^1.0.1",
+    "bignumber": "^1.1.0",
+    "bignumber.js": "^9.0.1",
+    "csvtojson": "^2.0.10",
+    "dotenv": "^8.2.0",
+    "ethers": "^5.0.29",
+    "fs": "^0.0.1-security",
+    "ganache-cli": "^6.12.2",
+    "path": "^0.12.7",
+    "prompt-sync": "^4.2.0"
+  }
+}
