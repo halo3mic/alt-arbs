@@ -1,0 +1,138 @@
+[
+    {
+        "address": "0x3980b4081307619113DAD9c8C7E87Edde2c88155",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0001",
+                "weight": 0.5
+            },
+            {
+                "id": "T0003",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "xcuxag_Complus",
+        "exchange": "Complus",
+        "id": "P0000"
+    },
+    {
+        "address": "0xe64bfAe83BA234aB85BceF5B7A92427E29b3AA11",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0002",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxusdt_Complus",
+        "exchange": "Complus",
+        "id": "P0001"
+    },
+    {
+        "address": "0x0CA373D27CE17C4804D108afEee0A77EfEb33775",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0004",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxeth_Complus",
+        "exchange": "Complus",
+        "id": "P0002"
+    },
+    {
+        "address": "0x7583a59a50d761E491d0c9393cA5214dbB613806",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0005",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxdai_Complus",
+        "exchange": "Complus",
+        "id": "P0003"
+    },
+    {
+        "address": "0xdd3c9c0d873825c30C1c0668460a1c1C62ce394e",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0006",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxuni_Complus",
+        "exchange": "Complus",
+        "id": "P0004"
+    },
+    {
+        "address": "0xEcee953e187d9e82D57bAedAaEF1e56E5283f5C3",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0007",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pngwavax_Complus",
+        "exchange": "Complus",
+        "id": "P0005"
+    },
+    {
+        "address": "0xF0ED25fD26E0b64C86c6c78b661F2ef283E9B6FF",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0008",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "comwavax_Complus",
+        "exchange": "Complus",
+        "id": "P0006"
+    },
+    {
+        "address": "0xBfAa15a7F420e1964bB45F089c24cc7C3A19FBCE",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0008",
+                "weight": 0.5
+            },
+            {
+                "id": "T0007",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "compng_Complus",
+        "exchange": "Complus",
+        "id": "P0007"
+    }
+]

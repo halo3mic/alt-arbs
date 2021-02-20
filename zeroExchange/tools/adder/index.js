@@ -54,5 +54,5 @@ async function addInstructions() {
 }
 
 
-// main()
-addInstructions()
+main()
+// addInstructions()

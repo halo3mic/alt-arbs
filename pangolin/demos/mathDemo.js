@@ -1,4 +1,4 @@
-const math = require('./math')
+const math = require('../math')
 const { BigNumber, ethers } = require('ethers')
 
 
@@ -130,7 +130,10 @@ function findBestAmountIn() {
     ]
     // get optimal amount
     let dA = ethers.utils.parseEther('100')
+    let t3 = Date.now()
     let oa = math.getOptimalAmountForPath(assetIn, path)
+    let t4 = Date.now()
+    console.log(t4-t3)
     if (oa) {
         let options = [
             oa, 

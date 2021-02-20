@@ -217,7 +217,7 @@ async function handleNewBlock(blockNumber) {
             opportunity.status = ok
             opportunity.txData = txData
             opportunity.error = error
-            logToCsv(opportunity, SAVE_PATH)
+            // logToCsv(opportunity, SAVE_PATH)
             RUNWAY_CLEAR = true;
         }
     }

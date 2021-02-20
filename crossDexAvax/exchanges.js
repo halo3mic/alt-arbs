@@ -170,6 +170,19 @@ class Unnamed1 extends Uniswap {
     }
 }
 
+class Complus extends Uniswap {
+
+    constructor(provider) {
+        super(provider)
+        this.routerAddress = ROUTERS.COMPLUS
+        this.routerContract = new ethers.Contract(
+            this.routerAddress, 
+            ABIS['uniswapRouter'],
+            provider
+        )
+    }
+}
+
 class Pangolin extends Uniswap {
 
     constructor(provider) {
@@ -227,6 +240,7 @@ function getExchanges(provider) {
         pangolin: new Pangolin(provider), 
         unnamed1: new Unnamed1(provider),
         baoSwap: new BaoSwap(provider), 
+        complus: new Complus(provider)
     }   
 }
 

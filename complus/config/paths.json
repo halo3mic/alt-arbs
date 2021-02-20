@@ -1,0 +1,36 @@
+[
+    {
+        "id": "I0000",
+        "symbol": "wavax=>png=>com=>wavax",
+        "tkns": [
+            "T0000",
+            "T0007",
+            "T0008",
+            "T0000"
+        ],
+        "pools": [
+            "P0005",
+            "P0007",
+            "P0006"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
+    },
+    {
+        "id": "I0001",
+        "symbol": "wavax=>com=>png=>wavax",
+        "tkns": [
+            "T0000",
+            "T0008",
+            "T0007",
+            "T0000"
+        ],
+        "pools": [
+            "P0006",
+            "P0007",
+            "P0005"
+        ],
+        "enabled": "1",
+        "gasAmount": 300000
+    }
+]
