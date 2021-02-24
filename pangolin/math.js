@@ -91,7 +91,9 @@ function getAmountOutByPath(tokenIn, amountIn, path) {
 
 function getOptimalAmountForPath(tokenIn, pairs) {
     let result = getEaEb(tokenIn, pairs)
-    return getOptimalAmount(...result) || ZERO
+    let oa =  getOptimalAmount(...result) || ZERO
+
+    return oa
 }
 
 

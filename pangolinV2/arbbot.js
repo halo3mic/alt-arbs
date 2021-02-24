@@ -16,7 +16,7 @@ const MIN_PROFIT = ethers.BigNumber.from('0')
 const ROUTER_ADDRESS = '0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106'
 const MAX_HOPS = 4
 const INPUT_ASSET = 'T0000'
-const MAX_CONSECUTIVE_FAILS = 5
+const MAX_CONSECUTIVE_FAILS = 8
 const GAS_LIMIT = 600000
 const BLOCK_WAIT = 2
 
@@ -29,6 +29,11 @@ let PROVIDER
 let ROUTER_CONTRACT
 let WAVAX_CONTRACT
 let paths
+const STATIC_INPUT_AMOUNTS = [
+    ethers.utils.parseEther('240'), 
+    ethers.utils.parseEther('120'), 
+    ethers.utils.parseEther('60')
+]
 
 
 async function init(provider, signer) {
@@ -68,21 +73,73 @@ function getReservePath(path) {
     return reservePath
 }
 
+// function getProfitForInputAmount(inputAmount, reservePath) {
+//     let amountOut = math.getAmountOutByReserves(inputAmount, reservePath)
+//     return amountOut.sub(inputAmount)
+// }
+
+// function getOptimalStaticInputAmount(reservePath) {
+//     for (let inputAmount of STATIC_INPUT_AMOUNTS) {
+//         let profit = getProfitForInputAmount(inputAmount, reservePath)
+//         if (profit.gt(0)) {
+//             return {inputAmount, profit}
+//         }
+//     }
+//     return {inputAmount: null, profit: null}
+// }
+
+// function arbForPath(path) {
+//     let reservePath = getReservePath(path)
+//     let avlAmount = BOT_BAL.sub(MAX_GAS_COST)
+
+//     let {inputAmount, profit} = getOptimalStaticInputAmount(reservePath)
+//     if (!profit || profit.lt('0')) {
+//         inputAmount = math.getOptimalAmountForPath(reservePath)
+//         inputAmount = avlAmount.gt(inputAmount) ? inputAmount : avlAmount
+//         if (inputAmount.lt('0')) {
+//             return
+//         }
+//         profit = getProfitForInputAmount(inputAmount, reservePath)
+//     }
+//     let gasCost = ethers.utils.parseUnits(GAS_PRICE.mul(path.gasAmount).toString(), 'gwei')
+//     let netProfit = profit.sub(gasCost);
+//     if (netProfit.gt("0")) {
+//         // console.log('_'.repeat(50));
+//         // console.log(path.symbol);
+//         // // console.log('Optimal in:   ', ethers.utils.formatUnits(optimalIn));
+//         // console.log('Amount in:    ', ethers.utils.formatUnits(inputAmount));
+//         // // console.log('Amount out:   ', ethers.utils.formatUnits(amountOut));
+//         // console.log('Gross profit: ', ethers.utils.formatUnits(profit));
+//         // console.log('Gas cost:     ', ethers.utils.formatUnits(gasCost));
+//         // console.log('Net profit:   ', ethers.utils.formatUnits(netProfit));
+//         // console.log('^'.repeat(50))
+//         return { 
+//             profit, 
+//             gasCost, 
+//             inputAmount, 
+//             netProfit, 
+//             pathId: path.id,
+//             tknPath: path.tkns
+//         } 
+//     }
+// }
+
+
 function arbForPath(path) {
     let reservePath = getReservePath(path)
     let optimalIn = math.getOptimalAmountForPath(reservePath)
     if (optimalIn.gt("0")) {
         let avlAmount = BOT_BAL.sub(MAX_GAS_COST)
-        let amountIn = avlAmount.gt(optimalIn) ? optimalIn : avlAmount
-        let amountOut = math.getAmountOutByReserves(amountIn, reservePath)
-        let profit = amountOut.sub(amountIn)
+        let inputAmount = avlAmount.gt(optimalIn) ? optimalIn : avlAmount
+        let amountOut = math.getAmountOutByReserves(inputAmount, reservePath)
+        let profit = amountOut.sub(inputAmount)
         let gasCost = ethers.utils.parseUnits(GAS_PRICE.mul(path.gasAmount).toString(), 'gwei')
         let netProfit = profit.sub(gasCost);
         if (netProfit.gt("0")) {
             // console.log('_'.repeat(50));
             // console.log(path.symbol);
             // console.log('Optimal in:   ', ethers.utils.formatUnits(optimalIn));
-            // console.log('Amount in:    ', ethers.utils.formatUnits(amountIn));
+            // console.log('Amount in:    ', ethers.utils.formatUnits(inputAmount));
             // console.log('Amount out:   ', ethers.utils.formatUnits(amountOut));
             // console.log('Gross profit: ', ethers.utils.formatUnits(profit));
             // console.log('Gas cost:     ', ethers.utils.formatUnits(gasCost));
@@ -91,15 +148,13 @@ function arbForPath(path) {
             return { 
                 profit, 
                 gasCost, 
-                amountIn, 
+                inputAmount, 
                 netProfit, 
                 pathId: path.id,
                 tknPath: path.tkns
             } 
         }
     }
-    
-    
 }
 
 /**
@@ -110,7 +165,7 @@ async function getWAVAXBalance() {
 }
 
 async function submitTradeTx(blockNumber, opp) {
-    let startTime = new Date();
+    // let startTime = new Date();
     let tknAddressPath = opp.path.map(t1=>tokens.filter(t2=>t2.id==t1)[0].address)
     let tx = await ROUTER_CONTRACT.swapExactTokensForTokens(
         opp.inputAmount,
@@ -122,10 +177,10 @@ async function submitTradeTx(blockNumber, opp) {
     )
     
     
-    console.log(`${blockNumber} | Tx sent ${tx.nonce}, ${tx.hash} | Processing time (debug): ${new Date() - startTime}ms`)
+    console.log(`${blockNumber} | Tx sent ${tx.nonce}, ${tx.hash}`)
     let txReceipt = await PROVIDER.waitForTransaction(tx.hash, BLOCK_WAIT);
     if (txReceipt.status == 0) {
-        console.log(`${blockNumber} | ${Date.now()} | ❌ Fail: ${txReceipt.transactionHash} | Processing time (debug): ${new Date() - startTime}ms`);
+        console.log(`${blockNumber} | ${Date.now()} | ❌ Fail: ${txReceipt.transactionHash}`);
         FAILED_TX_IN_A_ROW += 1;
         if (FAILED_TX_IN_A_ROW > MAX_CONSECUTIVE_FAILS) {
             console.log("Shutting down... too many failed tx");
@@ -133,7 +188,7 @@ async function submitTradeTx(blockNumber, opp) {
         }
     }
     else if (txReceipt.status == 1) {
-        console.log(`${blockNumber} | ${Date.now()} | ✅ Success: ${txReceipt.transactionHash} | Processing time (debug): ${new Date() - startTime}ms`);
+        console.log(`${blockNumber} | ${Date.now()} | ✅ Success: ${txReceipt.transactionHash}`);
         FAILED_TX_IN_A_ROW = 0;
     }
     return txReceipt
@@ -163,7 +218,7 @@ async function arbForPool(blockNumber, poolAddress) {
             if (o && ((!bestOpp && o.netProfit.gt(MIN_PROFIT)) || (bestOpp && o.netProfit.gt(bestOpp.netProfit)))) {
                 bestOpp = {
                     instrId: o.pathId,
-                    inputAmount: o.amountIn,
+                    inputAmount: o.inputAmount,
                     grossProfit: o.profit, 
                     netProfit: o.netProfit, 
                     path: o.tknPath            
@@ -195,7 +250,7 @@ async function arbForPool(blockNumber, poolAddress) {
     // Update balance (not time sensitive)
     let avaxBal = await PROVIDER.getBalance(SIGNER.address);
     BOT_BAL = await getWAVAXBalance();
-    console.log(`PANGOLIN | ${blockNumber} | AVAX: ${ethers.utils.formatUnits(avaxBal)} | WAVAX: ${ethers.utils.formatUnits(BOT_BAL)}`);
+    console.log(`PANGOLIN | ${blockNumber} | AVAX: ${ethers.utils.formatUnits(avaxBal)} | BALANCE: ${ethers.utils.formatUnits(BOT_BAL.add(avaxBal))}`);
 }
 
 module.exports = { arbForPool, arbForPath, init, getReservePath, updateReserves: reservesManager.updateReserves }

@@ -8,12 +8,6 @@ class Uniswap {
 
     constructor(provider) {
         this.provider = provider
-        // this.routerAddress = null
-        // this.routerContract = new ethers.Contract(
-        //     this.routerAddress, 
-        //     ABIS['uniswapRouter'], 
-        //     this.provider
-        // )
     }
 
     async fetchReservesRaw(poolAddress) {

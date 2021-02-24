@@ -23,10 +23,12 @@ var RUNWAY_CLEAR = true;
 var FAILED_TX_IN_A_ROW = 0;
 const MAX_CONSECUTIVE_FAILS = 5;
 const GAS_PRICE = ethers.BigNumber.from("470")
+const instrPart = parseInt(process.argv[2])
+const CPUS = 7
 
 // BEST_PROFIT = ethers.constants.Zero
 // OPPS_FOUND = 0
-var MAX_HOPS = 4
+var MAX_HOPS = 3
 var LAST_BLOCK = 0
 
 var ROUTER_CONTRACT, WAVAX_CONTRACT, SIGNER, PROVIDER;
@@ -54,6 +56,13 @@ function filterPaths() {
         let { tkns: tknPath, pools: poolsPath } = path
         return !(tknPath[0]!=INPUT_ASSET || tknPath[tknPath.length-1]!=INPUT_ASSET || path.enabled!='1' || MAX_HOPS<poolsPath.length)
     })
+    // let startIndex = Math.floor(_paths.length/CPUS)*instrPart
+    // let endIndex = Math.floor(_paths.length/CPUS)*(instrPart+1)
+    // paths = _paths.slice(startIndex, endIndex)
+    // console.log(_paths.length)
+    // console.log(paths.length)
+    // console.log(`Querying ${paths.length} paths`)
+    // console.log(paths.map(p=>p.symbol).join('\n'))
 }
 
 function saveReserves(reservesNew, path, blockNumber) {
