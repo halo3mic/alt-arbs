@@ -20,7 +20,6 @@ async function init() {
 }
 
 function handleEvent(blockNumber, poolAddress, reserveBytes) {
-    // console.log(`Updating pool ${poolAddress} with reserves ${reserveBytes}`)
     arbbot.updateReserves(poolAddress, reserveBytes)
     arbbot.arbForPool(blockNumber, poolAddress)
 }
