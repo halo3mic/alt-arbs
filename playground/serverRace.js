@@ -2,6 +2,7 @@ const { provider } = require('./avaProvider')
 
 const uniswapSyncTopic = '0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e062b03a9fffbbad1'  // Sync(uint112 reserve0, uint112 reserve1)
 const RESULTS = {}
+const hrstart = process.hrtime()
 
 async function main() {
     listenForEvents()
@@ -12,28 +13,22 @@ async function main() {
 function listenForEvents() {
     const filter = {topics: [uniswapSyncTopic]}
     provider.on(filter, log => {
-        let timestamp = process.hrtime()  // Note: this is not epoch time
-        if (!RESULTS[log.blockNumber]) {
-            RESULTS[log.blockNumber] = []
+        let blockNumber = log.blockNumber
+        let timestamp = process.hrtime(hrstart)[1]  // Note: this is not epoch time - in ns
+        if (!RESULTS[blockNumber]) {
+            RESULTS[blockNumber] = {}
         }
-        RESULTS[log.blockNumber].push({
-            method: 'events', 
-            timestamp
-        })
+        RESULTS[blockNumber]['events'] = timestamp
     })
 }
 
 function listenForBlocks() {
-    const filter = {topics: [uniswapSyncTopic]}
-    let timestamp = process.hrtime()  // Note: this is not epoch time
     provider.on('block', blockNumber => {
+        let timestamp = process.hrtime(hrstart)[1]  // Note: this is not epoch time - in ns
         if (!RESULTS[blockNumber]) {
-            RESULTS[blockNumber] = []
+            RESULTS[blockNumber] = {}
         }
-        RESULTS[blockNumber].push({
-            method: 'blocks', 
-            timestamp  
-        })
+        RESULTS[blockNumber]['blocks'] = timestamp
     })
 }
 
@@ -50,26 +45,31 @@ async function handleResults() {
         // If new result detected analyse the results
         if (newResultCount > resultCount) {
             resultCount = newResultCount
-            wins = {
+            let wins = {
                 'events': 0, 
                 'blocks': 0
             }
+            let diffsCum = 0
             Object.values(RESULTS).forEach(result => {
                 if (Object.keys(result).length==2) {
                     rounds ++
-                    let winner = result.reduce(function(prev, current) {
-                        return (prev.timestamp > current.timestamp) ? current : prev
-                    })
-                    wins[winner.method] += 1
+                    if (result['events']>result['blocks']) {
+                        wins['blocks'] += 1
+                    } else {
+                        wins['events'] += 1
+                    }
+                    diffsCum += result['blocks'] - result['events']
                 }
             })
             if (rounds>0) {
+                let avgDiff = diffsCum / rounds
                 // Display the analysis
-                console.log('\033[2J')
+                console.log('\033[2J')  // Clear the terminal
                 console.log('^'.repeat(50))
                 console.log(`Event wins: ${((wins['events'])/rounds*100).toFixed(0)}%`)
                 console.log(`Blocks wins: ${((wins['blocks'])/rounds*100).toFixed(0)}%`)
                 console.log(`Number of rounds: ${rounds}`)
+                console.log(`Events faster than blocks by avg of: ${(avgDiff/1e6).toFixed(2)} ms`)
                 console.log('^'.repeat(50))
             }
         }
