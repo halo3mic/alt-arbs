@@ -36,4 +36,5 @@ let startGanacheProvider = (blockNumber)=>connectToGancheProvider({
 })
 let provider = wsAvalancheProvider
 const signer = new ethers.Wallet(PRIVATE_KEY_AVALANCHE, provider)
+console.log(`Using acount ${signer.address} as signer.`)
 module.exports = { provider: provider, startGanacheProvider, setProvider, signer, NETWORK }

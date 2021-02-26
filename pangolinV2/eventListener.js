@@ -20,8 +20,9 @@ async function init() {
 }
 
 function handleEvent(blockNumber, poolAddress, reserveBytes) {
+    let startTimestamp = Date.now()
     arbbot.updateReserves(poolAddress, reserveBytes)
-    arbbot.arbForPool(blockNumber, poolAddress)
+    arbbot.arbForPool(blockNumber, poolAddress, startTimestamp)
 }
 
 function startListening() {

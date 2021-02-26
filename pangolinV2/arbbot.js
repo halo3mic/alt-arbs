@@ -198,13 +198,12 @@ async function submitTradeTx(blockNumber, opp) {
 * Checks all instructions for arbs associated with the pool
 *  
 */
-async function arbForPool(blockNumber, poolAddress) {
+async function arbForPool(blockNumber, poolAddress, startTime) {
     if (!RUNWAY_CLEAR) {
         console.log(`${blockNumber} | Tx in flight, ignoring block`);
         return;
     }
     let bestOpp
-    let startTime = new Date();
     // console.log(`debug::findBestOpp::timing 1: ${new Date() - startTime}ms`);
 
     RESERVES = reservesManager.getAllReserves()
