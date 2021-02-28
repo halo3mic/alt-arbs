@@ -1,0 +1,30 @@
+{
+  "name": "AVAX-ARB",
+  "version": "1.0.0",
+  "description": "A collection of AMM arbitrage strategies for Avalanche",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "zero": "node zeroExchange/server.js",
+    "pangolin": "node pangolin/server.js",
+    "cross": "node crossDexAvax/server.js",
+    "quick": "node quickSwap/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/blocklytics/avax-arb"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@pangolindex/exchange-contracts": "^1.0.1",
+    "bignumber.js": "^9.0.1",
+    "csvtojson": "^2.0.10",
+    "dotenv": "^8.2.0",
+    "ethers": "^5.0.29",
+    "fs": "^0.0.1-security",
+    "ganache-cli": "^6.12.2",
+    "path": "^0.12.7",
+    "prompt-sync": "^4.2.0"
+  }
+}
