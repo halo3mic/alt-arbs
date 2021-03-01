@@ -12,7 +12,7 @@ const ethers = require('ethers')
 let FAILED_TX_IN_A_ROW = 0
 let PATH_FAIL_COUNTER = {}
 let POOLS_IN_FLIGHT = []
-
+let poolAddressPathMap
 let WRAPPED_CONTRACT
 let ROUTER_CONTRACT
 let LAST_FAIL  // Path id of the last fail
@@ -45,6 +45,7 @@ async function init(provider, signer) {
     await reservesManager.init(provider, PATHS) // Initialize reserveres manager
     RESERVES = reservesManager.getAllReserves() // Get reserves for filtered paths
     filterPathsWithEmptyPool()
+    poolAddressPathMap = Object.fromEntries(pools.map(pool=>[pool.address, PATHS.filter(path=>path.pools.includes(pool.id))]))
     BOT_BAL = await getWrappedBalance()
 }
 
@@ -139,7 +140,14 @@ function getGasPrice(grossProfit, gasAmount) {
     return config.DEFAULT_GAS_PRICE
 }
 
-
+/**
+ * Return gas price at which competitors are trading
+ * Queries the transactions in the same block that had higher
+ * transaction index than failed transaction. Chooses the highest
+ * gas price as a competitive one.
+ * @param {String} txhash - Transaction hash of failed transaction
+ * @returns {ethers.BigNumber}
+ */
 async function getCompetitiveGasPrice(txHash) {
     const prct= '101'
     let txSelf = await PROVIDER.getTransaction(txHash)
@@ -159,6 +167,11 @@ async function getCompetitiveGasPrice(txHash) {
     }
 }
 
+/**
+ * Update gas price constants based on competitor settings
+ * @param {String} txhash - Transaction hash of failed transaction
+ * @returns {boolean}
+ */
 async function updateGasPrices(txHash) {
     let defaultGasPriceLimit = ethers.utils.parseUnits('200', 'gwei')
     let gasThresholdLimit = ethers.utils.parseUnits('2000', 'gwei')
@@ -207,6 +220,13 @@ function arbForPath(path) {
     }
 }
 
+
+function getPathsToCheck(poolAddresses) {
+    let pathsToCheck = poolAddresses.map(a=>poolAddressPathMap[a]).flat()
+    let unique = [...new Set(pathsToCheck)]
+    return unique
+}
+
 /**
  * Find and handle best arb opportunity for changed balance of pools
  * @param {number} blockNumber
@@ -216,24 +236,21 @@ function arbForPath(path) {
  */
 async function arbForPools(blockNumber, poolAddresses, startTime) {
     RESERVES = reservesManager.getAllReserves()
-    let poolIds = poolAddresses.map(a => {
-        let x = pools.filter(p => p.address == a)
-        return x.length > 0 ? x[0].id : null
-    }).filter(e => e)
-
+    let pathsToCheck = getPathsToCheck(poolAddresses)
     let bestOpp
-    PATHS.forEach(path => {
+    pathsToCheck.forEach(path => {
         // Check if tx is in flight that would affect any of the pools for this path
-        let poolsInFlight = path.pools.filter(pathId => POOLS_IN_FLIGHT.includes(pathId)).length > 0
+        let isAnyPoolInFlight = () => path.pools.filter(pathId => POOLS_IN_FLIGHT.includes(pathId)).length > 0
         // Check that path includes the pool that which balance was updated
-        let pathIncludesPool = path.pools.filter(p => poolIds.includes(p)).length > 0
+        // let pathIncludesPool = path.pools.filter(p => poolIds.includes(p)).length > 0
         // Check that the path is not blacklisted
         let pathBlacklisted = PATH_FAIL_COUNTER[path.id] > 2
-        if (pathIncludesPool && path.enabled && !pathBlacklisted && !poolsInFlight) {
+        if (!pathBlacklisted && !isAnyPoolInFlight()) {
             let opp = arbForPath(path)
             let cond1 = opp && !bestOpp && opp.netProfit.gt(config.MIN_PROFIT)
             let cond2 = opp && bestOpp && opp.netProfit.gt(bestOpp.netProfit)
             if (cond1 || cond2) {
+                // Skip it if the opportunity is still there after a fail
                 if (LAST_FAIL == path.id) {
                     PATH_FAIL_COUNTER[path.id] = (PATH_FAIL_COUNTER[path.id] || 0) + 1
                     return
