@@ -220,7 +220,6 @@ function arbForPath(path) {
     }
 }
 
-
 function getPathsToCheck(poolAddresses) {
     let pathsToCheck = poolAddresses.map(a=>poolAddressPathMap[a]).flat()
     let unique = [...new Set(pathsToCheck)]
@@ -241,8 +240,6 @@ async function arbForPools(blockNumber, poolAddresses, startTime) {
     pathsToCheck.forEach(path => {
         // Check if tx is in flight that would affect any of the pools for this path
         let isAnyPoolInFlight = () => path.pools.filter(pathId => POOLS_IN_FLIGHT.includes(pathId)).length > 0
-        // Check that path includes the pool that which balance was updated
-        // let pathIncludesPool = path.pools.filter(p => poolIds.includes(p)).length > 0
         // Check that the path is not blacklisted
         let pathBlacklisted = PATH_FAIL_COUNTER[path.id] > 2
         if (!pathBlacklisted && !isAnyPoolInFlight()) {

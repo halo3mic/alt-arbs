@@ -6,6 +6,7 @@ const { BigNumber } = ethers
 
 let RESERVES
 let PROVIDER
+let tokenMap = Object.fromEntries(tokens.map(tkn => [tkn.id, tkn]))
 
 async function init(provider, paths) {
     PROVIDER = provider
@@ -19,8 +20,8 @@ async function init(provider, paths) {
  */
 function updateReserves(poolAddress, reservesBytes) {
     const pool = pools.filter(p=>p.address==poolAddress)[0]
-    const tkn0 = tokens.filter(t=>t.id==pool.tkns[0].id)[0]
-    const tkn1 = tokens.filter(t=>t.id==pool.tkns[1].id)[0]
+    const tkn0 = tokenMap[pool.tkns[0].id]
+    const tkn1 = tokenMap[pool.tkns[1].id]
     let r0 = BigNumber.from(reservesBytes.substr(0, 66))
     let r1 = BigNumber.from('0x' + reservesBytes.substr(66))
     r0 = normalizeUnits(r0, tkn0.decimal)

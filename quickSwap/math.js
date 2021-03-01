@@ -62,7 +62,7 @@ function getOptimalAmount(Ea, Eb) {
  * @returns {BigNumber}
  */
 function getAmountOut(amountIn, reserveIn, reserveOut) {
-    if (amountIn.eq(ZERO)) {
+    if ((amountIn.mul(reserveIn).mul(reserveOut)).eq(ZERO)) {
         return ZERO
     }
     let taxedIn = d997.mul(amountIn)
@@ -88,7 +88,6 @@ function getAmountOutByReserves(amountIn, reservePath) {
     }
     return amountOut
 }
-
 
 module.exports = { 
     getOptimalAmountForPath, 
