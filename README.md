@@ -10,7 +10,7 @@ Install
 npm install
 ```
 
-Create a `.env` file
+Create a `.env` file - see `.env.sample` for parameters
 
 Run:
 
@@ -19,6 +19,7 @@ npm run pangolin
 npm run zero
 npm run cross
 npm run quick
+npm run fantom
 ```
 
 # Requirements

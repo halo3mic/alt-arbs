@@ -8,6 +8,7 @@
     "zero": "node zeroExchange/server.js",
     "pangolin": "node pangolin/server.js",
     "cross": "node crossDexAvax/server.js",
+    "fantom": "node fantom/server.js",
     "quick": "node quickSwap/server.js"
   },
   "repository": {
