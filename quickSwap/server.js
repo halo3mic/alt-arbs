@@ -34,7 +34,7 @@ function startListening() {
                 return l.address
             }
         }).filter(e=>e)
-        arbbot.arbForPools(blockNumber, changedPools, startTime)
+        arbbot.handleUpdate(blockNumber, changedPools, startTime)
     })
 }
 
