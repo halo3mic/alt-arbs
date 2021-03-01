@@ -36,6 +36,7 @@ const MAX_HOPS = 5 // Max number of swaps
 const TIMEOUT_OFFSET = 180  // Seconds after which trade expires 
 // Paths with these tokens will be ignored
 const BLACKLISTED_TKNS = []
+const EMPTY_POOL_THRESHOLD = ethers.BigNumber.from('10')
 
 // Gas settings
 // const DYNAMIC_GAS_THRESHOLD = ethers.utils.parseUnits('1260', 'gwei') // Gas price at which dynamic gas starts
@@ -55,6 +56,7 @@ module.exports = {
     // DYNAMIC_GAS_THRESHOLD,
     MAX_CONSECUTIVE_FAILS,
     // PRCT_PROFIT_FOR_GAS,
+    EMPTY_POOL_THRESHOLD,
     CHAIN_ASSET_SYMBOL,
     UNISWAP_SYNC_TOPIC,
     DEFAULT_GAS_PRICE,

@@ -44,6 +44,7 @@ async function init(provider, signer) {
     filterPaths()
     await reservesManager.init(provider, PATHS) // Initialize reserveres manager
     RESERVES = reservesManager.getAllReserves() // Get reserves for filtered paths
+    filterPathsWithEmptyPool()
     BOT_BAL = await getWrappedBalance()
 }
 
@@ -63,6 +64,23 @@ function filterPaths() {
     })
     console.log('Found ', PATHS.length, ' valid paths')
 }
+
+/**
+ * Filter out all paths that have an empty pool
+ */
+function filterPathsWithEmptyPool() {
+    let threshold = config.EMPTY_POOL_THRESHOLD
+    let emptyPools = Object.entries(RESERVES).map(e => {
+        let [ poolId, reserves ] = e
+        let rVals = Object.values(reserves) 
+        if (rVals[0].lt(threshold) || rVals[1].lt(threshold)) {
+            return poolId
+        }
+    }).filter(e=>e)
+    PATHS = PATHS.filter(path=>path.pools.filter(p=>emptyPools.includes(p)).length==0)
+    console.log('Found ', PATHS.length, ' valid paths with non-empty pools')
+}
+
 
 /**
  * Return filtered paths

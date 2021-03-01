@@ -47,6 +47,7 @@ const DEFAULT_GAS_PRICE = ethers.utils.parseUnits('77', 'gwei')
 const MAX_GAS_COST = ethers.BigNumber.from('1')
 const PRCT_PROFIT_FOR_GAS = '4' // Percentage of gross profit that will be spent on gas
 const GAS_LIMIT = "450000"
+const EMPTY_POOL_THRESHOLD = ethers.BigNumber.from('10')
 
 // Provider settings
 const PRIVATE_KEY = process.env.PRIVATE_KEY_MATIC
@@ -59,6 +60,7 @@ module.exports = {
     DYNAMIC_GAS_THRESHOLD,
     MAX_CONSECUTIVE_FAILS,
     PRCT_PROFIT_FOR_GAS,
+    EMPTY_POOL_THRESHOLD,
     CHAIN_ASSET_SYMBOL,
     UNISWAP_SYNC_TOPIC,
     DEFAULT_GAS_PRICE,
