@@ -132,8 +132,8 @@ function getGasPrice(grossProfit, gasAmount) {
         let gasPrice = feesCost.div(gasAmount)
 
         // The gas price should be bounded between 1 eth and default gas price
-        gasPrice = (gasPrice.mul(config.GAS_LIMIT)).lte(maxGasCost) ? gasPrice : maxGasCost.div(config.GAS_LIMIT)
         gasPrice = gasPrice.gt(gasThreshold) ? gasPrice : gasThreshold
+        gasPrice = (gasPrice.mul(config.GAS_LIMIT)).lte(maxGasCost) ? gasPrice : maxGasCost.div(config.GAS_LIMIT)
         return gasPrice
     }
     return config.DEFAULT_GAS_PRICE
@@ -161,7 +161,7 @@ async function getCompetitiveGasPrice(txHash) {
 
 async function updateGasPrices(txHash) {
     let defaultGasPriceLimit = ethers.utils.parseUnits('200', 'gwei')
-    let gasThresholdLimit = ethers.utils.parseUnits('2000', 'gwei')
+    let gasThresholdLimit = ethers.utils.parseUnits('4000', 'gwei')
     let competitiveGasPrice = await getCompetitiveGasPrice(txHash)
     console.log('Competitive gas price: ', competitiveGasPrice)
     if (!competitiveGasPrice) {
@@ -214,14 +214,14 @@ function arbForPath(path) {
  * @param {number} startTime - Timestamp[ms] when block was received
  * @returns {Object}
  */
-async function arbForPools(blockNumber, poolAddresses, startTime) {
+async function handleUpdate(blockNumber, poolAddresses, startTime) {
     RESERVES = reservesManager.getAllReserves()
     let poolIds = poolAddresses.map(a => {
         let x = pools.filter(p => p.address == a)
         return x.length > 0 ? x[0].id : null
     }).filter(e => e)
 
-    let bestOpp
+    let profitableOpps = []  // Profitable opportunities
     PATHS.forEach(path => {
         // Check if tx is in flight that would affect any of the pools for this path
         let poolsInFlight = path.pools.filter(pathId => POOLS_IN_FLIGHT.includes(pathId)).length > 0
@@ -231,25 +231,37 @@ async function arbForPools(blockNumber, poolAddresses, startTime) {
         let pathBlacklisted = PATH_FAIL_COUNTER[path.id] > 2
         if (pathIncludesPool && path.enabled && !pathBlacklisted && !poolsInFlight) {
             let opp = arbForPath(path)
-            let cond1 = opp && !bestOpp && opp.netProfit.gt(config.MIN_PROFIT)
-            let cond2 = opp && bestOpp && opp.netProfit.gt(bestOpp.netProfit)
-            if (cond1 || cond2) {
+            if (opp && opp.netProfit.gt(config.MIN_PROFIT)) {
                 if (LAST_FAIL == path.id) {
                     PATH_FAIL_COUNTER[path.id] = (PATH_FAIL_COUNTER[path.id] || 0) + 1
                     return
                 }
                 opp.blockNumber = blockNumber
-                bestOpp = opp
+                profitableOpps.push(opp)
             }
         }
     })
-    let endTime = new Date();
-    let processingTime = endTime - startTime;
-    console.log(`${blockNumber} | Processing time: ${processingTime}ms`)
-    if (bestOpp) {
-        await handleOpportunity(bestOpp)
+    if (profitableOpps.length>0) {
+        profitableOpps.sort((a, b) => b.netProfit.gt(a.netProfit) ? 1 : -1)
+        let parallelOpps = getParallelOpps(profitableOpps)
+        parallelOpps.forEach(handleOpportunity)
     }
-    updateBotState(blockNumber)
+    updateBotState(blockNumber, startTime)
+}
+
+function getParallelOpps(opps) {
+    let parallelOpps = []
+    let poolsUsed = []
+    opps.forEach(opp => {
+        let pathIncludesUsedPool = opp.path.pools.filter(poolId => {
+            return poolsUsed.includes(poolId)
+        }).length > 0
+        if (!pathIncludesUsedPool) {
+            poolsUsed = [...poolsUsed, ...opp.path.pools]
+            parallelOpps.push(opp)
+        }
+    })
+    return parallelOpps
 }
 
 /**
@@ -344,9 +356,11 @@ function printOpportunityInfo(opp, txReceipt) {
  * Update state of the bot and display it
  * This includes wrapped and total ablance and blacklisted paths
  */
-async function updateBotState(blockNumber) {
+async function updateBotState(blockNumber, startTime) {
     BOT_BAL = await getWrappedBalance();
     let chainTknBal = await PROVIDER.getBalance(SIGNER.address)
+    let processingTime = new Date() - startTime
+    console.log(`${blockNumber} | Processing time: ${processingTime}ms`)
     console.log('Blacklisted paths: ', PATH_FAIL_COUNTER)
     console.log('Default gas price: ', ethers.utils.formatUnits(config.DEFAULT_GAS_PRICE, 'gwei'))
     console.log('Dynamic gas threshold: ', ethers.utils.formatUnits(config.DYNAMIC_GAS_THRESHOLD, 'gwei'))
@@ -359,7 +373,7 @@ async function updateBotState(blockNumber) {
 module.exports = {
     updateReserves: reservesManager.updateReserves,
     getReservePath,
-    arbForPools,
+    handleUpdate,
     arbForPath,
     getPaths,
     init,

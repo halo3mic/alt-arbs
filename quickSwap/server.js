@@ -35,7 +35,7 @@ function startListening() {
             }
         }).filter(e=>e)
         let uniqueChangedPools = changedPools.filter((elem, pos) => changedPools.indexOf(elem) == pos)
-        arbbot.arbForPools(blockNumber, uniqueChangedPools, startTime)
+        arbbot.handleUpdate(blockNumber, uniqueChangedPools, startTime)
     })
 }
 

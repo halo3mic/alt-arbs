@@ -29,7 +29,7 @@ const ABIS = loadAllABIs()
 // Sync(uint112 reserve0, uint112 reserve1)
 const UNISWAP_SYNC_TOPIC = '0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e062b03a9fffbbad1'
 
-const MIN_PROFIT = ethers.utils.parseUnits('0.1')
+const MIN_PROFIT = ethers.utils.parseUnits('0.01')
 const MAX_CONSECUTIVE_FAILS = 16 // After max consecutive fails bot shuts down
 const BLOCK_WAIT = 1 // Number of blocks to confirm tx
 const MAX_HOPS = 5 // Max number of swaps
@@ -42,11 +42,11 @@ const BLACKLISTED_TKNS = [
 ]
 
 // Gas settings
-const DYNAMIC_GAS_THRESHOLD = ethers.utils.parseUnits('1447', 'gwei') // Gas price at which dynamic gas starts
+const DYNAMIC_GAS_THRESHOLD = ethers.utils.parseUnits('2244.44826', 'gwei') // Gas price at which dynamic gas starts
 const DEFAULT_GAS_PRICE = ethers.utils.parseUnits('77', 'gwei')
 const MAX_GAS_COST = ethers.BigNumber.from('1')
 const PRCT_PROFIT_FOR_GAS = '4' // Percentage of gross profit that will be spent on gas
-const GAS_LIMIT = "450000"
+const GAS_LIMIT = "400000"
 const EMPTY_POOL_THRESHOLD = ethers.BigNumber.from('10')
 
 // Provider settings
