@@ -70,5 +70,16 @@ function staticExchange() {
     save(modified, dstInstrPath)
 } 
 
+function changePathParams() {
+    let dstInstrPath = resolve(`${__dirname}/../../config/paths.json`) 
+    let srcInstrPath = resolve(`${__dirname}/../../config/paths.json`) 
+    let currData = getCurrentData(srcInstrPath)
+    let modified = currData.map(e => {
+        e.enabled = e.enabled=='1' ? true : false
+        return e
+    })
+    save(modified, dstInstrPath)
+} 
 
-staticExchange()
+
+changePathParams()
