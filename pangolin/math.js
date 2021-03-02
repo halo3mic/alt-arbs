@@ -12,6 +12,9 @@ let d1000 = BigNumber.from("1000")
 let d997 = BigNumber.from("997")
 const ZERO = BigNumber.from("0")    
 
+const VIRTUAL_RESERVES = {}
+
+
 /**
  * Return optimal amount for a reserve path
  * @param {Array[BigNumber]} reservePath - Pool reserves ordered by path precedence
@@ -36,6 +39,44 @@ function getEaEb(reservePath) {
         Rc = reservePath[i+1]
         Ea = d1000.mul(Ea).mul(Rb1).div(d1000.mul(Rb1).add(d997.mul(Eb)))
         Eb = d997.mul(Eb).mul(Rc).div(d1000.mul(Rb1).add(d997.mul(Eb)))
+    }
+    return [ Ea, Eb ]
+}
+
+/**
+ * Return optimal amount for a reserve path
+ * @param {Array[BigNumber]} reservePath - Pool reserves in order of the arb strategy
+ * @param {Array[String]} poolPath - Array of pool ids in order of the arb strategy
+ * @returns {BigNumber}
+ */
+function getOptimalAmountForPathWithMap(reservePath, poolPath) {
+    let result = getEaEbWithMap(reservePath, poolPath)
+    return getOptimalAmount(...result) || ZERO
+}
+
+/**
+ * Return reserves for virtual pool
+ * Saves each calculated virtual pool to save on processing time
+ * @param {Array[BigNumber]} reservePath - Pool reserves in order of the arb strategy
+ * @param {Array[String]} poolPath - Array of pool ids in order of the arb strategy
+ * @returns {Array[BigNumber]}
+ */
+function getEaEbWithMap(reservePath, poolPath) {
+    let key = poolPath[0]
+    let Rb1, Rc
+    let Ea = reservePath[0]
+    let Eb = reservePath[1]
+    for (let i=2; i<reservePath.length-1; i+=2) {
+        key += poolPath[i/2]
+        if (VIRTUAL_RESERVES[key]) {
+            [ Rb1, Rc, Ea, Eb ] = VIRTUAL_RESERVES[key]
+            continue
+        }
+        Rb1 = reservePath[i]
+        Rc = reservePath[i+1]
+        Ea = d1000.mul(Ea).mul(Rb1).div(d1000.mul(Rb1).add(d997.mul(Eb)))
+        Eb = d997.mul(Eb).mul(Rc).div(d1000.mul(Rb1).add(d997.mul(Eb)))
+        VIRTUAL_RESERVES[key] = [ Rb1, Rc, Ea, Eb ]
     }
     return [ Ea, Eb ]
 }
@@ -89,8 +130,13 @@ function getAmountOutByReserves(amountIn, reservePath) {
     return amountOut
 }
 
+function cleanVirtualReserves() {
 
-module.exports = { 
+}
+
+
+module.exports = {
+    getOptimalAmountForPathWithMap,
     getOptimalAmountForPath, 
     getAmountOutByReserves,
     getOptimalAmount, 
