@@ -234,8 +234,12 @@ function getPathsToCheck(poolAddresses) {
  * @returns {Object}
  */
 async function handleUpdate(blockNumber, poolAddresses, startTime) {
+    console.log(`${blockNumber}| #1 | Processing time: ${Date.now() - startTime}ms`)
     RESERVES = reservesManager.getAllReserves()
     let pathsToCheck = getPathsToCheck(poolAddresses)
+    console.log(`Checking ${pathsToCheck.length} paths`)
+    console.log(`${blockNumber}| #2 | Processing time: ${Date.now() - startTime}ms`)
+    let profitableOpps = []
     pathsToCheck.forEach(path => {
         // Check if tx is in flight that would affect any of the pools for this path
         let isAnyPoolInFlight = () => path.pools.filter(pathId => POOLS_IN_FLIGHT.includes(pathId)).length > 0
@@ -253,11 +257,13 @@ async function handleUpdate(blockNumber, poolAddresses, startTime) {
             }
         }
     })
+    console.log(`${blockNumber}| #3 | Processing time: ${Date.now() - startTime}ms`)
     if (profitableOpps.length>0) {
         profitableOpps.sort((a, b) => b.netProfit.gt(a.netProfit) ? 1 : -1)
         let parallelOpps = getParallelOpps(profitableOpps)
         parallelOpps.forEach(handleOpportunity)
     }
+    console.log(`${blockNumber}| #1 | Processing time: ${Date.now() - startTime}ms`)
     updateBotState(blockNumber, startTime)
 }
 
@@ -369,9 +375,9 @@ function printOpportunityInfo(opp, txReceipt) {
  * This includes wrapped and total ablance and blacklisted paths
  */
 async function updateBotState(blockNumber, startTime) {
+    let processingTime = Date.now() - startTime
     BOT_BAL = await getWrappedBalance();
     let chainTknBal = await PROVIDER.getBalance(SIGNER.address)
-    let processingTime = new Date() - startTime
     console.log(`${blockNumber} | Processing time: ${processingTime}ms`)
     console.log('Blacklisted paths: ', PATH_FAIL_COUNTER)
     console.log('Default gas price: ', ethers.utils.formatUnits(config.DEFAULT_GAS_PRICE, 'gwei'))

@@ -24,7 +24,7 @@ async function init() {
 function startListening() {
     const filter = { topics: [UNISWAP_SYNC_TOPIC] }
     provider.on('block', async(blockNumber) => {
-        let startTime = new Date() // Timestamp when new block is received
+        let startTime = Date.now() // Timestamp when new block is received
         console.log(`\n${'^'.repeat(20)} ${blockNumber} ${'^'.repeat(20)}\n`)
         // Fetch all logs for the new block
         let logs = await provider.getLogs(filter)
@@ -34,8 +34,8 @@ function startListening() {
                 return l.address
             }
         }).filter(e=>e)
-        let uniqueChangedPools = changedPools.filter((elem, pos) => changedPools.indexOf(elem) == pos)
-        arbbot.arbForPools(blockNumber, uniqueChangedPools, startTime)
+        console.log(`${blockNumber}| #1 | Processing time: ${Date.now() - startTime}ms`)
+        arbbot.handleUpdate(blockNumber, changedPools, startTime)
     })
 }
 
