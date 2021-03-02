@@ -54,13 +54,13 @@ async function timeArbForPath() {
 async function amountOutWithVirtualReserves() {
     await arbbot.init(ws.provider, ws.signer)
     let paths = arbbot.getPaths()
-    let reservePaths = paths.map(arbbot.getReservePath)
-    let optimalAmount = math.getOptimalAmountForPathWithMap(reservePaths, optimalAmount)
-    // Intialize and obtain data
-    await arbbot.init(ws.provider, ws.signer)
-    let paths = arbbot.getPaths()
-    let arbAllPaths = () => paths.map(arbbot.arbForPath)
-    timeIt(arbAllPaths, [], iterations)
+    let path = paths[5]
+    let reservePath = arbbot.getReservePath(path)
+    let oa1 = math.getOptimalAmountForPathWithMap(reservePath, path.pools)
+    let ao1 = math.getAmountOutByReserves(oa1, reservePath)
+    console.log(oa1, ao1)
+    let [oa2, ao2] = math.getOptimalAmountWithAmountOut(reservePath, path.pools)
+    console.log(oa2, ao2)
 }
 
 async function main() {

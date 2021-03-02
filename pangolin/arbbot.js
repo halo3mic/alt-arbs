@@ -22,6 +22,7 @@ let RESERVES
 let BOT_BAL
 let SIGNER
 let PATHS
+let poolAddressMap = Object.fromEntries(pools.map(pool=>[pool.address, pool]))
 
 /**
  * Intialize state
@@ -123,70 +124,26 @@ function getReservePath(path) {
  */
 function arbForPath(path) {
     let reservePath = getReservePath(path)
-    let optimalIn = math.getOptimalAmountForPathWithMap(reservePath, path.pools)
-    if (optimalIn.gt("0")) {
+    let [optimalIn, virtualReserves] = math.getOptimalAmountForPathByMapWithVR(
+        reservePath, 
+        path.pools
+    )
+    if (optimalIn.gt('0')) {
         let inputAmount = AVL_AMOUNT.gt(optimalIn) ? optimalIn : avlAmount
-        let amountOut = math.getAmountOutByReserves(inputAmount, reservePath)
+        let amountOut = math.getAmountOut(inputAmount, ...virtualReserves)
         let grossProfit = amountOut.sub(inputAmount)
-        let gasPrice = config.DEFAULT_GAS_PRICE
-        let gasCost = gasPrice.mul(path.gasAmount)
+        let gasCost = config.DEFAULT_GAS_PRICE.mul(path.gasAmount)
         let netProfit = grossProfit.sub(gasCost);
-        if (netProfit.gt("0")) {
-            return {
-                inputAmount,
-                grossProfit,
-                netProfit,
-                gasPrice,
-                gasCost,
-                path,
-            }
+        return netProfit.lte(config.MIN_PROFIT) ? null : {
+            gasPrice: config.DEFAULT_GAS_PRICE,
+            inputAmount,
+            grossProfit,
+            netProfit,
+            gasCost,
+            path,
         }
     }
 }
-
-// /**
-//  * Find and handle best arb opportunity for changed balance of pools
-//  * @param {number} blockNumber
-//  * @param {Array} poolAddresses - Pools with updated balances
-//  * @param {number} startTime - Timestamp[ms] when block was received
-//  * @returns {Object}
-//  */
-// async function arbForPools(blockNumber, poolAddresses, startTime) {
-//     console.log(`${blockNumber}| #2 | Processing time: ${Date.now() - startTime}ms`)
-//     RESERVES = reservesManager.getAllReserves()
-//     let poolIds = poolAddresses.map(a => {
-//         let x = pools.filter(p => p.address == a)
-//         return x.length > 0 ? x[0].id : null
-//     }).filter(e => e)
-
-//     let bestOpp
-//     PATHS.forEach(path => {
-//         // Check if tx is in flight that would affect any of the pools for this path
-//         let poolsInFlight = path.pools.filter(pathId => POOLS_IN_FLIGHT.includes(pathId)).length > 0
-//         // Check that path includes the pool that which balance was updated
-//         let pathIncludesPool = path.pools.filter(p => poolIds.includes(p)).length > 0
-//         // Check that the path is not blacklisted
-//         let pathBlacklisted = PATH_FAIL_COUNTER[path.id] > 2
-//         if (pathIncludesPool && path.enabled && !pathBlacklisted && !poolsInFlight) {
-//             let opp = arbForPath(path)
-//             let cond1 = opp && !bestOpp && opp.netProfit.gt(config.MIN_PROFIT)
-//             let cond2 = opp && bestOpp && opp.netProfit.gt(bestOpp.netProfit)
-//             if (cond1 || cond2) {
-//                 if (LAST_FAIL == path.id) {
-//                     PATH_FAIL_COUNTER[path.id] = (PATH_FAIL_COUNTER[path.id] || 0) + 1
-//                     return
-//                 }
-//                 opp.blockNumber = blockNumber
-//                 bestOpp = opp
-//             }
-//         }
-//     })
-//     console.log(`${blockNumber}| #3 | Processing time: ${Date.now() - startTime}ms`)
-//     if (bestOpp) {
-//         await handleOpportunity(bestOpp)
-//     }
-//     updateBotState(blockNumber)
-// }
 
 function getPathsToCheck(poolAddresses) {
     let pathsToCheck = poolAddresses.map(a=>poolAddressPathMap[a]).flat()
@@ -204,8 +161,8 @@ function getPathsToCheck(poolAddresses) {
 async function handleUpdate(blockNumber, poolAddresses, startTime) {
     console.log(`${blockNumber}| #1 | Processing time: ${Date.now() - startTime}ms`)
     RESERVES = reservesManager.getAllReserves()
-    // let pathsToCheck = getPathsToCheck(poolAddresses)
-    let pathsToCheck = PATHS
+    let pathsToCheck = getPathsToCheck(poolAddresses)
+    // let pathsToCheck = PATHS
     console.log(`Checking ${pathsToCheck.length} paths`)
     console.log(`${blockNumber}| #2 | Processing time: ${Date.now() - startTime}ms`)
     let profitableOpps = []
@@ -216,7 +173,7 @@ async function handleUpdate(blockNumber, poolAddresses, startTime) {
         let pathBlacklisted = PATH_FAIL_COUNTER[path.id] > 2
         if (!pathBlacklisted && !isAnyPoolInFlight()) {
             let opp = arbForPath(path)
-            if (opp && opp.netProfit.gt(config.MIN_PROFIT)) {
+            if (opp) {
                 if (LAST_FAIL == path.id) {
                     PATH_FAIL_COUNTER[path.id] = (PATH_FAIL_COUNTER[path.id] || 0) + 1
                     return
@@ -304,7 +261,7 @@ async function submitTradeTx(opp) {
         tradeTimout, 
         {
             gasLimit: config.GAS_LIMIT, 
-            gasPrice: config.DEFAULT_GAS_PRICE
+            gasPrice: opp.gasPrice
         }
     )
     console.log(`${opp.blockNumber} | Tx sent ${tx.nonce}, ${tx.hash}`)
@@ -359,8 +316,13 @@ async function updateBotState(blockNumber, startTime) {
     }
 }
 
+function updateReserves(poolAddress, data) {
+    reservesManager.updateReserves(poolAddress, data)
+    math.updateVR(poolAddressMap[poolAddress].id)
+}
+
 module.exports = {
-    updateReserves: reservesManager.updateReserves,
+    updateReserves,
     getReservePath,
     handleUpdate,
     arbForPath,

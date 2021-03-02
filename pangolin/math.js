@@ -43,6 +43,13 @@ function getEaEb(reservePath) {
     return [ Ea, Eb ]
 }
 
+function getOptimalAmountWithAmountOut(reservePath, poolPath) {
+    let virtualReserves = getEaEbWithMap(reservePath, poolPath)
+    let optimalAmount = getOptimalAmount(...virtualReserves) || ZERO
+    let amountOut = optimalAmount.gt('0') ? getAmountOut(optimalAmount, ...virtualReserves) : ZERO
+    return [optimalAmount, amountOut]
+}
+
 /**
  * Return optimal amount for a reserve path
  * @param {Array[BigNumber]} reservePath - Pool reserves in order of the arb strategy
@@ -52,6 +59,14 @@ function getEaEb(reservePath) {
 function getOptimalAmountForPathWithMap(reservePath, poolPath) {
     let result = getEaEbWithMap(reservePath, poolPath)
     return getOptimalAmount(...result) || ZERO
+}
+
+function getOptimalAmountForPathByMapWithVR(reservePath, poolPath) {
+    let virtualReserves = getEaEbWithMap(reservePath, poolPath)
+    return [
+        getOptimalAmount(...virtualReserves) || ZERO, 
+        virtualReserves
+    ]
 }
 
 /**
@@ -130,16 +145,23 @@ function getAmountOutByReserves(amountIn, reservePath) {
     return amountOut
 }
 
-function cleanVirtualReserves() {
-
+function updateVR(poolId) {
+    Object.keys(VIRTUAL_RESERVES).forEach(r => {
+        if (r.includes(poolId)) {
+            delete VIRTUAL_RESERVES[r]
+        }
+    })
 }
 
 
 module.exports = {
+    getOptimalAmountForPathByMapWithVR,
     getOptimalAmountForPathWithMap,
+    getOptimalAmountWithAmountOut,
     getOptimalAmountForPath, 
     getAmountOutByReserves,
     getOptimalAmount, 
     getAmountOut, 
+    updateVR,
     getEaEb, 
 }

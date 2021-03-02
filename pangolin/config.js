@@ -18,7 +18,7 @@ function loadAllABIs() {
     return abis
 }
 
-const EXPLORER_URL = 'https://cchain.explorer.avax.network/address/'
+const EXPLORER_URL = 'https://cchain.explorer.avax.network/tx/'
 const ROUTER_ADDRESS = '0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106'
 const FACTORY = '0xefa94DE7a4656D787667C749f7E1223D71E9FD88'
 const DEX_NAME = 'Pangolin'
@@ -29,10 +29,10 @@ const ABIS = loadAllABIs()
 // Sync(uint112 reserve0, uint112 reserve1)
 const UNISWAP_SYNC_TOPIC = '0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e062b03a9fffbbad1'
 
-const MIN_PROFIT = ethers.utils.parseUnits('0.1')
+const MIN_PROFIT = ethers.utils.parseUnits('0')
 const MAX_CONSECUTIVE_FAILS = 8 // After max consecutive fails bot shuts down
 const BLOCK_WAIT = 1 // Number of blocks to confirm tx
-const MAX_HOPS = 5 // Max number of swaps
+const MAX_HOPS = 4 // Max number of swaps
 const TIMEOUT_OFFSET = 180  // Seconds after which trade expires 
 // Paths with these tokens will be ignored
 const BLACKLISTED_TKNS = []
