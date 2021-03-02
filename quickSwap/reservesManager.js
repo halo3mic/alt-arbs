@@ -34,9 +34,9 @@ function updateReserves(poolAddress, reservesBytes) {
     result[tkn1.id] = r1
 
     if (RESERVES[pool.id][tkn0.id].gt(r0) && RESERVES[pool.id][tkn1.id].lt(r1)) {
-        return [tkn0.id, tkn1.id]
-    } else if (RESERVES[pool.id][tkn0.id].lt(r0) && RESERVES[pool.id][tkn1.id].gt(r1)) {
         return [tkn1.id, tkn0.id]
+    } else if (RESERVES[pool.id][tkn0.id].lt(r0) && RESERVES[pool.id][tkn1.id].gt(r1)) {
+        return [tkn0.id, tkn1.id]
     }
 }
 
