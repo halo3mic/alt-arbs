@@ -131,7 +131,7 @@ function arbForPath(path) {
         path.pools
     )
     if (optimalIn.gt('0')) {
-        let inputAmount = AVL_AMOUNT.gt(optimalIn) ? optimalIn : avlAmount
+        let inputAmount = AVL_AMOUNT.gt(optimalIn) ? optimalIn : AVL_AMOUNT
         let amountOut = math.getAmountOut(inputAmount, ...virtualReserves)
         let grossProfit = amountOut.sub(inputAmount)
         let gasCost = config.DEFAULT_GAS_PRICE.mul(path.gasAmount)
