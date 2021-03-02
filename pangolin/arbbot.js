@@ -145,8 +145,18 @@ function arbForPath(path) {
     }
 }
 
-function getPathsToCheck(poolAddresses) {
-    let pathsToCheck = poolAddresses.map(a=>poolAddressPathMap[a]).flat()
+function getPathsToCheck(poolChanges) {
+    let pathsToCheck = poolChanges.map(change => {
+        let [ address, tknOrder ] = change
+        if (tknOrder) {
+            let paths = poolAddressPathMap[address]
+            return paths.filter(path => {
+                let tkn1Idx = path.tkns.indexOf(tknOrder[0])
+                return path.tkns[tkn1Idx+1]==tknOrder[1]
+            })
+        }
+        return []
+    }).flat()
     let unique = [...new Set(pathsToCheck)]
     return unique
 }
@@ -158,11 +168,10 @@ function getPathsToCheck(poolAddresses) {
  * @param {number} startTime - Timestamp[ms] when block was received
  * @returns {Object}
  */
-async function handleUpdate(blockNumber, poolAddresses, startTime) {
+async function handleUpdate(blockNumber, poolChanges, startTime) {
     console.log(`${blockNumber}| #1 | Processing time: ${Date.now() - startTime}ms`)
     RESERVES = reservesManager.getAllReserves()
-    let pathsToCheck = getPathsToCheck(poolAddresses)
-    // let pathsToCheck = PATHS
+    let pathsToCheck = getPathsToCheck(poolChanges)
     console.log(`Checking ${pathsToCheck.length} paths`)
     console.log(`${blockNumber}| #2 | Processing time: ${Date.now() - startTime}ms`)
     let profitableOpps = []
@@ -317,8 +326,8 @@ async function updateBotState(blockNumber, startTime) {
 }
 
 function updateReserves(poolAddress, data) {
-    reservesManager.updateReserves(poolAddress, data)
     math.updateVR(poolAddressMap[poolAddress].id)
+    return reservesManager.updateReserves(poolAddress, data)
 }
 
 module.exports = {

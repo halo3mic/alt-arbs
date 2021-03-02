@@ -27,16 +27,16 @@ function startListening() {
         let startTime = Date.now() // Timestamp when new block is received
         // Fetch all logs for the new block
         let logs = await provider.getLogs(filter)
-        let changedPools = logs.map(l => {
+        let poolChanges = logs.map(l => {
             if (poolAddresses.includes(l.address)) {
-                arbbot.updateReserves(l.address, l.data)
-                return l.address
+                let change = arbbot.updateReserves(l.address, l.data)
+                return [l.address, change]
             }
         }).filter(e=>e)
-        if (changedPools.length>0) {
+        if (poolChanges.length>0) {
             console.log(`\n${'^'.repeat(20)} ${blockNumber} ${'^'.repeat(20)}\n`)
             console.log(`${blockNumber}| #1 | Processing time: ${Date.now() - startTime}ms`)
-            arbbot.handleUpdate(blockNumber, changedPools, startTime)
+            arbbot.handleUpdate(blockNumber, poolChanges, startTime)
         }
     })
 }

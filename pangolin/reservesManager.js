@@ -13,9 +13,13 @@ async function init(provider, paths) {
 }
 
 /**
- * Update reserves from Sync logs
+ * Update reserves from Sync logs and return token ids indicating the change
+ * If ratio between reserve0 and reserve1 decreased return [tkn0, tkn1]
+ * If ratio between reserve0 and reserve1 increased return [tkn1, tkn0]
+ * If ratio stayed the same return null
  * @param {String} poolAddress
  * @param {String} reservesBytes
+ * @param {Array[String]}
  */
 function updateReserves(poolAddress, reservesBytes) {
     const pool = pools.filter(p=>p.address==poolAddress)[0]
@@ -28,7 +32,12 @@ function updateReserves(poolAddress, reservesBytes) {
     let result = {}
     result[tkn0.id] = r0
     result[tkn1.id] = r1
-    RESERVES[pool.id] = result
+
+    if (RESERVES[pool.id][tkn0.id].gt(r0) && RESERVES[pool.id][tkn1.id].lt(r1)) {
+        return [tkn0.id, tkn1.id]
+    } else if (RESERVES[pool.id][tkn0.id].lt(r0) && RESERVES[pool.id][tkn1.id].gt(r1)) {
+        return [tkn1.id, tkn0.id]
+    }
 }
 
 /**
