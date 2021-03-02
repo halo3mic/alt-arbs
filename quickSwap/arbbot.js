@@ -20,6 +20,7 @@ let PROVIDER
 let RESERVES
 let BOT_BAL
 let SIGNER
+let NONCE
 let PATHS
 
 /**
@@ -47,6 +48,7 @@ async function init(provider, signer) {
     filterPathsWithEmptyPool()
     poolAddressPathMap = Object.fromEntries(pools.map(pool=>[pool.address, PATHS.filter(path=>path.pools.includes(pool.id))]))
     BOT_BAL = await getWrappedBalance()
+    NONCE = await signer.getTransactionCount()-1
 }
 
 /**
@@ -173,7 +175,7 @@ async function getCompetitiveGasPrice(txHash) {
  * @returns {boolean}
  */
 async function updateGasPrices(txHash) {
-    let defaultGasPriceLimit = ethers.utils.parseUnits('200', 'gwei')
+    let defaultGasPriceLimit = ethers.utils.parseUnits('300', 'gwei')
     let gasThresholdLimit = ethers.utils.parseUnits('4000', 'gwei')
     let competitiveGasPrice = await getCompetitiveGasPrice(txHash)
     console.log('Competitive gas price: ', competitiveGasPrice)
@@ -328,6 +330,7 @@ async function submitTradeTx(opp) {
         t1 => tokens.filter(t2 => t2.id == t1)[0].address
     )
     let tradeTimout = Date.now() + config.TIMEOUT_OFFSET
+    NONCE ++
     let tx = await ROUTER_CONTRACT.swapExactTokensForTokens(
         opp.inputAmount,
         opp.inputAmount,
@@ -336,7 +339,8 @@ async function submitTradeTx(opp) {
         tradeTimout, 
         {
             gasLimit: config.GAS_LIMIT, 
-            gasPrice: opp.gasPrice
+            gasPrice: opp.gasPrice, 
+            nonce: NONCE
         }
     )
     console.log(`${opp.blockNumber} | Tx sent ${tx.nonce}, ${tx.hash}`)
