@@ -31,7 +31,7 @@ const UNISWAP_SYNC_TOPIC = '0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e06
 
 const MIN_PROFIT = ethers.utils.parseUnits('0.1')
 const MAX_CONSECUTIVE_FAILS = 16 // After max consecutive fails bot shuts down
-const BLOCK_WAIT = 1 // Number of blocks to confirm tx
+const BLOCK_WAIT = 1 // Number of blocks to confirm txx
 const MAX_HOPS = 5 // Max number of swaps
 const TIMEOUT_OFFSET = 180  // Seconds after which trade expires 
 // Paths with these tokens will be ignored
@@ -42,8 +42,8 @@ const BLACKLISTED_TKNS = [
 ]
 
 // Gas settings
-const DYNAMIC_GAS_THRESHOLD = ethers.utils.parseUnits('3000', 'gwei') // Gas price at which dynamic gas starts
-const DEFAULT_GAS_PRICE = ethers.utils.parseUnits('150', 'gwei')
+const DYNAMIC_GAS_THRESHOLD = ethers.utils.parseUnits('3003.96826', 'gwei') // Gas price at which dynamic gas starts
+const DEFAULT_GAS_PRICE = ethers.utils.parseUnits('1.33', 'gwei')
 const MAX_GAS_COST = ethers.BigNumber.from('1')
 const PRCT_PROFIT_FOR_GAS = '4' // Percentage of gross profit that will be spent on gas
 const GAS_LIMIT = "350000"

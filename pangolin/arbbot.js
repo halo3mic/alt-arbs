@@ -22,6 +22,7 @@ let RESERVES
 let BOT_BAL
 let SIGNER
 let PATHS
+let NONCE
 let poolAddressMap = Object.fromEntries(pools.map(pool=>[pool.address, pool]))
 
 /**
@@ -50,6 +51,7 @@ async function init(provider, signer) {
     poolAddressPathMap = Object.fromEntries(pools.map(pool=>[pool.address, PATHS.filter(path=>path.pools.includes(pool.id))]))
     BOT_BAL = await getWrappedBalance()
     AVL_AMOUNT = BOT_BAL.sub(config.MAX_GAS_COST)
+    NONCE = await signer.getTransactionCount()-1
 }
 
 /**
@@ -262,6 +264,7 @@ async function submitTradeTx(opp) {
         t1 => tokens.filter(t2 => t2.id == t1)[0].address
     )
     let tradeTimout = Date.now() + config.TIMEOUT_OFFSET
+    NONCE ++
     let tx = await ROUTER_CONTRACT.swapExactTokensForTokens(
         opp.inputAmount,
         opp.inputAmount,
@@ -270,7 +273,8 @@ async function submitTradeTx(opp) {
         tradeTimout, 
         {
             gasLimit: config.GAS_LIMIT, 
-            gasPrice: opp.gasPrice
+            gasPrice: opp.gasPrice, 
+            nonce: NONCE
         }
     )
     console.log(`${opp.blockNumber} | Tx sent ${tx.nonce}, ${tx.hash}`)

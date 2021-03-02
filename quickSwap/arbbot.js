@@ -15,6 +15,7 @@ let POOLS_IN_FLIGHT = []
 let poolAddressPathMap
 let WRAPPED_CONTRACT
 let ROUTER_CONTRACT
+let AVL_AMOUNT // How much bot can spend on trade
 let LAST_FAIL  // Path id of the last fail
 let PROVIDER
 let RESERVES
@@ -22,6 +23,7 @@ let BOT_BAL
 let SIGNER
 let NONCE
 let PATHS
+let poolAddressMap = Object.fromEntries(pools.map(pool=>[pool.address, pool]))
 
 /**
  * Intialize state
@@ -48,6 +50,7 @@ async function init(provider, signer) {
     filterPathsWithEmptyPool()
     poolAddressPathMap = Object.fromEntries(pools.map(pool=>[pool.address, PATHS.filter(path=>path.pools.includes(pool.id))]))
     BOT_BAL = await getWrappedBalance()
+    AVL_AMOUNT = BOT_BAL.sub(config.MAX_GAS_COST)
     NONCE = await signer.getTransactionCount()-1
 }
 
@@ -155,7 +158,7 @@ async function getCompetitiveGasPrice(txHash) {
     let txSelf = await PROVIDER.getTransaction(txHash)
     let blockWithTxs = await PROVIDER.getBlockWithTransactions(txSelf.blockNumber)
     let higherTxs = blockWithTxs.transactions.filter(
-        tx=>tx.transactionIndex<txSelf.transactionIndex
+        tx=>tx.transactionIndex<txSelf.transactionIndex&&tx.from!=SIGNER.address
     )
     if (higherTxs.length>0) {
         let gasPrices = higherTxs.map(tx=>parseFloat(
@@ -200,34 +203,42 @@ async function updateGasPrices(txHash) {
  */
 function arbForPath(path) {
     let reservePath = getReservePath(path)
-    let optimalIn = math.getOptimalAmountForPath(reservePath)
-    if (optimalIn.gt("0")) {
-        let avlAmount = BOT_BAL.sub(config.MAX_GAS_COST) // How much bot can spend on trade
-        let inputAmount = avlAmount.gt(optimalIn) ? optimalIn : avlAmount
-        let amountOut = math.getAmountOutByReserves(inputAmount, reservePath)
+    let [optimalIn, virtualReserves] = math.getOptimalAmountForPathByMapWithVR(
+        reservePath, 
+        path.pools
+    )
+    if (optimalIn.gt('0')) {
+        let inputAmount = AVL_AMOUNT.gt(optimalIn) ? optimalIn : avlAmount
+        let amountOut = math.getAmountOut(inputAmount, ...virtualReserves)
         let grossProfit = amountOut.sub(inputAmount)
-        let gasPrice = getGasPrice(grossProfit, path.gasAmount)
-        let gasCost = gasPrice.mul(path.gasAmount)
+        let gasCost = config.DEFAULT_GAS_PRICE.mul(path.gasAmount)
         let netProfit = grossProfit.sub(gasCost);
-        if (netProfit.gt("0")) {
-            return {
-                inputAmount,
-                grossProfit,
-                netProfit,
-                gasPrice,
-                gasCost,
-                path,
-            }
+        return netProfit.lte(config.MIN_PROFIT) ? null : {
+            gasPrice: config.DEFAULT_GAS_PRICE,
+            inputAmount,
+            grossProfit,
+            netProfit,
+            gasCost,
+            path,
         }
     }
 }
 
-function getPathsToCheck(poolAddresses) {
-    let pathsToCheck = poolAddresses.map(a=>poolAddressPathMap[a]).flat()
+function getPathsToCheck(poolChanges) {
+    let pathsToCheck = poolChanges.map(change => {
+        let [ address, tknOrder ] = change
+        if (tknOrder) {
+            let paths = poolAddressPathMap[address]
+            return paths.filter(path => {
+                let tkn1Idx = path.tkns.indexOf(tknOrder[0])
+                return path.tkns[tkn1Idx+1]==tknOrder[1]
+            })
+        }
+        return []
+    }).flat()
     let unique = [...new Set(pathsToCheck)]
     return unique
 }
-
 /**
  * Find and handle best arb opportunity for changed balance of pools
  * @param {number} blockNumber
@@ -235,10 +246,10 @@ function getPathsToCheck(poolAddresses) {
  * @param {number} startTime - Timestamp[ms] when block was received
  * @returns {Object}
  */
-async function handleUpdate(blockNumber, poolAddresses, startTime) {
+async function handleUpdate(blockNumber, poolChanges, startTime) {
     console.log(`${blockNumber}| #1 | Processing time: ${Date.now() - startTime}ms`)
     RESERVES = reservesManager.getAllReserves()
-    let pathsToCheck = getPathsToCheck(poolAddresses)
+    let pathsToCheck = getPathsToCheck(poolChanges)
     console.log(`Checking ${pathsToCheck.length} paths`)
     console.log(`${blockNumber}| #2 | Processing time: ${Date.now() - startTime}ms`)
     let profitableOpps = []
@@ -249,7 +260,7 @@ async function handleUpdate(blockNumber, poolAddresses, startTime) {
         let pathBlacklisted = PATH_FAIL_COUNTER[path.id] > 2
         if (!pathBlacklisted && !isAnyPoolInFlight()) {
             let opp = arbForPath(path)
-            if (opp && opp.netProfit.gt(config.MIN_PROFIT)) {
+            if (opp) {
                 if (LAST_FAIL == path.id) {
                     PATH_FAIL_COUNTER[path.id] = (PATH_FAIL_COUNTER[path.id] || 0) + 1
                     return
@@ -265,7 +276,7 @@ async function handleUpdate(blockNumber, poolAddresses, startTime) {
         let parallelOpps = getParallelOpps(profitableOpps)
         parallelOpps.forEach(handleOpportunity)
     }
-    console.log(`${blockNumber}| #1 | Processing time: ${Date.now() - startTime}ms`)
+    console.log(`${blockNumber}| #4 | Processing time: ${Date.now() - startTime}ms`)
     updateBotState(blockNumber, startTime)
 }
 
@@ -379,21 +390,29 @@ function printOpportunityInfo(opp, txReceipt) {
  * This includes wrapped and total ablance and blacklisted paths
  */
 async function updateBotState(blockNumber, startTime) {
-    let processingTime = Date.now() - startTime
-    BOT_BAL = await getWrappedBalance();
-    let chainTknBal = await PROVIDER.getBalance(SIGNER.address)
-    console.log(`${blockNumber} | Processing time: ${processingTime}ms`)
-    console.log('Blacklisted paths: ', PATH_FAIL_COUNTER)
-    console.log('Default gas price: ', ethers.utils.formatUnits(config.DEFAULT_GAS_PRICE, 'gwei'))
-    console.log('Dynamic gas threshold: ', ethers.utils.formatUnits(config.DYNAMIC_GAS_THRESHOLD, 'gwei'))
-    console.log(`${config.DEX_NAME} | ${blockNumber} | \
-        ${config.CHAIN_ASSET_SYMBOL}: ${ethers.utils.formatUnits(chainTknBal)} | \
-        BALANCE: ${ethers.utils.formatUnits(BOT_BAL.add(chainTknBal))} \
-    `)
+    try {
+        let processingTime = Date.now() - startTime
+        BOT_BAL = await getWrappedBalance()
+        AVL_AMOUNT = BOT_BAL.sub(config.MAX_GAS_COST)
+        let chainTknBal = await PROVIDER.getBalance(SIGNER.address)
+        console.log(`${blockNumber} | Processing time: ${processingTime}ms`)
+        console.log('Blacklisted paths: ', PATH_FAIL_COUNTER)
+        console.log(`${config.DEX_NAME} | ${blockNumber} | \
+            ${config.CHAIN_ASSET_SYMBOL}: ${ethers.utils.formatUnits(chainTknBal)} | \
+            BALANCE: ${ethers.utils.formatUnits(BOT_BAL.add(chainTknBal))} \
+        `)
+    } catch (e) {
+        console.log('\nError occured while updating bot state:\n', e)
+    }
+}
+
+function updateReserves(poolAddress, data) {
+    math.updateVR(poolAddressMap[poolAddress].id)
+    return reservesManager.updateReserves(poolAddress, data)
 }
 
 module.exports = {
-    updateReserves: reservesManager.updateReserves,
+    updateReserves,
     getReservePath,
     handleUpdate,
     arbForPath,
