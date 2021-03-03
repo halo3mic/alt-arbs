@@ -31,7 +31,7 @@ const UNISWAP_SYNC_TOPIC = '0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e06
 
 const MIN_PROFIT = ethers.utils.parseUnits('0.1')
 const MAX_CONSECUTIVE_FAILS = 8 // After max consecutive fails bot shuts down
-const BLOCK_WAIT = 1 // Number of blocks to confirm tx
+const BLOCK_WAIT = 2 // Number of blocks to confirm tx
 const MAX_HOPS = 5 // Max number of swaps
 const TIMEOUT_OFFSET = 180  // Seconds after which trade expires 
 // Paths with these tokens will be ignored

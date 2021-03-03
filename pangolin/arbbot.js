@@ -239,7 +239,8 @@ async function submitTradeTx(opp) {
         SIGNER.address,
         tradeTimout, 
         {
-            gasPrice: opp.gasPrice
+            gasPrice: opp.gasPrice, 
+            gasLimit: config.GAS_LIMIT
         }
     )
     console.log(`${opp.blockNumber} | Tx sent ${tx.nonce}, ${tx.hash}`)
