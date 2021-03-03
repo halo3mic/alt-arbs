@@ -18,7 +18,7 @@ function loadAllABIs() {
     return abis
 }
 
-const EXPLORER_URL = 'https://cchain.explorer.avax.network/address/'
+const EXPLORER_URL = 'https://cchain.explorer.avax.network/tx/'
 const ROUTER_ADDRESS = '0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106'
 const FACTORY = '0xefa94DE7a4656D787667C749f7E1223D71E9FD88'
 const DEX_NAME = 'Pangolin'
