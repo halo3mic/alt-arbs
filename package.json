@@ -1,16 +1,16 @@
 {
-  "name": "AVAX-ARB",
+  "name": "L2 ARBS",
   "version": "1.0.0",
-  "description": "A collection of AMM arbitrage strategies for Avalanche",
+  "description": "A collection of AMM arbitrage strategies for Layer 2",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "zero": "node zeroExchange/server.js",
-    "pangolin": "node pangolin/server.js",
-    "cross": "node crossDexAvax/server.js",
-    "fantom": "node fantom/server.js",
-    "quick": "node quickSwap/server.js",
-    "yeti": "node yeti/server.js"
+    "zero": "node avalanche/zeroExchange/server.js",
+    "pangolin": "node avalanche/pangolin/server.js",
+    "cross-avax": "node avalanche/crossDexAvax/server.js",
+    "fantom-sushiswap": "node fantom/sushiswap/server.js",
+    "quick": "node matic/quickSwap/server.js",
+    "yeti": "node avalancheyeti/server.js"
   },
   "repository": {
     "type": "git",
