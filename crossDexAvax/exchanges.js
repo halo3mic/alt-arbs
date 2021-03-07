@@ -221,12 +221,26 @@ class Pangolin extends Uniswap {
     }
 }
 
+class Yeti extends Pangolin {
+
+    constructor(provider) {
+        super(provider)
+        this.routerAddress = ROUTERS.YETI
+        this.routerContract = new ethers.Contract(
+            this.routerAddress, 
+            ABIS['pangolinRouter'],
+            provider
+        )
+    }
+}
+
 function getExchanges(provider) {
     return {
         zeroExchange: new ZeroExchange(provider), 
         pangolin: new Pangolin(provider), 
         unnamed1: new Unnamed1(provider),
         baoSwap: new BaoSwap(provider), 
+        yetiswap: new Yeti(provider)
     }   
 }
 

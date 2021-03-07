@@ -8,7 +8,8 @@ async function main() {
         '0xefa94DE7a4656D787667C749f7E1223D71E9FD88', 
         '0xeb4E120069d7AaaeC91508eF7EAec8452893a80a',
         '0x29D1Adbb65d93a5710cafe2EF0E8131f64E6AB22', 
-        '0x2Ef422F30cdb7c5F1f7267AB5CF567A88974b308'
+        '0x2Ef422F30cdb7c5F1f7267AB5CF567A88974b308', 
+        '0x58C8CD291Fa36130119E6dEb9E520fbb6AcA1c3a'
     ]
     // await importPoolsFromCsv()
     await importPoolsFromFactory(...factories)

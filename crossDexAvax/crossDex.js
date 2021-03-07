@@ -66,7 +66,7 @@ function saveReserves(reservesNew, path, blockNumber) {
 function estimateGasCost(nSteps) {
     let gasPrice = ethers.BigNumber.from("470")
     let gasToUnwrap = ethers.BigNumber.from("32000")
-    let gasPerStep = ethers.BigNumber.from("100000")
+    let gasPerStep = ethers.BigNumber.from("130000")
     let totalGas = gasToUnwrap.add(gasPerStep.mul(nSteps))
     let total = ethers.utils.parseUnits((gasPrice.mul(totalGas)).toString(), "gwei")
     return total
@@ -75,8 +75,10 @@ function estimateGasCost(nSteps) {
 
 function findArbs(reservesAll) {
     let inputAsset = config.BASE_ASSET
+    let validPaths = paths.filter(path=>path.tkns.filter(t => config.BLACKLISTED_TKNS.includes(t)).length == 0 )
+    console.log(`Found ${validPaths.length} valid paths`)
     let opps = []
-    for (let path of paths) {
+    for (let path of validPaths) {
         let { tkns: tknPath, pools: poolsPath } = path
         if (tknPath[0]!=inputAsset || tknPath[tknPath.length-1]!=inputAsset || path.enabled!='1' || config.MAX_HOPS<poolsPath.length) {
             // console.log('Skipping(pre-conditions not met)' + path.symbol)
@@ -190,7 +192,7 @@ async function handleNewBlock(blockNumber) {
                 opportunity.error = error
                 if (ok) {
                     FAILED_TX_IN_A_ROW = 0;
-                } else if (txHash) {
+                } else if (txHash && !ok) {
                     FAILED_TX_IN_A_ROW += 1;
                     if (FAILED_TX_IN_A_ROW > MAX_CONSECUTIVE_FAILS) {
                         console.log("Shutting down... too many failed tx");
@@ -201,7 +203,7 @@ async function handleNewBlock(blockNumber) {
             catch (error) {
                 console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
             } finally {
-                logToCsv(opportunity, SAVE_PATH)
+                // logToCsv(opportunity, SAVE_PATH)
             }
             RUNWAY_CLEAR = true;
         }

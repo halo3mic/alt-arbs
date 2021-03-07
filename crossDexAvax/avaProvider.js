@@ -3,7 +3,7 @@ const ethers = require('ethers')
 dotenv.config();
 
 const NETWORK = 43114
-const PRIVATE_KEY_AVALANCHE = process.env.PRIVATE_KEY_AVALANCHE;
+const PRIVATE_KEY_AVALANCHE = process.env.PRIVATE_KEY_MATIC;
 const WS_AVALANCHE = process.env.WS_AVALANCHE;
 const RPC_AVALANCHE = process.env.RPC_AVALANCHE;
 var wsAvalancheProvider;
