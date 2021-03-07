@@ -1,8 +1,6 @@
 # L2 Arb Bots
 
-Arbitrage bots for L2 AMM exchanges.
-
-This 
+Arbitrage bots for forks of Uniswap AMM on L2 exchanges.
 
 # Get started
 
