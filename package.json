@@ -9,7 +9,8 @@
     "pangolin": "node pangolin/server.js",
     "cross": "node crossDexAvax/server.js",
     "fantom": "node fantom/server.js",
-    "quick": "node quickSwap/server.js"
+    "quick": "node quickSwap/server.js",
+    "yeti": "node yeti/server.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   "dependencies": {
     "@pangolindex/exchange-contracts": "^1.0.1",
     "bignumber.js": "^9.0.1",
+    "csv-write-stream": "^2.0.0",
     "csvtojson": "^2.0.10",
     "dotenv": "^8.2.0",
     "ethers": "^5.0.29",

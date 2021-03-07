@@ -1,0 +1,70 @@
+[
+    {
+        "address": "0xd32F2EB49E91aA160946f3538564118388d6246a",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0015",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wftmdai_sushiswap",
+        "exchange": "sushiswap",
+        "id": "P0000"
+    },
+    {
+        "address": "0x3d0BD54c48C2C433ea6fed609Cc3d5Fb7A77622B",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0016",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wftmeth_sushiswap",
+        "exchange": "sushiswap",
+        "id": "P0001"
+    },
+    {
+        "address": "0x8623836F527350Ec50691479674Df0cD7773810c",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0001",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wftmfusd_sushiswap",
+        "exchange": "sushiswap",
+        "id": "P0002"
+    },
+    {
+        "address": "0x05c362d5f421A346A04C295e1f36DFd13b4238b1",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0017",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "testwftm_sushiswap",
+        "exchange": "sushiswap",
+        "id": "P0003"
+    }
+]

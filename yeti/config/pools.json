@@ -1,0 +1,189 @@
+[
+    {
+        "address": "0x6c2038f09212dac0aD30Be822f0EECfB29064814",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0001",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxusdt_yetiswap",
+        "exchange": "yetiswap",
+        "id": "P0000"
+    },
+    {
+        "address": "0xC49f93C71B2dcA845058236B2685f6532a60C980",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0002",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pngwavax_yetiswap",
+        "exchange": "yetiswap",
+        "id": "P0001"
+    },
+    {
+        "address": "0x5D732e49b7ce564DbE2B7B22160497057603a078",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0003",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxlink_yetiswap",
+        "exchange": "yetiswap",
+        "id": "P0002"
+    },
+    {
+        "address": "0x9182A23099903C75681416B63F5d0a17F5eb387a",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0004",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxeth_yetiswap",
+        "exchange": "yetiswap",
+        "id": "P0003"
+    },
+    {
+        "address": "0x07099b26f36FCB7E086d5A879EC1261271319829",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0005",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "ytswavax_yetiswap",
+        "exchange": "yetiswap",
+        "id": "P0004"
+    },
+    {
+        "address": "0xF1E800Ab9D0D1F6eaFf54E00Ad19710c41b154f2",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0005",
+                "weight": 0.5
+            },
+            {
+                "id": "T0001",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "ytsusdt_yetiswap",
+        "exchange": "yetiswap",
+        "id": "P0005"
+    },
+    {
+        "address": "0x94231f103882033B6103785675038347693f9cd8",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0005",
+                "weight": 0.5
+            },
+            {
+                "id": "T0002",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "ytspng_yetiswap",
+        "exchange": "yetiswap",
+        "id": "P0006"
+    },
+    {
+        "address": "0x2F4c1f54d0ac8E8EF545a91f040fB4c35BB36097",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0005",
+                "weight": 0.5
+            },
+            {
+                "id": "T0004",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "ytseth_yetiswap",
+        "exchange": "yetiswap",
+        "id": "P0007"
+    },
+    {
+        "address": "0x3616928CD95752Fb520b90A5267d97b0ec41F2b0",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0006",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxdai_yetiswap",
+        "exchange": "yetiswap",
+        "id": "P0008"
+    },
+    {
+        "address": "0x4a1b1e1a91A15C2d4f267Dc459D6610f48687B4a",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0005",
+                "weight": 0.5
+            },
+            {
+                "id": "T0007",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "ytsuni_yetiswap",
+        "exchange": "yetiswap",
+        "id": "P0009"
+    },
+    {
+        "address": "0xe4F20e3bD6b0c4a8a99F311be8636F1f18167aC7",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0007",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxuni_yetiswap",
+        "exchange": "yetiswap",
+        "id": "P0010"
+    }
+]

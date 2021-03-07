@@ -1,5 +1,6 @@
 /**
-  * This module provides math functions suited for caclulation of optimal amount of multi-path arbitrage strategy on Uniswap pools.
+  * This module provides math functions suited for caclulation of
+  * optimal amount of multi-path arbitrage strategy on Uniswap pools.
   * The math was taken from github repo https://github.com/ccyanxyz/uniswap-arbitrage-analysis/tree/c5325ac7ef8086c544e30e4d686c5e0ab1144d96,
   * for which formatted formulas can be found here https://hackmd.io/@KLMgUhDpRBW3N-1JVEla5A/BJr3wf4lO.
 */
@@ -61,7 +62,7 @@ function getOptimalAmount(Ea, Eb) {
  * @returns {BigNumber}
  */
 function getAmountOut(amountIn, reserveIn, reserveOut) {
-    if (amountIn.eq(ZERO)) {
+    if ((amountIn.mul(reserveIn).mul(reserveOut)).eq(ZERO)) {
         return ZERO
     }
     let taxedIn = d997.mul(amountIn)
