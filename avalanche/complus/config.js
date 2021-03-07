@@ -19,7 +19,7 @@ function loadAllABIs() {
 }
 
 const EXPLORER_URL = 'https://cchain.explorer.avax.network/address/'
-const ROUTER_ADDRESS = '0x85995d5f8ee9645cA855e92de16FA62D26398060'
+const ROUTER_ADDRESS = '0x78c18E6BE20df11f1f41b9635F3A18B8AD82dDD1'
 const FACTORY = '0x5C02e78A3969D0E64aa2CFA765ACc1d671914aC0'
 const DEX_NAME = 'Complus'
 const CHAIN_ASSET_SYMBOL = 'AVAX'

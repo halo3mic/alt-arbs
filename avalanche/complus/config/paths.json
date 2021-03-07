@@ -104,5 +104,85 @@
         ],
         "enabled": true,
         "gasAmount": "300000"
+    },
+    {
+        "id": "I00006",
+        "symbol": "wavax=>dai=>sfi=>xcom=>wavax",
+        "tkns": [
+            "T0000",
+            "T0005",
+            "T0012",
+            "T0011",
+            "T0000"
+        ],
+        "pools": [
+            "P0003",
+            "P0013",
+            "P0012",
+            "P0010"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I00007",
+        "symbol": "wavax=>dai=>sfi=>xcom=>com=>wavax",
+        "tkns": [
+            "T0000",
+            "T0005",
+            "T0012",
+            "T0011",
+            "T0008",
+            "T0000"
+        ],
+        "pools": [
+            "P0003",
+            "P0013",
+            "P0012",
+            "P0011",
+            "P0006"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I00008",
+        "symbol": "wavax=>com=>xcom=>sfi=>dai=>wavax",
+        "tkns": [
+            "T0000",
+            "T0008",
+            "T0011",
+            "T0012",
+            "T0005",
+            "T0000"
+        ],
+        "pools": [
+            "P0006",
+            "P0011",
+            "P0012",
+            "P0013",
+            "P0003"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I00009",
+        "symbol": "wavax=>xcom=>sfi=>dai=>wavax",
+        "tkns": [
+            "T0000",
+            "T0011",
+            "T0012",
+            "T0005",
+            "T0000"
+        ],
+        "pools": [
+            "P0010",
+            "P0012",
+            "P0013",
+            "P0003"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
     }
 ]

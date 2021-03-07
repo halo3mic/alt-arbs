@@ -1069,5 +1069,328 @@
         "symbol": "runewavax_pangolin",
         "exchange": "pangolin",
         "id": "P0062"
+    },
+    {
+        "address": "0xe64bfAe83BA234aB85BceF5B7A92427E29b3AA11",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0009",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxusdt_complus",
+        "exchange": "complus",
+        "id": "P0063"
+    },
+    {
+        "address": "0x0CA373D27CE17C4804D108afEee0A77EfEb33775",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0008",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxeth_complus",
+        "exchange": "complus",
+        "id": "P0064"
+    },
+    {
+        "address": "0x3980b4081307619113DAD9c8C7E87Edde2c88155",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0026",
+                "weight": 0.5
+            },
+            {
+                "id": "T0027",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "xcuxag_complus",
+        "exchange": "complus",
+        "id": "P0065"
+    },
+    {
+        "address": "0x7583a59a50d761E491d0c9393cA5214dbB613806",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0011",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxdai_complus",
+        "exchange": "complus",
+        "id": "P0066"
+    },
+    {
+        "address": "0xdd3c9c0d873825c30C1c0668460a1c1C62ce394e",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0012",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxuni_complus",
+        "exchange": "complus",
+        "id": "P0067"
+    },
+    {
+        "address": "0xEcee953e187d9e82D57bAedAaEF1e56E5283f5C3",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0016",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pngwavax_complus",
+        "exchange": "complus",
+        "id": "P0068"
+    },
+    {
+        "address": "0xF0ED25fD26E0b64C86c6c78b661F2ef283E9B6FF",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0028",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "comwavax_complus",
+        "exchange": "complus",
+        "id": "P0069"
+    },
+    {
+        "address": "0x4153552Cbf87686e7b092029C8e08Bd1Da9B4416",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0010",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxlink_complus",
+        "exchange": "complus",
+        "id": "P0070"
+    },
+    {
+        "address": "0x35d3D764C4440A309A3a699754B225a11fc99Cc0",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0006",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wbtcwavax_complus",
+        "exchange": "complus",
+        "id": "P0071"
+    },
+    {
+        "address": "0xBfAa15a7F420e1964bB45F089c24cc7C3A19FBCE",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0028",
+                "weight": 0.5
+            },
+            {
+                "id": "T0016",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "compng_complus",
+        "exchange": "complus",
+        "id": "P0072"
+    },
+    {
+        "address": "0x60b78d111382036ABc5EED987a709B07d52dF9D3",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0029",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "xcomwavax_complus",
+        "exchange": "complus",
+        "id": "P0073"
+    },
+    {
+        "address": "0xeeB03861E6Ef92e2e00dc2E23867D8c87518c8dd",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0028",
+                "weight": 0.5
+            },
+            {
+                "id": "T0029",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "comxcom_complus",
+        "exchange": "complus",
+        "id": "P0074"
+    },
+    {
+        "address": "0xCEa22ad29bfCf13Fd1576D0994C134406dc58D7E",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0020",
+                "weight": 0.5
+            },
+            {
+                "id": "T0011",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sfidai_complus",
+        "exchange": "complus",
+        "id": "P0075"
+    },
+    {
+        "address": "0x63ee90a256719e16B5412A4eB3859D98ca7A8a02",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0020",
+                "weight": 0.5
+            },
+            {
+                "id": "T0029",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sfixcom_complus",
+        "exchange": "complus",
+        "id": "P0076"
+    },
+    {
+        "address": "0xE9DfCABaCA5E45C0F3C151f97900511f3E73Fb47",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0030",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "tusdwavax_pangolin",
+        "exchange": "pangolin",
+        "id": "P0077"
+    },
+    {
+        "address": "0x4F0aCf71907022747eaEd578B9cbDc9753f42e4e",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0016",
+                "weight": 0.5
+            },
+            {
+                "id": "T0024",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pngbat_pangolin",
+        "exchange": "pangolin",
+        "id": "P0078"
+    },
+    {
+        "address": "0x9D026f905d94255A4BaD2cCe3CCC14546DC69f78",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0031",
+                "weight": 0.5
+            },
+            {
+                "id": "T0009",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "cheemusdt_pangolin",
+        "exchange": "pangolin",
+        "id": "P0079"
+    },
+    {
+        "address": "0x842cc3a5cDf13cFdA564b315b3F3a2E8aBF0eb0A",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0005",
+                "weight": 0.5
+            },
+            {
+                "id": "T0009",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "zusdcusdt_pangolin",
+        "exchange": "pangolin",
+        "id": "P0080"
+    },
+    {
+        "address": "0xa1C2c3B6b120cBd4Cec7D2371FFd4a931A134A32",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0032",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxsnob_pangolin",
+        "exchange": "pangolin",
+        "id": "P0081"
     }
 ]

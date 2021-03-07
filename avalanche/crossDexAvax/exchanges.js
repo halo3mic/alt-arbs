@@ -144,6 +144,19 @@ class ZeroExchange extends Uniswap {
     }
 }
 
+class Complus extends Uniswap {
+
+    constructor(provider) {
+        super(provider)
+        this.routerAddress = ROUTERS.COMPLUS
+        this.routerContract = new ethers.Contract(
+            this.routerAddress, 
+            ABIS['uniswapRouter'],
+            provider
+        )
+    }
+}
+
 class BaoSwap extends Uniswap {
 
     constructor(provider) {
@@ -240,7 +253,8 @@ function getExchanges(provider) {
         pangolin: new Pangolin(provider), 
         unnamed1: new Unnamed1(provider),
         baoSwap: new BaoSwap(provider), 
-        yetiswap: new Yeti(provider)
+        yetiswap: new Yeti(provider), 
+        complus: new Complus(provider)
     }   
 }
 

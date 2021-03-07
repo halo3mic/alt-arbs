@@ -202,5 +202,39 @@
         "symbol": "comxcom_complus",
         "exchange": "complus",
         "id": "P0011"
+    },
+    {
+        "address": "0x63ee90a256719e16B5412A4eB3859D98ca7A8a02",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0011",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sfixcom_complus",
+        "exchange": "complus",
+        "id": "P0012"
+    },
+    {
+        "address": "0xCEa22ad29bfCf13Fd1576D0994C134406dc58D7E",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0005",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sfidai_complus",
+        "exchange": "complus",
+        "id": "P0013"
     }
 ]

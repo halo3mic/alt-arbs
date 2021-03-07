@@ -131,7 +131,8 @@ class PoolManager extends Manager {
         "ZERO": "zeroExchange", 
         "BaoSwap": "baoSwap", 
         "0xeb4E120069d7AaaeC91508eF7EAec8452893a80a": "unnamed1", 
-        'YetiSwap': 'yetiswap'
+        'YetiSwap': 'yetiswap', 
+        'Complus': 'complus'
     }
 
     async queryData(address) {

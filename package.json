@@ -10,7 +10,8 @@
     "cross-avax": "node avalanche/crossDexAvax/server.js",
     "fantom-sushiswap": "node fantom/sushiswap/server.js",
     "quick": "node matic/quickSwap/server.js",
-    "yeti": "node avalancheyeti/server.js"
+    "yeti": "node avalanche/yeti/server.js",
+    "complus": "node avalanche/complus/server.js"
   },
   "repository": {
     "type": "git",
