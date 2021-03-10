@@ -82,4 +82,20 @@ function changePathParams() {
 } 
 
 
+function disablePathsForToken(tknId) {
+    let dstInstrPath = resolve(`${__dirname}/../../config/paths.json`) 
+    let srcInstrPath = resolve(`${__dirname}/../../config/paths.json`) 
+    let currData = getCurrentData(srcInstrPath)
+    let modified = currData.filter(p => !p.tkns.includes(tknId))
+    save(modified, dstInstrPath)
+}
+
+function disableTokens() {
+    let tkns = [
+        'T0020',  // SFI
+        'T0019'  // YTS
+    ]
+    tkns.forEach(tkn=>disablePathsForToken(tkn))
+}
+
 changePathParams()
