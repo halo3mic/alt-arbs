@@ -18,7 +18,7 @@ function loadAllABIs() {
     return abis
 }
 
-const EXPLORER_URL = 'https://cchain.explorer.avax.network/address/'
+const EXPLORER_URL = 'https://cchain.explorer.avax.network/tx/'
 const ROUTER_ADDRESS = '0x85995d5f8ee9645cA855e92de16FA62D26398060'
 const FACTORY = '0x2Ef422F30cdb7c5F1f7267AB5CF567A88974b308'
 const DEX_NAME = 'ZeroExchange'
@@ -30,12 +30,14 @@ const ABIS = loadAllABIs()
 const UNISWAP_SYNC_TOPIC = '0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e062b03a9fffbbad1'
 
 const MIN_PROFIT = ethers.utils.parseUnits('0.1')
-const MAX_CONSECUTIVE_FAILS = 8 // After max consecutive fails bot shuts down
-const BLOCK_WAIT = 1 // Number of blocks to confirm tx
+const MAX_CONSECUTIVE_FAILS = 20 // After max consecutive fails bot shuts down
+const BLOCK_WAIT = 2 // Number of blocks to confirm tx
 const MAX_HOPS = 5 // Max number of swaps
 const TIMEOUT_OFFSET = 180  // Seconds after which trade expires 
 // Paths with these tokens will be ignored
-const BLACKLISTED_TKNS = []
+const BLACKLISTED_TKNS = [
+    ''
+]
 
 // Gas settings
 // const DYNAMIC_GAS_THRESHOLD = ethers.utils.parseUnits('1260', 'gwei') // Gas price at which dynamic gas starts
