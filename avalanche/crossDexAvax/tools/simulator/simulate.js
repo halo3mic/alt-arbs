@@ -1,12 +1,10 @@
 const tokens = require('../../config/tokens.json')
 const paths = require('../../config/paths.json')
-const pools = require('../../config/pools.json')
 const provider = require('../../provider')
 const config = require('../../config')
 const ethers = require('ethers')
 const path = require('path')
 const fs = require('fs')
-const { arbForPath } = require('../../arbbot')
 
 const ACCOUNTS_PATH = './accounts.json'
 let PROVIDER
@@ -41,7 +39,7 @@ async function getWrappedBalance() {
 
 async function wrapChainToken(amount) {
     let wrappedTokenAddress = tokens.filter(
-        t => t.id==config.INPUT_ASSET
+        t => t.id==config.BASE_ASSET
     )[0].address 
     let wrapContract = new ethers.Contract(
         wrappedTokenAddress, 
@@ -140,28 +138,26 @@ async function estimateGasAmount() {
     }
 }
 
-async function replayTx() {
-    let forkBlock = 533831
-    let fork = `${provider.ws.endpoint}@${forkBlock}`
-    let unlocked_accounts = [provider.ws.signer.address]
-    PROVIDER = connectToGancheProvider({fork, unlocked_accounts})
+async function simulatePastOpp(blockNumber, makeTradeArgs) {
+    PROVIDER = connectToGancheProvider({fork: `${provider.ws.endpoint}@${blockNumber}`})
     let testAccount = fetchTestAccount()
-    SIGNER = PROVIDER.getSigner(provider.ws.signer.address)
-    SIGNER.address = SIGNER._address
-    console.log(await PROVIDER.getBlockNumber())
-    const arbbot = require('../../arbbot')
-    await arbbot.init(PROVIDER, SIGNER)
-    // console.log(arbbot.getReserves())
-    let allOpps = arbbot.getPaths().map(path=>arbbot.arbForPath(path)).filter(e=>e)
-    console.log(allOpps)
+    SIGNER = PROVIDER.getSigner(testAccount)
 
-    let poolAddress = '0x4cEa032b4B3F59f31d6d52071258EE0d42b6cC7e'
-    let poolId = pools.filter(pool=>pool.address==poolAddress)[0].id
-    console.log(poolId)
-    let reserves = arbbot.getReserves()[poolId]
-    console.log(ethers.utils.formatUnits(reserves['T0003']))
-    console.log(ethers.utils.formatUnits(reserves['T0002'], 12))
-
+    let dispatcher = new ethers.Contract(
+        config.DISPATCHER, 
+        config.ABIS['dispatcher'], 
+        SIGNER
+    )
+    let tx = dispatcher.makeTrade(...makeTradeArgs)
+    console.log(tx)
 }
 
-replayTx()
+async function simulateOppN1() {
+    let tradeTxBytes ='d9e1ce17f2641f24ae83637ab66a2cca9c378b9f00000000000000000000000000000000000000000000000000000000000000e47ff36ab5000000000000000000000000d30ce37a6f2424593dabe9b712d235781815445d0000000000000000000000000000000000000000000000000000000000000080000000000000000000000000d30ce37a6f2424593dabe9b712d235781815445d00000000000000000000000000000000000000000000000000000000604238d70000000000000000000000000000000000000000000000000000000000000002000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2000000000000000000000000d46ba6d942050d489dbd938a2c909a5d5039a161d9e1ce17f2641f24ae83637ab66a2cca9c378b9f000000000000000000000000000000000000000000000000000000000000010438ed17390000000000000000000000000000000000000000000000000000001676e8e3e4000000000000000000000000d30ce37a6f2424593dabe9b712d235781815445d00000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000d30ce37a6f2424593dabe9b712d235781815445d00000000000000000000000000000000000000000000000000000000604238d70000000000000000000000000000000000000000000000000000000000000002000000000000000000000000d46ba6d942050d489dbd938a2c909a5d5039a1610000000000000000000000006b3595068778dd592e39a122f4f5a5cf09c90fe27a250d5630b4cf539739df2c5dacb4c659f2488d000000000000000000000000000000000000000000000000000000000000010418cbafe50000000000000000000000000000000000000000000000005fa0bb36248d806f000000000000000000000000d30ce37a6f2424593dabe9b712d235781815445d00000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000d30ce37a6f2424593dabe9b712d235781815445d00000000000000000000000000000000000000000000000000000000604238d700000000000000000000000000000000000000000000000000000000000000020000000000000000000000006b3595068778dd592e39a122f4f5a5cf09c90fe2000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
+    let targetBlock = 11978696
+    let inputAmount = ethers.BigNumber.from('57637915546868570')
+    let makeTradeArgs = [tradeTxBytes, inputAmount]
+    await simulatePastOpp(targetBlock, makeTradeArgs)
+}   
+
+estimateGasAmount()

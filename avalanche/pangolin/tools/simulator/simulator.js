@@ -5,6 +5,8 @@ const config = require('../../config')
 const ethers = require('ethers')
 const path = require('path')
 const fs = require('fs')
+const { Console } = require('console')
+const { ws } = require('../../../yetixyz/provider')
 
 const ACCOUNTS_PATH = './accounts.json'
 let PROVIDER
@@ -138,4 +140,47 @@ async function estimateGasAmount() {
     }
 }
 
-estimateGasAmount()
+async function findPastOpps() {
+    let forkBlock = 533653
+    let fork = `${provider.ws.endpoint}@${forkBlock}`
+    let unlocked_accounts = [provider.ws.signer.address]
+    PROVIDER = connectToGancheProvider({fork, unlocked_accounts})
+    let testAccount = fetchTestAccount()
+    SIGNER = PROVIDER.getSigner(provider.ws.signer.address)
+    SIGNER.address = SIGNER._address
+    console.log(await PROVIDER.getBlockNumber())
+    const arbbot = require('../../arbbot')
+    await arbbot.init(PROVIDER, SIGNER)
+    // console.log(arbbot.getReserves())
+    let allOpps = arbbot.getPaths().map(path=>arbbot.arbForPath(path)).filter(e=>e)
+    console.log(allOpps)
+
+    const filter = { topics: [config.UNISWAP_SYNC_TOPIC] }
+    let logs = await PROVIDER.getLogs(filter)
+    console.log(logs)
+}
+
+async function replayTx() {
+    let txHash = '0x03aa6e903ec490211a667a9459eb2084e27d978e87e22604c82ef352b62817c8'
+    let txObject = await provider.ws.provider.getTransaction(txHash)
+    let txSend = {
+        from: txObject.from,
+        to: txObject.to,
+        data: txObject.data,
+    }
+
+    let forkBlock = txObject.blockNumber
+    let fork = `${provider.ws.endpoint}@${forkBlock}`
+    let unlocked_accounts = [provider.ws.signer.address]
+    PROVIDER = connectToGancheProvider({fork, unlocked_accounts})
+    SIGNER = PROVIDER.getSigner(provider.ws.signer.address)
+    try {
+        let txReplay = await SIGNER.sendTransaction(txSend)
+        let txReplayReceipt = await provider.ws.provider.getTransactionReceipt(txReplay)
+        console.log(txReplayReceipt)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+replayTx()
