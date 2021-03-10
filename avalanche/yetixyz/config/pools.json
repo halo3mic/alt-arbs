@@ -1,0 +1,70 @@
+[
+    {
+        "address": "0x38E6E55B377B81b8B130B952804305DA602700C5",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0006",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxdai_baoswap",
+        "exchange": "baoswap",
+        "id": "P0000"
+    },
+    {
+        "address": "0x5d16807061CeAf81604299f9Db1687c9B9c9C202",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0002",
+                "weight": 0.5
+            },
+            {
+                "id": "T0007",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pnguni_baoswap",
+        "exchange": "baoswap",
+        "id": "P0001"
+    },
+    {
+        "address": "0x2d2dcb7457B20cD1E3466e4a6a7955b5059A81c7",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0002",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pngwavax_baoswap",
+        "exchange": "baoswap",
+        "id": "P0002"
+    },
+    {
+        "address": "0x874DcE6EAFE72E4Cd2b4A091771B500E909B0cB1",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0008",
+                "weight": 0.5
+            },
+            {
+                "id": "T0006",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wbtcdai_baoswap",
+        "exchange": "baoswap",
+        "id": "P0003"
+    }
+]

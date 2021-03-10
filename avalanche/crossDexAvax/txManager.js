@@ -87,13 +87,13 @@ async function submitTradeTx(blockNumber, txBody) {
 async function executeOpportunity(opportunity, blockNumber) {
     let calldata = await formTradeTx(opportunity)
     let tx = await formDispatcherTx(calldata, opportunity.pathAmounts[0])
-    try {
-        await SIGNER.estimateGas(tx)  // Get more detailed info about tx before sending it
-    } catch(e) {
-        console.log(e)
-        console.log('❌ Transaction would fail! Aborting ... ')
-        return {ok: false, txHash: null, txData: calldata, error: e}
-    }
+    // try {
+    //     await SIGNER.estimateGas(tx)  // Get more detailed info about tx before sending it
+    // } catch(e) {
+    //     console.log(e)
+    //     console.log('❌ Transaction would fail! Aborting ... ')
+    //     return {ok: false, txHash: null, txData: calldata, error: e}
+    // }
     return submitTradeTx(blockNumber, tx)
 }
 

@@ -11,6 +11,7 @@ async function main() {
         '0x2Ef422F30cdb7c5F1f7267AB5CF567A88974b308',  // Zero
         '0x58C8CD291Fa36130119E6dEb9E520fbb6AcA1c3a',  // Yeti
         '0x5C02e78A3969D0E64aa2CFA765ACc1d671914aC0',  // Complus
+        '0xf2aBD8FaFb2f1AfE2465f243Ef2093CD0e3cBABF',  // Baoswap
     ]
     // await importPoolsFromCsv()
     await importPoolsFromFactory(...factories)
