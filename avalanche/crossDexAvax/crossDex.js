@@ -109,7 +109,7 @@ function findArbs(reservesAll) {
             let profit = amountOut.sub(amountIn)
             let gasCost = estimateGasCost(pathFull.length - 1);
             let netProfit = profit.sub(gasCost);
-            if (netProfit.gt("0")) {
+            if (netProfit.gt(config.MIN_PROFIT)) {
                 opps.push({ 
                     profit, 
                     amountIn, 

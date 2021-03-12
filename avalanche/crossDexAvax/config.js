@@ -6,6 +6,7 @@ const ethers = require('ethers')
 
 BOT_ID = 2
 MAX_HOPS = 3
+MIN_PROFIT = ethers.utils.parseUnits('0.1')
 STATIC_GAS_PRICE = ethers.BigNumber.from('470')
 GAS_LIMIT = '700000'
 BASE_ASSET = 'T0000'
@@ -53,6 +54,7 @@ module.exports = {
     BLACKLISTED_TKNS,
     NETWORK, 
     RPC_PROVIDER_URL, 
+    MIN_PROFIT,
     ROUTERS,
     SECRETS,
     WAVAX_MAX_BAL,
