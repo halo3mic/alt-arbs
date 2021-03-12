@@ -1,6 +1,11 @@
 const config = require('./config')
 const ethers = require('ethers')
 
+
+function init(provider) {
+    PROVIDER = provider
+}
+
 /**
  * Return gas price that best fits conditions and settings
  * If gross profit below threshold return default gas price
@@ -69,4 +74,5 @@ async function updateGasPrices(txHash) {
 module.exports = {
     updateGasPrices,
     getGasPrice, 
+    init
 }

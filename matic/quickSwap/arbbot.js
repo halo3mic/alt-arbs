@@ -43,6 +43,7 @@ async function init(provider, signer) {
         config.ABIS['weth'],
         signer
     )
+    gasManager.init(provider)
     filterPaths()
     await reservesManager.init(provider, PATHS) // Initialize reserveres manager
     RESERVES = reservesManager.getAllReserves() // Get reserves for filtered paths
@@ -166,7 +167,7 @@ async function handleUpdate(blockNumber, poolAddresses, startTime) {
         // Check that path includes the pool that which balance was updated
         let pathIncludesPool = path.pools.filter(p => poolIds.includes(p)).length > 0
         // Check that the path is not blacklisted
-        let pathBlacklisted = PATH_FAIL_COUNTER[path.id] > 2
+        let pathBlacklisted = PATH_FAIL_COUNTER[path.id] > 4
         if (pathIncludesPool && path.enabled && !pathBlacklisted && !poolsInFlight) {
             let opp = arbForPath(path)
             if (opp && opp.netProfit.gt(config.MIN_PROFIT)) {
