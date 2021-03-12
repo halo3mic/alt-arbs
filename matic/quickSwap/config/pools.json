@@ -4945,5 +4945,2011 @@
         "symbol": "ghstmausdc_uniswap",
         "exchange": "uniswap",
         "id": "P0290"
+    },
+    {
+        "address": "0x73788EA9F55CE7B8e1D86247566C22B539da4f8F",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0054",
+                "weight": 0.5
+            },
+            {
+                "id": "T0012",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wrxquick_uniswap",
+        "exchange": "uniswap",
+        "id": "P0291"
+    },
+    {
+        "address": "0x6767DD335Bcc86d0B39c43862356c2f077D1de89",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0124",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdcusdp_uniswap",
+        "exchange": "uniswap",
+        "id": "P0292"
+    },
+    {
+        "address": "0x2a574629CA405fA43A8F21FAa64ff73dD320f45b",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0116",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticifarm_uniswap",
+        "exchange": "uniswap",
+        "id": "P0293"
+    },
+    {
+        "address": "0x8075cda830EA117457f914b790DAF93F93c66136",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0125",
+                "weight": 0.5
+            },
+            {
+                "id": "T0012",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "aria20quick_uniswap",
+        "exchange": "uniswap",
+        "id": "P0294"
+    },
+    {
+        "address": "0xfB7910710F8288143445912c575B9F4b37564351",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0014",
+                "weight": 0.5
+            },
+            {
+                "id": "T0005",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wbtcdai_uniswap",
+        "exchange": "uniswap",
+        "id": "P0295"
+    },
+    {
+        "address": "0xD34DC2B5949425d5C3c723a1473966249DdA1231",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0107",
+                "weight": 0.5
+            },
+            {
+                "id": "T0114",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "dusdrdusd_uniswap",
+        "exchange": "uniswap",
+        "id": "P0296"
+    },
+    {
+        "address": "0x3924bFf1a0bb1556D0DBD596c02EBa4Ce1b8e9C1",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0126",
+                "weight": 0.5
+            },
+            {
+                "id": "T0004",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "nftxweth_uniswap",
+        "exchange": "uniswap",
+        "id": "P0297"
+    },
+    {
+        "address": "0xA135d3420765fFB6E536fa23fA3C69323AbE18C6",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0058",
+                "weight": 0.5
+            },
+            {
+                "id": "T0114",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "mrbalrdusd_uniswap",
+        "exchange": "uniswap",
+        "id": "P0298"
+    },
+    {
+        "address": "0xf115308E8347E816D23566EAafB4C0BCb1349432",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0091",
+                "weight": 0.5
+            },
+            {
+                "id": "T0023",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "kiwi0xbtc_uniswap",
+        "exchange": "uniswap",
+        "id": "P0299"
+    },
+    {
+        "address": "0x47Be4b1b6921a36591142E108B8C9E04BB55E015",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0113",
+                "weight": 0.5
+            },
+            {
+                "id": "T0004",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "visionweth_uniswap",
+        "exchange": "uniswap",
+        "id": "P0300"
+    },
+    {
+        "address": "0x7d6c5BceaDCAe4bEfCc3Bde05A04fC9528a38c85",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0127",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "quickrbc_uniswap",
+        "exchange": "uniswap",
+        "id": "P0301"
+    },
+    {
+        "address": "0x1D26b6BDc7224c52d02ea5c068DEbF4D70ccfCc4",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0004",
+                "weight": 0.5
+            },
+            {
+                "id": "T0128",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wethload_uniswap",
+        "exchange": "uniswap",
+        "id": "P0302"
+    },
+    {
+        "address": "0xfE4735Fb07aa69663D92DA9F105ebB574B182C53",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0117",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticomniunit_uniswap",
+        "exchange": "uniswap",
+        "id": "P0303"
+    },
+    {
+        "address": "0xd39203acC5c9Eea680Bb5Bfc953c1Cf224BfCf0D",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0115",
+                "weight": 0.5
+            },
+            {
+                "id": "T0102",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "cumswap_uniswap",
+        "exchange": "uniswap",
+        "id": "P0304"
+    },
+    {
+        "address": "0x94dFd065b57F2a857A693E40f399C51D6b76C739",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0004",
+                "weight": 0.5
+            },
+            {
+                "id": "T0120",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "weth1inch_uniswap",
+        "exchange": "uniswap",
+        "id": "P0305"
+    },
+    {
+        "address": "0x73E5D67A3F9D883daC7b12917d9388467ceB2C2e",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0129",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticderc20_uniswap",
+        "exchange": "uniswap",
+        "id": "P0306"
+    },
+    {
+        "address": "0x69dF7ECD2c6E0f1a569654CDA1631a7bFeAe5Df3",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0130",
+                "weight": 0.5
+            },
+            {
+                "id": "T0012",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "dokiquick_uniswap",
+        "exchange": "uniswap",
+        "id": "P0307"
+    },
+    {
+        "address": "0x8e218646cF97bCa7F97d1BAA9715Ca68D619D983",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0131",
+                "weight": 0.5
+            },
+            {
+                "id": "T0012",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "degenquick_uniswap",
+        "exchange": "uniswap",
+        "id": "P0308"
+    },
+    {
+        "address": "0x447B270C9D4Bd9806B6A1b62A6dfa538E36C9D49",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0111",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticubt_uniswap",
+        "exchange": "uniswap",
+        "id": "P0309"
+    },
+    {
+        "address": "0x2Aa7a18cEAbf2eF893D2f7c0145cC45e6f10b223",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0121",
+                "weight": 0.5
+            },
+            {
+                "id": "T0012",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "fraxquick_uniswap",
+        "exchange": "uniswap",
+        "id": "P0310"
+    },
+    {
+        "address": "0x3BFfC6bf7E8b572dcFfdac4227EA749Db49acfA1",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0122",
+                "weight": 0.5
+            },
+            {
+                "id": "T0012",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "fxsquick_uniswap",
+        "exchange": "uniswap",
+        "id": "P0311"
+    },
+    {
+        "address": "0xE70c32Cf0A045d7Df11d6a7505f805af3AA79679",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0006",
+                "weight": 0.5
+            },
+            {
+                "id": "T0075",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdtmausdt_uniswap",
+        "exchange": "uniswap",
+        "id": "P0312"
+    },
+    {
+        "address": "0x2341866d55bA3EC944295fC02B70314d7dF62683",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0004",
+                "weight": 0.5
+            },
+            {
+                "id": "T0041",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wethmausdc_uniswap",
+        "exchange": "uniswap",
+        "id": "P0313"
+    },
+    {
+        "address": "0xe01415bC318ED24f90D54661700cC5aEe4C4a807",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0132",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticpdt_uniswap",
+        "exchange": "uniswap",
+        "id": "P0314"
+    },
+    {
+        "address": "0xC31c4675dDec9E04062d2DEaE2347bAFBe7594b8",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0122",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdcfxs_uniswap",
+        "exchange": "uniswap",
+        "id": "P0315"
+    },
+    {
+        "address": "0xcCEf69ce73A16844E3E8dda2FF9848fd753c321c",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0101",
+                "weight": 0.5
+            },
+            {
+                "id": "T0122",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "hexfxs_uniswap",
+        "exchange": "uniswap",
+        "id": "P0316"
+    },
+    {
+        "address": "0xF2e5130d80Da3E7106955100B42b0321a02727E1",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0116",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdcifarm_uniswap",
+        "exchange": "uniswap",
+        "id": "P0317"
+    },
+    {
+        "address": "0xC90240794aE110656f0263F5c2308C96979ec0Eb",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0133",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "quickcomp_uniswap",
+        "exchange": "uniswap",
+        "id": "P0318"
+    },
+    {
+        "address": "0x2DF728b1B61D6c7Aca55e22eEEa7da9dc6694603",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0004",
+                "weight": 0.5
+            },
+            {
+                "id": "T0116",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wethifarm_uniswap",
+        "exchange": "uniswap",
+        "id": "P0319"
+    },
+    {
+        "address": "0x97A5a26745dd790DFd8Ac33aEFC91415c07bCA81",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0121",
+                "weight": 0.5
+            },
+            {
+                "id": "T0006",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "fraxusdt_uniswap",
+        "exchange": "uniswap",
+        "id": "P0320"
+    },
+    {
+        "address": "0xee23FF6260B3dF90085D33945DE3DB2c007A5c70",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0111",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdcubt_uniswap",
+        "exchange": "uniswap",
+        "id": "P0321"
+    },
+    {
+        "address": "0xF4961c6e3874c3e7712E8910ce74925Cd978cf16",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0047",
+                "weight": 0.5
+            },
+            {
+                "id": "T0031",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "rbalmana_uniswap",
+        "exchange": "uniswap",
+        "id": "P0322"
+    },
+    {
+        "address": "0xa28B694912f9a33DB44D4B06b51fba580be7862e",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0067",
+                "weight": 0.5
+            },
+            {
+                "id": "T0134",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "bzbnegg_uniswap",
+        "exchange": "uniswap",
+        "id": "P0323"
+    },
+    {
+        "address": "0x45c95638A49aB7C1FcEBcDa8E259b9813E8f5444",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0117",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdcomniunit_uniswap",
+        "exchange": "uniswap",
+        "id": "P0324"
+    },
+    {
+        "address": "0x9c8e56e594831951dE0791577c0B9BF9AadFBb9e",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0135",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "quickdsla_uniswap",
+        "exchange": "uniswap",
+        "id": "P0325"
+    },
+    {
+        "address": "0xD9e28Be8F3871f1Cee567d9439C588503EEDa326",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0117",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "quickomniunit_uniswap",
+        "exchange": "uniswap",
+        "id": "P0326"
+    },
+    {
+        "address": "0x23c788FfA18B471D16Bd830a23d6bbf17a9bF030",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0014",
+                "weight": 0.5
+            },
+            {
+                "id": "T0059",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wbtcmust_uniswap",
+        "exchange": "uniswap",
+        "id": "P0327"
+    },
+    {
+        "address": "0xE86368fC4e24FAd14517f0F0389560E9d1Af52Ac",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0136",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticbtu_uniswap",
+        "exchange": "uniswap",
+        "id": "P0328"
+    },
+    {
+        "address": "0x748de0699DB639742D10E34791cB9f2096D77aB4",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0137",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticreef_uniswap",
+        "exchange": "uniswap",
+        "id": "P0329"
+    },
+    {
+        "address": "0xFB15dB6778524201003F8604E760313848eFC08B",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0071",
+                "weight": 0.5
+            },
+            {
+                "id": "T0012",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "mawethquick_uniswap",
+        "exchange": "uniswap",
+        "id": "P0330"
+    },
+    {
+        "address": "0x2Be4C792E28809CAa912A16D119A918CA3CdA1e2",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0074",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "quickmayfi_uniswap",
+        "exchange": "uniswap",
+        "id": "P0331"
+    },
+    {
+        "address": "0xAE4278196E4dF7c4DECD40cE3C6C4653B20F59b8",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0073",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "quickmalink_uniswap",
+        "exchange": "uniswap",
+        "id": "P0332"
+    },
+    {
+        "address": "0xa2DF4607DB485Ce3e79C01C12d100f202584786f",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0138",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "quickcfi_uniswap",
+        "exchange": "uniswap",
+        "id": "P0333"
+    },
+    {
+        "address": "0xd3b48a0CC7A465e7B2e5E0386f7EfbF2bd72E37F",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0102",
+                "weight": 0.5
+            },
+            {
+                "id": "T0138",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "swapcfi_uniswap",
+        "exchange": "uniswap",
+        "id": "P0334"
+    },
+    {
+        "address": "0xd5942230E9767450507C492c4aD8875c2D4BAd25",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0139",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticleon_uniswap",
+        "exchange": "uniswap",
+        "id": "P0335"
+    },
+    {
+        "address": "0xED56fF0086a896ff6ad26e9A3eb4e4a4d2C07197",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0074",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticmayfi_uniswap",
+        "exchange": "uniswap",
+        "id": "P0336"
+    },
+    {
+        "address": "0x77C03E14bf5223c0d140c36b9D2Bf41d4474ea7c",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0014",
+                "weight": 0.5
+            },
+            {
+                "id": "T0101",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wbtchex_uniswap",
+        "exchange": "uniswap",
+        "id": "P0337"
+    },
+    {
+        "address": "0x0aEF26C65F1e1a842CAcA7b21c0e9fFfF2bdAe7D",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0071",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticmaweth_uniswap",
+        "exchange": "uniswap",
+        "id": "P0338"
+    },
+    {
+        "address": "0x5F8ED0d8cebAeE12d62a479776dAe7AE347398Ce",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0140",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "quickdam_uniswap",
+        "exchange": "uniswap",
+        "id": "P0339"
+    },
+    {
+        "address": "0xAB15b3e1E0284d50D9977fF198785bA5A21bD260",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0140",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticdam_uniswap",
+        "exchange": "uniswap",
+        "id": "P0340"
+    },
+    {
+        "address": "0xD2DE6Fa16B633326CebEaf96cfDea78BdF430508",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0141",
+                "weight": 0.5
+            },
+            {
+                "id": "T0012",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "fluxquick_uniswap",
+        "exchange": "uniswap",
+        "id": "P0341"
+    },
+    {
+        "address": "0x32966815945f17bb01f60553Fb7676FFB18e741b",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0113",
+                "weight": 0.5
+            },
+            {
+                "id": "T0044",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "visiondb_uniswap",
+        "exchange": "uniswap",
+        "id": "P0342"
+    },
+    {
+        "address": "0xfEf059725b88f3Df277B84C677fd0A1f34529879",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0141",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticflux_uniswap",
+        "exchange": "uniswap",
+        "id": "P0343"
+    },
+    {
+        "address": "0x7E494a475f655E851D5cD0c91d61a4dbB177Ca95",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0142",
+                "weight": 0.5
+            },
+            {
+                "id": "T0004",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "ampweth_uniswap",
+        "exchange": "uniswap",
+        "id": "P0344"
+    },
+    {
+        "address": "0x89C237863448FFE01E4CC7CF26397531Bbf3b015",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0142",
+                "weight": 0.5
+            },
+            {
+                "id": "T0003",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "ampusdc_uniswap",
+        "exchange": "uniswap",
+        "id": "P0345"
+    },
+    {
+        "address": "0xA81ECd3C787ff2B3D4344FF85FA80e4A2973cBC7",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0142",
+                "weight": 0.5
+            },
+            {
+                "id": "T0012",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "ampquick_uniswap",
+        "exchange": "uniswap",
+        "id": "P0346"
+    },
+    {
+        "address": "0x909dc3398885fb633332bD088d8CDA55195C741a",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0142",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "ampwmatic_uniswap",
+        "exchange": "uniswap",
+        "id": "P0347"
+    },
+    {
+        "address": "0x8499aEA703c17D9272482aBa811EAa90a3796527",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0141",
+                "weight": 0.5
+            },
+            {
+                "id": "T0004",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "fluxweth_uniswap",
+        "exchange": "uniswap",
+        "id": "P0348"
+    },
+    {
+        "address": "0xA1A0d495C1cabB34A4Cf858cd5aFF140B3fD165D",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0143",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticquack_uniswap",
+        "exchange": "uniswap",
+        "id": "P0349"
+    },
+    {
+        "address": "0x390D7939d006070fdfCe137fa2C5434B98b0a0bF",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0143",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdcquack_uniswap",
+        "exchange": "uniswap",
+        "id": "P0350"
+    },
+    {
+        "address": "0x1FfD2B8B116BcEe1Ed719f74Ac29eA8c2334f180",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0004",
+                "weight": 0.5
+            },
+            {
+                "id": "T0140",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wethdam_uniswap",
+        "exchange": "uniswap",
+        "id": "P0351"
+    },
+    {
+        "address": "0x325c51D01Bf3E4260fb5BCdDc5f917011F65c1DE",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0141",
+                "weight": 0.5
+            },
+            {
+                "id": "T0140",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "fluxdam_uniswap",
+        "exchange": "uniswap",
+        "id": "P0352"
+    },
+    {
+        "address": "0x600b588d7E847665B2f36CdC70838d04eF9790c2",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0121",
+                "weight": 0.5
+            },
+            {
+                "id": "T0004",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "fraxweth_uniswap",
+        "exchange": "uniswap",
+        "id": "P0353"
+    },
+    {
+        "address": "0xEad4C2d8859b2CB0698AEB7D0Cf56a00468a4F5c",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0144",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticyld_uniswap",
+        "exchange": "uniswap",
+        "id": "P0354"
+    },
+    {
+        "address": "0x654E651b658f784406125400cf648588CB9773e8",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0145",
+                "weight": 0.5
+            },
+            {
+                "id": "T0004",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "defi5weth_uniswap",
+        "exchange": "uniswap",
+        "id": "P0355"
+    },
+    {
+        "address": "0x5B90a74a790dA04b323dd654F09a05F0d5Eaf379",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0146",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdcpan_uniswap",
+        "exchange": "uniswap",
+        "id": "P0356"
+    },
+    {
+        "address": "0x8926e0315aC7890876bAEC0b0c8d0E851C5D8E79",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0121",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticfrax_uniswap",
+        "exchange": "uniswap",
+        "id": "P0357"
+    },
+    {
+        "address": "0xAaE669a07273DE2EbB62AC755423a1f263678E37",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0147",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "quickb20_uniswap",
+        "exchange": "uniswap",
+        "id": "P0358"
+    },
+    {
+        "address": "0xafE3dF464fb739065F92BD56590f991953E7ef33",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0024",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticorb_uniswap",
+        "exchange": "uniswap",
+        "id": "P0359"
+    },
+    {
+        "address": "0xEEB92E3cB8E38375E2c20201e9b9fB8740D0133f",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0004",
+                "weight": 0.5
+            },
+            {
+                "id": "T0135",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wethdsla_uniswap",
+        "exchange": "uniswap",
+        "id": "P0360"
+    },
+    {
+        "address": "0xeA35248f449d5a8a051E46a06b3d5C6C9E6402C2",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0148",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdcbzn_uniswap",
+        "exchange": "uniswap",
+        "id": "P0361"
+    },
+    {
+        "address": "0xD88810F3FE698862669448Dce29808B242B9A1bC",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0125",
+                "weight": 0.5
+            },
+            {
+                "id": "T0004",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "aria20weth_uniswap",
+        "exchange": "uniswap",
+        "id": "P0362"
+    },
+    {
+        "address": "0x06b37c8DA3d79f6bF7b5FBF334e3A38687A332cD",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0149",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdcdrc_uniswap",
+        "exchange": "uniswap",
+        "id": "P0363"
+    },
+    {
+        "address": "0xebD7445026EB119d1E703Ef7F787f3C49a3f4963",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0150",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdcquack_uniswap",
+        "exchange": "uniswap",
+        "id": "P0364"
+    },
+    {
+        "address": "0xd4bf6b3A561472177fD44aB7cCA5F18F2C649d69",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0044",
+                "weight": 0.5
+            },
+            {
+                "id": "T0003",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "dbusdc_uniswap",
+        "exchange": "uniswap",
+        "id": "P0365"
+    },
+    {
+        "address": "0x1836BF878aF1704170FaD941AD2E6aa001e82d67",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0150",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticquack_uniswap",
+        "exchange": "uniswap",
+        "id": "P0366"
+    },
+    {
+        "address": "0xEB951F0DA8148a0a3FAD7a568194FF9495Fc464B",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0149",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "quickdrc_uniswap",
+        "exchange": "uniswap",
+        "id": "P0367"
+    },
+    {
+        "address": "0x4CDc309447F07D0A158E4dBe86d553e6bBaF90a2",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0040",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticroute (pos)_uniswap",
+        "exchange": "uniswap",
+        "id": "P0368"
+    },
+    {
+        "address": "0x48Ad43f995733bC0ae6349538b58Ba70764A5BB0",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0070",
+                "weight": 0.5
+            },
+            {
+                "id": "T0005",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "maunidai_uniswap",
+        "exchange": "uniswap",
+        "id": "P0369"
+    },
+    {
+        "address": "0xdFA81e266fF54A7d9d26c5083f9631e685d833D7",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0151",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "quickom_uniswap",
+        "exchange": "uniswap",
+        "id": "P0370"
+    },
+    {
+        "address": "0xF436257335b28E2B14861BF5F3b17b8a21BBd6df",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0138",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdccfi_uniswap",
+        "exchange": "uniswap",
+        "id": "P0371"
+    },
+    {
+        "address": "0xF8B5e03841c07a72035f719979ccd6F4589BbB8A",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0152",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "quickcel_uniswap",
+        "exchange": "uniswap",
+        "id": "P0372"
+    },
+    {
+        "address": "0x0c252D44259e69AD8f8dCFE835F249f581aAf484",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0006",
+                "weight": 0.5
+            },
+            {
+                "id": "T0016",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdtigg_uniswap",
+        "exchange": "uniswap",
+        "id": "P0373"
+    },
+    {
+        "address": "0x5cA6CA6c3709E1E6CFe74a50Cf6B2B6BA2Dadd67",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0038",
+                "weight": 0.5
+            },
+            {
+                "id": "T0004",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "linkweth_uniswap",
+        "exchange": "uniswap",
+        "id": "P0374"
+    },
+    {
+        "address": "0x1C51Dd51fa9BcfCc8c2D0ad1703F646747Cea4Bf",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0154",
+                "weight": 0.5
+            },
+            {
+                "id": "T0153",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "mrtkmammo_uniswap",
+        "exchange": "uniswap",
+        "id": "P0375"
+    },
+    {
+        "address": "0x350D4253F1616D1bfE86611DB6623c83387de2e6",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0154",
+                "weight": 0.5
+            },
+            {
+                "id": "T0004",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "mrtkweth_uniswap",
+        "exchange": "uniswap",
+        "id": "P0376"
+    },
+    {
+        "address": "0xEeaEEb47715CCE11BA1eA1D53fA8D8DA260232C9",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0155",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticpdt_uniswap",
+        "exchange": "uniswap",
+        "id": "P0377"
+    },
+    {
+        "address": "0xFF2BBcB399aD50bbD06DebAdd47D290933ae1038",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0004",
+                "weight": 0.5
+            },
+            {
+                "id": "T0151",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wethom_uniswap",
+        "exchange": "uniswap",
+        "id": "P0378"
+    },
+    {
+        "address": "0x459acB9d1b0f2D8C0b07bf767CcF80EB7Efdd1c3",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0067",
+                "weight": 0.5
+            },
+            {
+                "id": "T0156",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "bzbswam_uniswap",
+        "exchange": "uniswap",
+        "id": "P0379"
+    },
+    {
+        "address": "0x0cD19Fb530D0ff9caB6F233d61dE6240E7f4660F",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0091",
+                "weight": 0.5
+            },
+            {
+                "id": "T0156",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "kiwiswam_uniswap",
+        "exchange": "uniswap",
+        "id": "P0380"
+    },
+    {
+        "address": "0x61DEc7489fe6B3416d395c772365b0fECBf13D98",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0157",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticpst_uniswap",
+        "exchange": "uniswap",
+        "id": "P0381"
+    },
+    {
+        "address": "0xe3aD20db6f1B061024F4dF761DEB80bCd3e3E2a7",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0004",
+                "weight": 0.5
+            },
+            {
+                "id": "T0156",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wethswam_uniswap",
+        "exchange": "uniswap",
+        "id": "P0382"
+    },
+    {
+        "address": "0xbc7de021CC17a0399bEe6b9FE9531E78c10526a7",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0133",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticcomp_uniswap",
+        "exchange": "uniswap",
+        "id": "P0383"
+    },
+    {
+        "address": "0xEAA5E4620373d9Ded4DCB9267F46fcfc6698c867",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0004",
+                "weight": 0.5
+            },
+            {
+                "id": "T0152",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wethcel_uniswap",
+        "exchange": "uniswap",
+        "id": "P0384"
+    },
+    {
+        "address": "0x1CB6796D2A8Ea509c44DF13077567947E028c8cd",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0041",
+                "weight": 0.5
+            },
+            {
+                "id": "T0006",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "mausdcusdt_uniswap",
+        "exchange": "uniswap",
+        "id": "P0385"
+    },
+    {
+        "address": "0x2Bd98F54D89EED91A5395A94287899E28DFAdd44",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0158",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticaah_uniswap",
+        "exchange": "uniswap",
+        "id": "P0386"
+    },
+    {
+        "address": "0x72866e0f46B615Dd2Cd6000F88E2dE2FCa43afB2",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0006",
+                "weight": 0.5
+            },
+            {
+                "id": "T0042",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdtmadai_uniswap",
+        "exchange": "uniswap",
+        "id": "P0387"
+    },
+    {
+        "address": "0x71bD8869d83DaFe5D7fB9f549101FD35e2Ed203f",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0004",
+                "weight": 0.5
+            },
+            {
+                "id": "T0158",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wethaah_uniswap",
+        "exchange": "uniswap",
+        "id": "P0388"
+    },
+    {
+        "address": "0x72270Cf220c541C8D16c96717d1FB541366409e4",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0142",
+                "weight": 0.5
+            },
+            {
+                "id": "T0010",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "ampuni_uniswap",
+        "exchange": "uniswap",
+        "id": "P0389"
+    },
+    {
+        "address": "0xBC0a0beDCc65920fCECF8588b839FEc4C224849E",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0158",
+                "weight": 0.5
+            },
+            {
+                "id": "T0010",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "aahuni_uniswap",
+        "exchange": "uniswap",
+        "id": "P0390"
+    },
+    {
+        "address": "0x92f9Fbe3fb287aDa170994FBDFFedd231004496F",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0158",
+                "weight": 0.5
+            },
+            {
+                "id": "T0077",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "aahyfi_uniswap",
+        "exchange": "uniswap",
+        "id": "P0391"
+    },
+    {
+        "address": "0x22D607865Aa42f70fda430C4c1828e1dbA6C42F5",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0004",
+                "weight": 0.5
+            },
+            {
+                "id": "T0138",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wethcfi_uniswap",
+        "exchange": "uniswap",
+        "id": "P0392"
+    },
+    {
+        "address": "0x58411c1F326270B92d6Cc8f9C0fC70568BAbe8DD",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0140",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdcdam_uniswap",
+        "exchange": "uniswap",
+        "id": "P0393"
+    },
+    {
+        "address": "0x58BBC687Ad7113e46D35314776FAd9c4B73e200C",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0023",
+                "weight": 0.5
+            },
+            {
+                "id": "T0004",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "0xbtcweth_uniswap",
+        "exchange": "uniswap",
+        "id": "P0394"
+    },
+    {
+        "address": "0xC56BaAC876F4F0f8F2E3A995F37aCfa2ECa92AC8",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0080",
+                "weight": 0.5
+            },
+            {
+                "id": "T0006",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "jpycusdt_uniswap",
+        "exchange": "uniswap",
+        "id": "P0395"
+    },
+    {
+        "address": "0x136C27dB0b609800894ED25Ab12947c172303DBe",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0159",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticjunk_uniswap",
+        "exchange": "uniswap",
+        "id": "P0396"
+    },
+    {
+        "address": "0xff927195AF02fDcA48857D277651c97839003261",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0160",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticpar_uniswap",
+        "exchange": "uniswap",
+        "id": "P0397"
+    },
+    {
+        "address": "0x3fd96747042Ea84e911b6Af7A61226eAd71ebe82",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0107",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdcdusd_uniswap",
+        "exchange": "uniswap",
+        "id": "P0398"
+    },
+    {
+        "address": "0x2d20618Ef8c7Cd814546B7C7409fd92Cc86FE52f",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0160",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "quickpar_uniswap",
+        "exchange": "uniswap",
+        "id": "P0399"
+    },
+    {
+        "address": "0x72bb1f9e13146AACe736116B4aB498C9b815bB44",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0133",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdccomp_uniswap",
+        "exchange": "uniswap",
+        "id": "P0400"
+    },
+    {
+        "address": "0x7Ae01E6994aeC95994F824e81E63c3242e8f61a2",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0004",
+                "weight": 0.5
+            },
+            {
+                "id": "T0042",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wethmadai_uniswap",
+        "exchange": "uniswap",
+        "id": "P0401"
+    },
+    {
+        "address": "0xfE56aaB41aa5829D599265fb0c7e156C8f001e33",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0158",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdcaah_uniswap",
+        "exchange": "uniswap",
+        "id": "P0402"
+    },
+    {
+        "address": "0x69Fc300A4819daFdc9d6120b85c5336Db67c7972",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0151",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wmaticom_uniswap",
+        "exchange": "uniswap",
+        "id": "P0403"
+    },
+    {
+        "address": "0x322f76A5f3Cdd839082e8C432EA765A8FdA20A42",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0142",
+                "weight": 0.5
+            },
+            {
+                "id": "T0160",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "amppar_uniswap",
+        "exchange": "uniswap",
+        "id": "P0404"
+    },
+    {
+        "address": "0xE3BE8BF6f94925D8ADdA8f6d251A2714860EC25D",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0160",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdcpar_uniswap",
+        "exchange": "uniswap",
+        "id": "P0405"
+    },
+    {
+        "address": "0xC464773fdF545Aa57A70447d0eA9E90ee4450540",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0071",
+                "weight": 0.5
+            },
+            {
+                "id": "T0073",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "mawethmalink_uniswap",
+        "exchange": "uniswap",
+        "id": "P0406"
+    },
+    {
+        "address": "0x57D5FF3C9bBd5883bBa25F052b060F6Fce384a00",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0161",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdcrdusdtest_uniswap",
+        "exchange": "uniswap",
+        "id": "P0407"
+    },
+    {
+        "address": "0x5Efc1208910803d138314b60870A1370f3647b8A",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0004",
+                "weight": 0.5
+            },
+            {
+                "id": "T0133",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wethcomp_uniswap",
+        "exchange": "uniswap",
+        "id": "P0408"
     }
 ]
