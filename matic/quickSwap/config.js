@@ -42,8 +42,8 @@ const BLACKLISTED_TKNS = [
 ]
 
 // Gas settings
-const DYNAMIC_GAS_THRESHOLD = ethers.utils.parseUnits('3000', 'gwei') // Gas price at which dynamic gas starts
-const DEFAULT_GAS_PRICE = ethers.utils.parseUnits('150', 'gwei')
+const DYNAMIC_GAS_THRESHOLD = ethers.utils.parseUnits('3620', 'gwei') // Gas price at which dynamic gas starts
+const DEFAULT_GAS_PRICE = ethers.utils.parseUnits('189', 'gwei')
 const MAX_GAS_COST = ethers.BigNumber.from('1')
 const PRCT_PROFIT_FOR_GAS = '4' // Percentage of gross profit that will be spent on gas
 const GAS_LIMIT = "350000"
