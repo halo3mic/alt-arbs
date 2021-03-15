@@ -182,7 +182,7 @@ async function submitTradeTx(blockNumber, opp) {
     let txReceipt = await PROVIDER.waitForTransaction(tx.hash, BLOCK_WAIT);
     if (txReceipt.status == 0) {
         console.log(`${blockNumber} | ${Date.now()} | ❌ Fail: ${txReceipt.transactionHash}`);
-        RESERVES = await reservesManager.fetchReservesAll()
+        RESERVES = await reservesManager.fetchReservesForPaths(paths)
         FAILED_TX_IN_A_ROW += 1;
         if (FAILED_TX_IN_A_ROW > MAX_CONSECUTIVE_FAILS) {
             console.log("Shutting down... too many failed tx");
