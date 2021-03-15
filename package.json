@@ -1,5 +1,11 @@
 {
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "zero": "node ./zeroExchangeV2/eventListener.js",
+    "pangolin": "node ./pangolinV2/eventListener.js"
+  },
   "dependencies": {
+    "bignumber.js": "^9.0.1",
     "dotenv": "^8.2.0",
     "ethers": "^5.0.31",
     "ganache-cli": "^6.12.2",
