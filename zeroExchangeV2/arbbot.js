@@ -182,6 +182,7 @@ async function submitTradeTx(blockNumber, opp) {
     let txReceipt = await PROVIDER.waitForTransaction(tx.hash, BLOCK_WAIT);
     if (txReceipt.status == 0) {
         console.log(`${blockNumber} | ${Date.now()} | ❌ Fail: ${txReceipt.transactionHash}`);
+        RESERVES = await reservesManager.fetchReservesForPaths(paths)
         FAILED_TX_IN_A_ROW += 1;
         if (FAILED_TX_IN_A_ROW > MAX_CONSECUTIVE_FAILS) {
             console.log("Shutting down... too many failed tx");
@@ -199,7 +200,7 @@ async function submitTradeTx(blockNumber, opp) {
 * Checks all instructions for arbs associated with the pool
 *  
 */
-async function arbForPool(blockNumber, poolAddress) {
+async function arbForPool(blockNumber, poolAddress, startTime) {
     if (!RUNWAY_CLEAR) {
         console.log(`${blockNumber} | Tx in flight, ignoring block`);
         return;

@@ -92,4 +92,4 @@ async function fetchReservesForPaths(paths) {
     return Promise.all(reservesPlan.map(fetchReserves)).then(Object.fromEntries)
 }
 
-module.exports = { init, getReserves,getAllReserves, updateReserves }
+module.exports = { init, getReserves,getAllReserves, updateReserves, fetchReservesForPaths }

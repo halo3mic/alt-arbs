@@ -14,8 +14,8 @@ let reserves = {}
 let latestBlock = 0
 let changedPools = new Set()
 
-async function init() {
-    await arbbot.init(provider, signer)
+async function init(pathIndex, chunks) {
+    await arbbot.init(provider, signer, pathIndex, chunks)
     startListening()
 }
 
@@ -36,3 +36,6 @@ function startListening() {
 
 
 init()
+
+
+module.exports = { init }

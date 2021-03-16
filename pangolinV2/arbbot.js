@@ -36,8 +36,8 @@ const STATIC_INPUT_AMOUNTS = [
 ]
 
 
-async function init(provider, signer) {
-    filterPaths()
+async function init(provider, signer, pathIndex, chunks) {
+    filterPaths(pathIndex, chunks)
     SIGNER = signer
     PROVIDER = provider
     ROUTER_CONTRACT = new ethers.Contract(
@@ -55,11 +55,19 @@ async function init(provider, signer) {
     BOT_BAL = await getWAVAXBalance();
 }
 
-function filterPaths() {
+function filterPaths(pathIndex, chunks) {
     paths = orgPaths.filter(path => {
         let { tkns: tknPath, pools: poolsPath } = path
         return !(tknPath[0]!=INPUT_ASSET || tknPath[tknPath.length-1]!=INPUT_ASSET || path.enabled!='1' || MAX_HOPS<poolsPath.length)
     })
+    console.log('Paths full size', paths.length)
+    if (chunks) {
+        let x = Math.floor(paths.length/chunks)
+        let start = x*pathIndex
+        let end = (pathIndex==chunks-1 ? paths.length : (pathIndex+1)*x) + 1
+        paths = paths.slice(start, end)
+    }
+    console.log(`Running with ${paths.length} paths`)
 }
 
 function getReservePath(path) {
@@ -181,6 +189,7 @@ async function submitTradeTx(blockNumber, opp) {
     let txReceipt = await PROVIDER.waitForTransaction(tx.hash, BLOCK_WAIT);
     if (txReceipt.status == 0) {
         console.log(`${blockNumber} | ${Date.now()} | ❌ Fail: ${txReceipt.transactionHash}`);
+        RESERVES = await reservesManager.fetchReservesForPaths(paths)
         FAILED_TX_IN_A_ROW += 1;
         if (FAILED_TX_IN_A_ROW > MAX_CONSECUTIVE_FAILS) {
             console.log("Shutting down... too many failed tx");

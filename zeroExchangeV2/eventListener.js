@@ -21,15 +21,16 @@ async function init() {
 
 function handleEvent(blockNumber, poolAddress, reserveBytes) {
     // console.log(`Updating pool ${poolAddress} with reserves ${reserveBytes}`)
-    arbbot.updateReserves(poolAddress, reserveBytes)
-    arbbot.arbForPool(blockNumber, poolAddress)
+    
 }
 
 function startListening() {
     const filter = {topics: [uniswapSyncTopic]}
     provider.on(filter, log => {
+        let startTimestamp = Date.now()
         if (poolAddresses.includes(log.address)) {
-            handleEvent(log.blockNumber, log.address, log.data)
+            arbbot.updateReserves(log.address, log.data)
+            arbbot.arbForPool(log.blockNumber, log.address, startTimestamp)
         }
     })
 }
