@@ -1,0 +1,104 @@
+[
+    {
+        "address": "0xE5Dc9c75D4514A5a7fe370e636560699bA83C702",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0004",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxeth_sushiswap",
+        "exchange": "sushiswap",
+        "id": "P0000"
+    },
+    {
+        "address": "0xAEc2BECB0711b263C665f1Bc813c1f53F97C991a",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0003",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxlink_sushiswap",
+        "exchange": "sushiswap",
+        "id": "P0001"
+    },
+    {
+        "address": "0x47F1C2a9c9027A10C3b13D1c40DD976C5014339B",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0001",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxusdt_sushiswap",
+        "exchange": "sushiswap",
+        "id": "P0002"
+    },
+    {
+        "address": "0xa1708efD71E516A2D0Ebd7eC8D877C02d4d2De6d",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0002",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pngwavax_sushiswap",
+        "exchange": "sushiswap",
+        "id": "P0003"
+    },
+    {
+        "address": "0x27dA820d8159942A8882d339195094cc6eb35453",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0008",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sushiwavax_sushiswap",
+        "exchange": "sushiswap",
+        "id": "P0004"
+    },
+    {
+        "address": "0xAe0ffC93315A5215047Ded27880aC50a537e0a2E",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0009",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wbtcwavax_sushiswap",
+        "exchange": "sushiswap",
+        "id": "P0005"
+    }
+]

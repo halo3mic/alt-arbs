@@ -12,6 +12,7 @@ async function main() {
         '0x58C8CD291Fa36130119E6dEb9E520fbb6AcA1c3a',  // Yeti
         '0x5C02e78A3969D0E64aa2CFA765ACc1d671914aC0',  // Complus
         '0xf2aBD8FaFb2f1AfE2465f243Ef2093CD0e3cBABF',  // Baoswap
+        '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',  // Sushiswap
     ]
     // await importPoolsFromCsv()
     await importPoolsFromFactory(...factories)
