@@ -1,69 +1,64 @@
+const { provider } = require('../../provider').ws
+const config = require('../../config')
+const ethers = require('ethers')
 const adder = require('./adder')
 const csv = require('csvtojson')
-const ethers = require('ethers')
-const { provider } = require('../../avaProvider')
+
+const FLAGS = {
+    'import-csv': importPoolsFromCsv, 
+    'import-factory': importPoolsFromFactory, 
+    'approve': approveTkns, 
+    'paths': generatePaths
+}
 
 async function main() {
-    let factories = [
-        '0xefa94DE7a4656D787667C749f7E1223D71E9FD88',  // Pangolin
-        // '0xeb4E120069d7AaaeC91508eF7EAec8452893a80a',  // ???
-        // '0x29D1Adbb65d93a5710cafe2EF0E8131f64E6AB22',  // ???
-        '0x2Ef422F30cdb7c5F1f7267AB5CF567A88974b308',  // Zero
-        '0x58C8CD291Fa36130119E6dEb9E520fbb6AcA1c3a',  // Yeti
-        '0x5C02e78A3969D0E64aa2CFA765ACc1d671914aC0',  // Complus
-        '0xf2aBD8FaFb2f1AfE2465f243Ef2093CD0e3cBABF',  // Baoswap
-        '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',  // Sushiswap
-    ]
-    // await importPoolsFromCsv()
-    await importPoolsFromFactory(...factories)
-    // await approveTkns()
-    // await addInstructions()
+    let flags = process.argv.slice(2)
+    flags.forEach(f=>FLAGS[f]())
 }
-
 
 async function importPoolsFromCsv() {
-    // Import all pools from add.csv and convert this file to json
+    console.log('Importing pools from csv ...')
     const sourcePath = `${__dirname}/add.csv`
     const addRequests = await csv().fromFile(sourcePath)
-    // Add new pools
     let poolMng = new adder.PoolManager()
-    return addRequests.map(r => poolMng.add(r.poolAddress))
+    return Promise.all(
+        addRequests.map(async r => poolMng.add(r.poolAddress))
+    )
 }
 
-async function importPoolsFromFactory(...addresses) {
+async function importPoolsFromFactory() {
+    console.log('Importing pools from factory ...')
     let poolMng = new adder.PoolManager()
-    let factoryAbi = require('../../config/abis/uniswapFactory.json')
-    addresses.forEach(async address => {
-        let factoryContract = new ethers.Contract(address, factoryAbi, provider)
-        let max = await factoryContract.allPairsLength().then(l=>l.toNumber())
-        let i = 0
-        while (i<max) {
-            try {
-                let a = await factoryContract.allPairs(i)
-                poolMng.add(a)
-                i ++
-            } catch (e) {
-                console.log(e)
-                break
-            }
+    let factoryContract = new ethers.Contract(
+        config.FACTORY, 
+        config.ABIS['uniswapFactory'], 
+        provider
+    )
+    let max = await factoryContract.allPairsLength().then(l=>l.toNumber())
+    for (let i=0; i<max; i++) {
+        try {
+            let a = await factoryContract.allPairs(i)
+            poolMng.add(a)
+        } catch (e) {
+            console.log(e)
+            break
         }
-    })
-
-
+    }
+    return true
 }
 
 async function approveTkns() {
+    console.log('Approving tokens ...')
     let approvalMng = new adder.ApprovalsManager()
-    // await approvalMng.updateAllApprovals()
+    await approvalMng.updateAllApprovals()
     await approvalMng.approveAll()
     return true
 }
 
-async function addInstructions() {
+async function generatePaths() {
+    console.log('Generating paths ...')
     let im = new adder.InstructionManager()
-    return await im.findInstructions()
+    return im.findInstructions()
 }
 
-// main()
-// addInstructions()
-approveTkns()
+main()
