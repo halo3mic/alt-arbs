@@ -1,68 +1,67 @@
+/**
+  * This module provides math functions suited for caclulation of optimal amount of multi-path arbitrage strategy on Uniswap pools.
+  * The math was taken from github repo https://github.com/ccyanxyz/uniswap-arbitrage-analysis/tree/c5325ac7ef8086c544e30e4d686c5e0ab1144d96,
+  * for which formatted formulas can be found here https://hackmd.io/@KLMgUhDpRBW3N-1JVEla5A/BJr3wf4lO.
+*/
+
 const { BigNumber } = require('ethers')
+const BN = require('bignumber.js')
 
-let d1000 = BigNumber.from("1000");
-let d997 = BigNumber.from("997");
-const ZERO = BigNumber.from("0");
-const ONE = BigNumber.from("1");
-const TWO = BigNumber.from("2");
+let d1000 = BigNumber.from("1000")
+let d997 = BigNumber.from("997")
+const ZERO = BigNumber.from("0")    
 
-function sqrt(x) {
-    let z = x.add(ONE).div(TWO);
-    let y = x
-    while (z.sub(y).isNegative()) {
-        y = z
-        z = x.div(z).add(z).div(TWO);
-    }
-    return y
+/**
+ * Return optimal amount for a reserve path
+ * @param {Array[BigNumber]} reservePath - Pool reserves ordered by path precedence
+ * @returns {BigNumber}
+ */
+function getOptimalAmountForPath(reservePath) {
+    let result = getEaEb(reservePath)
+    return getOptimalAmount(...result) || ZERO
 }
 
-function getNeighbour(array, caller) {
-    return caller==array[0] ? array[1] : array[0]
-}
-
-function getEaEb(tokenIn, pairs) {
-    let tokenMid = null
-    let tokenOut = null
-    let Ea = null
-    let Eb = null
-    let idx = 0
-    for (let pair of pairs) {
-        if (idx == 0) {
-            tokenMid = getNeighbour(pairs[0].tkns, tokenIn)
-        }
-        if (idx == 1) {
-            tokenOut = getNeighbour(pair.tkns, tokenMid)
-            Ra = pairs[0].reserves[tokenIn]
-            Rb = pairs[0].reserves[tokenMid]
-            Rb1 = pair.reserves[tokenMid]
-            Rc = pair.reserves[tokenOut]
-            Ea = d1000.mul(Ra).mul(Rb1).div(d1000.mul(Rb1).add(d997.mul(Rb)))
-            Eb = d997.mul(Rb).mul(Rc).div(d1000.mul(Rb1).add(d997.mul(Rb)))
-            tokenIn = tokenOut
-        }
-        if (idx > 1) {
-            tokenOut = getNeighbour(pair.tkns, tokenIn)
-            Ra = Ea
-            Rb = Eb
-            Rb1 = pair.reserves[tokenIn]
-            Rc = pair.reserves[tokenOut]
-            Ea = d1000.mul(Ra).mul(Rb1).div(d1000.mul(Rb1).add(d997.mul(Rb)))
-            Eb = d997.mul(Rb).mul(Rc).div(d1000.mul(Rb1).add(d997.mul(Rb)))
-            tokenIn = tokenOut
-        }
-        idx += 1
+/**
+ * Return reserves for virtual pool
+ * @param {Array[BigNumber]} reservePath - Pool reserves ordered by path precedence
+ * @returns {Array[BigNumber]}
+ */
+function getEaEb(reservePath) {
+    let Rb1, Rc
+    let Ea = reservePath[0]
+    let Eb = reservePath[1]
+    for (let i=2; i<reservePath.length-1; i+=2) {
+        Rb1 = reservePath[i]
+        Rc = reservePath[i+1]
+        Ea = d1000.mul(Ea).mul(Rb1).div(d1000.mul(Rb1).add(d997.mul(Eb)))
+        Eb = d997.mul(Eb).mul(Rc).div(d1000.mul(Rb1).add(d997.mul(Eb)))
     }
     return [ Ea, Eb ]
 }
 
+/**
+ * Return optimal amount for virtual reserves
+ * @param {BigNumber} Ea - Reserve of virtual pool
+ * @param {BigNumber} Eb - Reserve of virtual pool
+ * @returns {BigNumber}
+ */
 function getOptimalAmount(Ea, Eb) {
     if (Ea.lt(Eb)) {
-        return sqrt(Ea.mul(Eb).mul(d997).mul(d1000)).sub(Ea.mul(d1000)).div(d997)
+        let x = Ea.mul(Eb).mul(d997).mul(d1000)
+        let y = BigNumber.from(BN.BigNumber(x.toString()).sqrt().toFixed(0))
+        return y.sub(Ea.mul(d1000)).div(d997)
     }
 }
 
+/**
+ * Return amount recieved for trading amountIn between two assets
+ * @param {BigNumber} amountIn - Sell amount
+ * @param {BigNumber} reserveIn - Reserve of selling asset
+ * @param {BigNumber} reserveOut - Reserve of buying asset
+ * @returns {BigNumber}
+ */
 function getAmountOut(amountIn, reserveIn, reserveOut) {
-    if (amountIn*reserveIn*reserveOut==0) {
+    if (amountIn.eq(ZERO)) {
         return ZERO
     }
     let taxedIn = d997.mul(amountIn)
@@ -71,56 +70,44 @@ function getAmountOut(amountIn, reserveIn, reserveOut) {
     return numerator.div(denominator)
 }
 
-function getAmountOutByPath(tokenIn, amountIn, path) {
+/**
+ * Return amount recieved for trading through a path
+ * @param {BigNumber} amountIn - Sell amount
+ * @param {BigNumber} reservePath - Pool reserves ordered by path precedence
+ * @returns {BigNumber}
+ */
+function getAmountOutByReserves(amountIn, reservePath) {
     var amountOut = amountIn
-    var tokenOut = tokenIn
-    for (let pair of path) {
-        if (!pair.tkns.includes(tokenOut)) {
-            throw new Error('Invalid path')
-        }
-        tokenOut = getNeighbour(pair.tkns, tokenIn)
+    for (let i=0; i<reservePath.length-1; i+=2) {
         amountOut = getAmountOut(
             amountOut, 
-            pair.reserves[tokenIn], 
-            pair.reserves[tokenOut]
-            )
-        tokenIn = tokenOut
+            reservePath[i], 
+            reservePath[i+1]
+        )
     }
     return amountOut
 }
 
-function getAllAmountsForPath(tokenIn, amountIn, path) {
+function getAmountsByReserves(amountIn, reservePath) {
     var amounts = [amountIn]
     var amountOut = amountIn
-    var tokenOut = tokenIn
-    for (let pair of path) {
-        if (!pair.tkns.includes(tokenOut)) {
-            throw new Error('Invalid path')
-        }
-        tokenOut = getNeighbour(pair.tkns, tokenIn)
+    for (let i=0; i<reservePath.length-1; i+=2) {
         amountOut = getAmountOut(
             amountOut, 
-            pair.reserves[tokenIn], 
-            pair.reserves[tokenOut]
+            reservePath[i], 
+            reservePath[i+1]
         )
         amounts.push(amountOut)
-        tokenIn = tokenOut
     }
     return amounts
 }
 
-function getOptimalAmountForPath(tokenIn, pairs) {
-    let result = getEaEb(tokenIn, pairs)
-    return getOptimalAmount(...result) || ZERO
-}
-
 
 module.exports = { 
-    sqrt, 
-    getEaEb, 
+    getOptimalAmountForPath, 
+    getAmountOutByReserves,
+    getAmountsByReserves,
     getOptimalAmount, 
     getAmountOut, 
-    getAmountOutByPath, 
-    getOptimalAmountForPath, 
-    getAllAmountsForPath
+    getEaEb, 
 }
