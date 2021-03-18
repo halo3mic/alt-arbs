@@ -58,7 +58,7 @@ function filterPaths() {
             path.tkns.filter(t => config.BLACKLISTED_TKNS.includes(t)).length == 0 &&
             path.tkns[0] == config.INPUT_ASSET &&
             path.tkns[path.tkns.length - 1] == config.INPUT_ASSET &&
-            path.enabled &&
+            path.enabled=='1' &&
             config.MAX_HOPS >= path.pools.length - 1
         )
     })
