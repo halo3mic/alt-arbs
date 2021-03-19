@@ -1,0 +1,206 @@
+[
+    {
+        "address": "0xfEbf47CF89F766E6c24317b17F862bA5d4d82f8c",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0001",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxelk_elk",
+        "exchange": "elk",
+        "id": "P0000"
+    },
+    {
+        "address": "0x53e3D3e77B3ed38FDc5156F6EF761D85012850c2",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0002",
+                "weight": 0.5
+            },
+            {
+                "id": "T0001",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdtelk_elk",
+        "exchange": "elk",
+        "id": "P0001"
+    },
+    {
+        "address": "0x3Fbd7DD99Ca32f98a56DDEE57B6b96e1152668F5",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0001",
+                "weight": 0.5
+            },
+            {
+                "id": "T0003",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "elketh_elk",
+        "exchange": "elk",
+        "id": "P0002"
+    },
+    {
+        "address": "0x5bae3110066890D0BDB9837c14C2461168a3407E",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0004",
+                "weight": 0.5
+            },
+            {
+                "id": "T0001",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wbtcelk_elk",
+        "exchange": "elk",
+        "id": "P0003"
+    },
+    {
+        "address": "0x3e58308A97AF12AD4aFfE6f688a8b7e8a8E459B1",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0005",
+                "weight": 0.5
+            },
+            {
+                "id": "T0001",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "linkelk_elk",
+        "exchange": "elk",
+        "id": "P0004"
+    },
+    {
+        "address": "0x0826e1A55ebeF25d725Bb944555F714Db84d95Bb",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0002",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxusdt_elk",
+        "exchange": "elk",
+        "id": "P0005"
+    },
+    {
+        "address": "0xe4b269b61471D81898Be034DAB496910A5796154",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0003",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxeth_elk",
+        "exchange": "elk",
+        "id": "P0006"
+    },
+    {
+        "address": "0xF31a76d123dd6b10008F2f096AB0AafBd508A2de",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0006",
+                "weight": 0.5
+            },
+            {
+                "id": "T0001",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "daielk_elk",
+        "exchange": "elk",
+        "id": "P0007"
+    },
+    {
+        "address": "0x266ed42866b3d2d418C87EbF8b58f22add0E6F8e",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0007",
+                "weight": 0.5
+            },
+            {
+                "id": "T0001",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pngelk_elk",
+        "exchange": "elk",
+        "id": "P0008"
+    },
+    {
+        "address": "0x288Ffb87fc69dC652f9b564fAF05dB7468013544",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0004",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wbtcwavax_elk",
+        "exchange": "elk",
+        "id": "P0009"
+    },
+    {
+        "address": "0x269Fafdc9F362414B9c08ADBb8A3106AF5a2dc01",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0005",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxlink_elk",
+        "exchange": "elk",
+        "id": "P0010"
+    },
+    {
+        "address": "0xD514419729A55d2615F87b074e15cD28ECa3FC9B",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0006",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxdai_elk",
+        "exchange": "elk",
+        "id": "P0011"
+    }
+]

@@ -29,30 +29,22 @@ async function importPoolsFromCsv() {
 async function importPoolsFromFactory() {
     console.log('Importing pools from factory ...')
     let poolMng = new adder.PoolManager()
-    for (let factoryAddress of Object.values(config.FACTORIES)) {
-        let factoryContract = new ethers.Contract(
-            factoryAddress, 
-            config.ABIS['uniswapFactory'], 
-            provider
-        )
+    let factoryContract = new ethers.Contract(
+        config.FACTORY, 
+        config.ABIS['uniswapFactory'], 
+        provider
+    )
+    let max = await factoryContract.allPairsLength().then(l=>l.toNumber())
+    for (let i=0; i<max; i++) {
         try {
-            var max = await factoryContract.allPairsLength().then(l=>l.toNumber())
-            console.log('Found', max, 'pools')
+            let a = await factoryContract.allPairs(i)
+            poolMng.add(a)
         } catch (e) {
             console.log(e)
+            break
         }
-        
-        for (let i=0; i<max; i++) {
-            try {
-                let a = await factoryContract.allPairs(i)
-                poolMng.add(a)
-            } catch (e) {
-                console.log(e)
-                break
-            }
-        }
-        return true
     }
+    return true
 }
 
 async function approveTkns() {

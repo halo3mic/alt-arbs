@@ -273,6 +273,19 @@ class Sushiswap extends Uniswap {
     }
 }
 
+class Elk extends Pangolin {
+
+    constructor(provider) {
+        super(provider)
+        this.routerAddress = ROUTERS.ELK
+        this.routerContract = new ethers.Contract(
+            this.routerAddress, 
+            ABIS['pangolinRouter'],
+            provider
+        )
+    }
+}
+
 function getExchanges(provider) {
     return {
         zeroExchange: new ZeroExchange(provider), 
@@ -283,6 +296,7 @@ function getExchanges(provider) {
         baoSwap: new BaoSwap(provider), 
         yetiXYZ: new YetiXYZ(provider), 
         yetiswap: new Yeti(provider), 
+        elk: new Elk(provider),
     }   
 }
 
