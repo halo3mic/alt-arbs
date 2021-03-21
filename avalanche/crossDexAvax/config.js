@@ -31,13 +31,11 @@ const UNISWAP_SYNC_TOPIC = '0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e06
 
 const MAX_CONSECUTIVE_FAILS = 20 // After max consecutive fails bot shuts down
 const BLOCK_WAIT = 2 // Number of blocks to confirm tx
-const MAX_HOPS = 4 // Max number of swaps
+const MAX_HOPS = 3 // Max number of swaps
 const TIMEOUT_OFFSET = 180  // Seconds after which trade expires 
 
 const BOT_ID = 2
 const MIN_PROFIT = ethers.utils.parseUnits('0.1')
-const STATIC_GAS_PRICE = ethers.BigNumber.from('470')
-const GAS_LIMIT = '700000'
 const RPC_PROVIDER_URL = 'https://api.avax.network/ext/bc/C/rpc'
 const DISPATCHER = '0xd11828308Fc7C84Ea31CCD398E609468d6D20713'
 const ROUTERS = {
@@ -54,6 +52,14 @@ const ROUTERS = {
 
 const FACTORIES = {
     ELK: '0x091d35d7F63487909C863001ddCA481c6De47091',
+    PANGOLIN: '0xefa94DE7a4656D787667C749f7E1223D71E9FD88',
+    ZERO_EXCHANGE: '0x091d35d7F63487909C863001ddCA481c6De47091',
+    COMPLUS: '0x5C02e78A3969D0E64aa2CFA765ACc1d671914aC0', 
+    BAOSWAP: '0x29D1Adbb65d93a5710cafe2EF0E8131f64E6AB22', 
+    YETI: '0x58C8CD291Fa36130119E6dEb9E520fbb6AcA1c3a', 
+    SUSHISWAP: '0xc35DADB65012eC5796536bD9864eD8773aBc74C4', 
+    YETIXYZ: '0xf2aBD8FaFb2f1AfE2465f243Ef2093CD0e3cBABF',
+    UNNAMED1: '0xeb4E120069d7AaaeC91508eF7EAec8452893a80a',
 }
 
 BLACKLISTED_TKNS = [
@@ -62,8 +68,9 @@ BLACKLISTED_TKNS = [
 
 // Gas settings
 const DEFAULT_GAS_PRICE = ethers.utils.parseUnits('470', 'gwei')
-const MAX_GAS_COST = ethers.BigNumber.from('1')
 const EMPTY_POOL_THRESHOLD = ethers.BigNumber.from('10')
+const MAX_GAS_COST = ethers.BigNumber.from('1')
+const GAS_LIMIT = '700000'
 
 // Provider settings
 const PRIVATE_KEY = process.env.PRIVATE_KEY_AVALANCHE
@@ -81,7 +88,6 @@ module.exports = {
     UNISWAP_SYNC_TOPIC,
     DEFAULT_GAS_PRICE,
     BLACKLISTED_TKNS,
-    STATIC_GAS_PRICE,
     RPC_PROVIDER_URL,
     ROUTER_ADDRESS,
     TIMEOUT_OFFSET,

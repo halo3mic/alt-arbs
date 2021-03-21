@@ -7,7 +7,7 @@ function changeArcherGas() {
     let srcInstrPath = resolve(`${__dirname}/../../config/paths.json`) 
     let currData = getCurrentData(srcInstrPath)
     let modified = currData.map(e => {
-        e.gasAmount = e.gasAmount.toString()
+        e.gasAmount = typeof e.gasAmount == 'string' ? e.gasAmount : e.gasAmount.toString()
         return e
     })
     save(modified, dstInstrPath)
@@ -102,7 +102,7 @@ function changePathParams() {
     let srcInstrPath = resolve(`${__dirname}/../../config/paths.json`) 
     let currData = getCurrentData(srcInstrPath)
     let modified = currData.map(e => {
-        e.enabled = e.enabled=='1' ? true : false
+        e.enabled = e.enabled=='1' || e.enabled===true ? true : false
         return e
     })
     save(modified, dstInstrPath)

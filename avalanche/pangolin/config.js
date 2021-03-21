@@ -49,7 +49,7 @@ const GAS_LIMIT = "600000"
 const EMPTY_POOL_THRESHOLD = ethers.BigNumber.from('10')
 
 // Provider settings
-const PRIVATE_KEY = process.env.PRIVATE_KEY_FANTOM
+const PRIVATE_KEY = process.env.PRIVATE_KEY_AVALANCHE
 const RPC_ENDPOINT = process.env.RPC_AVALANCHE
 const WS_ENDPOINT = process.env.WS_AVALANCHE
 const NETWORK = 43114

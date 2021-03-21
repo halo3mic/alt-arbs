@@ -376,14 +376,14 @@ class InstructionManager {
         // if (!gasEstimate) {
         //     return
         // }
-        let gasEstimate = 300000
+        let gasEstimate = '300000'
         // let archerGasAdd = 0
         let instrObj1 = {
             id: this.getNewId(), 
             symbol: pathSymbol,
             tkns: path.tkns, 
             pools: path.pools, 
-            enabled: "1", 
+            enabled: true, 
             gasAmount: gasEstimate, 
             // gasAmountArcher: gasEstimate.add(archerGasAdd).toString(), 
         }

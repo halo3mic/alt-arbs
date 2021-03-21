@@ -65,7 +65,6 @@ async function formDispatcherTx(calldata, inputAmount) {
         inputAmount,
         {
             gasLimit: GAS_LIMIT,
-            // gasPrice: STATIC_GAS_PRICE
         })
 }
 
@@ -74,11 +73,6 @@ async function submitTradeTx(blockNumber, txBody) {
     let tx = await SIGNER.sendTransaction(txBody)
     console.log(`${blockNumber} | Tx sent ${tx.nonce}, ${tx.hash} | Processing time (debug): ${new Date() - startTime}ms`)
     let txReceipt = await PROVIDER.waitForTransaction(tx.hash, config.BLOCK_WAIT);
-    // if (txReceipt.status == 0) {
-    //     console.log(`${blockNumber} | ${Date.now()} | ❌ Fail: ${txReceipt.transactionHash} | Processing time (debug): ${new Date() - startTime}ms`);
-    // } else if (txReceipt.status == 1) {
-    //     console.log(`${blockNumber} | ${Date.now()} | ✅ Success: ${txReceipt.transactionHash} | Processing time (debug): ${new Date() - startTime}ms`);
-    // }
     return txReceipt
 } 
 

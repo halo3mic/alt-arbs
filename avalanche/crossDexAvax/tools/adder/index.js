@@ -29,6 +29,7 @@ async function importPoolsFromCsv() {
 async function importPoolsFromFactory() {
     console.log('Importing pools from factory ...')
     let poolMng = new adder.PoolManager()
+    console.log(Object.values(config.FACTORIES))
     for (let factoryAddress of Object.values(config.FACTORIES)) {
         let factoryContract = new ethers.Contract(
             factoryAddress, 
@@ -51,8 +52,8 @@ async function importPoolsFromFactory() {
                 break
             }
         }
-        return true
     }
+    return true
 }
 
 async function approveTkns() {

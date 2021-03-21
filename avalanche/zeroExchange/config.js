@@ -32,7 +32,7 @@ const UNISWAP_SYNC_TOPIC = '0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e06
 const MIN_PROFIT = ethers.utils.parseUnits('0.1')
 const MAX_CONSECUTIVE_FAILS = 20 // After max consecutive fails bot shuts down
 const BLOCK_WAIT = 2 // Number of blocks to confirm tx
-const MAX_HOPS = 4 // Max number of swaps
+const MAX_HOPS = 6 // Max number of swaps
 const TIMEOUT_OFFSET = 180  // Seconds after which trade expires 
 // Paths with these tokens will be ignored
 const BLACKLISTED_TKNS = [
@@ -48,7 +48,7 @@ const GAS_LIMIT = "600000"
 const EMPTY_POOL_THRESHOLD = ethers.BigNumber.from('10')
 
 // Provider settings
-const PRIVATE_KEY = process.env.PRIVATE_KEY_FANTOM
+const PRIVATE_KEY = process.env.PRIVATE_KEY_AVALANCHE
 const RPC_ENDPOINT = process.env.RPC_AVALANCHE
 const WS_ENDPOINT = process.env.WS_AVALANCHE
 const NETWORK = 43114
