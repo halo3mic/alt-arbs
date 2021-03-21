@@ -3,11 +3,11 @@ const fs = require('fs')
 const resolve = require('path').resolve
 
 function changeArcherGas() {
-    let dstInstrPath = resolve(`${__dirname}/../../config/instructions.json`) 
-    let srcInstrPath = resolve(`${__dirname}/../../config/instructions.json`) 
+    let dstInstrPath = resolve(`${__dirname}/../../config/paths.json`) 
+    let srcInstrPath = resolve(`${__dirname}/../../config/paths.json`) 
     let currData = getCurrentData(srcInstrPath)
     let modified = currData.map(e => {
-        e.gasAmountArcher = e.gasAmountArcher.toString()
+        e.gasAmount = e.gasAmount.toString()
         return e
     })
     save(modified, dstInstrPath)
@@ -116,4 +116,5 @@ function disableTokens() {
     tkns.forEach(tkn=>disablePathsForToken(tkn))
 }
 
-disableTokens()
+changeArcherGas()
+changePathParams()
