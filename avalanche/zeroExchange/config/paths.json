@@ -104,5 +104,43 @@
         ],
         "enabled": true,
         "gasAmount": "300000"
+    },
+    {
+        "id": "I00006",
+        "symbol": "wavax=>zero=>zdai=>zeth=>wavax",
+        "tkns": [
+            "T0000",
+            "T0003",
+            "T0019",
+            "T0001",
+            "T0000"
+        ],
+        "pools": [
+            "P0002",
+            "P0008",
+            "P0005",
+            "P0004"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I00007",
+        "symbol": "wavax=>zeth=>zdai=>zero=>wavax",
+        "tkns": [
+            "T0000",
+            "T0001",
+            "T0019",
+            "T0003",
+            "T0000"
+        ],
+        "pools": [
+            "P0004",
+            "P0005",
+            "P0008",
+            "P0002"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
     }
 ]

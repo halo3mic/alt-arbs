@@ -100,5 +100,90 @@
         "symbol": "zdaizeth_zeroExchange",
         "exchange": "zeroExchange",
         "id": "P0005"
+    },
+    {
+        "address": "0x5Bb52840DA88cEed069ba610787C40Ed425BB311",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0023",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "zerozuni_zeroExchange",
+        "exchange": "zeroExchange",
+        "id": "P0006"
+    },
+    {
+        "address": "0x982716379b2372d06dF5C461E2C79B24ea80c370",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0024",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "zerozsushi_zeroExchange",
+        "exchange": "zeroExchange",
+        "id": "P0007"
+    },
+    {
+        "address": "0x0088997D32CED9bf97bD1C7cA0A2a8d92D0aB5cd",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0019",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "zerozdai_zeroExchange",
+        "exchange": "zeroExchange",
+        "id": "P0008"
+    },
+    {
+        "address": "0x2A053B0818C5529C89b10AC819Db1C5C439cCEC4",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0025",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "zerozbtc_zeroExchange",
+        "exchange": "zeroExchange",
+        "id": "P0009"
+    },
+    {
+        "address": "0x59A566660024e8F7168cf9E578397e88cD6Ba843",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0003",
+                "weight": 0.5
+            },
+            {
+                "id": "T0026",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "zerozusdt_zeroExchange",
+        "exchange": "zeroExchange",
+        "id": "P0010"
     }
 ]

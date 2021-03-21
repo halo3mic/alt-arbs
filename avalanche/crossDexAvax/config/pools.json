@@ -1885,5 +1885,56 @@
         "symbol": "wavaxdai_elk",
         "exchange": "elk",
         "id": "P0110"
+    },
+    {
+        "address": "0x7e449382CBA7560A159301806F63550C4E05009c",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0020",
+                "weight": 0.5
+            },
+            {
+                "id": "T0038",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sfielk_elk",
+        "exchange": "elk",
+        "id": "P0111"
+    },
+    {
+        "address": "0x752aB88D07E5BEaC8F71887552DC41CC7E482d87",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0020",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sfiwavax_elk",
+        "exchange": "elk",
+        "id": "P0112"
+    },
+    {
+        "address": "0xD5742Dd4669658bBcaED9a4E623E07F7a1e5586D",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0016",
+                "weight": 0.5
+            },
+            {
+                "id": "T0009",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pngusdt_elk",
+        "exchange": "elk",
+        "id": "P0113"
     }
 ]

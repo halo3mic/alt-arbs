@@ -100,5 +100,56 @@
         "symbol": "wbtcwavax_sushiswap",
         "exchange": "sushiswap",
         "id": "P0005"
+    },
+    {
+        "address": "0xF272D5D0A633c463e3bf4d14C9FB4704057Cd342",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0007",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxuni_sushiswap",
+        "exchange": "sushiswap",
+        "id": "P0006"
+    },
+    {
+        "address": "0xeDE97B96Adc4593C12aead144B6F2887375A0506",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0010",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxsnob_sushiswap",
+        "exchange": "sushiswap",
+        "id": "P0007"
+    },
+    {
+        "address": "0x787BE602db491E23B9C278673660bBED437F7898",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0011",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "zerowavax_sushiswap",
+        "exchange": "sushiswap",
+        "id": "P0008"
     }
 ]

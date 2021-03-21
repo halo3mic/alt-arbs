@@ -185,5 +185,22 @@
         "symbol": "wavaxuni_yetiswap",
         "exchange": "yetiswap",
         "id": "P0010"
+    },
+    {
+        "address": "0x9AAb3C24ea953Dfa9BC09068a72A376a98451611",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0008",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wbtcwavax_yetiswap",
+        "exchange": "yetiswap",
+        "id": "P0011"
     }
 ]

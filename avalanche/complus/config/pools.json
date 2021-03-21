@@ -236,5 +236,73 @@
         "symbol": "sfidai_complus",
         "exchange": "complus",
         "id": "P0013"
+    },
+    {
+        "address": "0xf0b67622C499c1d525360a4c6102Bd9066374727",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sfiwavax_complus",
+        "exchange": "complus",
+        "id": "P0014"
+    },
+    {
+        "address": "0x2053b9B3b14296A181742525085DaAeA8aE469C6",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0012",
+                "weight": 0.5
+            },
+            {
+                "id": "T0008",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sficom_complus",
+        "exchange": "complus",
+        "id": "P0015"
+    },
+    {
+        "address": "0xF6F4e980Ba8b1455c7e5d93E42650407f2624Ed1",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0008",
+                "weight": 0.5
+            },
+            {
+                "id": "T0013",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "comcom+_complus",
+        "exchange": "complus",
+        "id": "P0016"
+    },
+    {
+        "address": "0x26d7875D8f53e79942b8c7CA0dF6E32F74b087DA",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0014",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "bnbwavax_complus",
+        "exchange": "complus",
+        "id": "P0017"
     }
 ]
