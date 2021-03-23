@@ -3,6 +3,7 @@ const orgPaths = require('./config/paths.json')
 const tokens = require('./config/tokens.json')
 
 const reservesManager = require('./reservesManager')
+const txMng = require('./txManager')
 const config = require('./config')
 const math = require('./math')
 
@@ -13,8 +14,6 @@ let FAILED_TX_IN_A_ROW = 0
 let PATH_FAIL_COUNTER = {}
 let POOLS_IN_FLIGHT = []
 
-let WRAPPED_CONTRACT
-let ROUTER_CONTRACT
 let LAST_FAIL  // Path id of the last fail
 let PROVIDER
 let RESERVES
@@ -30,22 +29,12 @@ let PATHS
 async function init(provider, signer) {
     SIGNER = signer
     PROVIDER = provider
-
-    ROUTER_CONTRACT = new ethers.Contract(
-        config.ROUTER_ADDRESS,
-        config.ABIS['uniswapRouter'],
-        signer
-    )
-    WRAPPED_CONTRACT = new ethers.Contract(
-        tokens.filter(t => t.id == config.INPUT_ASSET)[0].address,
-        config.ABIS['weth'],
-        signer
-    )
     filterPaths()
+    txMng.init(provider, signer)
     await reservesManager.init(provider, PATHS) // Initialize reserveres manager
     RESERVES = reservesManager.getAllReserves() // Get reserves for filtered paths
     filterPathsWithEmptyPool()
-    BOT_BAL = await getWrappedBalance()
+    BOT_BAL = await getBalance()
 }
 
 /**
@@ -89,12 +78,12 @@ function getPaths() {
     return PATHS
 }
 
-/**
- * Return the token balance of wrapped chain token for signer
- * @returns {ethers.BigNumber}
- */
-async function getWrappedBalance() {
-    return await WRAPPED_CONTRACT.balanceOf(SIGNER.address)
+async function getBalance() {
+    return PROVIDER.getBalance(SIGNER.address).catch(e => 
+        {
+            console.log('Failed to catch balance of the signer')
+            console.log(e)
+        })
 }
 
 /**
@@ -127,8 +116,11 @@ function arbForPath(path) {
         let amountOut = math.getAmountOutByReserves(inputAmount, reservePath)
         let grossProfit = amountOut.sub(inputAmount)
         let gasPrice = config.DEFAULT_GAS_PRICE
-        let gasCost = gasPrice.mul(path.gasAmount)
-        let netProfit = grossProfit.sub(gasCost);
+        // let gasCost = gasPrice.mul(path.gasAmount)
+
+        let gasCost = ethers.constants.Zero
+        let netProfit = grossProfit.sub(gasCost)
+
         if (netProfit.gt("0")) {
             return {
                 inputAmount,
@@ -161,7 +153,8 @@ async function arbForPools(blockNumber, poolAddresses, startTime) {
         // Check if tx is in flight that would affect any of the pools for this path
         let poolsInFlight = path.pools.filter(pathId => POOLS_IN_FLIGHT.includes(pathId)).length > 0
         // Check that path includes the pool that which balance was updated
-        let pathIncludesPool = path.pools.filter(p => poolIds.includes(p)).length > 0
+        // let pathIncludesPool = path.pools.filter(p => poolIds.includes(p)).length > 0
+        let pathIncludesPool = true
         // Check that the path is not blacklisted
         let pathBlacklisted = PATH_FAIL_COUNTER[path.id] > 2
         if (pathIncludesPool && path.enabled && !pathBlacklisted && !poolsInFlight) {
@@ -199,7 +192,7 @@ async function handleOpportunity(opp) {
     }
     try {
         POOLS_IN_FLIGHT = [...POOLS_IN_FLIGHT, ...opp.path.pools]  // Disable pools for the path
-        let txReceipt = await submitTradeTx(opp)
+        let txReceipt = await txMng.executeOpportunity(opp, opp.blockNumber)
         POOLS_IN_FLIGHT = POOLS_IN_FLIGHT.filter(poolId => !opp.path.pools.includes(poolId))  // Reset ignored pools
         
         if (txReceipt.status == 0) {
@@ -220,31 +213,6 @@ async function handleOpportunity(opp) {
         console.log(`${opp.blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
         return false
     }
-}
-
-/**
- * Send opportunity on the mainnet and return receipt for the transaction
- * @param {Object} opp - Parameters describing opportunity
- * @returns {Object}
- */
-async function submitTradeTx(opp) {
-    let tknAddressPath = opp.path.tkns.map(
-        t1 => tokens.filter(t2 => t2.id == t1)[0].address
-    )
-    let tradeTimout = Date.now() + config.TIMEOUT_OFFSET
-    let tx = await ROUTER_CONTRACT.swapExactTokensForTokens(
-        opp.inputAmount,
-        opp.inputAmount,
-        tknAddressPath,
-        SIGNER.address,
-        tradeTimout, 
-        {
-            gasPrice: opp.gasPrice, 
-            gasLimit: config.GAS_LIMIT
-        }
-    )
-    console.log(`${opp.blockNumber} | Tx sent ${tx.nonce}, ${tx.hash}`)
-    return PROVIDER.waitForTransaction(tx.hash, config.BLOCK_WAIT);
 }
 
 /**
@@ -279,12 +247,11 @@ function printOpportunityInfo(opp, txReceipt) {
  * This includes wrapped and total ablance and blacklisted paths
  */
 async function updateBotState(blockNumber) {
-    BOT_BAL = await getWrappedBalance();
-    let chainTknBal = await PROVIDER.getBalance(SIGNER.address)
+    BOT_BAL = await getBalance()
+    // let chainTknBal = await PROVIDER.getBalance(SIGNER.address)
     console.log('Blacklisted paths: ', PATH_FAIL_COUNTER)
     console.log(`${config.DEX_NAME} | ${blockNumber} | \
-        ${config.CHAIN_ASSET_SYMBOL}: ${ethers.utils.formatUnits(chainTknBal)} | \
-        BALANCE: ${ethers.utils.formatUnits(BOT_BAL.add(chainTknBal))} \
+        ${config.CHAIN_ASSET_SYMBOL}: ${ethers.utils.formatUnits(BOT_BAL)} | \
     `)
 }
 

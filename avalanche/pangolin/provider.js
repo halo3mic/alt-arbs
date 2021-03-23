@@ -34,7 +34,7 @@ function setHttpProvider() {
  * @param {Object} params - Session configuration
  * @returns {ethers.providers.Web3Provider}
  */
-function setGancheProvider(params) {
+function setGanacheProvider(params) {
     params = params || {}
     params.fork = params.fork ? params.fork : config.WS_ENDPOINT
     params.network_id = config.NETWORK
@@ -57,7 +57,7 @@ function init() {
 	console.log(`Using acount ${ws.signer.address} as signer.`)
 	return { 
 		network: config.NETWORK, 
-		setGancheProvider,
+		setGanacheProvider,
 		http, 
 		ws, 
 	}

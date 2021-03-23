@@ -18,9 +18,28 @@ function loadAllABIs() {
     return abis
 }
 
+function getPrivateKey() {
+    // Specify private key through an argument
+    let prefix = '--pk'
+    let pkNum = process.argv.filter(a => a.includes(prefix))
+    let pkWithAddress = pkNum.length>0 ? process.env[`PK${pkNum[0].replace(prefix, '')}`] : process.env.PK1
+    let pk = pkWithAddress.slice(43)
+    return pk
+}
+
 const EXPLORER_URL = 'https://cchain.explorer.avax.network/tx/'
-const ROUTER_ADDRESS = '0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106'
-const FACTORY = '0xefa94DE7a4656D787667C749f7E1223D71E9FD88'
+const ROUTERS = {
+    ZERO_EXCHANGE: '0x85995d5f8ee9645cA855e92de16FA62D26398060',
+    SUSHISWAP: '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506',
+    PANGOLIN: '0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106', 
+    UNNAMED1: '0xCE679504674F279ac389432c7fe330a48E117148', 
+    BAOSWAP: '0x292A6375d6587883bBcabD96860b1834BA14601E', 
+    COMPLUS: '0x78c18E6BE20df11f1f41b9635F3A18B8AD82dDD1',
+    YETIXYZ: '0x1643D9bb6d154c8729a678526F9Edb55DA44BAB7', 
+    YETI: '0x262DcFB36766C88E6A7a2953c16F8defc40c378A', 
+}
+const DISPATCHER = '0xd11828308Fc7C84Ea31CCD398E609468d6D20713'
+const UNIISH_ROUTER_PROXY = '0xF9eCB1b756Da68F60acBc33A436F631A7155bB96'
 const DEX_NAME = 'Pangolin'
 const CHAIN_ASSET_SYMBOL = 'AVAX'
 
@@ -29,7 +48,7 @@ const ABIS = loadAllABIs()
 // Sync(uint112 reserve0, uint112 reserve1)
 const UNISWAP_SYNC_TOPIC = '0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e062b03a9fffbbad1'
 
-const MIN_PROFIT = ethers.utils.parseUnits('0.1')
+const MIN_PROFIT = ethers.utils.parseUnits('0')
 const MAX_CONSECUTIVE_FAILS = 20 // After max consecutive fails bot shuts down
 const BLOCK_WAIT = 2 // Number of blocks to confirm tx
 const MAX_HOPS = 4 // Max number of swaps
@@ -49,7 +68,7 @@ const GAS_LIMIT = "600000"
 const EMPTY_POOL_THRESHOLD = ethers.BigNumber.from('10')
 
 // Provider settings
-const PRIVATE_KEY = process.env.PRIVATE_KEY_FANTOM
+const PRIVATE_KEY = getPrivateKey()
 const RPC_ENDPOINT = process.env.RPC_AVALANCHE
 const WS_ENDPOINT = process.env.WS_AVALANCHE
 const NETWORK = 43114
@@ -60,11 +79,11 @@ module.exports = {
     MAX_CONSECUTIVE_FAILS,
     // PRCT_PROFIT_FOR_GAS,
     EMPTY_POOL_THRESHOLD,
+    UNIISH_ROUTER_PROXY,
     CHAIN_ASSET_SYMBOL,
     UNISWAP_SYNC_TOPIC,
     DEFAULT_GAS_PRICE,
     BLACKLISTED_TKNS,
-    ROUTER_ADDRESS,
     TIMEOUT_OFFSET,
     RPC_ENDPOINT,
     EXPLORER_URL,
@@ -74,10 +93,11 @@ module.exports = {
     INPUT_ASSET,
     MIN_PROFIT,
     BLOCK_WAIT,
+    DISPATCHER,
     GAS_LIMIT,
     MAX_HOPS,
     DEX_NAME,
-    FACTORY,
+    ROUTERS,
     NETWORK,
     ABIS,
 }
