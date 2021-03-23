@@ -20,7 +20,8 @@ const MAX_CONSECUTIVE_FAILS = 8
 const GAS_LIMIT = 600000
 const BLOCK_WAIT = 2
 const TKN_BLACKLIST = [
-    'T0016'  // SFI
+    'T0016',  // SFI
+    'T0035'  // SPORE
 ]
 
 let FAILED_TX_IN_A_ROW = 0
