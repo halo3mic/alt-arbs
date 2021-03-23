@@ -7,7 +7,7 @@ const fs = require('fs')
 // const { getExchanges } = require('../../src/arb/exchanges')
 // const ganache = require('../../src/ganache')
 const prompt = require('prompt-sync')()
-const pangolin = require('../../pangolin')
+// const pangolin = require('../../pangolin')
 
 const ABIS = {
     'erc20': require('../../config/abis/erc20.json'),
@@ -305,7 +305,7 @@ class InstructionManager {
         pairs = pairs
         tokenIn = tokenIn || 'T0000' 
         tokenOut = 'T0000' 
-        maxHops = maxHops || 6
+        maxHops = maxHops || 4
         circles = circles || []
         currentPairs = currentPairs || []
         path = path || []

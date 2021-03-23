@@ -19,6 +19,9 @@ const INPUT_ASSET = 'T0000'
 const MAX_CONSECUTIVE_FAILS = 8
 const GAS_LIMIT = 600000
 const BLOCK_WAIT = 2
+const TKN_BLACKLIST = [
+    'T0016'  // SFI
+]
 
 let FAILED_TX_IN_A_ROW = 0
 let RUNWAY_CLEAR = true
@@ -58,7 +61,8 @@ async function init(provider, signer) {
 function filterPaths() {
     paths = orgPaths.filter(path => {
         let { tkns: tknPath, pools: poolsPath } = path
-        return !(tknPath[0]!=INPUT_ASSET || tknPath[tknPath.length-1]!=INPUT_ASSET || path.enabled!='1' || MAX_HOPS<poolsPath.length)
+        let inclBlTkn = tknPath.filter(t => TKN_BLACKLIST.includes(t)).length > 0
+        return !(tknPath[0]!=INPUT_ASSET || tknPath[tknPath.length-1]!=INPUT_ASSET || path.enabled!='1' || MAX_HOPS<poolsPath.length || inclBlTkn)
     })
 }
 
@@ -210,7 +214,6 @@ async function arbForPool(blockNumber, poolAddress, startTime) {
     RESERVES = reservesManager.getAllReserves()
     // console.log(`debug::findBestOpp::timing 2: ${new Date() - startTime}ms`);
     let poolId = pools.filter(p=>p.address==poolAddress)[0].id
-    // TODO: filter paths to only do enabled paths!!!
     paths.forEach(path => {
         if (path.pools.includes(poolId)) {
             // console.log('check path ', path.symbol)
