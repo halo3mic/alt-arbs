@@ -4,9 +4,10 @@ const tokens = require('./config/tokens.json')
 const ethers = require('ethers')
 const config = require('./config')
 
-var SIGNER, PROVIDER, EXCHANGES
+var SIGNER, PROVIDER, EXCHANGES, NONCE
 
-function init(provider, signer) {
+async function init(provider, signer) {
+    NONCE = (await signer.getTransactionCount()) -1
     EXCHANGES = getExchanges(provider)
     SIGNER = signer
     PROVIDER = provider
@@ -42,6 +43,7 @@ async function formDispatcherTxWithQuery(inputAmount, queryTx, tradeTx, txArgs) 
         config.DISPATCHER, 
         config.ABIS['dispatcher'], 
     )
+    NONCE ++  // Increment it so no tx can use the same nonce while waiting for execution of the populateTransaction call below
     return dispatcherContract.populateTransaction['makeTrade(bytes,uint256[],bytes,uint256[],uint256,uint256)'](
         queryTx.calldata, 
         queryTx.inputLocs,
@@ -52,7 +54,7 @@ async function formDispatcherTxWithQuery(inputAmount, queryTx, tradeTx, txArgs) 
         {
             gasPrice: txArgs.gasPrice, 
             gasLimit: txArgs.gasLimit, 
-            nonce: txArgs.nonce
+            nonce: NONCE
         }
     )
 }
@@ -114,7 +116,7 @@ async function submitTradeTx(blockNumber, txBody) {
     return txReceipt
 } 
 
-async function executeOpportunity(opportunity, blockNumber) {
+async function executeOpportunity(opportunity) {
     let tradeTx = await formTradeTx(opportunity).catch(e => {
         console.log('Failed to form makeTrade tx')
         console.log(e)   
@@ -148,7 +150,7 @@ async function executeOpportunity(opportunity, blockNumber) {
             return {ok: false, txHash: null, error: e}
         }
     }
-    return submitTradeTx(blockNumber, tx)
+    return submitTradeTx(opportunity.blockNumber, tx)
 }
 
 

@@ -76,4 +76,44 @@ async function callQueryContract() {
     console.log(outputAmount)
 }
 
-callQueryContract()
+function sleep(ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+} 
+
+async function race() {
+    let wavaxAddress = '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7'
+    let wavaxContract = new ethers.Contract(
+        wavaxAddress, 
+        config.ABIS['weth'], 
+        providers.ws.signer
+    )
+    let amount = ethers.utils.parseUnits('0.1')
+    let gasLimit = 1e5
+    let gasPrice1 = ethers.utils.parseUnits('470', 'gwei')
+    let gasPrice2 = gasPrice1.add(ethers.utils.parseUnits('22', 'wei'))
+    let nonce = await providers.ws.signer.getTransactionCount()
+    // First send unwrap tx with low gas
+    wavaxContract.withdraw(amount, {
+        gasPrice: gasPrice1,
+        gasLimit,
+        nonce: nonce+1,
+    }).then(tx => {
+        console.log('Withdraw')
+        console.log(tx)
+    })
+    await sleep(3000)
+    // Then send wrap tx with high gas
+    wavaxContract.deposit({
+        gasPrice: gasPrice2, 
+        value: amount,
+        gasLimit,
+        nonce: nonce,
+    }).then(tx => {
+        console.log('Deposit')
+        console.log(tx)
+    })
+}
+
+race()

@@ -1,6 +1,7 @@
 const txMng = require('../txManager')
 const providers = require('../provider')
 const { provider, signer } = providers.ws
+const ethers = require('ethers')
 
 
 async function formDispatcherTxWithQuery() {
@@ -37,4 +38,19 @@ async function formDispatcherTxWithQuery() {
     console.log(arbTxReceipt)
 }
 
-formDispatcherTxWithQuery()
+ 
+
+function customGasPrice() {
+    let gas1 = ethers.utils.parseUnits('470', 'gwei')
+    let netProfit = ethers.utils.parseUnits('1.232')
+    gasExtra = ethers.utils.parseUnits(
+        parseFloat(
+            ethers.utils.formatUnits(netProfit, 16)
+        ).toFixed(), 
+        'wei'
+    )
+    let gas2 = gas1.add(gasExtra)
+    console.log(ethers.utils.formatUnits(gas2))
+}
+
+customGasPrice()

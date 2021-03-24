@@ -21,6 +21,7 @@ let SIGNER
 let PATHS
 
 
+
 /**
  * Intialize state
  * @param {ethers.providers.JsonRpcProvider} provider
@@ -30,7 +31,7 @@ let PATHS
     SIGNER = signer
     PROVIDER = provider
     filterPaths()
-    txMng.init(provider, signer)
+    await txMng.init(provider, signer)
     await reservesManager.init(provider, PATHS) // Initialize reserveres manager
     RESERVES = reservesManager.getAllReserves() // Get reserves for filtered paths
     filterPathsWithEmptyPool()
@@ -40,6 +41,7 @@ let PATHS
         pools.map(p=>p.address),
         Date.now()
     )
+    
     
 }
 
@@ -127,6 +129,15 @@ function estimateGasAmount(nSteps) {
     return reservePath
 }
 
+// function getExtraGas(netProfit) {
+//     return ethers.utils.parseUnits(
+//         parseFloat(
+//             ethers.utils.formatUnits(netProfit, 16)  // Two decimal precision
+//         ).toFixed(), 
+//         'wei'
+//     )
+// }
+
 
 /**
  * Return opportunity if net profitable
@@ -146,7 +157,9 @@ function estimateGasAmount(nSteps) {
         let gasCost = process.argv.includes('--zero-gas') ? ethers.constants.Zero : gasPrice.mul(gasAmount)
         let netProfit = grossProfit.sub(gasCost);
         // console.log(`Net profit: ${ethers.utils.formatUnits(netProfit)} ETH`)
+        // console.log(`Gas cost: ${ethers.utils.formatUnits(gasPrice)} ETH`)
         if (netProfit.gt(config.MIN_PROFIT)) {
+            // gasPrice = gasPrice.add(getExtraGas(netProfit))  // Gas price + netProfit indentifier
             return {
                 swapAmounts,
                 grossProfit,

@@ -11,7 +11,8 @@
     "fantom-sushiswap": "node fantom/sushiswap/server.js",
     "quick": "node matic/quickSwap/server.js",
     "yeti": "node avalanche/server.js --dex=yeti --internal-only",
-    "complus": "node avalanche/server.js --dex=complus --internal-only"
+    "complus": "node avalanche/server.js --dex=complus --internal-only", 
+    "avalanche": "node avalanche/server.js"
   },
   "repository": {
     "type": "git",
