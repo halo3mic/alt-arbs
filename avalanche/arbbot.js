@@ -12,8 +12,6 @@ const ethers = require('ethers')
 let FAILED_TX_IN_A_ROW = 0
 let PATH_FAIL_COUNTER = {}
 let POOLS_IN_FLIGHT = []
-let LAST_BLOCK_NUMBER = 0
-let LAST_FAIL  // Path id of the last fail
 let PROVIDER
 let RESERVES 
 let BOT_BAL
@@ -146,6 +144,12 @@ function estimateGasAmount(nSteps) {
  */
  function arbForPath(path) {
     let reservePath = getReservePath(path)
+    // Check if there is an arb before calculating optimal amount
+    let smallInAmount = ethers.utils.parseUnits('1')
+    let amountOut = math.getAmountOutByReserves(smallInAmount, reservePath)
+    if (amountOut.lte(smallInAmount)) {
+        return
+    }
     let optimalIn = math.getOptimalAmountForPath(reservePath)
     if (optimalIn.gt("0")) {
         let avlAmount = BOT_BAL.sub(config.MAX_GAS_COST) // How much bot can spend on trade
@@ -181,10 +185,6 @@ function estimateGasAmount(nSteps) {
  * @returns {Object}
  */
  async function arbForPools(blockNumber, poolAddresses, startTime) {
-    if (blockNumber>LAST_BLOCK_NUMBER) {
-        LAST_BLOCK_NUMBER = blockNumber
-        POOLS_IN_FLIGHT = []  // Reset pools in flight if block height increases
-    }
     RESERVES = reservesManager.getAllReserves()
     let poolIds = poolAddresses.map(a => {
         let x = pools.filter(p => p.address == a)
@@ -196,8 +196,6 @@ function estimateGasAmount(nSteps) {
         let poolsInFlight = path.pools.filter(poolId => POOLS_IN_FLIGHT.includes(poolId)).length > 0
         // Check that path includes the pool that which balance was updated
         let pathIncludesPool = path.pools.filter(p => poolIds.includes(p)).length > 0
-        // Check that the path is not blacklisted
-        // let pathBlacklisted = PATH_FAIL_COUNTER[path.id] > 2
         if (pathIncludesPool && !poolsInFlight) {
             let opp = arbForPath(path)
             if (opp) {
@@ -220,7 +218,7 @@ function estimateGasAmount(nSteps) {
 async function handleOpportunity(opp) {
     try {
         let txReceipt = await txMng.executeOpportunity(opp)
-        
+        POOLS_IN_FLIGHT = POOLS_IN_FLIGHT.filter(poolId => !opp.path.pools.includes(poolId))  // Reset ignored pools
         if (txReceipt.status == 0) {
             FAILED_TX_IN_A_ROW += 1
             LAST_FAIL = opp.path.id
