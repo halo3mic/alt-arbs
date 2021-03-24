@@ -21,7 +21,7 @@ function loadAllABIs() {
 
 function getPrivateKey() {
     // Specify private key through an argument
-    let prefix = '--pk'
+    let prefix = '--pk='
     let pkNum = process.argv.filter(a => a.includes(prefix))
     let pkWithAddress = pkNum.length>0 ? process.env[`PK${pkNum[0].replace(prefix, '')}`] : process.env.PK1
     let pk = pkWithAddress.slice(43)
