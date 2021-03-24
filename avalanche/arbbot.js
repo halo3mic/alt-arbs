@@ -12,7 +12,7 @@ const ethers = require('ethers')
 let FAILED_TX_IN_A_ROW = 0
 let PATH_FAIL_COUNTER = {}
 let POOLS_IN_FLIGHT = []
-
+let LAST_BLOCK_NUMBER = 0
 let LAST_FAIL  // Path id of the last fail
 let PROVIDER
 let RESERVES 
@@ -36,11 +36,11 @@ let PATHS
     RESERVES = reservesManager.getAllReserves() // Get reserves for filtered paths
     filterPathsWithEmptyPool()
     BOT_BAL = await getBalance()
-    arbForPools(
-        await PROVIDER.getBlockNumber(),
-        pools.map(p=>p.address),
-        Date.now()
-    )
+    // arbForPools(
+    //     await PROVIDER.getBlockNumber(),
+    //     pools.map(p=>p.address),
+    //     Date.now()
+    // )
     
     
 }
@@ -181,40 +181,35 @@ function estimateGasAmount(nSteps) {
  * @returns {Object}
  */
  async function arbForPools(blockNumber, poolAddresses, startTime) {
+    if (blockNumber>LAST_BLOCK_NUMBER) {
+        LAST_BLOCK_NUMBER = blockNumber
+        POOLS_IN_FLIGHT = []  // Reset pools in flight if block height increases
+    }
     RESERVES = reservesManager.getAllReserves()
     let poolIds = poolAddresses.map(a => {
         let x = pools.filter(p => p.address == a)
         return x.length > 0 ? x[0].id : null
     }).filter(e => e)
 
-    let bestOpp
     PATHS.forEach(path => {
         // Check if tx is in flight that would affect any of the pools for this path
-        let poolsInFlight = path.pools.filter(pathId => POOLS_IN_FLIGHT.includes(pathId)).length > 0
+        let poolsInFlight = path.pools.filter(poolId => POOLS_IN_FLIGHT.includes(poolId)).length > 0
         // Check that path includes the pool that which balance was updated
         let pathIncludesPool = path.pools.filter(p => poolIds.includes(p)).length > 0
         // Check that the path is not blacklisted
-        let pathBlacklisted = PATH_FAIL_COUNTER[path.id] > 2
-        if (pathIncludesPool && path.enabled && !pathBlacklisted && !poolsInFlight) {
+        // let pathBlacklisted = PATH_FAIL_COUNTER[path.id] > 2
+        if (pathIncludesPool && !poolsInFlight) {
             let opp = arbForPath(path)
-            let cond1 = opp && !bestOpp
-            let cond2 = opp && bestOpp && opp.netProfit.gt(bestOpp.netProfit)
-            if (cond1 || cond2) {
-                if (LAST_FAIL == path.id) {
-                    PATH_FAIL_COUNTER[path.id] = (PATH_FAIL_COUNTER[path.id] || 0) + 1
-                    return
-                }
+            if (opp) {
+                POOLS_IN_FLIGHT = [...POOLS_IN_FLIGHT, ...opp.path.pools]  // Disable pools for the path
                 opp.blockNumber = blockNumber
-                bestOpp = opp
+                handleOpportunity(opp)
             }
         }
     })
     let endTime = new Date();
     let processingTime = endTime - startTime;
     console.log(`${blockNumber} | Processing time: ${processingTime}ms`)
-    if (bestOpp) {
-        await handleOpportunity(bestOpp)
-    }
     updateBotState(blockNumber)
 }
 
@@ -223,15 +218,8 @@ function estimateGasAmount(nSteps) {
  * @param {Object} opp - Parameters describing opportunity
  */
 async function handleOpportunity(opp) {
-    // Check again that any of the pools isnt already in flight
-    let poolsInFlight = opp.path.pools.filter(poolId => POOLS_IN_FLIGHT.includes(poolId)).length > 0
-    if (poolsInFlight) {
-        return false
-    }
     try {
-        POOLS_IN_FLIGHT = [...POOLS_IN_FLIGHT, ...opp.path.pools]  // Disable pools for the path
         let txReceipt = await txMng.executeOpportunity(opp)
-        POOLS_IN_FLIGHT = POOLS_IN_FLIGHT.filter(poolId => !opp.path.pools.includes(poolId))  // Reset ignored pools
         
         if (txReceipt.status == 0) {
             FAILED_TX_IN_A_ROW += 1
@@ -252,66 +240,6 @@ async function handleOpportunity(opp) {
         return false
     }
 }
-
-
-async function handleNewBlock(blockNumber) {
-    let startTime = new Date();
-    if (!RUNWAY_CLEAR) {
-        console.log(`${blockNumber} | Tx in flight, ignoring block`)
-        return;
-    }
-
-    LAST_BLOCK = blockNumber
-    let bestOpp = await findBestOpp()
-    if (bestOpp) {
-        let gasCost = bestOpp.grossProfit.sub(bestOpp.netProfit)
-        console.log(`${blockNumber} | ${Date.now()} | 🕵️‍♂️ ARB AVAILABLE | AVAX ${ethers.utils.formatUnits(bestOpp.pathAmounts[0])} -> WAVAX ${ethers.utils.formatUnits(bestOpp.pathAmounts[0].add(bestOpp.netProfit))}`)
-        console.log(`Gas cost: ${ethers.utils.formatUnits(gasCost)} | Gross profit: ${ethers.utils.formatUnits(bestOpp.grossProfit)}`)
-        // send tx
-        if (RUNWAY_CLEAR) {
-            RUNWAY_CLEAR = false // disable tx (try to avoid fails)
-            console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... ${ethers.utils.formatUnits(bestOpp.pathAmounts[0])} for ${ethers.utils.formatUnits(bestOpp.netProfit)}`);
-            opportunity = {
-                hostname: HOST_NAME,
-                wallet: SIGNER.address,
-                botBalance: config.BOT_BAL, 
-                blockNumber: blockNumber, 
-                timestamp: Date.now(), 
-                instrId: bestOpp.instrId, 
-                pathAmounts: bestOpp.pathAmounts.join('\n'),
-                grossProfit: bestOpp.grossProfit, 
-                netProfit: bestOpp.netProfit
-            }
-            try {
-                
-                opportunity.txData = txData
-                opportunity.txHash = txHash
-                opportunity.error = error
-                if (ok) {
-                    FAILED_TX_IN_A_ROW = 0;
-                } else if (txHash && !ok) {
-                    FAILED_TX_IN_A_ROW += 1;
-                    if (FAILED_TX_IN_A_ROW > MAX_CONSECUTIVE_FAILS) {
-                        console.log("Shutting down... too many failed tx");
-                        process.exit(0);
-                }
-        }
-            }
-            catch (error) {
-                console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
-            } finally {
-                // logToCsv(opportunity, SAVE_PATH)
-            }
-            RUNWAY_CLEAR = true;
-        }
-    }
-    
-
-    let endTime = new Date();
-    let processingTime = endTime - startTime;
-    console.log(`${blockNumber} | Processing time: ${processingTime}ms`)
-}
-
 
 /**
  * Log opportunity details and tx status to console

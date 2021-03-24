@@ -143,11 +143,11 @@ async function executeOpportunity(opportunity) {
         try {
             await SIGNER.estimateGas(tx)  // Get more detailed info about tx before sending it
             console.log('✅ Transaction would pass!')
-            return {ok: true, txHash: null}
+            return {status: true, txHash: null}
         } catch(e) {
             console.log(e)
             console.log('❌ Transaction would fail! Aborting ... ')
-            return {ok: false, txHash: null, error: e}
+            return {status: false, txHash: null, error: e}
         }
     }
     return submitTradeTx(opportunity.blockNumber, tx)
