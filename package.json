@@ -8,7 +8,7 @@
     "zero": "node avalanche/server.js --dex=zeroExchange --internal-only",
     "pangolin": "node avalanche/server.js --dex=pangolin --internal-only",
     "cross-avax": "node avalanche/server.js --cross-only",
-    "fantom-sushiswap": "node fantom/sushiswap/server.js",
+    "fantom-sushiswap": "node fantom/sushi/server.js",
     "quick": "node matic/quickSwap/server.js",
     "yeti": "node avalanche/server.js --dex=yeti --internal-only",
     "complus": "node avalanche/server.js --dex=complus --internal-only", 

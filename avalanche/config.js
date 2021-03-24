@@ -71,7 +71,7 @@ const MAX_HOPS = 3 // Max number of swaps
 const TIMEOUT_OFFSET = 180  // Seconds after which trade expires 
 
 const BOT_ID = 2
-const MIN_PROFIT = ethers.utils.parseUnits('0.2')
+const MIN_PROFIT = ethers.utils.parseUnits('0.05')
 const STATIC_GAS_PRICE = ethers.BigNumber.from('470')
 const GAS_LIMIT = '700000'
 const DISPATCHER = '0xd11828308Fc7C84Ea31CCD398E609468d6D20713'
