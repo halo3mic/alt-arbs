@@ -1,4 +1,4 @@
-const { provider, signer } = require('../../provider')
+const { provider, signer } = require('../../provider').ws
 const config = require('../../config')
 const resolve = require('path').resolve
 const ethers = require('ethers')
@@ -134,7 +134,8 @@ class PoolManager extends Manager {
         'YetiSwap': 'yetiswap', 
         'Complus': 'complus', 
         'Yetiswap': 'yetiXYZ', 
-        'SushiSwap': 'sushiswap'
+        'SushiSwap': 'sushiswap', 
+        'Elk': 'elk'
     }
 
     async queryData(address) {
@@ -150,6 +151,7 @@ class PoolManager extends Manager {
         )
 
         let lpTknSymbol = await poolContract.name().then(s => s.split('-')[0].split(' ')[0])
+        console.log(lpTknSymbol)
         if (!Object.keys(this.exchangeSymbols).includes(lpTknSymbol)) {
             if (lpTknSymbol=='Uniswap') {
                 lpTknSymbol = await poolContract.factory()
@@ -160,6 +162,7 @@ class PoolManager extends Manager {
             }
         }
         const exchange = this.exchangeSymbols[lpTknSymbol]
+        console.log(exchange)
         if (exchange=='balancer') {
             return this.queryBalancer(addressCS)
         } else if (exchange=='mooniswap') {
@@ -358,10 +361,10 @@ class InstructionManager {
         // Add instructions for pools both ways
         let tknRouteSymbol = path.tkns.map(tId=>this.tokens.filter(tObj=>tObj.id==tId)[0].symbol).join('=>').toLowerCase()
         let exchangePath = path.pools.map(pId=>this.pools.filter(pObj=>pObj.id==pId)[0].exchange)
-        if ((new Set(exchangePath)).size==1) {
-            console.log('Internal Arb!')
-            return
-        }
+        // if ((new Set(exchangePath)).size==1) {
+        //     console.log('Internal Arb!')
+        //     return
+        // }
         let exchangesChain = exchangePath.join('=>').toLowerCase()
         let pathSymbol = tknRouteSymbol + '_' + exchangesChain
         console.log(`Adding path ` + pathSymbol)
@@ -373,14 +376,14 @@ class InstructionManager {
         // if (!gasEstimate) {
         //     return
         // }
-        let gasEstimate = 300000
+        let gasEstimate = '300000'
         // let archerGasAdd = 0
         let instrObj1 = {
             id: this.getNewId(), 
             symbol: pathSymbol,
             tkns: path.tkns, 
             pools: path.pools, 
-            enabled: "1", 
+            enabled: true, 
             gasAmount: gasEstimate, 
             // gasAmountArcher: gasEstimate.add(archerGasAdd).toString(), 
         }
@@ -394,12 +397,12 @@ class InstructionManager {
 
     getNewId() {
         if (this.oldData.length==0) {
-            return this.prefix+'0000'
+            return this.prefix+'00000'
         }
         const ids = this.oldData.map(e => {
             return parseInt(e.id.replace(this.prefix, '').replace('0', ''))
         })
-        const newId = this.prefix + (Math.max(...ids)+this.indexShift).toString().padStart(4, '0')
+        const newId = this.prefix + (Math.max(...ids)+this.indexShift).toString().padStart(5, '0')
         // this.indexShift ++
         return newId
     }

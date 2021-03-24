@@ -1,8 +1,8 @@
 const config = require('./config')
 const ethers = require('ethers')
-const { ABIS, ROUTERS, WETH_ADDRESS, DISPATCHER } = require('./config')
-const { tokens } = require('./instrManager')
-
+const { ABIS, ROUTERS, DISPATCHER } = require('./config')
+const tokens = require('./config/tokens.json')
+let tokensMap = Object.fromEntries(tokens.map(element => [element.id, element]))
 
 class Uniswap {
 
@@ -62,72 +62,56 @@ class Uniswap {
         return reserves
     }
 
-    // async formQueryTx(fromToken, toToken, inputAmount) {
-    //     // Input amount needs to in base units of asset (eg. wei)
-    //     const queryContract = new ethers.Contract(
-    //         UNIISH_ROUTER_PROXY, 
-    //         ABIS['unishRouterProxy']
-    //     )
-    //     let queryTx = await queryContract.populateTransaction.getOutputAmount(
-    //         this.routerAddress, 
-    //         inputAmount, 
-    //         fromToken, 
-    //         toToken
-    //     )
-    //     // If input location is 0 input amount needs to be injected on the call
-    //     const inputLocations = inputAmount==0 ? ["272"] : []  
+    async formQueryTx(inputAmount, path) {
+        // Input amount needs to in base units of asset (eg. wei)
+        const queryContract = new ethers.Contract(
+            config.ROUTERS.UNISH_PROXY, 
+            ABIS['unishRouterProxy']
+        )
+        let tx = await queryContract.populateTransaction.getOutputAmount(
+            this.routerAddress, 
+            inputAmount, 
+            path
+        )
+        // If input location is 0 input amount needs to be injected on the call
+        const inputLocs = inputAmount==ethers.constants.Zero ? [90] : []  
 
-    //     return { queryTx, inputLocations }
-    // }
+        return { tx, inputLocs }
+    }
 
-    // async formSwapTokensForExactTokens(tokenPath, outputAmount, amountInMax, timeShift=300) {
-    //     const tradeTimeout = Math.round((Date.now()/1000) + timeShift)
-    //     var tradeTx = await this.routerContract.populateTransaction.swapTokensForExactTokens(
-    //         outputAmount, 
-    //         amountInMax,
-    //         tokenPath, 
-    //         config.SIGNER_ADDRESS, 
-    //         tradeTimeout
-    //     )
-    //     return tradeTx
-    // }
-
-    async formTradeTx(tokenPath, inputAmount, to, outputAmount=0, timeShift=300) {
-        // outputAmount being 0 can be very dangerous if tx sent by itself
-        // timeShift is in seconds
+    async formTradeTx(inputAmount, tokenPath, outputAmount=0, timeShift=300) {
+        const baseAddress = tokensMap[config.BASE_ASSET].address
         const tradeTimeout = Math.round((Date.now()/1000) + timeShift)
-        const baseAddress = tokens[config.BASE_ASSET].address
+        let tx
         if (tokenPath[0]==baseAddress) {
-            const method = 'swapExactETHForTokens'
-            var tradeTx = await this.routerContract.populateTransaction[method](
+            tx = await this.routerContract.populateTransaction.swapExactETHForTokens(
                 outputAmount, 
                 tokenPath, 
-                to, 
+                DISPATCHER, 
                 tradeTimeout
             )
         } else if (tokenPath[tokenPath.length-1]==baseAddress) {
-            const method = 'swapExactTokensForETH'
-            var tradeTx = await this.routerContract.populateTransaction[method](
+            tx = await this.routerContract.populateTransaction.swapExactTokensForETH(
                 inputAmount,
                 outputAmount, 
                 tokenPath, 
-                to, 
+                DISPATCHER, 
                 tradeTimeout
             )
         } else {
-            const method = 'swapExactTokensForTokens'
-            var tradeTx = await this.routerContract.populateTransaction[method](
+            tx = await this.routerContract.populateTransaction.swapExactTokensForTokens(
                 inputAmount,
                 outputAmount, 
                 tokenPath, 
-                to, 
+                DISPATCHER, 
                 tradeTimeout
             )
         }
-        // If input location is 0 input amount needs to be injected on the call
-        const inputLocations = inputAmount==0 && tokenPath[0]!=WETH_ADDRESS ? ["336"] : []  
+        
+        // If input location is 0 input amount needs to be injected in the calldata
+        const inputLocs = inputAmount==ethers.constants.Zero && tokenPath[0]!=baseAddress ? [56] : []   // In bytes
 
-        return { tradeTx, inputLocations }
+        return { tx, inputLocs }
     }
 }
 
@@ -195,42 +179,39 @@ class Pangolin extends Uniswap {
         )
     }
 
-    async formTradeTx(tokenPath, inputAmount, to, outputAmount=0, timeShift=300) {
-        // outputAmount being 0 can be very dangerous if tx sent by itself
-        // timeShift is in seconds
+    async formTradeTx(inputAmount, tokenPath, outputAmount=0, timeShift=300) {
+        const baseAddress = tokensMap[config.BASE_ASSET].address
         const tradeTimeout = Math.round((Date.now()/1000) + timeShift)
-        const baseAddress = tokens[config.BASE_ASSET].address
+        let tx
         if (tokenPath[0]==baseAddress) {
-            const method = 'swapExactAVAXForTokens'
-            var tradeTx = await this.routerContract.populateTransaction[method](
+            tx = await this.routerContract.populateTransaction.swapExactAVAXForTokens(
                 outputAmount, 
                 tokenPath, 
-                to, 
+                DISPATCHER, 
                 tradeTimeout
             )
         } else if (tokenPath[tokenPath.length-1]==baseAddress) {
-            const method = 'swapExactTokensForAVAX'
-            var tradeTx = await this.routerContract.populateTransaction[method](
+            tx = await this.routerContract.populateTransaction.swapExactTokensForAVAX(
                 inputAmount,
                 outputAmount, 
                 tokenPath, 
-                to, 
+                DISPATCHER, 
                 tradeTimeout
             )
         } else {
-            const method = 'swapExactTokensForTokens'
-            var tradeTx = await this.routerContract.populateTransaction[method](
+            tx = await this.routerContract.populateTransaction.swapExactTokensForTokens(
                 inputAmount,
                 outputAmount, 
                 tokenPath, 
-                to, 
+                DISPATCHER, 
                 tradeTimeout
             )
         }
-        // If input location is 0 input amount needs to be injected on the call
-        const inputLocations = inputAmount==0 && tokenPath[0]!=WETH_ADDRESS ? ["336"] : []  
+        
+        // If input location is 0 input amount needs to be injected in the calldata
+        const inputLocs = inputAmount==ethers.constants.Zero && tokenPath[0]!=baseAddress ? [56] : []   // In bytes
 
-        return { tradeTx, inputLocations }
+        return { tx, inputLocs }
     }
 }
 
@@ -273,6 +254,19 @@ class Sushiswap extends Uniswap {
     }
 }
 
+class Elk extends Uniswap {
+
+    constructor(provider) {
+        super(provider)
+        this.routerAddress = ROUTERS.ELK
+        this.routerContract = new ethers.Contract(
+            this.routerAddress, 
+            ABIS['uniswapRouter'],
+            provider
+        )
+    }
+}
+
 function getExchanges(provider) {
     return {
         zeroExchange: new ZeroExchange(provider), 
@@ -283,6 +277,7 @@ function getExchanges(provider) {
         baoSwap: new BaoSwap(provider), 
         yetiXYZ: new YetiXYZ(provider), 
         yetiswap: new Yeti(provider), 
+        elk: new Elk(provider),
     }   
 }
 

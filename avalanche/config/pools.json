@@ -1681,5 +1681,872 @@
         "symbol": "shitwavax_pangolin",
         "exchange": "pangolin",
         "id": "P0098"
+    },
+    {
+        "address": "0x500828DAA43C2182a76258A9347A236dCD026a0A",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0006",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wbtcwavax_baoSwap",
+        "exchange": "baoSwap",
+        "id": "P0099"
+    },
+    {
+        "address": "0x458Fad973694E4b74297501e714E6d64A37aD396",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0006",
+                "weight": 0.5
+            },
+            {
+                "id": "T0011",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wbtcdai_baoSwap",
+        "exchange": "baoSwap",
+        "id": "P0100"
+    },
+    {
+        "address": "0xd2faF67643967815b8Ea89b7341383838204816d",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0002",
+                "weight": 0.5
+            },
+            {
+                "id": "T0003",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "zerozeth_unnamed1",
+        "exchange": "unnamed1",
+        "id": "P0101"
+    },
+    {
+        "address": "0xfEbf47CF89F766E6c24317b17F862bA5d4d82f8c",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0038",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxelk_elk",
+        "exchange": "elk",
+        "id": "P0102"
+    },
+    {
+        "address": "0x3Fbd7DD99Ca32f98a56DDEE57B6b96e1152668F5",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0038",
+                "weight": 0.5
+            },
+            {
+                "id": "T0008",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "elketh_elk",
+        "exchange": "elk",
+        "id": "P0103"
+    },
+    {
+        "address": "0x5bae3110066890D0BDB9837c14C2461168a3407E",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0006",
+                "weight": 0.5
+            },
+            {
+                "id": "T0038",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wbtcelk_elk",
+        "exchange": "elk",
+        "id": "P0104"
+    },
+    {
+        "address": "0x53e3D3e77B3ed38FDc5156F6EF761D85012850c2",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0009",
+                "weight": 0.5
+            },
+            {
+                "id": "T0038",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "usdtelk_elk",
+        "exchange": "elk",
+        "id": "P0105"
+    },
+    {
+        "address": "0x3e58308A97AF12AD4aFfE6f688a8b7e8a8E459B1",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0010",
+                "weight": 0.5
+            },
+            {
+                "id": "T0038",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "linkelk_elk",
+        "exchange": "elk",
+        "id": "P0106"
+    },
+    {
+        "address": "0xF31a76d123dd6b10008F2f096AB0AafBd508A2de",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0011",
+                "weight": 0.5
+            },
+            {
+                "id": "T0038",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "daielk_elk",
+        "exchange": "elk",
+        "id": "P0107"
+    },
+    {
+        "address": "0x266ed42866b3d2d418C87EbF8b58f22add0E6F8e",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0016",
+                "weight": 0.5
+            },
+            {
+                "id": "T0038",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pngelk_elk",
+        "exchange": "elk",
+        "id": "P0108"
+    },
+    {
+        "address": "0x0826e1A55ebeF25d725Bb944555F714Db84d95Bb",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0009",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxusdt_elk",
+        "exchange": "elk",
+        "id": "P0109"
+    },
+    {
+        "address": "0x787BE602db491E23B9C278673660bBED437F7898",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0002",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "zerowavax_sushiswap",
+        "exchange": "sushiswap",
+        "id": "P0110"
+    },
+    {
+        "address": "0xe4b269b61471D81898Be034DAB496910A5796154",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0008",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxeth_elk",
+        "exchange": "elk",
+        "id": "P0111"
+    },
+    {
+        "address": "0xF272D5D0A633c463e3bf4d14C9FB4704057Cd342",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0012",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxuni_sushiswap",
+        "exchange": "sushiswap",
+        "id": "P0112"
+    },
+    {
+        "address": "0x288Ffb87fc69dC652f9b564fAF05dB7468013544",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0006",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wbtcwavax_elk",
+        "exchange": "elk",
+        "id": "P0113"
+    },
+    {
+        "address": "0xeDE97B96Adc4593C12aead144B6F2887375A0506",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0032",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxsnob_sushiswap",
+        "exchange": "sushiswap",
+        "id": "P0114"
+    },
+    {
+        "address": "0x269Fafdc9F362414B9c08ADBb8A3106AF5a2dc01",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0010",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxlink_elk",
+        "exchange": "elk",
+        "id": "P0115"
+    },
+    {
+        "address": "0xD514419729A55d2615F87b074e15cD28ECa3FC9B",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0011",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxdai_elk",
+        "exchange": "elk",
+        "id": "P0116"
+    },
+    {
+        "address": "0x7e449382CBA7560A159301806F63550C4E05009c",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0020",
+                "weight": 0.5
+            },
+            {
+                "id": "T0038",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sfielk_elk",
+        "exchange": "elk",
+        "id": "P0117"
+    },
+    {
+        "address": "0x752aB88D07E5BEaC8F71887552DC41CC7E482d87",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0020",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sfiwavax_elk",
+        "exchange": "elk",
+        "id": "P0118"
+    },
+    {
+        "address": "0xD5742Dd4669658bBcaED9a4E623E07F7a1e5586D",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0016",
+                "weight": 0.5
+            },
+            {
+                "id": "T0009",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pngusdt_elk",
+        "exchange": "elk",
+        "id": "P0119"
+    },
+    {
+        "address": "0x2053b9B3b14296A181742525085DaAeA8aE469C6",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0020",
+                "weight": 0.5
+            },
+            {
+                "id": "T0028",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sficom_complus",
+        "exchange": "complus",
+        "id": "P0120"
+    },
+    {
+        "address": "0x4800ffDE777768fa482B1A2b21128826f3DECA8d",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0039",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "bearwavax_elk",
+        "exchange": "elk",
+        "id": "P0121"
+    },
+    {
+        "address": "0x055eCB6910920897Ab362C5306cE5176B949713a",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0039",
+                "weight": 0.5
+            },
+            {
+                "id": "T0011",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "beardai_elk",
+        "exchange": "elk",
+        "id": "P0122"
+    },
+    {
+        "address": "0x53544905B23D331306d2bA329887E8B7565a7BeA",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0039",
+                "weight": 0.5
+            },
+            {
+                "id": "T0038",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "bearelk_elk",
+        "exchange": "elk",
+        "id": "P0123"
+    },
+    {
+        "address": "0xF6F4e980Ba8b1455c7e5d93E42650407f2624Ed1",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0028",
+                "weight": 0.5
+            },
+            {
+                "id": "T0040",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "comcom+_complus",
+        "exchange": "complus",
+        "id": "P0124"
+    },
+    {
+        "address": "0x79521b914ec1b55e1BB4d52978Fb585918a827db",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0019",
+                "weight": 0.5
+            },
+            {
+                "id": "T0038",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "ytselk_elk",
+        "exchange": "elk",
+        "id": "P0125"
+    },
+    {
+        "address": "0x26186dEd1A883376caFE18E2Eb7483B3F4EC641b",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0041",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "seedwavax_elk",
+        "exchange": "elk",
+        "id": "P0126"
+    },
+    {
+        "address": "0x26d7875D8f53e79942b8c7CA0dF6E32F74b087DA",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0042",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "bnbwavax_complus",
+        "exchange": "complus",
+        "id": "P0127"
+    },
+    {
+        "address": "0x793F51fb9c2C0CB2b9E7c1cC2D80149ee8Ea6578",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0043",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sporewavax_elk",
+        "exchange": "elk",
+        "id": "P0128"
+    },
+    {
+        "address": "0x26Ae1FC23EC434d556c16CCF25c31C8A1AfcEf8D",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0040",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "com+wavax_complus",
+        "exchange": "complus",
+        "id": "P0129"
+    },
+    {
+        "address": "0xe946CDF9C0727F0658c249F68C06278417E59Aea",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0044",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxus_pangolin",
+        "exchange": "pangolin",
+        "id": "P0130"
+    },
+    {
+        "address": "0x90fd4D9fCa60548988509C7DbB200a525b2a2578",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0045",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "stkwavax_pangolin",
+        "exchange": "pangolin",
+        "id": "P0131"
+    },
+    {
+        "address": "0x0a63179a8838b5729E79D239940d7e29e40A0116",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0043",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sporewavax_pangolin",
+        "exchange": "pangolin",
+        "id": "P0132"
+    },
+    {
+        "address": "0xf879eCA2fa11206cAAEeB440276e8Da188f05b51",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0045",
+                "weight": 0.5
+            },
+            {
+                "id": "T0016",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "stkpng_pangolin",
+        "exchange": "pangolin",
+        "id": "P0133"
+    },
+    {
+        "address": "0x0cAdA83162609Cb63D33eCa1bd6F7f029448bbd7",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0043",
+                "weight": 0.5
+            },
+            {
+                "id": "T0008",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sporeeth_pangolin",
+        "exchange": "pangolin",
+        "id": "P0134"
+    },
+    {
+        "address": "0x4279794e674A1A61af27e34c2e45b1166Fb0C1c7",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0046",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "xtkwavax_pangolin",
+        "exchange": "pangolin",
+        "id": "P0135"
+    },
+    {
+        "address": "0x5122524aF267567897CF56Ab4389ce20a08194fA",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0043",
+                "weight": 0.5
+            },
+            {
+                "id": "T0032",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sporesnob_pangolin",
+        "exchange": "pangolin",
+        "id": "P0136"
+    },
+    {
+        "address": "0x88246dceE4B551459be4Eaa7257Be2B431F36759",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0047",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sprwavax_pangolin",
+        "exchange": "pangolin",
+        "id": "P0137"
+    },
+    {
+        "address": "0xc958c0474f553aD127dc71cf15Ae3200A3AdF91F",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0048",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxpool_pangolin",
+        "exchange": "pangolin",
+        "id": "P0138"
+    },
+    {
+        "address": "0x2451c4a1db8ce8faedD1eE8b0f52575Be7A9BC6F",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0049",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxdave_pangolin",
+        "exchange": "pangolin",
+        "id": "P0139"
+    },
+    {
+        "address": "0xad24a72ffE0466399e6F69b9332022a71408f10b",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0016",
+                "weight": 0.5
+            },
+            {
+                "id": "T0043",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pngspore_pangolin",
+        "exchange": "pangolin",
+        "id": "P0140"
+    },
+    {
+        "address": "0x85D5A1A192fB1e80518987b298A829c069Db4c4a",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0037",
+                "weight": 0.5
+            },
+            {
+                "id": "T0016",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "shitpng_pangolin",
+        "exchange": "pangolin",
+        "id": "P0141"
+    },
+    {
+        "address": "0xd2F9d93A959bAC37889e3ada0F3c467305BDa9eB",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0050",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxrug_pangolin",
+        "exchange": "pangolin",
+        "id": "P0142"
+    },
+    {
+        "address": "0x0d7491F9cd9A0F0B1D0Ca663675382D66bed3A91",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0006",
+                "weight": 0.5
+            },
+            {
+                "id": "T0043",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wbtcspore_pangolin",
+        "exchange": "pangolin",
+        "id": "P0143"
+    },
+    {
+        "address": "0xf546E87951169e96FF8c3f839B4895d96187169C",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0020",
+                "weight": 0.5
+            },
+            {
+                "id": "T0006",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sfiwbtc_pangolin",
+        "exchange": "pangolin",
+        "id": "P0144"
+    },
+    {
+        "address": "0x6492025eE54c9Bb71be194F39BDAF356d5f426e8",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0020",
+                "weight": 0.5
+            },
+            {
+                "id": "T0009",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sfiusdt_pangolin",
+        "exchange": "pangolin",
+        "id": "P0145"
+    },
+    {
+        "address": "0x1a2b480CEF019E4702C9dd9Ca0E4f5c8Ada0A52B",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0006",
+                "weight": 0.5
+            },
+            {
+                "id": "T0037",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wbtcshit_pangolin",
+        "exchange": "pangolin",
+        "id": "P0146"
+    },
+    {
+        "address": "0xC20e768Cf067D306DA8221370E760b01f40aB1b4",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0051",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "100wavax_pangolin",
+        "exchange": "pangolin",
+        "id": "P0147"
+    },
+    {
+        "address": "0x605424527cFB662Fe65b2e08Bc62e558f3b9400e",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0038",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxelk_pangolin",
+        "exchange": "pangolin",
+        "id": "P0148"
+    },
+    {
+        "address": "0x2a0e5F5dbBe58E999244d2CC543e40E07Ed7948C",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0052",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxmush_pangolin",
+        "exchange": "pangolin",
+        "id": "P0149"
     }
 ]

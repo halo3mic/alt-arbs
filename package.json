@@ -5,13 +5,13 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "zero": "node avalanche/zeroExchange/server.js",
-    "pangolin": "node avalanche/pangolin/server.js",
-    "cross-avax": "node avalanche/crossDexAvax/server.js",
+    "zero": "node avalanche/server.js --dex=zeroExchange --internal-only",
+    "pangolin": "node avalanche/server.js --dex=pangolin --internal-only",
+    "cross-avax": "node avalanche/server.js --cross-only",
     "fantom-sushiswap": "node fantom/sushiswap/server.js",
     "quick": "node matic/quickSwap/server.js",
-    "yeti": "node avalanche/yeti/server.js",
-    "complus": "node avalanche/complus/server.js"
+    "yeti": "node avalanche/server.js --dex=yeti --internal-only",
+    "complus": "node avalanche/server.js --dex=complus --internal-only"
   },
   "repository": {
     "type": "git",

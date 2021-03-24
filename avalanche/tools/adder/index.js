@@ -27,24 +27,24 @@ async function importPoolsFromCsv() {
 }
 
 async function importPoolsFromFactory() {
-    console.log('Importing pools from factory ...')
     let poolMng = new adder.PoolManager()
-    let factoryContract = new ethers.Contract(
-        config.FACTORY, 
-        config.ABIS['uniswapFactory'], 
-        provider
-    )
-    let max = await factoryContract.allPairsLength().then(l=>l.toNumber())
-    for (let i=0; i<max; i++) {
-        try {
-            let a = await factoryContract.allPairs(i)
-            poolMng.add(a)
-        } catch (e) {
-            console.log(e)
-            break
+    let factoryAbi = require('../../config/abis/uniswapFactory.json')
+    Object.values(config.FACTORIES).forEach(async address => {
+        console.log(address)
+        let factoryContract = new ethers.Contract(address, factoryAbi, provider)
+        let max = await factoryContract.allPairsLength().then(l=>l.toNumber())
+        let i = 0
+        while (i<max) {
+            try {
+                let a = await factoryContract.allPairs(i)
+                poolMng.add(a)
+                i ++
+            } catch (e) {
+                console.log(e)
+                break
+            }
         }
-    }
-    return true
+    })
 }
 
 async function approveTkns() {

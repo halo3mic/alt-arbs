@@ -16,18 +16,17 @@ let POOLS_IN_FLIGHT = []
 
 let LAST_FAIL  // Path id of the last fail
 let PROVIDER
-let RESERVES 
+let RESERVES
 let BOT_BAL
 let SIGNER
 let PATHS
-
 
 /**
  * Intialize state
  * @param {ethers.providers.JsonRpcProvider} provider
  * @param {ethers.providers.JsonRpcSigner} signer
  */
- async function init(provider, signer) {
+async function init(provider, signer) {
     SIGNER = signer
     PROVIDER = provider
     filterPaths()
@@ -38,21 +37,17 @@ let PATHS
     BOT_BAL = await getBalance()
 }
 
-async function getBalance() {
-    return PROVIDER.getBalance(config.DISPATCHER)
-}
-
 /**
  * Set paths that fit configuration
  * Paths are filtered for tkns; path length; start and end asset and that path is enabled
  */
- function filterPaths() {
+function filterPaths() {
     PATHS = orgPaths.filter(path => {
         return (
             path.tkns.filter(t => config.BLACKLISTED_TKNS.includes(t)).length == 0 &&
-            path.tkns[0] == config.BASE_ASSET &&
-            path.tkns[path.tkns.length - 1] == config.BASE_ASSET &&
-            path.enabled &&
+            path.tkns[0] == config.INPUT_ASSET &&
+            path.tkns[path.tkns.length - 1] == config.INPUT_ASSET &&
+            path.enabled=='1' &&
             config.MAX_HOPS >= path.pools.length - 1
         )
     })
@@ -62,7 +57,7 @@ async function getBalance() {
 /**
  * Filter out all paths that have an empty pool
  */
- function filterPathsWithEmptyPool() {
+function filterPathsWithEmptyPool() {
     let threshold = config.EMPTY_POOL_THRESHOLD
     let emptyPools = Object.entries(RESERVES).map(e => {
         let [ poolId, reserves ] = e
@@ -75,28 +70,20 @@ async function getBalance() {
     console.log('Found ', PATHS.length, ' valid paths with non-empty pools')
 }
 
-
-/**
- * Estimate gas cost for an internal Uniswap trade with nSteps.
- * @dev Gas estimate for wrapping 32k
- * @dev Actual gasPerStep varies. Estimated 62k
- * @dev Avalanche has static gas price (may change in hardfork). Set to 470gwei
- * @param {BigNumber} nSteps 
- * @returns {BigNumber} gas cost in wei
- */
-function estimateGasAmount(nSteps) {
-    let gasToUnwrap = ethers.BigNumber.from("32000")
-    let gasPerStep = ethers.BigNumber.from("120000")
-    let totalGas = gasToUnwrap.add(gasPerStep.mul(nSteps))
-    return totalGas
-}
-
 /**
  * Return filtered paths
  * Function is meant for external modules to access filtered paths
  */
- function getPaths() {
+function getPaths() {
     return PATHS
+}
+
+async function getBalance() {
+    return PROVIDER.getBalance(SIGNER.address).catch(e => 
+        {
+            console.log('Failed to catch balance of the signer')
+            console.log(e)
+        })
 }
 
 /**
@@ -104,7 +91,7 @@ function estimateGasAmount(nSteps) {
  * @param {Object} path
  * @returns {Array}
  */
- function getReservePath(path) {
+function getReservePath(path) {
     let reservePath = []
     for (let i = 0; i < path.pools.length; i++) {
         let r0 = RESERVES[path.pools[i]][path.tkns[i]]
@@ -115,30 +102,30 @@ function estimateGasAmount(nSteps) {
     return reservePath
 }
 
-
 /**
  * Return opportunity if net profitable
  * @param {Object} path - Estimated gross profit from arb
  * @returns {Object}
  */
- function arbForPath(path) {
+function arbForPath(path) {
     let reservePath = getReservePath(path)
     let optimalIn = math.getOptimalAmountForPath(reservePath)
     if (optimalIn.gt("0")) {
         let avlAmount = BOT_BAL.sub(config.MAX_GAS_COST) // How much bot can spend on trade
         let inputAmount = avlAmount.gt(optimalIn) ? optimalIn : avlAmount
-        let swapAmounts = math.getAmountsByReserves(inputAmount, reservePath)
-        let grossProfit = swapAmounts[swapAmounts.length-1].sub(inputAmount)
+        let amountOut = math.getAmountOutByReserves(inputAmount, reservePath)
+        let grossProfit = amountOut.sub(inputAmount)
         let gasPrice = config.DEFAULT_GAS_PRICE
-        let gasAmount = estimateGasAmount(path.pools.length)
-        let gasCost = gasPrice.mul(gasAmount)
-        let netProfit = grossProfit.sub(gasCost);
-        if (netProfit.gt(config.MIN_PROFIT)) {
+        // let gasCost = gasPrice.mul(path.gasAmount)
+
+        let gasCost = ethers.constants.Zero
+        let netProfit = grossProfit.sub(gasCost)
+
+        if (netProfit.gt("0")) {
             return {
-                swapAmounts,
+                inputAmount,
                 grossProfit,
                 netProfit,
-                gasAmount,
                 gasPrice,
                 gasCost,
                 path,
@@ -154,7 +141,7 @@ function estimateGasAmount(nSteps) {
  * @param {number} startTime - Timestamp[ms] when block was received
  * @returns {Object}
  */
- async function arbForPools(blockNumber, poolAddresses, startTime) {
+async function arbForPools(blockNumber, poolAddresses, startTime) {
     RESERVES = reservesManager.getAllReserves()
     let poolIds = poolAddresses.map(a => {
         let x = pools.filter(p => p.address == a)
@@ -166,7 +153,8 @@ function estimateGasAmount(nSteps) {
         // Check if tx is in flight that would affect any of the pools for this path
         let poolsInFlight = path.pools.filter(pathId => POOLS_IN_FLIGHT.includes(pathId)).length > 0
         // Check that path includes the pool that which balance was updated
-        let pathIncludesPool = path.pools.filter(p => poolIds.includes(p)).length > 0
+        // let pathIncludesPool = path.pools.filter(p => poolIds.includes(p)).length > 0
+        let pathIncludesPool = true
         // Check that the path is not blacklisted
         let pathBlacklisted = PATH_FAIL_COUNTER[path.id] > 2
         if (pathIncludesPool && path.enabled && !pathBlacklisted && !poolsInFlight) {
@@ -204,12 +192,13 @@ async function handleOpportunity(opp) {
     }
     try {
         POOLS_IN_FLIGHT = [...POOLS_IN_FLIGHT, ...opp.path.pools]  // Disable pools for the path
-        let txReceipt = await txMng.executeOpportunity(opp)
+        let txReceipt = await txMng.executeOpportunity(opp, opp.blockNumber)
         POOLS_IN_FLIGHT = POOLS_IN_FLIGHT.filter(poolId => !opp.path.pools.includes(poolId))  // Reset ignored pools
         
+        printOpportunityInfo(opp, txReceipt)
         if (txReceipt.status == 0) {
             FAILED_TX_IN_A_ROW += 1
-            LAST_FAIL = opp.path.id
+            LAST_FAIL = opp.pathId
             // Include fail-safe to prevent bot blow-up
             if (FAILED_TX_IN_A_ROW > config.MAX_CONSECUTIVE_FAILS) {
                 console.log("Shutting down... too many failed tx")
@@ -218,8 +207,7 @@ async function handleOpportunity(opp) {
         } else if (txReceipt.status == 1) {
             FAILED_TX_IN_A_ROW = 0
             LAST_FAIL = null
-        }
-        printOpportunityInfo(opp, txReceipt)
+        }    
         return true
     } catch (error) {
         console.log(`${opp.blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
@@ -227,103 +215,14 @@ async function handleOpportunity(opp) {
     }
 }
 
-
-async function handleNewBlock(blockNumber) {
-    let startTime = new Date();
-    if (!RUNWAY_CLEAR) {
-        console.log(`${blockNumber} | Tx in flight, ignoring block`)
-        return;
-    }
-
-    LAST_BLOCK = blockNumber
-    let bestOpp = await findBestOpp()
-    if (bestOpp) {
-        let gasCost = bestOpp.grossProfit.sub(bestOpp.netProfit)
-        console.log(`${blockNumber} | ${Date.now()} | 🕵️‍♂️ ARB AVAILABLE | AVAX ${ethers.utils.formatUnits(bestOpp.pathAmounts[0])} -> WAVAX ${ethers.utils.formatUnits(bestOpp.pathAmounts[0].add(bestOpp.netProfit))}`)
-        console.log(`Gas cost: ${ethers.utils.formatUnits(gasCost)} | Gross profit: ${ethers.utils.formatUnits(bestOpp.grossProfit)}`)
-        // send tx
-        if (RUNWAY_CLEAR) {
-            RUNWAY_CLEAR = false // disable tx (try to avoid fails)
-            console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... ${ethers.utils.formatUnits(bestOpp.pathAmounts[0])} for ${ethers.utils.formatUnits(bestOpp.netProfit)}`);
-            opportunity = {
-                hostname: HOST_NAME,
-                wallet: SIGNER.address,
-                botBalance: config.BOT_BAL, 
-                blockNumber: blockNumber, 
-                timestamp: Date.now(), 
-                instrId: bestOpp.instrId, 
-                pathAmounts: bestOpp.pathAmounts.join('\n'),
-                grossProfit: bestOpp.grossProfit, 
-                netProfit: bestOpp.netProfit
-            }
-            try {
-                
-                opportunity.txData = txData
-                opportunity.txHash = txHash
-                opportunity.error = error
-                if (ok) {
-                    FAILED_TX_IN_A_ROW = 0;
-                } else if (txHash && !ok) {
-                    FAILED_TX_IN_A_ROW += 1;
-                    if (FAILED_TX_IN_A_ROW > MAX_CONSECUTIVE_FAILS) {
-                        console.log("Shutting down... too many failed tx");
-                        process.exit(0);
-                }
-        }
-            }
-            catch (error) {
-                console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
-            } finally {
-                // logToCsv(opportunity, SAVE_PATH)
-            }
-            RUNWAY_CLEAR = true;
-        }
-    }
-    // else {
-    //     // There is no arb, do you want to unwrap avax?
-    //     let wavaxBalance = await getWAVAXBalance();
-    //     if (wavaxBalance.gt(ethers.utils.parseUnits(WAVAX_MAX_BAL))) {
-    //         RUNWAY_CLEAR = false // disable tx (try to avoid fails)
-    //         console.log(`${blockNumber} | ${Date.now()} | 🛫 Sending transaction... Unwrapping ${ethers.utils.formatUnits(wavaxBalance)} WAVAX`);
-    //         try {
-    //             let ok = await unwrapAvax(wavaxBalance, blockNumber);
-    //             if (ok) {
-    //                 FAILED_TX_IN_A_ROW = 0;
-    //             } else {
-    //                 FAILED_TX_IN_A_ROW += 1;
-    //                 if (FAILED_TX_IN_A_ROW > MAX_CONSECUTIVE_FAILS) {
-    //                     console.log("Shutting down... too many failed tx");
-    //                     process.exit(0);
-    //                 }
-    //             }
-    //         }
-    //         catch (error) {
-    //             console.log(`${blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
-    //         }
-    //         RUNWAY_CLEAR = true;
-    //     }
-    // }
-
-    let endTime = new Date();
-    let processingTime = endTime - startTime;
-    console.log(`${blockNumber} | Processing time: ${processingTime}ms`)
-    
-
-    // Update balance (not time sensitive)
-    // let balance = await PROVIDER.getBalance(SIGNER.address);
-    // let wavaxBalance = await getWAVAXBalance();
-    // console.log(`${blockNumber} | AVAX: ${ethers.utils.formatUnits(balance)} | WAVAX: ${ethers.utils.formatUnits(wavaxBalance)}`);
-}
-
-
 /**
  * Log opportunity details and tx status to console
  * @param {Object} opp - Parameters describing opportunity
  * @param {Object} txReceipt - Transaction receipt
  */
- function printOpportunityInfo(opp, txReceipt) {
+function printOpportunityInfo(opp, txReceipt) {
     let gasCostFormatted = ethers.utils.formatUnits(opp.gasPrice.mul(opp.path.gasAmount))
-    let inputAmountFormatted = ethers.utils.formatUnits(opp.swapAmounts[0])
+    let inputAmountFormatted = ethers.utils.formatUnits(opp.inputAmount)
     let grossProfitFormatted = ethers.utils.formatUnits(opp.grossProfit)
     let netProfitFormatted = ethers.utils.formatUnits(opp.netProfit)
 
@@ -348,12 +247,11 @@ async function handleNewBlock(blockNumber) {
  * This includes wrapped and total ablance and blacklisted paths
  */
 async function updateBotState(blockNumber) {
-    BOT_BAL = await getBalance();
-    let traderBal = await PROVIDER.getBalance(SIGNER.address)
+    BOT_BAL = await getBalance()
+    // let chainTknBal = await PROVIDER.getBalance(SIGNER.address)
     console.log('Blacklisted paths: ', PATH_FAIL_COUNTER)
     console.log(`${config.DEX_NAME} | ${blockNumber} | \
-        BOT BAL: ${ethers.utils.formatUnits(BOT_BAL)} AVAX | \
-        TRADER+BOT BAL: ${ethers.utils.formatUnits(BOT_BAL.add(traderBal))} AVAX \
+        ${config.CHAIN_ASSET_SYMBOL}: ${ethers.utils.formatUnits(BOT_BAL)} | \
     `)
 }
 
