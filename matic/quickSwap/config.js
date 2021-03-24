@@ -18,6 +18,15 @@ function loadAllABIs() {
     return abis
 }
 
+function getPrivateKey() {
+    // Specify private key through an argument
+    let prefix = '--pk'
+    let pkNum = process.argv.filter(a => a.includes(prefix))
+    let pkWithAddress = pkNum.length>0 ? process.env[`PK${pkNum[0].replace(prefix, '')}`] : process.env.PK1
+    let pk = pkWithAddress.slice(43)
+    return pk
+}
+
 const EXPLORER_URL = 'https://explorer-mainnet.maticvigil.com/tx/'
 const ROUTER_ADDRESS = '0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff'
 const FACTORY = '0x5757371414417b8C6CAad45bAeF941aBc7d3Ab32'
@@ -50,7 +59,7 @@ const GAS_LIMIT = "350000"
 const EMPTY_POOL_THRESHOLD = ethers.BigNumber.from('10')
 
 // Provider settings
-const PRIVATE_KEY = process.env.PRIVATE_KEY_MATIC
+const PRIVATE_KEY = getPrivateKey()
 const RPC_ENDPOINT = process.env.RPC_MATIC
 const WS_ENDPOINT = process.env.WS_MATIC
 const NETWORK = 137

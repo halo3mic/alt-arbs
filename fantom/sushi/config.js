@@ -18,10 +18,19 @@ function loadAllABIs() {
     return abis
 }
 
+function getPrivateKey() {
+    // Specify private key through an argument
+    let prefix = '--pk'
+    let pkNum = process.argv.filter(a => a.includes(prefix))
+    let pkWithAddress = pkNum.length>0 ? process.env[`PK${pkNum[0].replace(prefix, '')}`] : process.env.PK1
+    let pk = pkWithAddress.slice(43)
+    return pk
+}
+
 const EXPLORER_URL = 'https://cchain.explorer.avax.network/address/'
 const ROUTER_ADDRESS = '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506'
 const FACTORY = '0xc35DADB65012eC5796536bD9864eD8773aBc74C4'
-const DEX_NAME = 'FantomUniswap'
+const DEX_NAME = 'Sushiswap'
 const CHAIN_ASSET_SYMBOL = 'FTM'
 
 const INPUT_ASSET = 'T0000'
@@ -46,7 +55,7 @@ const MAX_GAS_COST = ethers.BigNumber.from('1')
 const GAS_LIMIT = "600000"
 
 // Provider settings
-const PRIVATE_KEY = process.env.PRIVATE_KEY_FANTOM
+const PRIVATE_KEY = getPrivateKey()
 const RPC_ENDPOINT = process.env.RPC_FANTOM
 const WS_ENDPOINT = process.env.WS_FANTOM
 const NETWORK = 250

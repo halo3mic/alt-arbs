@@ -1,0 +1,326 @@
+[
+    {
+        "id": "I00000",
+        "symbol": "wftm=>dai=>feth=>usdc=>fusd=>wftm",
+        "tkns": [
+            "T0000",
+            "T0015",
+            "T0009",
+            "T0018",
+            "T0001",
+            "T0000"
+        ],
+        "pools": [
+            "P0000",
+            "P0009",
+            "P0007",
+            "P0004",
+            "P0002"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I00001",
+        "symbol": "wftm=>dai=>feth=>usdc=>eth=>wftm",
+        "tkns": [
+            "T0000",
+            "T0015",
+            "T0009",
+            "T0018",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0000",
+            "P0009",
+            "P0007",
+            "P0030",
+            "P0001"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I00002",
+        "symbol": "wftm=>dai=>fkrw=>usdc=>fusd=>wftm",
+        "tkns": [
+            "T0000",
+            "T0015",
+            "T0007",
+            "T0018",
+            "T0001",
+            "T0000"
+        ],
+        "pools": [
+            "P0000",
+            "P0011",
+            "P0013",
+            "P0004",
+            "P0002"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I00003",
+        "symbol": "wftm=>dai=>fkrw=>usdc=>eth=>wftm",
+        "tkns": [
+            "T0000",
+            "T0015",
+            "T0007",
+            "T0018",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0000",
+            "P0011",
+            "P0013",
+            "P0030",
+            "P0001"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I00004",
+        "symbol": "wftm=>dai=>eth=>wftm",
+        "tkns": [
+            "T0000",
+            "T0015",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0000",
+            "P0017",
+            "P0001"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I00005",
+        "symbol": "wftm=>dai=>eth=>usdc=>fusd=>wftm",
+        "tkns": [
+            "T0000",
+            "T0015",
+            "T0016",
+            "T0018",
+            "T0001",
+            "T0000"
+        ],
+        "pools": [
+            "P0000",
+            "P0017",
+            "P0030",
+            "P0004",
+            "P0002"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I00006",
+        "symbol": "wftm=>eth=>dai=>wftm",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0015",
+            "T0000"
+        ],
+        "pools": [
+            "P0001",
+            "P0017",
+            "P0000"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I00007",
+        "symbol": "wftm=>eth=>usdc=>fusd=>wftm",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0018",
+            "T0001",
+            "T0000"
+        ],
+        "pools": [
+            "P0001",
+            "P0030",
+            "P0004",
+            "P0002"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I00008",
+        "symbol": "wftm=>eth=>usdc=>feth=>dai=>wftm",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0018",
+            "T0009",
+            "T0015",
+            "T0000"
+        ],
+        "pools": [
+            "P0001",
+            "P0030",
+            "P0007",
+            "P0009",
+            "P0000"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I00009",
+        "symbol": "wftm=>eth=>usdc=>fkrw=>dai=>wftm",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0018",
+            "T0007",
+            "T0015",
+            "T0000"
+        ],
+        "pools": [
+            "P0001",
+            "P0030",
+            "P0013",
+            "P0011",
+            "P0000"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I00010",
+        "symbol": "wftm=>eth=>usdc=>fusdt=>fusd=>wftm",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0018",
+            "T0025",
+            "T0001",
+            "T0000"
+        ],
+        "pools": [
+            "P0001",
+            "P0030",
+            "P0029",
+            "P0026",
+            "P0002"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I00011",
+        "symbol": "wftm=>fusd=>usdc=>feth=>dai=>wftm",
+        "tkns": [
+            "T0000",
+            "T0001",
+            "T0018",
+            "T0009",
+            "T0015",
+            "T0000"
+        ],
+        "pools": [
+            "P0002",
+            "P0004",
+            "P0007",
+            "P0009",
+            "P0000"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I00012",
+        "symbol": "wftm=>fusd=>usdc=>fkrw=>dai=>wftm",
+        "tkns": [
+            "T0000",
+            "T0001",
+            "T0018",
+            "T0007",
+            "T0015",
+            "T0000"
+        ],
+        "pools": [
+            "P0002",
+            "P0004",
+            "P0013",
+            "P0011",
+            "P0000"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I00013",
+        "symbol": "wftm=>fusd=>usdc=>eth=>wftm",
+        "tkns": [
+            "T0000",
+            "T0001",
+            "T0018",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0002",
+            "P0004",
+            "P0030",
+            "P0001"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I00014",
+        "symbol": "wftm=>fusd=>usdc=>eth=>dai=>wftm",
+        "tkns": [
+            "T0000",
+            "T0001",
+            "T0018",
+            "T0016",
+            "T0015",
+            "T0000"
+        ],
+        "pools": [
+            "P0002",
+            "P0004",
+            "P0030",
+            "P0017",
+            "P0000"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I00015",
+        "symbol": "wftm=>fusd=>fusdt=>usdc=>eth=>wftm",
+        "tkns": [
+            "T0000",
+            "T0001",
+            "T0025",
+            "T0018",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0002",
+            "P0026",
+            "P0029",
+            "P0030",
+            "P0001"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    }
+]
