@@ -32,13 +32,14 @@ function getEnabledDexs() {
     // Pass the dex key with --dex=<key>
     // eg. --dex=pangolin,zero,yeti
     // All dexs are enabled by default
+    let nonBlacklisted = DEX_KEYS.filter(d=>!DEX_BLACKLIST.includes(d))
     let userInput = process.argv.filter(arg=>arg.includes('--dex'))
     if (userInput.length>0) {
         userInput = userInput[0].replace('--dex=', '').split(',')
-        let allowed = DEX_KEYS.filter(d=>userInput.includes(d))
+        let allowed = nonBlacklisted.filter(d=>userInput.includes(d))
         return allowed
     }
-    return DEX_KEYS
+    return nonBlacklisted
 }
 
 const DEX_KEYS = [
@@ -51,6 +52,11 @@ const DEX_KEYS = [
     'complus', 
     'baoSwap', 
     'elk',
+]
+const DEX_BLACKLIST = [
+    'baoSwap', 
+    'yetiXYZ', 
+    'unnamed1', 
 ]
 const ENABLED_DEXS = getEnabledDexs()
 
@@ -130,6 +136,7 @@ module.exports = {
     STATIC_GAS_PRICE,
     ROUTER_ADDRESS,
     TIMEOUT_OFFSET,
+    DEX_BLACKLIST,
     RPC_ENDPOINT,
     EXPLORER_URL,
     ENABLED_DEXS,
