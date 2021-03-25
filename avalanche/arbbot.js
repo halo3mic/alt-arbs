@@ -33,14 +33,8 @@ let PATHS
     await reservesManager.init(provider, PATHS) // Initialize reserveres manager
     RESERVES = reservesManager.getAllReserves() // Get reserves for filtered paths
     filterPathsWithEmptyPool()
+    estimateGasForPaths()
     BOT_BAL = await getBalance()
-    // arbForPools(
-    //     await PROVIDER.getBlockNumber(),
-    //     pools.map(p=>p.address),
-    //     Date.now()
-    // )
-    
-    
 }
 
 async function getBalance() {
@@ -87,6 +81,13 @@ async function getBalance() {
     console.log('Found ', PATHS.length, ' valid paths with non-empty pools')
 }
 
+function estimateGasForPaths() {
+    PATHS = PATHS.map(path => {
+        path.gasAmount = estimateGasAmount(path.pools.length)
+        return path
+    })
+}
+
 
 /**
  * Estimate gas cost for an internal Uniswap trade with nSteps.
@@ -127,16 +128,6 @@ function estimateGasAmount(nSteps) {
     return reservePath
 }
 
-// function getExtraGas(netProfit) {
-//     return ethers.utils.parseUnits(
-//         parseFloat(
-//             ethers.utils.formatUnits(netProfit, 16)  // Two decimal precision
-//         ).toFixed(), 
-//         'wei'
-//     )
-// }
-
-
 /**
  * Return opportunity if net profitable
  * @param {Object} path - Estimated gross profit from arb
@@ -157,18 +148,18 @@ function estimateGasAmount(nSteps) {
         let swapAmounts = math.getAmountsByReserves(inputAmount, reservePath)
         let grossProfit = swapAmounts[swapAmounts.length-1].sub(inputAmount)
         let gasPrice = config.DEFAULT_GAS_PRICE
-        let gasAmount = estimateGasAmount(path.pools.length)
-        let gasCost = process.argv.includes('--zero-gas') ? ethers.constants.Zero : gasPrice.mul(gasAmount)
+        let gasCost = process.argv.includes('--zero-gas') ? ethers.constants.Zero : gasPrice.mul(path.gasAmount)
         let netProfit = grossProfit.sub(gasCost);
         // console.log(`Net profit: ${ethers.utils.formatUnits(netProfit)} ETH`)
         // console.log(`Gas cost: ${ethers.utils.formatUnits(gasPrice)} ETH`)
+        // console.log(`Gas amount: ${path.gasAmount}`)
         if (netProfit.gt(config.MIN_PROFIT)) {
             // gasPrice = gasPrice.add(getExtraGas(netProfit))  // Gas price + netProfit indentifier
             return {
+                gasAmount: path.gasAmount,
                 swapAmounts,
                 grossProfit,
                 netProfit,
-                gasAmount,
                 gasPrice,
                 gasCost,
                 path,
