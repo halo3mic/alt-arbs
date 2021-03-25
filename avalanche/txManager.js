@@ -150,7 +150,13 @@ async function executeOpportunity(opportunity) {
             return {status: false, txHash: null, error: e}
         }
     }
-    return submitTradeTx(opportunity.blockNumber, tx)
+    let timeoutPromise = new Promise(function(resolve, reject) {
+        setTimeout(() => reject(new Error('Tx submission timeout reached')), config.SUBMISSION_TIMEOUT);
+    })
+    return Promise.race([
+        submitTradeTx(opportunity.blockNumber, tx),
+        timeoutPromise
+    ])
 }
 
 

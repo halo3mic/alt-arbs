@@ -39,7 +39,6 @@ function getEnabledDexs() {
         return allowed
     }
     return DEX_KEYS
-
 }
 
 const DEX_KEYS = [
@@ -65,10 +64,11 @@ const ABIS = loadAllABIs()
 // Sync(uint112 reserve0, uint112 reserve1)
 const UNISWAP_SYNC_TOPIC = '0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e062b03a9fffbbad1'
 
-const MAX_CONSECUTIVE_FAILS = 10 // After max consecutive fails bot shuts down
+const MAX_CONSECUTIVE_FAILS = 30 // After max consecutive fails bot shuts down
 const BLOCK_WAIT = 2 // Number of blocks to confirm tx
 const MAX_HOPS = 3 // Max number of swaps
 const TIMEOUT_OFFSET = 180  // Seconds after which trade expires 
+const SUBMISSION_TIMEOUT = 2  // Ms after which the bot stops waiting for the sent transaction
 
 const BOT_ID = 2
 const MIN_PROFIT = ethers.utils.parseUnits('0.05')
@@ -123,6 +123,7 @@ module.exports = {
     MAX_CONSECUTIVE_FAILS,
     EMPTY_POOL_THRESHOLD,
     CHAIN_ASSET_SYMBOL,
+    SUBMISSION_TIMEOUT,
     UNISWAP_SYNC_TOPIC,
     DEFAULT_GAS_PRICE,
     BLACKLISTED_TKNS,
