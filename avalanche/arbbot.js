@@ -181,7 +181,7 @@ function estimateGasAmount(nSteps) {
         let x = pools.filter(p => p.address == a)
         return x.length > 0 ? x[0].id : null
     }).filter(e => e)
-
+    let profitableOpps = []
     PATHS.forEach(path => {
         // Check if tx is in flight that would affect any of the pools for this path
         let poolsInFlight = path.pools.filter(poolId => POOLS_IN_FLIGHT.includes(poolId)).length > 0
@@ -192,14 +192,42 @@ function estimateGasAmount(nSteps) {
             if (opp) {
                 POOLS_IN_FLIGHT = [...POOLS_IN_FLIGHT, ...opp.path.pools]  // Disable pools for the path
                 opp.blockNumber = blockNumber
-                handleOpportunity(opp)
+                profitableOpps.push(opp)
             }
         }
     })
+    if (profitableOpps.length>0) {
+        profitableOpps.sort((a, b) => b.netProfit.gt(a.netProfit) ? 1 : -1)
+        let parallelOpps = getParallelOpps(profitableOpps)
+        // await handleOpportunity(parallelOpps[0])
+        for (let opp of parallelOpps) {
+            await handleOpportunity(opp)
+        }
+    }
     let endTime = new Date();
     let processingTime = endTime - startTime;
     console.log(`${blockNumber} | Processing time: ${processingTime}ms`)
     updateBotState(blockNumber)
+}
+
+/**
+ * Return an array of opportunities which pools won't overlap
+ * @param {Object} opp - Parameters describing opportunity
+ * @returns {Array}
+ */
+ function getParallelOpps(opps) {
+    let parallelOpps = []
+    let poolsUsed = []
+    opps.forEach(opp => {
+        let pathIncludesUsedPool = opp.path.pools.filter(poolId => {
+            return poolsUsed.includes(poolId)
+        }).length > 0
+        if (!pathIncludesUsedPool) {
+            poolsUsed = [...poolsUsed, ...opp.path.pools]
+            parallelOpps.push(opp)
+        }
+    })
+    return parallelOpps
 }
 
 /**
@@ -226,6 +254,7 @@ async function handleOpportunity(opp) {
         return true
     } catch (error) {
         console.log(`${opp.blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
+        printOpportunityInfo(opp, {})
         return false
     }
 }
