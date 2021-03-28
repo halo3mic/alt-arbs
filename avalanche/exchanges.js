@@ -267,6 +267,19 @@ class Elk extends Uniswap {
     }
 }
 
+class PandaSwap extends Uniswap {
+
+    constructor(provider) {
+        super(provider)
+        this.routerAddress = ROUTERS.PANDASWAP
+        this.routerContract = new ethers.Contract(
+            this.routerAddress, 
+            ABIS['uniswapRouter'],
+            provider
+        )
+    }
+}
+
 function getExchanges(provider) {
     return {
         zeroExchange: new ZeroExchange(provider), 
@@ -278,6 +291,7 @@ function getExchanges(provider) {
         yetiXYZ: new YetiXYZ(provider), 
         yetiswap: new Yeti(provider), 
         elk: new Elk(provider),
+        pandaswap: new PandaSwap(provider)
     }   
 }
 
