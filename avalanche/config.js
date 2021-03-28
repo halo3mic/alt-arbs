@@ -43,7 +43,8 @@ function getEnabledDexs() {
 }
 
 const DEX_KEYS = [
-    'zeroExchange', 
+    'zeroExchange',
+    'pandaswap', 
     'sushiswap',
     'yetiswap', 
     'pangolin', 
@@ -74,7 +75,7 @@ const MAX_CONSECUTIVE_FAILS = 30 // After max consecutive fails bot shuts down
 const BLOCK_WAIT = 2 // Number of blocks to confirm tx
 const MAX_HOPS = 3 // Max number of swaps
 const TIMEOUT_OFFSET = 180  // Seconds after which trade expires 
-const SUBMISSION_TIMEOUT = 2  // Ms after which the bot stops waiting for the sent transaction
+const SUBMISSION_TIMEOUT = 10000  // Ms after which the bot stops waiting for the sent transaction
 
 const BOT_ID = 2
 const MIN_PROFIT = ethers.utils.parseUnits('0.05')
@@ -85,6 +86,7 @@ const ROUTERS = {
     ZERO_EXCHANGE: '0x85995d5f8ee9645cA855e92de16FA62D26398060',
     UNISH_PROXY: '0xF9eCB1b756Da68F60acBc33A436F631A7155bB96',
     SUSHISWAP: '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506',
+    PANDASWAP: '0x67c58C8f01f50589A52C2C0b233Db9aF6A66a0F0',
     PANGOLIN: '0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106', 
     UNNAMED1: '0xCE679504674F279ac389432c7fe330a48E117148', 
     BAOSWAP: '0x292A6375d6587883bBcabD96860b1834BA14601E', 
@@ -97,13 +99,14 @@ const ROUTERS = {
 const FACTORIES = {
     ELK: '0x091d35d7F63487909C863001ddCA481c6De47091',
     PANGOLIN: '0xefa94DE7a4656D787667C749f7E1223D71E9FD88',
-    ZERO_EXCHANGE: '0x091d35d7F63487909C863001ddCA481c6De47091',
+    ZERO_EXCHANGE: '0x2Ef422F30cdb7c5F1f7267AB5CF567A88974b308',
     COMPLUS: '0x5C02e78A3969D0E64aa2CFA765ACc1d671914aC0', 
     BAOSWAP: '0x29D1Adbb65d93a5710cafe2EF0E8131f64E6AB22', 
     YETI: '0x58C8CD291Fa36130119E6dEb9E520fbb6AcA1c3a', 
     SUSHISWAP: '0xc35DADB65012eC5796536bD9864eD8773aBc74C4', 
     YETIXYZ: '0xf2aBD8FaFb2f1AfE2465f243Ef2093CD0e3cBABF',
     UNNAMED1: '0xeb4E120069d7AaaeC91508eF7EAec8452893a80a',
+    PANDASWAP: '0xc7e37A28bB17EdB59E99d5485Dc8c51BC87aE699'
 }
 
 const BLACKLISTED_TKNS = [
