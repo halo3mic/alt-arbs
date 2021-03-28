@@ -12,7 +12,7 @@ const FLAGS = {
 }
 
 async function main() {
-    let flags = process.argv.slice(2)
+    let flags = Object.keys(FLAGS).filter(f=>process.argv.includes(f))
     flags.forEach(f=>FLAGS[f]())
 }
 

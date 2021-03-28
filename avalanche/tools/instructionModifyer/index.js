@@ -116,4 +116,4 @@ function disableTokens() {
     tkns.forEach(tkn=>disablePathsForToken(tkn))
 }
 
-disableTokens()
+changePathParams()
