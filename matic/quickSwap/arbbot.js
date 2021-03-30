@@ -118,6 +118,22 @@ function getReservePath(path) {
 }
 
 /**
+ * Estimate gas cost for an internal Uniswap trade with nSteps.
+ * @dev Gas estimate for wrapping 32k
+ * @dev Actual gasPerStep varies. Estimated 62k
+ * @dev Avalanche has static gas price (may change in hardfork). Set to 470gwei
+ * @param {BigNumber} nSteps 
+ * @returns {BigNumber} gas cost in wei
+ */
+ function estimateGasAmount(nSteps) {
+    let gasToUnwrap = ethers.BigNumber.from("32000")
+    let gasPerStep = ethers.BigNumber.from("120000")
+    let totalGas = gasToUnwrap.add(gasPerStep.mul(nSteps))
+    return totalGas
+}
+
+
+/**
  * Return opportunity if net profitable
  * @param {Object} path - Estimated gross profit from arb
  * @returns {Object}
@@ -130,7 +146,8 @@ function arbForPath(path) {
         let inputAmount = avlAmount.gt(optimalIn) ? optimalIn : avlAmount
         let amountOut = math.getAmountOutByReserves(inputAmount, reservePath)
         let grossProfit = amountOut.sub(inputAmount)
-        let gasPrice = gasManager.getGasPrice(grossProfit, path.gasAmount)
+        let gasAmount = estimateGasAmount(path.pools.length)
+        let gasPrice = gasManager.getGasPrice(grossProfit, gasAmount)
         let gasCost = gasPrice.mul(path.gasAmount)
         let netProfit = grossProfit.sub(gasCost);
         if (netProfit.gt("0")) {
@@ -278,7 +295,7 @@ async function submitTradeTx(opp) {
  * @param {Object} txReceipt - Transaction receipt
  */
 function printOpportunityInfo(opp, txReceipt) {
-    let gasCostFormatted = ethers.utils.formatUnits(opp.gasPrice.mul(opp.path.gasAmount))
+    let gasCostFormatted = ethers.utils.formatUnits(opp.grossProfit.sub(opp.netProfit))
     let inputAmountFormatted = ethers.utils.formatUnits(opp.inputAmount)
     let grossProfitFormatted = ethers.utils.formatUnits(opp.grossProfit)
     let netProfitFormatted = ethers.utils.formatUnits(opp.netProfit)
