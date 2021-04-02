@@ -53,8 +53,8 @@ async function getCompetitiveGasPrice(txHash) {
 }
 
 async function updateGasPrices(txHash) {
-    let defaultGasPriceLimit = ethers.utils.parseUnits('300', 'gwei')
-    let gasThresholdLimit = ethers.utils.parseUnits('4000', 'gwei')
+    let defaultGasPriceLimit = ethers.utils.parseUnits('9000', 'gwei')
+    let gasThresholdLimit = ethers.utils.parseUnits('9000', 'gwei')
     let competitiveGasPrice = await getCompetitiveGasPrice(txHash)
     console.log('Competitive gas price: ', competitiveGasPrice)
     if (!competitiveGasPrice) {
