@@ -1,5 +1,6 @@
-const { connectToGancheProvider, provider } = require('../provider').ws
+const { connectToGancheProvider, provider, signer } = require('../provider').ws
 const ethers = require('ethers')
+const config = require('../config')
 
 
 async function accountBalanceAtBlock(blockNumber, accountAddress) {
@@ -30,4 +31,32 @@ async function getBlockInfo() {
     console.log(info)
 }
 
-getBlockInfo()
+async function sendFundsBetweenWallets() {
+    let destination = '0x8A877D7f4D7DBDebFf196C93Cc34BABF6A90f9ab'
+    let amount = ethers.utils.parseUnits('1', 'gwei')
+    let gasPrice = ethers.utils.parseUnits('225', 'gwei')
+    let txObj = await signer.sendTransaction({
+        to: destination, 
+        value: amount, 
+        gasPrice: gasPrice, 
+        nonce: 13176
+    })
+    console.log('sent!')
+    console.log(txObj)
+    let txReceipt = await provider.waitForTransaction(txObj.hash)
+    console.log(txReceipt)
+}
+
+async function getNonce() {
+    console.log(await signer.getTransactionCount())
+}
+
+async function getFactoryFromPool() {
+    let poolAddress = '0x494Dd9f783dAF777D3fb4303da4de795953592d0'
+    let poolContract = new ethers.Contract(poolAddress, config.ABIS['uniswapPool'], provider)
+    let factory = await poolContract.factory()
+    console.log(factory)
+    
+}
+
+getFactoryFromPool()

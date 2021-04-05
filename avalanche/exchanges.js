@@ -74,7 +74,7 @@ class Uniswap {
             path
         )
         // If input location is 0 input amount needs to be injected on the call
-        const inputLocs = inputAmount==ethers.constants.Zero ? [90] : []  
+        const inputLocs = inputAmount==ethers.constants.Zero ? [88] : []  
 
         return { tx, inputLocs }
     }

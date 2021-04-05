@@ -79,7 +79,6 @@ const SUBMISSION_TIMEOUT = 10000  // Ms after which the bot stops waiting for th
 
 const BOT_ID = 2
 const MIN_PROFIT = ethers.utils.parseUnits('0.05')
-const STATIC_GAS_PRICE = ethers.BigNumber.from('470')
 const GAS_LIMIT = '700000'
 const DISPATCHER = '0xd11828308Fc7C84Ea31CCD398E609468d6D20713'
 const ROUTERS = {
@@ -106,7 +105,8 @@ const FACTORIES = {
     SUSHISWAP: '0xc35DADB65012eC5796536bD9864eD8773aBc74C4', 
     YETIXYZ: '0xf2aBD8FaFb2f1AfE2465f243Ef2093CD0e3cBABF',
     UNNAMED1: '0xeb4E120069d7AaaeC91508eF7EAec8452893a80a',
-    PANDASWAP: '0xc7e37A28bB17EdB59E99d5485Dc8c51BC87aE699'
+    PANDASWAP: '0xc7e37A28bB17EdB59E99d5485Dc8c51BC87aE699', 
+    PEFI: '0xefa94DE7a4656D787667C749f7E1223D71E9FD88',
 }
 
 const BLACKLISTED_TKNS = [
@@ -116,7 +116,7 @@ const BLACKLISTED_TKNS = [
 ]
 
 // Gas settings
-const DEFAULT_GAS_PRICE = ethers.utils.parseUnits('470', 'gwei')
+const DEFAULT_GAS_PRICE = ethers.utils.parseUnits('225', 'gwei')
 const MAX_GAS_COST = ethers.BigNumber.from('1')
 const EMPTY_POOL_THRESHOLD = ethers.BigNumber.from('10')
 
@@ -136,7 +136,6 @@ module.exports = {
     UNISWAP_SYNC_TOPIC,
     DEFAULT_GAS_PRICE,
     BLACKLISTED_TKNS,
-    STATIC_GAS_PRICE,
     ROUTER_ADDRESS,
     TIMEOUT_OFFSET,
     DEX_BLACKLIST,
