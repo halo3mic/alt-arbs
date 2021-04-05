@@ -99,7 +99,7 @@ async function formQueryTx(opp) {
             amountIn = ethers.constants.Zero  // Pass in zero to replace this amount with query result during execution
         }
         let tradeTx = await EXCHANGES[pool.exchange].formQueryTx(amountIn, tknAddresses)
-        let _inputLoc = tradeTx.inputLocs.map(loc => loc+calldata.length/2-2)  // Relative loc + Previous bytes
+        let _inputLoc = tradeTx.inputLocs.map(loc => loc+calldata.length/2)  // Relative loc + Previous bytes
         inputLocs = [...inputLocs, ..._inputLoc]
         calldata += convertTxDataToByteCode(tradeTx.tx)
     }
