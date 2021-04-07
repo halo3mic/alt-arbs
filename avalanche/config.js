@@ -53,6 +53,7 @@ const DEX_KEYS = [
     'complus', 
     'baoSwap', 
     'elk',
+    'olive',
 ]
 const DEX_BLACKLIST = [
     'baoSwap', 
@@ -78,7 +79,7 @@ const TIMEOUT_OFFSET = 180  // Seconds after which trade expires
 const SUBMISSION_TIMEOUT = 10000  // Ms after which the bot stops waiting for the sent transaction
 
 const BOT_ID = 2
-const MIN_PROFIT = ethers.utils.parseUnits('0.05')
+const MIN_PROFIT = ethers.utils.parseUnits('0.01')
 const GAS_LIMIT = '700000'
 const DISPATCHER = '0xd11828308Fc7C84Ea31CCD398E609468d6D20713'
 const ROUTERS = {
@@ -93,6 +94,7 @@ const ROUTERS = {
     YETIXYZ: '0x1643D9bb6d154c8729a678526F9Edb55DA44BAB7', 
     YETI: '0x262DcFB36766C88E6A7a2953c16F8defc40c378A', 
     ELK: '0x091d35d7F63487909C863001ddCA481c6De47091',
+    OLIVE: '0x0c45FB63001b56a21e29c7dcc1727bfDA273a368',
 }
 
 const FACTORIES = {
@@ -107,6 +109,7 @@ const FACTORIES = {
     UNNAMED1: '0xeb4E120069d7AaaeC91508eF7EAec8452893a80a',
     PANDASWAP: '0xc7e37A28bB17EdB59E99d5485Dc8c51BC87aE699', 
     PEFI: '0xefa94DE7a4656D787667C749f7E1223D71E9FD88',
+    OLIVE: '0x4Fe4D8b01A56706Bc6CaD26E8C59D0C7169976b3',
 }
 
 const BLACKLISTED_TKNS = [
@@ -125,6 +128,8 @@ const PRIVATE_KEY = getPrivateKey()
 const RPC_ENDPOINT = process.env.RPC_AVALANCHE
 const WS_ENDPOINT = process.env.WS_AVALANCHE
 const NETWORK = 43114
+
+const QUICK_FIRE = process.argv.includes('--quick_fire')
 
 
 
@@ -146,6 +151,7 @@ module.exports = {
     PRIVATE_KEY, 
     WS_ENDPOINT,
     BASE_ASSET,
+    QUICK_FIRE,
     MIN_PROFIT,
     BLOCK_WAIT,
     DISPATCHER,

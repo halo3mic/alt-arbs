@@ -280,18 +280,32 @@ class PandaSwap extends Uniswap {
     }
 }
 
+class OliveSwap extends Uniswap {
+
+    constructor(provider) {
+        super(provider)
+        this.routerAddress = ROUTERS.OLIVE
+        this.routerContract = new ethers.Contract(
+            this.routerAddress, 
+            ABIS['uniswapRouter'],
+            provider
+        )
+    }
+}
+
 function getExchanges(provider) {
     return {
         zeroExchange: new ZeroExchange(provider), 
         sushiswap: new Sushiswap(provider),
+        pandaswap: new PandaSwap(provider), 
         pangolin: new Pangolin(provider), 
         unnamed1: new Unnamed1(provider),
+        olive: new OliveSwap(provider),
         complus: new Complus(provider), 
         baoSwap: new BaoSwap(provider), 
         yetiXYZ: new YetiXYZ(provider), 
         yetiswap: new Yeti(provider), 
         elk: new Elk(provider),
-        pandaswap: new PandaSwap(provider)
     }   
 }
 
