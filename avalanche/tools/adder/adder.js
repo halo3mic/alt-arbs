@@ -136,7 +136,8 @@ class PoolManager extends Manager {
         'Yetiswap': 'yetiXYZ', 
         'SushiSwap': 'sushiswap', 
         'Elk': 'elk', 
-        'PandaSwap': 'pandaswap'
+        'PandaSwap': 'pandaswap', 
+        'Olive': 'olive'
     }
 
     async queryData(address) {
