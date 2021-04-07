@@ -193,12 +193,12 @@ function estimateGasAmount(nSteps) {
                 // POOLS_IN_FLIGHT = [...POOLS_IN_FLIGHT, ...opp.path.pools]  // Disable pools for the path
                 opp.blockNumber = blockNumber
                 profitableOpps.push(opp)
-                // if (config.QUICK_FIRE) {
-                //     POOLS_IN_FLIGHT = [...POOLS_IN_FLIGHT, ...opp.path.pools]  // Disable pools for the path
-                //     handleOpportunity(opp)
-                // } else {
-                //     profitableOpps.push(opp)
-                // }
+                if (config.QUICK_FIRE) {
+                    POOLS_IN_FLIGHT = [...POOLS_IN_FLIGHT, ...opp.path.pools]  // Disable pools for the path
+                    handleOpportunity(opp)
+                } else {
+                    profitableOpps.push(opp)
+                }
             }
         }
     })
