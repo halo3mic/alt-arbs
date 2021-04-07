@@ -190,9 +190,15 @@ function estimateGasAmount(nSteps) {
         if (pathIncludesPool && !poolsInFlight) {
             let opp = arbForPath(path)
             if (opp) {
-                POOLS_IN_FLIGHT = [...POOLS_IN_FLIGHT, ...opp.path.pools]  // Disable pools for the path
+                // POOLS_IN_FLIGHT = [...POOLS_IN_FLIGHT, ...opp.path.pools]  // Disable pools for the path
                 opp.blockNumber = blockNumber
                 profitableOpps.push(opp)
+                // if (config.QUICK_FIRE) {
+                //     POOLS_IN_FLIGHT = [...POOLS_IN_FLIGHT, ...opp.path.pools]  // Disable pools for the path
+                //     handleOpportunity(opp)
+                // } else {
+                //     profitableOpps.push(opp)
+                // }
             }
         }
     })
@@ -207,6 +213,7 @@ function estimateGasAmount(nSteps) {
     let endTime = new Date();
     let processingTime = endTime - startTime;
     console.log(`${blockNumber} | Processing time: ${processingTime}ms`)
+    console.log(`${blockNumber} | Pools in flight: ${POOLS_IN_FLIGHT.join(', ')}`)
     updateBotState(blockNumber)
 }
 
@@ -236,7 +243,9 @@ function estimateGasAmount(nSteps) {
  */
 async function handleOpportunity(opp) {
     try {
+        POOLS_IN_FLIGHT = [...POOLS_IN_FLIGHT, ...opp.path.pools]  // Disable pools for the path
         let txReceipt = await txMng.executeOpportunity(opp)
+        // console.log(opp.blockNumber, ' | Reseting pools in flight: ', POOLS_IN_FLIGHT)
         POOLS_IN_FLIGHT = POOLS_IN_FLIGHT.filter(poolId => !opp.path.pools.includes(poolId))  // Reset ignored pools
         if (txReceipt.status == 0) {
             FAILED_TX_IN_A_ROW += 1
@@ -253,6 +262,7 @@ async function handleOpportunity(opp) {
         printOpportunityInfo(opp, txReceipt)
         return true
     } catch (error) {
+        // POOLS_IN_FLIGHT = POOLS_IN_FLIGHT.filter(poolId => !opp.path.pools.includes(poolId))  // Reset ignored pools
         console.log(`${opp.blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
         printOpportunityInfo(opp, {})
         return false
