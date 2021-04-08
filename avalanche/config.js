@@ -28,6 +28,14 @@ function getPrivateKey() {
     return pk
 }
 
+function getWSEndpoint() {
+    // Specify websocket endpoint key through an argument
+    let prefix = '--ws='
+    let s = process.argv.filter(a => a.includes(prefix))
+    let endpoint = s.length>0 ? process.env[`WS_AVALANCHE_${s[0].replace(prefix, '')}`] : process.env.WS_AVALANCHE_1
+    return endpoint
+}
+
 function getEnabledDexs() {
     // Pass the dex key with --dex=<key>
     // eg. --dex=pangolin,zero,yeti
@@ -126,7 +134,7 @@ const EMPTY_POOL_THRESHOLD = ethers.BigNumber.from('10')
 // Provider settings
 const PRIVATE_KEY = getPrivateKey()
 const RPC_ENDPOINT = process.env.RPC_AVALANCHE
-const WS_ENDPOINT = process.env.WS_AVALANCHE
+const WS_ENDPOINT = getWSEndpoint()
 const NETWORK = 43114
 
 const QUICK_FIRE = process.argv.includes('--quick_fire')

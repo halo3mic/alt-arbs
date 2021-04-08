@@ -1,4 +1,4 @@
-const { provider, signer } = require('./provider').ws
+const { provider, signer, endpoint } = require('./provider').ws
 const { UNISWAP_SYNC_TOPIC } = require('./config')
 const pools = require('./config/pools.json')
 const arbbot = require('./arbbot')
@@ -22,6 +22,7 @@ async function init() {
  * Listen for logs that match the filter
  */
 function startListening() {
+    console.log('Started listening to:', endpoint)
     const filter = { topics: [UNISWAP_SYNC_TOPIC] }
     provider.on(filter, log => {
         let startTime = new Date() // Timestamp when new block is received
