@@ -128,6 +128,28 @@ function estimateGasAmount(nSteps) {
     return reservePath
 }
 
+function optimalAmountStatic(reservePath) {
+    let options = [
+        ethers.utils.parseEther('10'),
+        ethers.utils.parseEther('30'),
+        ethers.utils.parseEther('100'),
+        ethers.utils.parseEther('500'),
+    ]
+    let bestIn = ethers.constants.Zero
+    let bestProfit = ethers.constants.Zero
+    for (let option of options) {
+        let amountOut = math.getAmountOutByReserves(option, reservePath)
+        let profit = amountOut.sub(option)
+        if (profit.gt(bestProfit)) {
+            bestProfit = profit
+            bestIn = option
+        } else {
+            break
+        }
+    }
+    return bestIn
+}
+
 /**
  * Return opportunity if net profitable
  * @param {Object} path - Estimated gross profit from arb
@@ -141,7 +163,7 @@ function estimateGasAmount(nSteps) {
     if (amountOut.lte(smallInAmount)) {
         return
     }
-    let optimalIn = math.getOptimalAmountForPath(reservePath)
+    let optimalIn = config.STATIC_IN ? optimalAmountStatic(reservePath) : math.getOptimalAmountForPath(reservePath)
     if (optimalIn.gt("0")) {
         let avlAmount = BOT_BAL.sub(config.MAX_GAS_COST) // How much bot can spend on trade
         let inputAmount = avlAmount.gt(optimalIn) ? optimalIn : avlAmount

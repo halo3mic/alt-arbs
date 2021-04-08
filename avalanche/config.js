@@ -130,6 +130,7 @@ const WS_ENDPOINT = process.env.WS_AVALANCHE
 const NETWORK = 43114
 
 const QUICK_FIRE = process.argv.includes('--quick_fire')
+const STATIC_IN = process.argv.includes('--static-in')
 
 
 
@@ -155,6 +156,7 @@ module.exports = {
     MIN_PROFIT,
     BLOCK_WAIT,
     DISPATCHER,
+    STATIC_IN,
     FACTORIES,
     GAS_LIMIT,
     MAX_HOPS,
