@@ -262,7 +262,7 @@ async function handleOpportunity(opp) {
         printOpportunityInfo(opp, txReceipt)
         return true
     } catch (error) {
-        // POOLS_IN_FLIGHT = POOLS_IN_FLIGHT.filter(poolId => !opp.path.pools.includes(poolId))  // Reset ignored pools
+        POOLS_IN_FLIGHT = POOLS_IN_FLIGHT.filter(poolId => !opp.path.pools.includes(poolId))  // Reset ignored pools
         console.log(`${opp.blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
         printOpportunityInfo(opp, {})
         return false
