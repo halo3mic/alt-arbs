@@ -223,7 +223,6 @@ function generateUpdateId(blockNumber, poolAddresses) {
         let poolsInFlight = path.pools.filter(poolId => POOLS_IN_FLIGHT.includes(poolId)).length > 0
         // Check that path includes the pool that which balance was updated
         let pathIncludesPool = path.pools.filter(p => poolIds.includes(p)).length > 0
-        pathIncludesPool = 1
         if (pathIncludesPool && !poolsInFlight) {
             pathsSearched ++
             let opp = arbForPath(path)
