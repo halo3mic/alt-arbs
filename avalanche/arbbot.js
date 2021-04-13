@@ -249,12 +249,11 @@ function generateUpdateId(blockNumber, poolAddresses) {
             opp.execution = await handleOpportunity(opp)
             return opp
         }))
-        finishedProcessingTimestamp = Date.now()
         // Log opporunity and its execution
         executedOpps.forEach(opp => {
             printOpportunityInfo(opp)
             let txHash = opp.execution.error ? null : opp.execution.txReceipt.transactionHash
-            let executionTime = opp.execution.sentTimestamp ? finishedProcessingTimestamp-opp.execution.sentTimestamp : null
+            let executionTime = opp.execution.sentTimestamp ? opp.execution.sentTimestamp-finishedProcessingTimestamp : null
             let errorMsg = opp.execution.error ? opp.execution.error.message : null
             utils.logToCsv('./avalanche/logs/opps.csv', {
                 oppId: opp.id,
