@@ -177,7 +177,7 @@ function optimalAmountStatic(reservePath) {
         // console.log(`Net profit: ${ethers.utils.formatUnits(netProfit)} ETH`)
         // console.log(`Gas cost: ${ethers.utils.formatUnits(gasPrice)} ETH`)
         // console.log(`Gas amount: ${path.gasAmount}`)
-        if (netProfit.gt(config.MIN_PROFIT) || 1) {
+        if (netProfit.gt(config.MIN_PROFIT)) {
             // gasPrice = gasPrice.add(getExtraGas(netProfit))  // Gas price + netProfit indentifier
             return {
                 gasAmount: path.gasAmount,
