@@ -1,4 +1,5 @@
-const { provider, signer, endpoint } = require('./provider').ws
+const providers = require('./provider')
+const { provider, signer, endpoint } = providers.ws
 const { UNISWAP_SYNC_TOPIC } = require('./config')
 const pools = require('./config/pools.json')
 const arbbot = require('./arbbot')
@@ -7,8 +8,17 @@ const arbbot = require('./arbbot')
 let poolAddresses = []
 
 async function init() {
+    let fProvider, fSigner
+    if (process.argv.includes('--fork')) {
+        fProvider = providers.setGancheProvider({'unlocked_accounts': [signer.address]})
+        fSigner = fProvider.getSigner(signer.address)
+        fSigner.address = signer.address
+        console.log('Started a fork')
+        await arbbot.init(fProvider, fSigner)  // Initialize with provider and signer
+    } else {
+        await arbbot.init(provider, signer)  // Initialize with provider and signer
+    }
     let poolAddressMap = Object.fromEntries(pools.map(pool => [pool.id, pool.address]))
-    await arbbot.init(provider, signer)  // Initialize with provider and signer
     let paths = arbbot.getPaths()  // Fetch filtered paths
     // Store all pool addresses used in filtered paths
     paths.forEach(path => {

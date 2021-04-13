@@ -177,7 +177,7 @@ function optimalAmountStatic(reservePath) {
         // console.log(`Net profit: ${ethers.utils.formatUnits(netProfit)} ETH`)
         // console.log(`Gas cost: ${ethers.utils.formatUnits(gasPrice)} ETH`)
         // console.log(`Gas amount: ${path.gasAmount}`)
-        if (netProfit.gt(config.MIN_PROFIT)) {
+        if (netProfit.gt(config.MIN_PROFIT) || 1) {
             // gasPrice = gasPrice.add(getExtraGas(netProfit))  // Gas price + netProfit indentifier
             return {
                 gasAmount: path.gasAmount,
@@ -193,7 +193,7 @@ function optimalAmountStatic(reservePath) {
 }
 
 function generateOppId(opp) {
-    return opp.blockNumber.toString() + opp.id
+    return opp.blockNumber.toString() + opp.path.id
 }
 
 function generateUpdateId(blockNumber, poolAddresses) {
@@ -254,19 +254,21 @@ function generateUpdateId(blockNumber, poolAddresses) {
         // Log opporunity and its execution
         executedOpps.forEach(opp => {
             printOpportunityInfo(opp)
-            let oppHash = opp.execution.error ? null : opp.execution.txReceipt.transactionHash
+            let txHash = opp.execution.error ? null : opp.execution.txReceipt.transactionHash
+            let executionTime = opp.execution.sentTimestamp ? finishedProcessingTimestamp-opp.execution.sentTimestamp : null
+            let errorMsg = opp.execution.error ? opp.execution.error.message : null
             utils.logToCsv('./avalanche/logs/opps.csv', {
                 oppId: opp.id,
                 updateId,
                 findingBlock: opp.blockNumber,
                 pathId: opp.path.id, 
-                amountIn: opp.amountIn, 
+                amountIn: opp.swapAmounts[0], 
                 predictedNetProfit: opp.netProfit, 
                 predictedGrossProfit: opp.grossProfit,
                 predictedGas: opp.gasAmount,
-                txHash: oppHash, 
-                internalError: opp.error, 
-                executionTime: opp.sentTimestamp - finishedProcessingTimestamp
+                txHash, 
+                internalError: errorMsg, 
+                executionTime
             })
         })
     }
@@ -314,7 +316,7 @@ async function handleOpportunity(opp) {
     try {
         POOLS_IN_FLIGHT = [...POOLS_IN_FLIGHT, ...opp.path.pools]  // Disable pools for the path
         let txReceipt = await txMng.executeOpportunity(opp)
-        let sentTimestamp = Date.now()
+        var sentTimestamp = Date.now()
         // console.log(opp.blockNumber, ' | Reseting pools in flight: ', POOLS_IN_FLIGHT)
         POOLS_IN_FLIGHT = POOLS_IN_FLIGHT.filter(poolId => !opp.path.pools.includes(poolId))  // Reset ignored pools
         if (txReceipt.status == 0) {

@@ -83,11 +83,11 @@ const UNISWAP_SYNC_TOPIC = '0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e06
 const MAX_CONSECUTIVE_FAILS = 30 // After max consecutive fails bot shuts down
 const BLOCK_WAIT = 2 // Number of blocks to confirm tx
 const MAX_HOPS = 4 // Max number of swaps
-const TIMEOUT_OFFSET = 180  // Seconds after which trade expires 
+const TIMEOUT_OFFSET = 1800  // Time after which trade expires - in ms
 const SUBMISSION_TIMEOUT = 10000  // Ms after which the bot stops waiting for the sent transaction
 
 const BOT_ID = 2
-const MIN_PROFIT = ethers.utils.parseUnits('0')
+const MIN_PROFIT = ethers.utils.parseUnits('0.05')
 const GAS_LIMIT = '700000'
 const DISPATCHER = '0xd11828308Fc7C84Ea31CCD398E609468d6D20713'
 const ROUTERS = {
