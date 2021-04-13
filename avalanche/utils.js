@@ -1,10 +1,7 @@
 const { ethers } = require('ethers')
-const { ARCHER_API_KEY } = require('./secrets')
-const { ARCHER_URL, ARCHER_FAILS_PATH, ARCHER_PASSES_PATH } = require('./config')
 const resolve = require('path').resolve
 const fs = require('fs');
 const csvWriter = require('csv-write-stream')
-const fetch = require('node-fetch')
 
 /**
  * Returns local time as a BigNumber
@@ -41,7 +38,7 @@ function convertTxDataToByteCode(tx) {
 }
 
 
-function logToCsv(data, path) {
+function logToCsv(path, data) {
     if (!Array.isArray(data)) {
         data = [data]
     }
@@ -69,4 +66,4 @@ function saveReserves(reservesNew, path, blockNumber) {
     }
 }
 
-module.exports = { broadcastToArcherWithOpts, convertTxDataToByteCode, logToCsv }
+module.exports = { convertTxDataToByteCode, logToCsv }

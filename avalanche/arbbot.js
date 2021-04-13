@@ -4,9 +4,11 @@ const orgPaths = require('./config/paths.json')
 const reservesManager = require('./reservesManager')
 const txMng = require('./txManager')
 const config = require('./config')
+const utils = require('./utils')
 const math = require('./math')
 
 const ethers = require('ethers')
+const crypto = require('crypto')
 
 
 let FAILED_TX_IN_A_ROW = 0
@@ -18,7 +20,7 @@ let BOT_BAL
 let SIGNER
 let PATHS
 
-
+const NODE_IP = config.WS_ENDPOINT.match('\(?<=\/\/)(.*?)(?=\:)')[0]
 
 /**
  * Intialize state
@@ -190,30 +192,45 @@ function optimalAmountStatic(reservePath) {
     }
 }
 
+function generateOppId(opp) {
+    return opp.blockNumber.toString() + opp.id
+}
+
+function generateUpdateId(blockNumber, poolAddresses) {
+    let poolString = poolAddresses.join('')
+    let poolHash = crypto.createHash('md5').update(poolString).digest('hex')
+    return blockNumber.toString() + 'P' + poolHash
+}
+
 /**
  * Find and handle best arb opportunity for changed balance of pools
  * @param {number} blockNumber
  * @param {Array} poolAddresses - Pools with updated balances
- * @param {number} startTime - Timestamp[ms] when block was received
+ * @param {number} startTimestamp - Timestamp[ms] when block was received
  * @returns {Object}
  */
- async function arbForPools(blockNumber, poolAddresses, startTime) {
+ async function arbForPools(blockNumber, poolAddresses, startTimestamp) {
+    let updateId = generateUpdateId(blockNumber, poolAddresses)
     RESERVES = reservesManager.getAllReserves()
     let poolIds = poolAddresses.map(a => {
         let x = pools.filter(p => p.address == a)
         return x.length > 0 ? x[0].id : null
     }).filter(e => e)
     let profitableOpps = []
+    let pathsSearched = 0
     PATHS.forEach(path => {
         // Check if tx is in flight that would affect any of the pools for this path
         let poolsInFlight = path.pools.filter(poolId => POOLS_IN_FLIGHT.includes(poolId)).length > 0
         // Check that path includes the pool that which balance was updated
         let pathIncludesPool = path.pools.filter(p => poolIds.includes(p)).length > 0
+        pathIncludesPool = 1
         if (pathIncludesPool && !poolsInFlight) {
+            pathsSearched ++
             let opp = arbForPath(path)
             if (opp) {
                 // POOLS_IN_FLIGHT = [...POOLS_IN_FLIGHT, ...opp.path.pools]  // Disable pools for the path
                 opp.blockNumber = blockNumber
+                opp.id = generateOppId(opp)
                 profitableOpps.push(opp)
                 if (config.QUICK_FIRE) {
                     POOLS_IN_FLIGHT = [...POOLS_IN_FLIGHT, ...opp.path.pools]  // Disable pools for the path
@@ -224,17 +241,47 @@ function optimalAmountStatic(reservePath) {
             }
         }
     })
+    let finishedProcessingTimestamp = Date.now()
     if (profitableOpps.length>0) {
         profitableOpps.sort((a, b) => b.netProfit.gt(a.netProfit) ? 1 : -1)
         let parallelOpps = getParallelOpps(profitableOpps)
         // await handleOpportunity(parallelOpps[0])
-        for (let opp of parallelOpps) {
-            await handleOpportunity(opp)
-        }
+        let executedOpps = await Promise.all(parallelOpps.map(async opp => {
+            opp.execution = await handleOpportunity(opp)
+            return opp
+        }))
+        finishedProcessingTimestamp = Date.now()
+        // Log opporunity and its execution
+        executedOpps.forEach(opp => {
+            printOpportunityInfo(opp)
+            let oppHash = opp.execution.error ? null : opp.execution.txReceipt.transactionHash
+            utils.logToCsv('./avalanche/logs/opps.csv', {
+                oppId: opp.id,
+                updateId,
+                findingBlock: opp.blockNumber,
+                pathId: opp.path.id, 
+                amountIn: opp.amountIn, 
+                predictedNetProfit: opp.netProfit, 
+                predictedGrossProfit: opp.grossProfit,
+                predictedGas: opp.gasAmount,
+                txHash: oppHash, 
+                internalError: opp.error, 
+                executionTime: opp.sentTimestamp - finishedProcessingTimestamp
+            })
+        })
     }
-    let endTime = new Date();
-    let processingTime = endTime - startTime;
-    console.log(`${blockNumber} | Processing time: ${processingTime}ms`)
+    // Log update 
+    utils.logToCsv('./avalanche/logs/update.csv', {
+        updateId,
+        blockNumber, 
+        traderAddress: SIGNER.address, 
+        nodeIp: NODE_IP,
+        startTimestamp: startTimestamp.toString(), 
+        processingTime: finishedProcessingTimestamp - startTimestamp, 
+        updatedPools: poolAddresses.join('-'), 
+        searchedPaths: pathsSearched
+    })
+    console.log(`${blockNumber} | Processing time: ${finishedProcessingTimestamp - startTimestamp}ms`)
     console.log(`${blockNumber} | Pools in flight: ${POOLS_IN_FLIGHT.join(', ')}`)
     updateBotState(blockNumber)
 }
@@ -267,6 +314,7 @@ async function handleOpportunity(opp) {
     try {
         POOLS_IN_FLIGHT = [...POOLS_IN_FLIGHT, ...opp.path.pools]  // Disable pools for the path
         let txReceipt = await txMng.executeOpportunity(opp)
+        let sentTimestamp = Date.now()
         // console.log(opp.blockNumber, ' | Reseting pools in flight: ', POOLS_IN_FLIGHT)
         POOLS_IN_FLIGHT = POOLS_IN_FLIGHT.filter(poolId => !opp.path.pools.includes(poolId))  // Reset ignored pools
         if (txReceipt.status == 0) {
@@ -281,13 +329,11 @@ async function handleOpportunity(opp) {
             FAILED_TX_IN_A_ROW = 0
             LAST_FAIL = null
         }
-        printOpportunityInfo(opp, txReceipt)
-        return true
+        return { txReceipt, sentTimestamp }
     } catch (error) {
         POOLS_IN_FLIGHT = POOLS_IN_FLIGHT.filter(poolId => !opp.path.pools.includes(poolId))  // Reset ignored pools
         console.log(`${opp.blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
-        printOpportunityInfo(opp, {})
-        return false
+        return { error, sentTimestamp }
     }
 }
 
@@ -296,16 +342,20 @@ async function handleOpportunity(opp) {
  * @param {Object} opp - Parameters describing opportunity
  * @param {Object} txReceipt - Transaction receipt
  */
- function printOpportunityInfo(opp, txReceipt) {
+ function printOpportunityInfo(opp) {
     let gasCostFormatted = ethers.utils.formatUnits(opp.gasPrice.mul(opp.path.gasAmount))
     let inputAmountFormatted = ethers.utils.formatUnits(opp.swapAmounts[0])
     let grossProfitFormatted = ethers.utils.formatUnits(opp.grossProfit)
     let netProfitFormatted = ethers.utils.formatUnits(opp.netProfit)
-
-    let txLink = config.EXPLORER_URL + txReceipt.transactionHash
-    let failMsg = `${opp.blockNumber} | ${Date.now()} | ❌ Fail: ${txLink}`
-    let passMsg = `${opp.blockNumber} | ${Date.now()} | ✅ Success: ${txLink}`
-    let status = txReceipt.status==1 ? passMsg : failMsg
+    let status
+    if (opp.execution.error) {
+        status = `${opp.blockNumber} | ${Date.now()} | ❌ Intenal Fail: ${opp.execution.error}`
+    } else {
+        let txLink = config.EXPLORER_URL + opp.execution.txReceipt.transactionHash
+        let failMsg = `${opp.blockNumber} | ${Date.now()} | ❌ Tx Fail: ${txLink}`
+        let passMsg = `${opp.blockNumber} | ${Date.now()} | ✅ Tx Success: ${txLink}`
+        status = opp.execution.txReceipt.status==1 ? passMsg : failMsg
+    }
 
     console.log('_'.repeat(50))
     console.log(`${opp.blockNumber} | ${Date.now()} | 🕵️‍♂️ ARB AVAILABLE`)

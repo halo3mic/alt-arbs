@@ -25,7 +25,7 @@ function startListening() {
     console.log('Started listening to:', endpoint)
     const filter = { topics: [UNISWAP_SYNC_TOPIC] }
     provider.on(filter, log => {
-        let startTime = new Date() // Timestamp when new block is received
+        let startTime = Date.now() // Timestamp when new block is received
         console.log(`\n${'^'.repeat(20)} ${log.blockNumber} ${'^'.repeat(20)}\n`)
         // Fetch all logs for the new block
         if (poolAddresses.includes(log.address)) {

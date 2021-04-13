@@ -87,7 +87,7 @@ const TIMEOUT_OFFSET = 180  // Seconds after which trade expires
 const SUBMISSION_TIMEOUT = 10000  // Ms after which the bot stops waiting for the sent transaction
 
 const BOT_ID = 2
-const MIN_PROFIT = ethers.utils.parseUnits('0.05')
+const MIN_PROFIT = ethers.utils.parseUnits('0')
 const GAS_LIMIT = '700000'
 const DISPATCHER = '0xd11828308Fc7C84Ea31CCD398E609468d6D20713'
 const ROUTERS = {
