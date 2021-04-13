@@ -8,10 +8,9 @@ const arbbot = require('./arbbot')
 let poolAddresses = []
 
 async function init() {
-    let fProvider, fSigner
     if (process.argv.includes('--fork')) {
-        fProvider = providers.setGancheProvider({'unlocked_accounts': [signer.address]})
-        fSigner = fProvider.getSigner(signer.address)
+        let fProvider = providers.setGancheProvider({'unlocked_accounts': [signer.address]})
+        let fSigner = fProvider.getSigner(signer.address)
         fSigner.address = signer.address
         console.log('Started a fork')
         await arbbot.init(fProvider, fSigner)  // Initialize with provider and signer
@@ -40,7 +39,11 @@ function startListening() {
         // Fetch all logs for the new block
         if (poolAddresses.includes(log.address)) {
             arbbot.updateReserves(log.address, log.data)
-            arbbot.arbForPools(log.blockNumber, [log.address], startTime)        
+            if (log.blockNumber % 2 == 0) {
+                arbbot.arbForPools(log.blockNumber, [log.address], startTime)        
+            } else {
+                console.log('Skipping odd block')
+            }
         }
     })
 }
