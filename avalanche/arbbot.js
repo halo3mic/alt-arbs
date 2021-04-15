@@ -14,12 +14,14 @@ const crypto = require('crypto')
 let FAILED_TX_IN_A_ROW = 0
 let PATH_FAIL_COUNTER = {}
 let POOLS_IN_FLIGHT = []
+let LAST_BLOCK_NUMBER = 0
+let LOG_INDICES = []
 let PROVIDER
 let RESERVES 
 let BOT_BAL
 let SIGNER
 let PATHS
-
+const poolAddressMap = Object.fromEntries(pools.map(pool => [pool.address, pool]))
 const NODE_IP = config.WS_ENDPOINT.match('\(?<=\/\/)(.*?)(?=\:)')[0]
 
 /**
@@ -177,7 +179,7 @@ function optimalAmountStatic(reservePath) {
         // console.log(`Net profit: ${ethers.utils.formatUnits(netProfit)} ETH`)
         // console.log(`Gas cost: ${ethers.utils.formatUnits(gasPrice)} ETH`)
         // console.log(`Gas amount: ${path.gasAmount}`)
-        if (netProfit.gt(config.MIN_PROFIT) || 1) {
+        if (netProfit.gt(config.MIN_PROFIT)) {
             // gasPrice = gasPrice.add(getExtraGas(netProfit))  // Gas price + netProfit indentifier
             return {
                 gasAmount: path.gasAmount,
@@ -192,14 +194,16 @@ function optimalAmountStatic(reservePath) {
     }
 }
 
-function generateOppId(opp) {
-    return opp.blockNumber.toString() + opp.path.id
+function generateOppId(opp, updateId) {
+    let uniqueIndentifier = updateId + opp.path.id
+    let id = crypto.createHash('md5').update(uniqueIndentifier).digest('hex')
+    return id
 }
 
-function generateUpdateId(blockNumber, poolAddresses) {
-    let poolString = poolAddresses.join('')
-    let poolHash = crypto.createHash('md5').update(poolString).digest('hex')
-    return blockNumber.toString() + 'P' + poolHash
+function generateUpdateId(blockNumber, poolAddress, index, nodeIp, traderAddress) {
+    let uniqueIndentifier = `${blockNumber}${poolAddress}${index}${nodeIp}${traderAddress}`
+    let id = crypto.createHash('md5').update(uniqueIndentifier).digest('hex')
+    return id
 }
 
 /**
@@ -209,37 +213,56 @@ function generateUpdateId(blockNumber, poolAddresses) {
  * @param {number} startTimestamp - Timestamp[ms] when block was received
  * @returns {Object}
  */
- async function arbForPools(blockNumber, poolAddresses, startTimestamp) {
-    let updateId = generateUpdateId(blockNumber, poolAddresses)
+ async function handleUpdate(log, startTimestamp) {
+    console.log(LOG_INDICES)
+    if (LOG_INDICES.includes(log.logIndex)) {
+        console.log('Known index, skipping update ...')
+        return
+    }
+    let blockNumber = log.blockNumber
+    if (LAST_BLOCK_NUMBER<blockNumber) {
+        LAST_BLOCK_NUMBER = blockNumber
+        LOG_INDICES = []
+    } else {
+        LOG_INDICES.push(log.logIndex)
+    }
+    let updateId = generateUpdateId(
+        blockNumber, 
+        log.address, 
+        log.logIndex, 
+        NODE_IP, 
+        SIGNER.address
+    )
     RESERVES = reservesManager.getAllReserves()
-    let poolIds = poolAddresses.map(a => {
-        let x = pools.filter(p => p.address == a)
-        return x.length > 0 ? x[0].id : null
-    }).filter(e => e)
-    let profitableOpps = []
+    let poolId = poolAddressMap[log.address].id
+    function* filteredPaths() {
+        for (let path of PATHS) {
+            if (path.pools.includes(poolId)) {
+                yield path
+            }
+        }
+    }
     let pathsSearched = 0
-    PATHS.forEach(path => {
+    let profitableOpps = []
+    for (let path of filteredPaths()) {
         // Check if tx is in flight that would affect any of the pools for this path
         let poolsInFlight = path.pools.filter(poolId => POOLS_IN_FLIGHT.includes(poolId)).length > 0
-        // Check that path includes the pool that which balance was updated
-        let pathIncludesPool = path.pools.filter(p => poolIds.includes(p)).length > 0
-        if (pathIncludesPool && !poolsInFlight) {
+        if (!poolsInFlight) {
             pathsSearched ++
             let opp = arbForPath(path)
             if (opp) {
                 // POOLS_IN_FLIGHT = [...POOLS_IN_FLIGHT, ...opp.path.pools]  // Disable pools for the path
                 opp.blockNumber = blockNumber
-                opp.id = generateOppId(opp)
+                opp.id = generateOppId(opp, updateId)
                 profitableOpps.push(opp)
                 if (config.QUICK_FIRE) {
-                    POOLS_IN_FLIGHT = [...POOLS_IN_FLIGHT, ...opp.path.pools]  // Disable pools for the path
                     handleOpportunity(opp)
                 } else {
                     profitableOpps.push(opp)
                 }
             }
         }
-    })
+    }
     let finishedProcessingTimestamp = Date.now()
     if (profitableOpps.length>0) {
         profitableOpps.sort((a, b) => b.netProfit.gt(a.netProfit) ? 1 : -1)
@@ -271,14 +294,15 @@ function generateUpdateId(blockNumber, poolAddresses) {
         })
     }
     // Log update 
-    utils.logToCsv('./avalanche/logs/update.csv', {
+    utils.logToCsv('./avalanche/logs/update.csv', { 
         updateId,
         blockNumber, 
         traderAddress: SIGNER.address, 
         nodeIp: NODE_IP,
+        index: log.logIndex,
         startTimestamp: startTimestamp.toString(), 
         processingTime: finishedProcessingTimestamp - startTimestamp, 
-        updatedPools: poolAddresses.join('-'), 
+        updatedPools: [log.address].join('-'), 
         searchedPaths: pathsSearched
     })
     console.log(`${blockNumber} | Processing time: ${finishedProcessingTimestamp - startTimestamp}ms`)
@@ -382,10 +406,17 @@ async function updateBotState(blockNumber) {
     `)
 }
 
+function getLogIndices() {
+    return LOG_INDICES
+}
+
+
+
 module.exports = {
     updateReserves: reservesManager.updateReserves,
     getReservePath,
-    arbForPools,
+    getLogIndices,
+    handleUpdate,
     arbForPath,
     getPaths,
     init,

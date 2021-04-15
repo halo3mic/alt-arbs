@@ -36,11 +36,10 @@ function startListening() {
     provider.on(filter, log => {
         let startTime = Date.now() // Timestamp when new block is received
         console.log(`\n${'^'.repeat(20)} ${log.blockNumber} ${'^'.repeat(20)}\n`)
-        // Fetch all logs for the new block
         if (poolAddresses.includes(log.address)) {
             arbbot.updateReserves(log.address, log.data)
             if (log.blockNumber % 2 == 0) {
-                arbbot.arbForPools(log.blockNumber, [log.address], startTime)        
+                arbbot.handleUpdate(log, startTime)        
             } else {
                 console.log('Skipping odd block')
             }
