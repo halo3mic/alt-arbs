@@ -46,18 +46,24 @@ function generateOldUpdateId(blockNumber, poolAddress) {
 }
 
 async function filterRows(src, dst, callback) {
+    try {
+        fs.unlinkSync(dst)
+    } catch {}
     let df = new deffered()
     let rowCount = 0
     fs.createReadStream(src)
     .pipe(csv.parse({ headers: true }))
     .on('error', (error) => {df.resolve(console.log(error))})
     .on('end', () => {df.resolve({status: 1, rowCount})})
-    .on('data', function(row) {
-      row = callback(row)
+    .on('data', async function(row) {
+      row = await callback(row)
       if (row) {
           let writableStream = fs.createWriteStream(dst, {flags: 'a'})
+        //   if (rowCount==0) {
+        //     writableStream.write(Object.keys(row).join(','))
+        //   }
           writableStream.write('\n')
-          csv.writeToStream(writableStream, [row], { headers: false })
+          csv.writeToStream(writableStream, [row], { headers: rowCount==0 })
           rowCount ++
         }
       }
@@ -69,7 +75,7 @@ async function transformUpdates() {
     console.log('Transforming updates ...')
     let src = './avalanche/tools/data/src/update.csv'
     let dst = './avalanche/tools/data/dst/update.csv'
-    await filterRows(src, dst, row => {
+    await filterRows(src, dst, async row => {
         // Skip if: traderAddress is 0x8A877D7f4D7DBDebFf196C93Cc34BABF6A90f9ab
         if (row.traderAddress=='0x8A877D7f4D7DBDebFf196C93Cc34BABF6A90f9ab') {
             return
@@ -109,6 +115,9 @@ async function transformOpportunities() {
         }
         let pathPools = paths.filter(p=>p.id==row.pathId)[0].pools
         if (!updateIdVersionMap[row.updateId]) {
+            return
+        }
+        if (parseFloat(row.predictedNetProfit)<0) {
             return
         }
         if (row.txHash) {
