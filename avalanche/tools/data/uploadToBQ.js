@@ -58,10 +58,10 @@ async function uploadFromCsv({ sourceFile, datasetId, tableId, metadata }) {
 
 async function uploadOpportunities() {
   console.log('\n// OPPORTUNITIES \\\\\n...')
-  // let sourceFile = './avalanche/logs/opps.csv'
-  // let tempFile = './avalanche/logs/.temp/opps.csv'
-  let sourceFile = './avalanche/tools/data/dst/opps.csv'
-  let tempFile = './avalanche/tools/data/dst/.tempopps.csv'
+  let sourceFile = './avalanche/logs/opps.csv'
+  let tempFile = './avalanche/logs/.temp/opps.csv'
+  // let sourceFile = './avalanche/tools/data/dst/opps.csv'
+  // let tempFile = './avalanche/tools/data/dst/.tempopps.csv'
   let queryScript = `
     SELECT oppId
     FROM \`avalanche-304119.avalanche_bot_v0.opportunities\`
@@ -131,10 +131,10 @@ async function uploadOpportunities() {
 
 async function uploadUpdates() {
   console.log('\n// UPDATES \\\\\n...')
-  // let sourceFile = './avalanche/logs/update.csv'
-  // let tempFile = './avalanche/logs/.temp/update.csv'
-  let sourceFile = './avalanche/tools/data/dst/update.csv'
-  let tempFile = './avalanche/tools/data/dst/.tempupdate.csv'
+  let sourceFile = './avalanche/logs/update.csv'
+  let tempFile = './avalanche/logs/.temp/update.csv'
+  // let sourceFile = './avalanche/tools/data/dst/update.csv'
+  // let tempFile = './avalanche/tools/data/dst/.tempupdate.csv'
   let queryScript = `
     SELECT updateId
     FROM \`avalanche-304119.avalanche_bot_v0.updates\`
@@ -147,6 +147,7 @@ async function uploadUpdates() {
     ids
   )
   if (error) {
+    fs.unlinkSync(tempFile)
     throw error
   }
   if (rowCount==0) {
@@ -162,11 +163,11 @@ async function uploadUpdates() {
         {name: 'blockNumber', type: 'INTEGER', mode: 'REQUIRED'},
         {name: 'traderAddress', type: 'STRING'},
         {name: 'nodeIp', type: 'STRING'},
+        {name: 'index', type: 'INTEGER'},
         {name: 'startTimestamp', type: 'INTEGER'},
         {name: 'processingTime', type: 'INTEGER'},
         {name: 'updatedPools', type: 'STRING'},
         {name: 'searchedPaths', type: 'INTEGER'}, 
-        {name: 'index', type: 'INTEGER'}
       ],
     },
     location: 'US',
@@ -194,8 +195,13 @@ async function uploadUpdates() {
     metadata
   }
   console.log(`Uploading ${rowCount} rows to bq...`)
-  await uploadFromCsv(setting)
-  fs.unlinkSync(tempFile)
+  try {
+    await uploadFromCsv(setting)
+  } catch (e) {
+    throw e
+  } finally {
+    fs.unlinkSync(tempFile)
+  }
   console.log('Finished')
 }
 
