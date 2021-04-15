@@ -58,8 +58,10 @@ async function uploadFromCsv({ sourceFile, datasetId, tableId, metadata }) {
 
 async function uploadOpportunities() {
   console.log('\n// OPPORTUNITIES \\\\\n...')
-  let sourceFile = './avalanche/logs/opps.csv'
-  let tempFile = './avalanche/logs/.temp/opps.csv'
+  // let sourceFile = './avalanche/logs/opps.csv'
+  // let tempFile = './avalanche/logs/.temp/opps.csv'
+  let sourceFile = './avalanche/tools/data/dst/opps.csv'
+  let tempFile = './avalanche/tools/data/dst/.tempopps.csv'
   let queryScript = `
     SELECT oppId
     FROM \`avalanche-304119.avalanche_bot_v0.opportunities\`
@@ -129,8 +131,10 @@ async function uploadOpportunities() {
 
 async function uploadUpdates() {
   console.log('\n// UPDATES \\\\\n...')
-  let sourceFile = './avalanche/logs/update.csv'
-  let tempFile = './avalanche/logs/.temp/update.csv'
+  // let sourceFile = './avalanche/logs/update.csv'
+  // let tempFile = './avalanche/logs/.temp/update.csv'
+  let sourceFile = './avalanche/tools/data/dst/update.csv'
+  let tempFile = './avalanche/tools/data/dst/.tempupdate.csv'
   let queryScript = `
     SELECT updateId
     FROM \`avalanche-304119.avalanche_bot_v0.updates\`
@@ -161,11 +165,12 @@ async function uploadUpdates() {
         {name: 'startTimestamp', type: 'INTEGER'},
         {name: 'processingTime', type: 'INTEGER'},
         {name: 'updatedPools', type: 'STRING'},
-        {name: 'searchedPaths', type: 'INTEGER'}
+        {name: 'searchedPaths', type: 'INTEGER'}, 
+        {name: 'index', type: 'INTEGER'}
       ],
     },
     location: 'US',
-    writeDisposition: 'WRITE_TRUNCATE',
+    writeDisposition: 'WRITE_APPEND',
     rangePartitioning: {
       "field": "blockNumber",
       "range": {
