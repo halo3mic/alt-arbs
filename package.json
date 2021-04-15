@@ -11,7 +11,7 @@
     "fantom-sushiswap": "node fantom/sushi/server.js",
     "quick": "node matic/quickSwap/server.js",
     "yeti": "node avalanche/server.js --dex=yeti --internal-only",
-    "complus": "node avalanche/server.js --dex=complus --internal-only", 
+    "complus": "node avalanche/server.js --dex=complus --internal-only",
     "avalanche": "node avalanche/server.js"
   },
   "repository": {
@@ -21,12 +21,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/bigquery": "^5.5.0",
+    "@google-cloud/storage": "^5.8.3",
     "@pangolindex/exchange-contracts": "^1.0.1",
     "bignumber.js": "^9.0.1",
     "csv-write-stream": "^2.0.0",
     "csvtojson": "^2.0.10",
+    "deffered": "^0.0.4",
     "dotenv": "^8.2.0",
     "ethers": "^5.0.29",
+    "fast-csv": "^4.3.6",
     "fs": "^0.0.1-security",
     "ganache-cli": "^6.12.2",
     "path": "^0.12.7",
