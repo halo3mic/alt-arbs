@@ -4,7 +4,7 @@ const crypto = require('crypto')
 const csv = require('fast-csv')
 var fs = require('fs')
 
-const { provider } = require('../../provider').ws
+const { provider } = require('../../provider')
 
 var indexCount = {}
 
@@ -48,7 +48,9 @@ function generateOldUpdateId(blockNumber, poolAddress) {
 async function filterRows(src, dst, callback) {
     try {
         fs.unlinkSync(dst)
-    } catch {}
+    } catch {
+        console.log(dst, 'cant be found')
+    }
     let df = new deffered()
     let rowCount = 0
     fs.createReadStream(src)
@@ -120,18 +122,21 @@ async function transformOpportunities() {
         if (parseFloat(row.predictedNetProfit)<0) {
             return
         }
-        if (row.txHash) {
-            try {
-                let tx = await provider.getTransaction(row.txHash)
-                if (!tx) {
-                    console.log('unknow tx')
-                    return
-                }
-            } catch (e) {
-                console.log(e)
-                return
-            }
-        }
+        // if (row.txHash) {
+        //     try {
+        //         console.log(row.txHash)
+        //         let tx = await provider.getTransaction(row.txHash)
+        //         console.log(tx)
+        //         if (!tx) {
+        //             console.log('unknow tx')
+        //             return
+        //         }
+
+        //     } catch (e) {
+        //         console.log(e)
+        //         return
+        //     }
+        // }
         for (let ver of updateIdVersionMap[row.updateId]) {
             let poolId = pools.filter(p=>p.address==ver.poolAddress)[0].id
             if (pathPools.includes(poolId)) {

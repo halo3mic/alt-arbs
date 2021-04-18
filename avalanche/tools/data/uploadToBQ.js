@@ -99,7 +99,7 @@ async function uploadOpportunities() {
       ],
     },
     location: 'US',
-    writeDisposition: 'WRITE_TRUNCATE',
+    writeDisposition: 'WRITE_APPEND',
     rangePartitioning: {
       "field": "findingBlock",
       "range": {
