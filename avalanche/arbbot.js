@@ -222,7 +222,7 @@ function generateUpdateId(blockNumber, poolAddress, index, nodeIp, traderAddress
     let blockNumber = log.blockNumber
     if (LAST_BLOCK_NUMBER<blockNumber) {
         LAST_BLOCK_NUMBER = blockNumber
-        LOG_INDICES = []
+        LOG_INDICES = [log.logIndex]
     } else {
         LOG_INDICES.push(log.logIndex)
     }
