@@ -124,6 +124,7 @@ const BLACKLISTED_TKNS = [
     'T0020',  // SFI
     'T0019',  // YTS
     'T0043',  // SPORE
+    'T0084',  // TJOMA
 ]
 
 // Gas settings
