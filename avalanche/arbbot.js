@@ -103,7 +103,7 @@ function estimateGasForPaths() {
  */
 function estimateGasAmount(nSteps) {
     let gasToUnwrap = ethers.BigNumber.from("32000")
-    let gasPerStep = ethers.BigNumber.from("120000")
+    let gasPerStep = ethers.BigNumber.from("152400")
     let totalGas = gasToUnwrap.add(gasPerStep.mul(nSteps))
     return totalGas
 }
