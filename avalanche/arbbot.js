@@ -276,7 +276,7 @@ function generateUpdateId(blockNumber, poolAddress, index, nodeIp, traderAddress
         // Log opporunity and its execution
         executedOpps.forEach(opp => {
             printOpportunityInfo(opp)
-            // let txHash = opp.execution.error ? null : opp.execution.txReceipt.transactionHash
+            let txHash = opp.execution.tx ? opp.execution.tx.hash : null
             let executionTime = opp.execution.sentTimestamp ? opp.execution.sentTimestamp-finishedProcessingTimestamp : null
             let errorMsg = opp.execution.error ? opp.execution.error.message : null
             if (config.LOGGING_ENABLED) {
@@ -289,7 +289,7 @@ function generateUpdateId(blockNumber, poolAddress, index, nodeIp, traderAddress
                     predictedNetProfit: opp.netProfit, 
                     predictedGrossProfit: opp.grossProfit,
                     predictedGas: opp.gasAmount,
-                    txHash: opp.execution.tx.hash, 
+                    txHash, 
                     internalError: errorMsg, 
                     executionTime
                 })
@@ -365,7 +365,8 @@ async function handleOpportunity(opp) {
             FAILED_TX_IN_A_ROW = 0
             LAST_FAIL = null
         }
-    } catch (error) {
+    } catch (e) {
+        error = e
         POOLS_IN_FLIGHT = POOLS_IN_FLIGHT.filter(poolId => !opp.path.pools.includes(poolId))  // Reset ignored pools
         console.log(`${opp.blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
     } finally {
