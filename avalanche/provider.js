@@ -7,7 +7,7 @@ const ethers = require('ethers')
  * @returns {ethers.providers.WebSocketProvider}
  */
 function setWsProvider() {
-	if (!config.RPC_ENDPOINT) {
+	if (!config.WS_ENDPOINT) {
 		console.log('No Websockets endpoint detected!')
 	}
     let _wsProvider = new ethers.providers.WebSocketProvider(

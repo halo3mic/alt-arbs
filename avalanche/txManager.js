@@ -107,15 +107,6 @@ async function formQueryTx(opp) {
     return { calldata, inputLocs }
 }
 
-async function submitTradeTx(blockNumber, txBody) {
-    let startTime = new Date()
-    let tx = await SIGNER.sendTransaction(txBody)
-    console.log(`${blockNumber} | Tx sent ${tx.nonce}, ${tx.hash} | Processing time (debug): ${new Date() - startTime}ms`)
-    let txReceipt = await PROVIDER.waitForTransaction(tx.hash, config.BLOCK_WAIT)
-
-    return txReceipt
-} 
-
 async function executeOpportunity(opportunity) {
     let tradeTx = await formTradeTx(opportunity).catch(e => {
         console.log('Failed to form makeTrade tx')
@@ -150,13 +141,7 @@ async function executeOpportunity(opportunity) {
             return {status: false, txHash: null, error: e}
         }
     }
-    let timeoutPromise = new Promise(function(resolve, reject) {
-        setTimeout(() => reject(new Error('Tx submission timeout reached')), config.SUBMISSION_TIMEOUT);
-    })
-    return Promise.race([
-        submitTradeTx(opportunity.blockNumber, tx),
-        timeoutPromise
-    ])
+    return SIGNER.sendTransaction(tx)
 }
 
 

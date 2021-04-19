@@ -39,6 +39,7 @@ const NODE_IP = config.WS_ENDPOINT.match('\(?<=\/\/)(.*?)(?=\:)')[0]
     filterPathsWithEmptyPool()
     estimateGasForPaths()
     BOT_BAL = await getBalance()
+    console.log('Logging enabled:', config.LOGGING_ENABLED)
 }
 
 async function getBalance() {
@@ -275,36 +276,39 @@ function generateUpdateId(blockNumber, poolAddress, index, nodeIp, traderAddress
         // Log opporunity and its execution
         executedOpps.forEach(opp => {
             printOpportunityInfo(opp)
-            let txHash = opp.execution.error ? null : opp.execution.txReceipt.transactionHash
+            // let txHash = opp.execution.error ? null : opp.execution.txReceipt.transactionHash
             let executionTime = opp.execution.sentTimestamp ? opp.execution.sentTimestamp-finishedProcessingTimestamp : null
             let errorMsg = opp.execution.error ? opp.execution.error.message : null
-            utils.logToCsv('./avalanche/logs/opps.csv', {
-                oppId: opp.id,
-                updateId,
-                findingBlock: opp.blockNumber,
-                pathId: opp.path.id, 
-                amountIn: opp.swapAmounts[0], 
-                predictedNetProfit: opp.netProfit, 
-                predictedGrossProfit: opp.grossProfit,
-                predictedGas: opp.gasAmount,
-                txHash, 
-                internalError: errorMsg, 
-                executionTime
-            })
+            if (config.LOGGING_ENABLED) {
+                utils.logToCsv('./avalanche/logs/opps.csv', {
+                    oppId: opp.id,
+                    updateId,
+                    findingBlock: opp.blockNumber,
+                    pathId: opp.path.id, 
+                    amountIn: opp.swapAmounts[0], 
+                    predictedNetProfit: opp.netProfit, 
+                    predictedGrossProfit: opp.grossProfit,
+                    predictedGas: opp.gasAmount,
+                    txHash: opp.execution.tx.hash, 
+                    internalError: errorMsg, 
+                    executionTime
+                })
+            }
         })
     }
-    // Log update 
-    utils.logToCsv('./avalanche/logs/update.csv', { 
-        updateId,
-        blockNumber, 
-        traderAddress: SIGNER.address, 
-        nodeIp: NODE_IP,
-        index: log.logIndex,
-        startTimestamp: startTimestamp.toString(), 
-        processingTime: finishedProcessingTimestamp - startTimestamp, 
-        updatedPools: [log.address].join('-'), 
-        searchedPaths: pathsSearched
-    })
+    if (config.LOGGING_ENABLED) {
+        utils.logToCsv('./avalanche/logs/update.csv', { 
+            updateId,
+            blockNumber, 
+            traderAddress: SIGNER.address, 
+            nodeIp: NODE_IP,
+            index: log.logIndex,
+            startTimestamp: startTimestamp.toString(), 
+            processingTime: finishedProcessingTimestamp - startTimestamp, 
+            updatedPools: [log.address].join('-'), 
+            searchedPaths: pathsSearched
+        })
+    }
     console.log(`${blockNumber} | Processing time: ${finishedProcessingTimestamp - startTimestamp}ms`)
     console.log(`${blockNumber} | Pools in flight: ${POOLS_IN_FLIGHT.join(', ')}`)
     updateBotState(blockNumber)
@@ -335,10 +339,18 @@ function generateUpdateId(blockNumber, poolAddress, index, nodeIp, traderAddress
  * @param {Object} opp - Parameters describing opportunity
  */
 async function handleOpportunity(opp) {
+    let tx, sentTimestamp, txReceipt, error
     try {
         POOLS_IN_FLIGHT = [...POOLS_IN_FLIGHT, ...opp.path.pools]  // Disable pools for the path
-        let txReceipt = await txMng.executeOpportunity(opp)
-        var sentTimestamp = Date.now()
+        tx = await txMng.executeOpportunity(opp)
+        sentTimestamp = Date.now()
+        console.log(`${opp.blockNumber} | Tx sent ${tx.nonce}, ${tx.hash}`)
+        txReceipt = await Promise.race([
+            PROVIDER.waitForTransaction(tx.hash, config.BLOCK_WAIT),
+            new Promise(function(resolve, reject) {
+                setTimeout(() => reject(new Error('Tx submission timeout reached')), config.SUBMISSION_TIMEOUT);
+            })
+        ])
         // console.log(opp.blockNumber, ' | Reseting pools in flight: ', POOLS_IN_FLIGHT)
         POOLS_IN_FLIGHT = POOLS_IN_FLIGHT.filter(poolId => !opp.path.pools.includes(poolId))  // Reset ignored pools
         if (txReceipt.status == 0) {
@@ -353,11 +365,11 @@ async function handleOpportunity(opp) {
             FAILED_TX_IN_A_ROW = 0
             LAST_FAIL = null
         }
-        return { txReceipt, sentTimestamp }
     } catch (error) {
         POOLS_IN_FLIGHT = POOLS_IN_FLIGHT.filter(poolId => !opp.path.pools.includes(poolId))  // Reset ignored pools
         console.log(`${opp.blockNumber} | ${Date.now()} | Failed to send tx ${error.message}`)
-        return { error, sentTimestamp }
+    } finally {
+        return { txReceipt, error, sentTimestamp, tx }
     }
 }
 

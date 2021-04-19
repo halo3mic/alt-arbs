@@ -140,6 +140,7 @@ const NETWORK = 43114
 
 const QUICK_FIRE = process.argv.includes('--quick_fire')
 const STATIC_IN = process.argv.includes('--static-in')
+const LOGGING_ENABLED = !process.argv.includes('--log=false')
 
 
 
@@ -151,6 +152,7 @@ module.exports = {
     UNISWAP_SYNC_TOPIC,
     DEFAULT_GAS_PRICE,
     BLACKLISTED_TKNS,
+    LOGGING_ENABLED,
     ROUTER_ADDRESS,
     TIMEOUT_OFFSET,
     DEX_BLACKLIST,
