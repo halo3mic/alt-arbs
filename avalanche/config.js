@@ -62,6 +62,7 @@ const DEX_KEYS = [
     'baoSwap', 
     'elk',
     'olive',
+    'lydia'
 ]
 const DEX_BLACKLIST = [
     'baoSwap', 
@@ -82,7 +83,7 @@ const UNISWAP_SYNC_TOPIC = '0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e06
 
 const MAX_CONSECUTIVE_FAILS = 30 // After max consecutive fails bot shuts down
 const BLOCK_WAIT = 2 // Number of blocks to confirm tx
-const MAX_HOPS = 4 // Max number of swaps
+const MAX_HOPS = 3 // Max number of swaps
 const TIMEOUT_OFFSET = 2000  // Time after which trade expires - in ms
 const SUBMISSION_TIMEOUT = 10000  // Ms after which the bot stops waiting for the sent transaction
 
@@ -103,6 +104,7 @@ const ROUTERS = {
     YETI: '0x262DcFB36766C88E6A7a2953c16F8defc40c378A', 
     ELK: '0x091d35d7F63487909C863001ddCA481c6De47091',
     OLIVE: '0x0c45FB63001b56a21e29c7dcc1727bfDA273a368',
+    LYDIA: '0xA52aBE4676dbfd04Df42eF7755F01A3c41f28D27',
 }
 
 const FACTORIES = {
@@ -118,6 +120,7 @@ const FACTORIES = {
     PANDASWAP: '0xc7e37A28bB17EdB59E99d5485Dc8c51BC87aE699', 
     PEFI: '0xefa94DE7a4656D787667C749f7E1223D71E9FD88',
     OLIVE: '0x4Fe4D8b01A56706Bc6CaD26E8C59D0C7169976b3',
+    LYDIA: '0xe0C1bb6DF4851feEEdc3E14Bd509FEAF428f7655',
 }
 
 const BLACKLISTED_TKNS = [
@@ -125,6 +128,60 @@ const BLACKLISTED_TKNS = [
     'T0019',  // YTS
     'T0043',  // SPORE
     'T0084',  // TJOMA
+    'T0080',
+    'T0082',
+    'T0083',
+    'T0084',
+    'T0085',
+    'T0086',
+    'T0087',
+    'T0088',
+    'T0089',
+    'T0090',
+    'T0091',
+    'T0092',
+    'T0093',
+    'T0094',
+    'T0095',
+    'T0096',
+    'T0097',
+    'T0098',
+    'T0099',
+    'T0004',
+    'T0018',
+    'T0020',
+    'T0026',
+    'T0031',
+    'T0033',
+    'T0034',
+    'T0035',
+    'T0036',
+    'T0037',
+    'T0039',
+    'T0041',
+    'T0040',
+    'T0043',
+    'T0044',
+    'T0045',
+    'T0046',
+    'T0047',
+    'T0048',
+    'T0049',
+    'T0050',
+    'T0051',
+    'T0052',
+    'T0054',
+    'T0055',
+    'T0056',
+    'T0057',
+    'T0061',
+    'T0069',
+    'T0070',
+    'T0072',
+    'T0074',
+    'T0076',
+    'T0077',
+    'T0080',
 ]
 
 // Gas settings

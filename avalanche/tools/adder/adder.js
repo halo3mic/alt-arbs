@@ -137,7 +137,8 @@ class PoolManager extends Manager {
         'SushiSwap': 'sushiswap', 
         'Elk': 'elk', 
         'PandaSwap': 'pandaswap', 
-        'Olive': 'olive'
+        'Olive': 'olive', 
+        'Lydia': 'lydia'
     }
 
     async queryData(address) {
@@ -348,6 +349,7 @@ class InstructionManager {
         let pairs = [...this.pools]
         let paths = this.findPaths(pairs, tokenIn, tokenOut, maxHops)
         paths.forEach(p=>this.addInstruction(p))
+        this.saveInstr()
     }
 
 
@@ -390,7 +392,7 @@ class InstructionManager {
             // gasAmountArcher: gasEstimate.add(archerGasAdd).toString(), 
         }
         console.log(instrObj1)
-        this.saveInstr(instrObj1)
+        this.oldData.push(instrObj1)
         // Pool2 --> Pool1
     }
     getCurrentData(path) {
@@ -433,9 +435,8 @@ class InstructionManager {
     //     return gasUsed1.add(gasUsed2)
     // }
 
-    saveInstr(newInstr) {
+    saveInstr() {
         try {
-            this.oldData.push(newInstr)
             fs.writeFileSync(this.dstInstrPath, JSON.stringify(this.oldData, null, 4))
             return true
         } catch(e) {
