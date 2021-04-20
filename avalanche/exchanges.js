@@ -293,7 +293,7 @@ class OliveSwap extends Uniswap {
     }
 }
 
-class Lydia extends Uniswap {
+class Lydia extends Pangolin {
 
     constructor(provider) {
         super(provider)
