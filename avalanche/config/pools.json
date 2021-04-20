@@ -5455,5 +5455,39 @@
         "symbol": "lyddai_lydia",
         "exchange": "lydia",
         "id": "P0320"
+    },
+    {
+        "address": "0x264b5ccccC16D6328cd8e0032Ef90eF5Aba78c72",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0016",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "pngwavax_lydia",
+        "exchange": "lydia",
+        "id": "P0321"
+    },
+    {
+        "address": "0xf0252ffAF3D3c7b3283E0afF56B66Db7105c318C",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0101",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxfrax_pangolin",
+        "exchange": "pangolin",
+        "id": "P0322"
     }
 ]
