@@ -5387,5 +5387,22 @@
         "symbol": "lydwavax_pangolin",
         "exchange": "pangolin",
         "id": "P0316"
+    },
+    {
+        "address": "0xF1d9d971ab9231759d952B22223B4D76D8b181E5",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0014",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "sushiwavax_lydia",
+        "exchange": "lydia",
+        "id": "P0317"
     }
 ]
