@@ -38,11 +38,7 @@ function startListening() {
         console.log(`\n${'^'.repeat(20)} ${log.blockNumber} ${'^'.repeat(20)}\n`)
         if (poolAddresses.includes(log.address)) {
             arbbot.updateReserves(log.address, log.data)
-            if (log.blockNumber % 2 == 0) {
-                arbbot.handleUpdate(log, startTime)        
-            } else {
-                console.log('Skipping odd block')
-            }
+            arbbot.handleUpdate(log, startTime)        
         }
     })
 }
