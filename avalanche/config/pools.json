@@ -5404,5 +5404,56 @@
         "symbol": "sushiwavax_lydia",
         "exchange": "lydia",
         "id": "P0317"
+    },
+    {
+        "address": "0xEAC3778e5658667B72aEbe8C71F97ed8b3b5887b",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0100",
+                "weight": 0.5
+            },
+            {
+                "id": "T0008",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "lydeth_lydia",
+        "exchange": "lydia",
+        "id": "P0318"
+    },
+    {
+        "address": "0x571fde34188D74B2c305702cD61d3a35CF0dc5e5",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0011",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxdai_lydia",
+        "exchange": "lydia",
+        "id": "P0319"
+    },
+    {
+        "address": "0x517F8Be4762083D4EE7c2fBCBfb5F858117a5CD1",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0100",
+                "weight": 0.5
+            },
+            {
+                "id": "T0011",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "lyddai_lydia",
+        "exchange": "lydia",
+        "id": "P0320"
     }
 ]
