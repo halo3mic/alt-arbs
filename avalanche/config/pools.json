@@ -5319,5 +5319,73 @@
         "symbol": "wavaxuni_lydia",
         "exchange": "lydia",
         "id": "P0312"
+    },
+    {
+        "address": "0x752C59f22fAAA861108649F4596034796C69bC3f",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0100",
+                "weight": 0.5
+            },
+            {
+                "id": "T0009",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "lydusdt_lydia",
+        "exchange": "lydia",
+        "id": "P0313"
+    },
+    {
+        "address": "0x161f750b753c7120599d07c352607F458ecB918e",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0100",
+                "weight": 0.5
+            },
+            {
+                "id": "T0016",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "lydpng_lydia",
+        "exchange": "lydia",
+        "id": "P0314"
+    },
+    {
+        "address": "0xFba4EdaAd3248B03f1a3261ad06Ad846A8e50765",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0100",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "lydwavax_lydia",
+        "exchange": "lydia",
+        "id": "P0315"
+    },
+    {
+        "address": "0x87B1Cf8f0Fd3e0243043642Cea7164a67Cb67E4d",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0100",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "lydwavax_pangolin",
+        "exchange": "pangolin",
+        "id": "P0316"
     }
 ]
