@@ -5302,5 +5302,22 @@
         "symbol": "wavaxanus_pangolin",
         "exchange": "pangolin",
         "id": "P0311"
+    },
+    {
+        "address": "0xBACCdD0fFad8Ebb15D0eB26823042bAEEA9518Ef",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0000",
+                "weight": 0.5
+            },
+            {
+                "id": "T0012",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "wavaxuni_lydia",
+        "exchange": "lydia",
+        "id": "P0312"
     }
 ]
