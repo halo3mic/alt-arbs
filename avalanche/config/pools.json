@@ -5489,5 +5489,39 @@
         "symbol": "wavaxfrax_pangolin",
         "exchange": "pangolin",
         "id": "P0322"
+    },
+    {
+        "address": "0x2eea1762Ea1D68e9c864B8Da6c41559062EA4c8E",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0019",
+                "weight": 0.5
+            },
+            {
+                "id": "T0000",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "ytswavax_lydia",
+        "exchange": "lydia",
+        "id": "P0323"
+    },
+    {
+        "address": "0xF50D117A40fE53DA8a7fe82E3d6E1eF87491eEc1",
+        "fee": 0.003,
+        "tkns": [
+            {
+                "id": "T0102",
+                "weight": 0.5
+            },
+            {
+                "id": "T0101",
+                "weight": 0.5
+            }
+        ],
+        "symbol": "fxsfrax_pangolin",
+        "exchange": "pangolin",
+        "id": "P0324"
     }
 ]

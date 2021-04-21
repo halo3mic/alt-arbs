@@ -108894,5 +108894,1663 @@
         ],
         "enabled": true,
         "gasAmount": "300000"
+    },
+    {
+        "id": "I06456",
+        "symbol": "wavax=>elk=>yts=>wavax_elk=>elk=>lydia",
+        "tkns": [
+            "T0000",
+            "T0038",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0000",
+            "P0120",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06457",
+        "symbol": "wavax=>usdt=>yts=>wavax_yetiswap=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0009",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0002",
+            "P0059",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06458",
+        "symbol": "wavax=>eth=>yts=>wavax_sushiswap=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0008",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0008",
+            "P0065",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06459",
+        "symbol": "wavax=>png=>yts=>wavax_yetiswap=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0009",
+            "P0042",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06460",
+        "symbol": "wavax=>png=>yts=>wavax_yetiswap=>pangolin=>lydia",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0009",
+            "P0168",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06461",
+        "symbol": "wavax=>eth=>yts=>wavax_pangolin=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0008",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0013",
+            "P0065",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06462",
+        "symbol": "wavax=>usdt=>yts=>wavax_complus=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0009",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0015",
+            "P0059",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06463",
+        "symbol": "wavax=>usdt=>yts=>wavax_pangolin=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0009",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0021",
+            "P0059",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06464",
+        "symbol": "wavax=>usdt=>yts=>wavax_sushiswap=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0009",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0023",
+            "P0059",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06465",
+        "symbol": "wavax=>eth=>yts=>wavax_complus=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0008",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0025",
+            "P0065",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06466",
+        "symbol": "wavax=>eth=>yts=>wavax_yetiswap=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0008",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0030",
+            "P0065",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06467",
+        "symbol": "wavax=>png=>yts=>wavax_yetixyz=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0033",
+            "P0042",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06468",
+        "symbol": "wavax=>png=>yts=>wavax_yetixyz=>pangolin=>lydia",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0033",
+            "P0168",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06469",
+        "symbol": "wavax=>yts=>wavax_yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0035",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06470",
+        "symbol": "wavax=>png=>yts=>wavax_sushiswap=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0040",
+            "P0042",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06471",
+        "symbol": "wavax=>png=>yts=>wavax_sushiswap=>pangolin=>lydia",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0040",
+            "P0168",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06472",
+        "symbol": "wavax=>uni=>yts=>wavax_complus=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0012",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0041",
+            "P0072",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06473",
+        "symbol": "wavax=>png=>yts=>wavax_complus=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0048",
+            "P0042",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06474",
+        "symbol": "wavax=>png=>yts=>wavax_complus=>pangolin=>lydia",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0048",
+            "P0168",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06475",
+        "symbol": "wavax=>uni=>yts=>wavax_pangolin=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0012",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0051",
+            "P0072",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06476",
+        "symbol": "wavax=>uni=>yts=>wavax_sushiswap=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0012",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0055",
+            "P0072",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06477",
+        "symbol": "wavax=>usdt=>yts=>wavax_elk=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0009",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0057",
+            "P0059",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06478",
+        "symbol": "wavax=>eth=>yts=>wavax_elk=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0008",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0064",
+            "P0065",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06479",
+        "symbol": "wavax=>png=>yts=>wavax_pangolin=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0076",
+            "P0042",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06480",
+        "symbol": "wavax=>png=>yts=>wavax_pangolin=>pangolin=>lydia",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0076",
+            "P0168",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06481",
+        "symbol": "wavax=>uni=>yts=>wavax_yetiswap=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0012",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0077",
+            "P0072",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06482",
+        "symbol": "wavax=>eth=>yts=>wavax_pandaswap=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0008",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0094",
+            "P0065",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06483",
+        "symbol": "wavax=>uni=>yts=>wavax_pandaswap=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0012",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0106",
+            "P0072",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06484",
+        "symbol": "wavax=>usdt=>yts=>wavax_pandaswap=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0009",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0110",
+            "P0059",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06485",
+        "symbol": "wavax=>spore=>yts=>wavax_elk=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0043",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0117",
+            "P0205",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06486",
+        "symbol": "wavax=>png=>yts=>wavax_pandaswap=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0134",
+            "P0042",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06487",
+        "symbol": "wavax=>png=>yts=>wavax_pandaswap=>pangolin=>lydia",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0134",
+            "P0168",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06488",
+        "symbol": "wavax=>spore=>yts=>wavax_pandaswap=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0043",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0139",
+            "P0205",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06489",
+        "symbol": "wavax=>yts=>wavax_pangolin=>lydia",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0158",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06490",
+        "symbol": "wavax=>spore=>yts=>wavax_pangolin=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0043",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0175",
+            "P0205",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06491",
+        "symbol": "wavax=>elk=>yts=>wavax_pangolin=>elk=>lydia",
+        "tkns": [
+            "T0000",
+            "T0038",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0192",
+            "P0120",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06492",
+        "symbol": "wavax=>usdt=>yts=>wavax_olive=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0009",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0241",
+            "P0059",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06493",
+        "symbol": "wavax=>eth=>yts=>wavax_olive=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0008",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0244",
+            "P0065",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06494",
+        "symbol": "wavax=>spore=>yts=>wavax_olive=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0043",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0247",
+            "P0205",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06495",
+        "symbol": "wavax=>png=>yts=>wavax_olive=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0263",
+            "P0042",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06496",
+        "symbol": "wavax=>png=>yts=>wavax_olive=>pangolin=>lydia",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0263",
+            "P0168",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06497",
+        "symbol": "wavax=>usdt=>yts=>wavax_lydia=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0009",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0269",
+            "P0059",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06498",
+        "symbol": "wavax=>eth=>yts=>wavax_lydia=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0008",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0270",
+            "P0065",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06499",
+        "symbol": "wavax=>elk=>yts=>wavax_olive=>elk=>lydia",
+        "tkns": [
+            "T0000",
+            "T0038",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0275",
+            "P0120",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06500",
+        "symbol": "wavax=>png=>yts=>wavax_elk=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0284",
+            "P0042",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06501",
+        "symbol": "wavax=>png=>yts=>wavax_elk=>pangolin=>lydia",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0284",
+            "P0168",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06502",
+        "symbol": "wavax=>uni=>yts=>wavax_lydia=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0012",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0312",
+            "P0072",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06503",
+        "symbol": "wavax=>png=>yts=>wavax_lydia=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0321",
+            "P0042",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06504",
+        "symbol": "wavax=>png=>yts=>wavax_lydia=>pangolin=>lydia",
+        "tkns": [
+            "T0000",
+            "T0016",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0321",
+            "P0168",
+            "P0323"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06505",
+        "symbol": "wavax=>yts=>wavax_lydia=>yetiswap",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0035"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06506",
+        "symbol": "wavax=>yts=>png=>wavax_lydia=>yetiswap=>yetiswap",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0042",
+            "P0009"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06507",
+        "symbol": "wavax=>yts=>png=>wavax_lydia=>yetiswap=>yetixyz",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0042",
+            "P0033"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06508",
+        "symbol": "wavax=>yts=>png=>wavax_lydia=>yetiswap=>sushiswap",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0042",
+            "P0040"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06509",
+        "symbol": "wavax=>yts=>png=>wavax_lydia=>yetiswap=>complus",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0042",
+            "P0048"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06510",
+        "symbol": "wavax=>yts=>png=>wavax_lydia=>yetiswap=>pangolin",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0042",
+            "P0076"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06511",
+        "symbol": "wavax=>yts=>png=>wavax_lydia=>yetiswap=>pandaswap",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0042",
+            "P0134"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06512",
+        "symbol": "wavax=>yts=>png=>wavax_lydia=>yetiswap=>olive",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0042",
+            "P0263"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06513",
+        "symbol": "wavax=>yts=>png=>wavax_lydia=>yetiswap=>elk",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0042",
+            "P0284"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06514",
+        "symbol": "wavax=>yts=>png=>wavax_lydia=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0042",
+            "P0321"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06515",
+        "symbol": "wavax=>yts=>usdt=>wavax_lydia=>yetiswap=>yetiswap",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0009",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0059",
+            "P0002"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06516",
+        "symbol": "wavax=>yts=>usdt=>wavax_lydia=>yetiswap=>complus",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0009",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0059",
+            "P0015"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06517",
+        "symbol": "wavax=>yts=>usdt=>wavax_lydia=>yetiswap=>pangolin",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0009",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0059",
+            "P0021"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06518",
+        "symbol": "wavax=>yts=>usdt=>wavax_lydia=>yetiswap=>sushiswap",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0009",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0059",
+            "P0023"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06519",
+        "symbol": "wavax=>yts=>usdt=>wavax_lydia=>yetiswap=>elk",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0009",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0059",
+            "P0057"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06520",
+        "symbol": "wavax=>yts=>usdt=>wavax_lydia=>yetiswap=>pandaswap",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0009",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0059",
+            "P0110"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06521",
+        "symbol": "wavax=>yts=>usdt=>wavax_lydia=>yetiswap=>olive",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0009",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0059",
+            "P0241"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06522",
+        "symbol": "wavax=>yts=>usdt=>wavax_lydia=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0009",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0059",
+            "P0269"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06523",
+        "symbol": "wavax=>yts=>eth=>wavax_lydia=>yetiswap=>sushiswap",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0008",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0065",
+            "P0008"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06524",
+        "symbol": "wavax=>yts=>eth=>wavax_lydia=>yetiswap=>pangolin",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0008",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0065",
+            "P0013"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06525",
+        "symbol": "wavax=>yts=>eth=>wavax_lydia=>yetiswap=>complus",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0008",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0065",
+            "P0025"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06526",
+        "symbol": "wavax=>yts=>eth=>wavax_lydia=>yetiswap=>yetiswap",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0008",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0065",
+            "P0030"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06527",
+        "symbol": "wavax=>yts=>eth=>wavax_lydia=>yetiswap=>elk",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0008",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0065",
+            "P0064"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06528",
+        "symbol": "wavax=>yts=>eth=>wavax_lydia=>yetiswap=>pandaswap",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0008",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0065",
+            "P0094"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06529",
+        "symbol": "wavax=>yts=>eth=>wavax_lydia=>yetiswap=>olive",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0008",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0065",
+            "P0244"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06530",
+        "symbol": "wavax=>yts=>eth=>wavax_lydia=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0008",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0065",
+            "P0270"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06531",
+        "symbol": "wavax=>yts=>uni=>wavax_lydia=>yetiswap=>complus",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0012",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0072",
+            "P0041"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06532",
+        "symbol": "wavax=>yts=>uni=>wavax_lydia=>yetiswap=>pangolin",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0012",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0072",
+            "P0051"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06533",
+        "symbol": "wavax=>yts=>uni=>wavax_lydia=>yetiswap=>sushiswap",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0012",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0072",
+            "P0055"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06534",
+        "symbol": "wavax=>yts=>uni=>wavax_lydia=>yetiswap=>yetiswap",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0012",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0072",
+            "P0077"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06535",
+        "symbol": "wavax=>yts=>uni=>wavax_lydia=>yetiswap=>pandaswap",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0012",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0072",
+            "P0106"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06536",
+        "symbol": "wavax=>yts=>uni=>wavax_lydia=>yetiswap=>lydia",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0012",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0072",
+            "P0312"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06537",
+        "symbol": "wavax=>yts=>elk=>wavax_lydia=>elk=>elk",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0038",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0120",
+            "P0000"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06538",
+        "symbol": "wavax=>yts=>elk=>wavax_lydia=>elk=>pangolin",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0038",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0120",
+            "P0192"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06539",
+        "symbol": "wavax=>yts=>elk=>wavax_lydia=>elk=>olive",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0038",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0120",
+            "P0275"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06540",
+        "symbol": "wavax=>yts=>wavax_lydia=>pangolin",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0158"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06541",
+        "symbol": "wavax=>yts=>png=>wavax_lydia=>pangolin=>yetiswap",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0168",
+            "P0009"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06542",
+        "symbol": "wavax=>yts=>png=>wavax_lydia=>pangolin=>yetixyz",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0168",
+            "P0033"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06543",
+        "symbol": "wavax=>yts=>png=>wavax_lydia=>pangolin=>sushiswap",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0168",
+            "P0040"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06544",
+        "symbol": "wavax=>yts=>png=>wavax_lydia=>pangolin=>complus",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0168",
+            "P0048"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06545",
+        "symbol": "wavax=>yts=>png=>wavax_lydia=>pangolin=>pangolin",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0168",
+            "P0076"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06546",
+        "symbol": "wavax=>yts=>png=>wavax_lydia=>pangolin=>pandaswap",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0168",
+            "P0134"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06547",
+        "symbol": "wavax=>yts=>png=>wavax_lydia=>pangolin=>olive",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0168",
+            "P0263"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06548",
+        "symbol": "wavax=>yts=>png=>wavax_lydia=>pangolin=>elk",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0168",
+            "P0284"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06549",
+        "symbol": "wavax=>yts=>png=>wavax_lydia=>pangolin=>lydia",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0016",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0168",
+            "P0321"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06550",
+        "symbol": "wavax=>yts=>spore=>wavax_lydia=>yetiswap=>elk",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0043",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0205",
+            "P0117"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06551",
+        "symbol": "wavax=>yts=>spore=>wavax_lydia=>yetiswap=>pandaswap",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0043",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0205",
+            "P0139"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06552",
+        "symbol": "wavax=>yts=>spore=>wavax_lydia=>yetiswap=>pangolin",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0043",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0205",
+            "P0175"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
+    },
+    {
+        "id": "I06553",
+        "symbol": "wavax=>yts=>spore=>wavax_lydia=>yetiswap=>olive",
+        "tkns": [
+            "T0000",
+            "T0019",
+            "T0043",
+            "T0000"
+        ],
+        "pools": [
+            "P0323",
+            "P0205",
+            "P0247"
+        ],
+        "enabled": true,
+        "gasAmount": "300000"
     }
 ]
